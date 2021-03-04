@@ -1,0 +1,142 @@
+.handshake {
+  width: 300px;
+}
+.choice_img {
+  width: 350px;
+}
+.index_last_container {
+  background-color: #fbf7f7;
+}
+.sign_in_button {
+  width: 100%;
+  background-color: #69b791;
+  color: #fbf7f7;
+  font-size: 1.4rem;
+}
+.sign_in_button:hover {
+  background-color: #5aa380;
+  color: #fbf7f7;
+}
+.form_detail input {
+  border-bottom: 1px solid #a2c4ce !important;
+}
+.form_detail label {
+  color: #a2c4ce;
+  font-weight: 400;
+}
+.forget_pass {
+  text-align: right;
+}
+.forget_pass p a {
+  color: #69b791;
+  text-decoration: none;
+}
+.forget_pass p a:hover {
+  color: #5aa380;
+}
+.create_acc p {
+  font-size: 18px;
+  color: #999;
+}
+.create_acc p a {
+  text-decoration: none;
+  color: #69b791;
+  font-weight: 600;
+}
+.create_acc p a:hover {
+  color: #5aa380;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
+
+#contact-form .form-group input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #000;
+}
+
+.errorMessage {
+  color: #ff5000;
+  font-size: 12px;
+}
+/*------------- SBR------------ */
+.sign_in_fluxx p {
+  color: #222;
+  font-size: 22px;
+}
+.signin_color {
+  background-color: #efefef;
+  text-align: center;
+}
+.input_fileds {
+  border: none;
+  border-bottom: 1px solid red;
+  border-radius: 0;
+}
+.model_footer {
+  background: #efefef;
+  font-size: 18px;
+  font-weight: 400;
+}
+.model_footer p a,
+.account_footer p a {
+  color: #5aa380;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+.account_footer {
+  font-size: 18px;
+}
+.account-footer-part a {
+  color: #5aa380;
+  text-decoration: none;
+  font-weight: 600;
+}
+.account-footer-part a:hover {
+  text-decoration: none;
+  color: #69b791;
+}
+.form_btn {
+  width: 50%;
+  background: #5aa380 !important;
+  border: none !important;
+}
+.password-validation {
+  color: #a2c4ce;
+}
+.form_container label {
+  font-weight: 600;
+}
+.form_container input,
+.form_container textarea {
+  border: 2px solid #383b4c;
+  border-radius: 0;
+}
+.test {
+  width: 100%;
+}
+.btn_class {
+  background: #383b4c !important;
+  color: #fff;
+  font-weight: 400;
+}
+.footer-fixed p a {
+  text-decoration: none;
+  color: #5aa380;
+}
