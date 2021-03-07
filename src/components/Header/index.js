@@ -22,54 +22,27 @@ const Header = (props) => {
   return (
     <div>
       {/* -----------------------SBR-------------------------------- */}  
-       <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
+      {/* <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
         <Navbar.Brand href="/"><h4>fluxx</h4></Navbar.Brand>                
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
                 <Nav.Link href="/" className="px-4">why fLuxx?</Nav.Link>
-                <Nav.Link href="/blog" className="px-4">Blog</Nav.Link>
-               
-               
-                  <Nav.Link href="/contactus" className="nav-link">Contact</Nav.Link>
-               
-             {
-              localStorage.getItem('email') !== '' ?
-
-                    <Link to="#" className="nav-link" onClick={() => {
-                      localStorage.setItem('token','');
-                      localStorage.setItem('email','');
-                      window.location.href = "/";
-                    }}>Logout</Link>
-               :null
-              }  
+                <Nav.Link href="/" className="px-4">Blog</Nav.Link>
+                <Nav.Link href="/" className="px-4">Contact</Nav.Link>
             </Nav>
             <Nav>                        
-                <Nav.Link eventKey={2} >
-                {
-                localStorage.getItem('email') !== '' ?
-                  <div class="dropdown align-right ml-auto">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {localStorage.getItem('email')}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <Link to="#" class="dropdown-item" href="#">Logout</Link>                 
-                    </div>
-                  </div>
-                :
-                <button type="button" className="btn ml-auto" onClick={toggle}>
-                  Sign In
-                </button>
-
-              }                         
-                </Nav.Link> 
-                <Auth toggle={toggle} className={className} modal={modal} />                     
+                <Nav.Link eventKey={2} href="#memes">
+                  <Button variant="black" onClick={handleShow}>
+                    Sign In
+                  </Button>                          
+                </Nav.Link>                      
             </Nav>                                    
         </Navbar.Collapse>                                
       </Navbar>
 
-      {/* <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>fluxx.</Modal.Title>
         </Modal.Header>
@@ -96,12 +69,13 @@ const Header = (props) => {
 
         </Modal.Body>
         <Modal.Footer className="justify-content-center model_footer">
-          <p className="py-2">Don’t have an account? <a href="#">Create a free account</a></p>
+          <p className="py-2">Don’t have an account? <a href="">Create a free account</a></p>
         </Modal.Footer>
-      </Modal>  */}
+      </Modal> */}
+
       {/* -----------------------SBR-------------------------------- */}
 
-      {/* <nav className="navbar navbar-expand-lg navbar-light bg-white p-3">
+      <nav className="navbar navbar-expand-lg navbar-light bg-white p-3">
         <div className="container-fluid">
           <a className="navbar-brand" href="index.html">
             FLUXX
@@ -135,7 +109,24 @@ const Header = (props) => {
               <li className="nav-item px-3">               
                   <Link to="/contactus" className="nav-link">Contact</Link>
               </li>
-               
+              {
+              localStorage.getItem('email') !== '' ?
+                <li className="nav-item px-3">               
+                    <Link to="/members" className="nav-link">Members</Link>
+                </li>
+              :null
+            }  
+             {
+              localStorage.getItem('email') !== '' ?
+                <li className="nav-item px-3">               
+                    <Link to="#" className="nav-link" onClick={() => {
+                          localStorage.setItem('token','');
+                          localStorage.setItem('email','');
+                          window.location.href = "/";
+                        }}>Logout</Link>
+                </li>
+               :null
+              }   
               
             </ul>
             {
@@ -155,10 +146,12 @@ const Header = (props) => {
 
             }
             
+
+            
             <Auth toggle={toggle} className={className} modal={modal} />
           </div>
         </div>
-      </nav> */}
+      </nav>
     </div>
   );
 };
