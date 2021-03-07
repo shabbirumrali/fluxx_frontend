@@ -16,8 +16,8 @@ const Contact = (props) => {
       email: Yup.string().required("Email is required").email("Email is invalid"),
       firstname:Yup.string().required("FirstName is required"),
       lastname:Yup.string().required("Lastname is required"),
-      subject:Yup.string().required("Subject is required").min(12, 'Minimum 10 characters'),
-      description:Yup.string().required("Description is required").min(20, 'Minimum 20 characters'),
+      subject:Yup.string().required("Subject is required"),
+      description:Yup.string().required("Description is required"),
     });
     console.log(validationSchema);
 
@@ -68,7 +68,7 @@ const Contact = (props) => {
 
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>subject *</Form.Label>
-                  <Form.Control type="text" name="subject" ref={register} />
+                  <Form.Control type="password" name="subject" ref={register} />
                   {errors.subject && (
                     <span className="errorMessage">{errors.subject.message}</span>
                   )}
