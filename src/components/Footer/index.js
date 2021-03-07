@@ -1,10 +1,11 @@
 import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
 
 const Footer = () => {
-  return (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col px-5 footer-fixed">
+  return (     
+    <Container fluid>
+      <Row>
+        <Col className="footer-fixed">
           <p>
             &copy; 2021 Irreverent Rogue, LLC | 
             <a href="/" rel="noreferrer" className="px-2">
@@ -15,9 +16,9 @@ const Footer = () => {
               terms
             </a>
           </p>
-        </div>
-      </div>
-    </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
