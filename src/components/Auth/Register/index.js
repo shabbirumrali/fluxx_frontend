@@ -1,10 +1,10 @@
 import React from "react";
- import { Button, Form, FormGroup, Label, Container } from "reactstrap";
-// import Button from 'react-bootstrap/Button'
-// import Container from 'react-bootstrap/Container'
- import Col from 'react-bootstrap/Col'
- import Row from 'react-bootstrap/Row'
-// import Form from 'react-bootstrap/Form'
+// import { Button, Form, FormGroup, Label, Container } from "reactstrap";
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Form from 'react-bootstrap/Form'
 import FloatingLabel from "react-bootstrap-floating-label";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -50,37 +50,37 @@ const Register = (props) => {
           <Container className="border">              
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
 
-              {/* <FloatingLabel type="email" label="email" ref={register} name="email" className="my-3" />
+              <FloatingLabel type="email" label="email" ref={register} name="email" className="my-3" />
               {errors.email && (
                   <span className="errorMessage">{errors.email.message}</span>
-                )} */}
-              <FormGroup>
+                )}
+              {/* <FormGroup>
                 <Label>Email</Label>
                 <input type="email" ref={register} name="email" />
                 {errors.email && (
                   <span className="errorMessage">{errors.email.message}</span>
                 )}
-              </FormGroup>
+              </FormGroup> */}
 
-              {/* <FloatingLabel type="password" label="password" ref={register} name="password" className="my-3" />
+              <FloatingLabel type="password" label="password" ref={register} name="password" className="my-3" />
               {errors.password && (
                   <span className="errorMessage">{errors.password.message}</span>
-                )} */}
-              <FormGroup>
+                )}
+              {/* <FormGroup>
                 <Label>Password</Label>
                 <input type="password" ref={register} name="password" />
                 {errors.password && (
                   <span className="errorMessage">{errors.password.message}</span>
                 )}
-              </FormGroup>
+              </FormGroup> */}
 
-              {/* <FloatingLabel type="password" label="retype password" ref={register} name="confirmPassword" className="my-3" />
+              <FloatingLabel type="password" label="retype password" ref={register} name="confirmPassword" className="my-3" />
               {errors.confirmPassword && (
                   <span className="errorMessage">
                     {errors.confirmPassword.message}
                   </span>
-                )} */}
-              <FormGroup>
+                )}
+              {/* <FormGroup>
                 <Label>Confirm Password</Label>
                 <input type="password" ref={register} name="confirmPassword" />
                 {errors.confirmPassword && (
@@ -88,7 +88,7 @@ const Register = (props) => {
                     {errors.confirmPassword.message}
                   </span>
                 )}
-              </FormGroup>
+              </FormGroup> */}
               <div className="d-flex">
                 <Button type="submit" size="lg" className="form_btn py-3 mb-3">CREATE MY ACCOUNT</Button>
                 <div className="mx-auto">

@@ -20,7 +20,7 @@ function App() {
   const routes = (
     <Switch>
       <Route path="/" render={(props) => <Layout {...props} />} />    
-      <Redirect to="/" />
+      <Redirect to="/" />      
     </Switch>
   );
 
@@ -29,7 +29,7 @@ function App() {
       <ToastContainer position="top-center" autoClose={5000} />
       <Work />
       <Router history={History}>
-        <React.Suspense fallback={loading()}>{routes}</React.Suspense>
+        <React.Suspense fallback={loading()}>{routes}</React.Suspense>        
       </Router>
     </>
   );

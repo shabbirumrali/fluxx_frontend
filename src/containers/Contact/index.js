@@ -1,5 +1,4 @@
 import React from "react";
-import {  FormGroup, Label } from "reactstrap";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -11,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import * as actions from "../../store/actions/index";
+
 const Contact = (props) => {
     const validationSchema = Yup.object().shape({
       email: Yup.string().required("Email is required").email("Email is invalid"),
@@ -87,9 +87,6 @@ const Contact = (props) => {
                 </Button>
               </div>              
             </Form>
-
-
-
 
               {/* <div class="col-md-6">
                   <label for="inputFirst" class="form-label"><b>first name*</b></label>

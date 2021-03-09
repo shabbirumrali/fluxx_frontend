@@ -7,7 +7,7 @@
 .header h2 {
   position: absolute;
   left: 20%;
-  top: 20%;  
+  top: 20%;
   font-size: 38px;
   line-height: 50px;
   font-weight: 700;
@@ -175,4 +175,11 @@ label:focus,
 .delete_option:hover,
 .moveto_option:hover {
   background: #f9f9f9;
+}
+.member-hello {
+  color: #f9f9f9;
+}
+.contant {
+  width: 60%;
+  line-height: 1.8;
 }
