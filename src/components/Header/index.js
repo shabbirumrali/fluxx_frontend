@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 import Nav from 'react-bootstrap/Nav'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -23,14 +24,14 @@ const Header = (props) => {
     <div>
       {/* -----------------------SBR-------------------------------- */}  
       {/* <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
-        <Navbar.Brand href="/"><h4>fluxx</h4></Navbar.Brand>                
+        <Navbar.Brand href="/"><h4>fluxx.</h4></Navbar.Brand>                
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link href="/" className="px-4">why fLuxx?</Nav.Link>
-                <Nav.Link href="/" className="px-4">Blog</Nav.Link>
-                <Nav.Link href="/" className="px-4">Contact</Nav.Link>
+                <Nav.Link href="/" className="px-4">why fluxx?</Nav.Link>
+                <Nav.Link href="/" className="px-4">blog</Nav.Link>
+                <Nav.Link href="/" className="px-4">contact</Nav.Link>                
             </Nav>
             <Nav>                        
                 <Nav.Link eventKey={2} href="#memes">
@@ -38,7 +39,15 @@ const Header = (props) => {
                     Sign In
                   </Button>                          
                 </Nav.Link>                      
-            </Nav>                                    
+            </Nav> 
+            <Nav>
+              <NavDropdown title="useremail@whatever.com" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#"> My Project Charters </NavDropdown.Item>
+                <NavDropdown.Item href="#">My Account</NavDropdown.Item>                  
+                <NavDropdown.Divider />
+                  <NavDropdown.Item href="#">Sign Out</NavDropdown.Item>
+                </NavDropdown>
+            </Nav>                                   
         </Navbar.Collapse>                                
       </Navbar>
 
@@ -74,8 +83,54 @@ const Header = (props) => {
       </Modal> */}
 
       {/* -----------------------SBR-------------------------------- */}
+      <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
+        <Navbar.Brand href="/"><h4>fluxx</h4></Navbar.Brand>                
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        
+        <Navbar.Collapse id="responsive-navbar-nav">
+            <Nav className="mr-auto">
+                <Nav.Link href="/" className="px-4">why fluxx?</Nav.Link>
+                <Link to="/blog" className="nav-link">Blog</Link>
+                <Link to="/contactus" className="nav-link">Contact</Link>  
+                {
+                localStorage.getItem('email') !== '' ?
+                <Link to="/members" className="nav-link">Members</Link>  
+                  
+                :null
+                }                
+            </Nav>
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-white p-3">
+            {
+              localStorage.getItem('email') === '' ?
+            <Nav>                        
+                <Nav.Link eventKey={2} href="#">
+                  <Button variant="black" onClick={toggle}>
+                    Sign In
+                  </Button>                          
+                </Nav.Link>                      
+            </Nav>
+              :null}
+            {
+              localStorage.getItem('email') !== '' ? 
+            <Nav>
+              <NavDropdown title="useremail@whatever.com" id="basic-nav-dropdown">
+                <NavDropdown.Item href="#"> My Project Charters </NavDropdown.Item>
+                <NavDropdown.Item href="#">My Account</NavDropdown.Item>                  
+                <NavDropdown.Divider />
+                  <NavDropdown.Item href="#" onClick={() => {
+                          localStorage.setItem('token','');
+                          localStorage.setItem('email','');
+                          window.location.href = "/";
+                        }}>Sign Out</NavDropdown.Item>
+                </NavDropdown>
+            </Nav>
+             : null
+             }                                   
+        </Navbar.Collapse>                                
+      </Navbar>
+      <Auth toggle={toggle} className={className} modal={modal} />
+
+      {/* <nav className="navbar navbar-expand-lg navbar-light bg-white p-3">
         <div className="container-fluid">
           <a className="navbar-brand" href="index.html">
             FLUXX
@@ -148,10 +203,10 @@ const Header = (props) => {
             
 
             
-            <Auth toggle={toggle} className={className} modal={modal} />
+            
           </div>
         </div>
-      </nav>
+      </nav> */}
     </div>
   );
 };

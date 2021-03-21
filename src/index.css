@@ -176,10 +176,30 @@ label:focus,
 .moveto_option:hover {
   background: #f9f9f9;
 }
-.member-hello {
+.form_section {
+  background: #383b4c;
+}
+.pj_charter h4 {
   color: #f9f9f9;
 }
-.contant {
-  width: 60%;
-  line-height: 1.8;
+.faq-col {
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+.project_details p {
+  font-size: 24px;
+  font-weight: 400;
+}
+.form-labels {
+  font-weight: 500;
+}
+.faq-section p {
+  font-size: 20px;
+  font-weight: 400;
+}
+.faq-col p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #a2c4ce;
 }

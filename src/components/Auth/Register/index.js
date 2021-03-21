@@ -11,7 +11,9 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Lock from '../../../lock.svg'
+import Document from '../../../assets/img/document.png'
+import Lock from '../../../assets/img/lock.png'
+import Lifesaver from '../../../assets/img/lifesaver.png'
 import * as actions from "../../../store/actions/index";
 
 const Register = (props) => {
@@ -91,8 +93,8 @@ const Register = (props) => {
               </FormGroup> */}
               <div className="d-flex">
                 <Button type="submit" size="lg" className="form_btn py-3 mb-3">CREATE MY ACCOUNT</Button>
-                <div className="mx-auto">
-                  <img src={Lock} alt=""/>
+                <div className="signup_image mx-auto">
+                  <img src={Lock} alt="Lock Image"/>
                 </div>
               </div>
 
@@ -110,14 +112,14 @@ const Register = (props) => {
           <Row className="account-footer-part mt-3 px-3 py-2">
             <p>All information that you provide is kept completely confidential
             and will not be released to any other companies. Please view our
-            <a href=""> Privacy Policy</a>, <a href="">Terms and Conditions</a>, and <a href="">Email Policy </a>for
+            <a href="#"> Privacy Policy</a>, <a href="#">Terms and Conditions</a>, and <a href="#">Email Policy </a>for
             further information.</p>
           </Row>
         </Col>
-        <Col xs={2} md={6} lg={6} className="border py-3">
+        <Col xs={2} md={6} lg={6} className="py-3">
           <div>
             <div className="d-flex">
-              <img className="px-3 py-3" src={Lock} alt=""/>
+              <img className="px-3 py-3" src={Document} alt=""/>
               <p className="py-3">Create and save unlimited project charters</p>
             </div>
             <div className="d-flex">
@@ -125,7 +127,7 @@ const Register = (props) => {
               <p className="py-3">Never lose your work</p>
             </div>
             <div className="d-flex">
-              <img className="px-3 py-3" src={Lock} alt=""/>
+              <img className="px-3 py-3" src={Lifesaver} alt=""/>
               <p className="py-3">Free email support</p>
             </div>
           </div>
