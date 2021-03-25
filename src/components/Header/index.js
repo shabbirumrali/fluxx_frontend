@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from "react-bootstrap-floating-label";
+
 import Auth from "../Auth";
 import Register from "../Auth/Register";
 
@@ -23,7 +24,7 @@ const Header = (props) => {
   return (
     <div>
       {/* -----------------------SBR-------------------------------- */}  
-      {/* <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
+     { /* <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
         <Navbar.Brand href="/"><h4>fluxx.</h4></Navbar.Brand>                
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         
@@ -80,7 +81,7 @@ const Header = (props) => {
         <Modal.Footer className="justify-content-center model_footer">
           <p className="py-2">Don’t have an account? <a href="">Create a free account</a></p>
         </Modal.Footer>
-      </Modal> */}
+      </Modal> */ }
 
       {/* -----------------------SBR-------------------------------- */}
       <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        

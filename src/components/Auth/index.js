@@ -9,6 +9,9 @@ import {
   FormGroup,
   Label
 } from "reactstrap";
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { Link } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -48,14 +51,18 @@ const Auth = (props) => {
   return (
     <Modal isOpen={modal} toggle={toggle} className={className}>
       <ModalHeader closeButton>Fluxx</ModalHeader>
-      <ModalBody>
-        <div className="col bg-light py-4">
-          <h3 className="text-center">Sign in to fluxx</h3>
-        </div>
-
+      <ModalBody className="p-0">        
+        <Container fluid="md" className="signin_color mx-0">
+            <Row className="py-3">
+              <Col className="sign_in_fluxx py-1"><p className="m-0"> Sign in to Fluxx. </p></Col>
+            </Row>
+        </Container>
+         <Container>
+            <Row>
+              <Col className="py-1">
         <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-          <FormGroup>
-            <Label>Email</Label>
+          <FormGroup >
+            <Label htmlFor>Email</Label>
             <input
               type="email"
               ref={register({
@@ -88,7 +95,7 @@ const Auth = (props) => {
           </FormGroup>
             <div className="col forget_pass">
             <p className="py-3 m-0">
-              <Link to="#" rel="noreferrer" onClick={forgetpassword}>
+              <Link to="#" rel="noreferrer" onClick={forgetpassword} style={{color: "#5aa380", textDecoration: "none"}}>
                 I forget my password.
               </Link>
             </p>
@@ -96,22 +103,18 @@ const Auth = (props) => {
           {
 
           }
-          <Button type="submit" className="btn sign_in_button">
+          <Button type="submit" className="btn sign_in_button" block style={{background:"#5aa380", color: "#efefef", border: "none"}}>
             Sign In
           </Button>
         </Form>
-       
-      </ModalBody>
-
-      <ModalFooter>
-        <div className="create_acc">
-          <p className="m-0">
-             Don't have an account?
-            <Button onClick={redirect}>create a free account</Button>
-          </p>
-        </div>
-      </ModalFooter>
-    </Modal>
+         </Col>
+            </Row>
+          </Container>
+      </ModalBody>      
+      <ModalFooter className="justify-content-center model_footer">
+          <p className="py-2">Don’t have an account? <a href="#" onClick={redirect} >Create a free account</a></p>
+        </ModalFooter>
+      </Modal>
   );
 };
 
