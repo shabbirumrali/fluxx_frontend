@@ -1,12 +1,25 @@
 import React, {useState} from "react";
-import { Container, Row, Col, Button, Image, OverlayTrigger, Popover, Modal, Form } from "react-bootstrap";
-import FloatingLabel from "react-bootstrap-floating-label";
+import { Container, Row, Col, Button, Image, OverlayTrigger, Popover, Modal, Form } from "react-bootstrap"
+import FloatingLabel from "react-bootstrap-floating-label"
 import Folder from '../../folder.svg'
 import More from '../../more.svg'
 import Document from '../../document.svg'
+import { Link, Router } from "react-router-dom";
+// import InMember from "./InMember";
 
-const Members = (props) => {
-  
+
+const Members = () => {
+  // return (
+  //   // <Container>
+  //   //   <Row>
+  //   //     <Col>
+  //   //       <h2> My Project Charters </h2>
+
+  //   //       <Link to="/clanding" className="nav-link"><button name="create a new Charter">Create New Charter</button></Link> 
+  //   //     </Col>
+  //   //   </Row>
+  //   // </Container>
+  // );
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
@@ -45,20 +58,21 @@ const Members = (props) => {
             <Col xs lg="6">
               <div className="d-flex">
                 <h6>My Project Charters</h6>
-              <Image
-                width={34}
-                height={34}
-                className="ml-4"
-                src={Folder}
-                alt="Folder image"
-                onClick={handleShowFolder}
-                style={{cursor: "pointer"}}
-              />
+                <Image width={34} height={34} className="ml-4" src={Folder} alt="Folder image" onClick={handleShowFolder} style={{cursor: "pointer"}} />
               </div>
             </Col>
 {/* Button */}
-            <Col>
-              <Button className="border-0 px-5 py-3 create-charter-btn" style={{background: "#69b791"}}>Create New Charter</Button>
+            <Col>                                      
+                <Link to="/clanding" className="nav-link">
+                  <Button 
+                    name="create a new Charter"
+                    className="border-0 px-5 py-3 create-charter-btn" 
+                    style={{ background: "#69b791" }}
+                    >
+                      Create New Charter
+                  </Button>
+                </Link>                 
+              
             </Col>
           </Row>  
           <Row className="border-top">
@@ -93,10 +107,16 @@ const Members = (props) => {
                 <Form>
                   <FloatingLabel type="email" label="New file Name" className="my-3"/>
 
-                  <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
+                  <Button className="py-2 mr-2 mb-3" style={{ background:"#5aa380", color: "#efefef", border: "none" }} type="submit">
                     CREATE FOLDER
                   </Button>
-                  <Button onClick={handleCloseFolder} className="py-2 mx-2 mb-3" variant="light" style={{background:"", color: "", border: "none"}} type="submit">
+                  <Button 
+                  onClick={handleCloseFolder} 
+                  className="py-2 mx-2 mb-3" 
+                  variant="light" 
+                  style={{background:"", color: "", border: "none"}} 
+                  type="submit"
+                  >
                     CANCEL
                   </Button>
                 </Form>
@@ -118,17 +138,27 @@ const Members = (props) => {
                 <Form>
                   <FloatingLabel type="email" label="Create Folder" className="my-3"/>
 
-                  <Button className="py-2 mr-2 mb-3" style={{ background: "#5aa380", color: "#efefef", border: "none" }} type="submit">
+                  <Button 
+                  className="py-2 mr-2 mb-3" 
+                  style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
+                  type="submit"
+                  >
                     RENAME
                   </Button>
-                  <Button onClick={handleClose} className="py-2 mx-2 mb-3" variant="light" style={{background:"", color: "", border: "none"}} type="submit">
+                  <Button 
+                  onClick={handleClose} 
+                  className="py-2 mx-2 mb-3" 
+                  variant="light" 
+                  style={{background:"", color: "", border: "none"}} 
+                  type="submit"
+                  >
                     CANCEL
                   </Button>
                 </Form>
               </Col>
             </Row>
           </Container>
-        </Modal.Body>        
+        </Modal.Body>
       </Modal>
 
       {/* Modals for move to */}
@@ -142,9 +172,8 @@ const Members = (props) => {
               <p>where would you like to move <strong>"My Very First Charter" ?</strong></p>
               <Col className="py-1">
                 <p>Create New folder</p>
-              </Col>
-              
-              <p>My Project Charter</p>
+              </Col>              
+                <p>My Project Charter</p>
               <div>
                 <p>My Very First Charter</p>
               </div>
@@ -178,7 +207,7 @@ const Members = (props) => {
         </Modal.Body>        
       </Modal>
     </Container>
-  );
+  )
 };
 
 export default Members;
