@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import Walloutlet from "../../assets/img/walloutlet.jpg";
 import Fingersnap from "../../assets/img/fingersnap.png";

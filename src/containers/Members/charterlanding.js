@@ -31,11 +31,14 @@ const CharterLanding = () => {
                 <p>It was popularised in 
                   the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
                   more recently with desktop publishing software like Aldus PageMaker including versions 
-                  of Lorem Ipsum.</p>
-                  <Link to="/cmain" className="nav-link"><button name="create a new Charter">Get Started</button></Link>
-            </div>
-           
-          </Col>
+                  of Lorem Ipsum.</p>                  
+            </div>              
+          <div className="get-start">
+                <Link to="/cmain" className="py-3 px-5">
+                  Get Started
+                </Link>            
+          </div>
+          </Col>        
         </Row>
       </Container>
     </>

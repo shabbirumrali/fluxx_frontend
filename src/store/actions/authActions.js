@@ -17,6 +17,13 @@ export const authSuccess = (token) => {
     token: token,
   };
 };
+export const charterResponse  = (data) => {
+ return {
+    type: actionTypes.CHARTERLIST,
+    data: data,
+  };
+
+}
 
 export const authFail = (error) => {
   return {
@@ -150,3 +157,99 @@ export const contactus = (form, props) => {
       });
   };
 };
+export const createfolder = (form, props) => {
+
+  let dataobject = {
+        "categoryname":form.foldername
+  }
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  return (dispatch) => {
+    api
+      .post("createCategory",dataobject, config)
+      .then((response) => {
+        if (response.data.status === 200) {
+           toast.success("Your Folder create Successfully");
+           history.push("/members");
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+export const createcharter = (form, props) => {
+  let dataobject = {
+        "name":form
+  }
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  return (dispatch) => {
+    api
+      .post("createCharter",dataobject, config)
+      .then((response) => {
+        if (response.data.status === 200) {
+          // toast.success("Your charter create Successfully");
+          /// history.push("/members");
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+export const charterlist = (form, props) => {
+  let dataobject = {
+        "name":form
+  }
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  return (dispatch) => {
+    api
+      .get("charterlist", config)
+      .then((response) => {
+        if (response.data.status === 200) {
+           dispatch(charterResponse(response.data));
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+
+export const renamecharter = (form, props) => {
+  let dataobject = {
+        "newchartername":form.newchartername,
+        "charterid":props
+  }
+  console.log(dataobject);
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  return (dispatch) => {
+    api
+      .post("renamecharter",dataobject, config)
+      .then((response) => {
+        if (response.data.status === 200) {
+          toast.success("Your charter update Successfully");
+          window.location.href= "/members";
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+

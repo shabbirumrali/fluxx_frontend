@@ -51,6 +51,8 @@ const reducer = (state = initialState, action) => {
       return setAuthRedirectPath(state, action);
     case actionTypes.SET_CURRENT_USER:
       return { isAuthenticated: !isEmpty(action.user), user: action.user };
+    case actionTypes.CHARTERLIST:
+      return   {...state,CHARTERLIST:action.payload};
     default:
       return state;
   }

@@ -1,18 +1,35 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Collapse, Button } from "react-bootstrap";
+import { Col, Container, Row, Collapse, Button,Form } from "react-bootstrap";
 import ItemForm from "./ItemForm";
-const Names = ({ setForm, formData, navigation }) => {
-    const [projectOpen, setProjectOpen] = useState(true);
-  const { name } = formData;
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
+import { connect, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import * as actions from "../../store/actions/index";
+import { useHistory, Redirect } from "react-router-dom";
+const Names = ({ setForm, formData, navigation }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+    const [projectOpen, setProjectOpen] = useState(true);
+    const { register, errors, handleSubmit, reset} = useForm();
+  const { name } = formData;
   const { next } = navigation;
+  const onSubmit = async (data) => {
+    console.log(name);
+    if(name!= ''){
+      dispatch(actions.createcharter(name));  
+      next()
+    }
+    
+  };
 
   return (
     <Container>
     <Row className="my-3">
       <Col xs={1} md={5} className="project_details m-2">
         <p>Project Name</p> 
-
+          <Form   onSubmit={handleSubmit(onSubmit)} noValidate>
             <ItemForm
             label="What is the title of your project?"
             name="name"
@@ -22,7 +39,7 @@ const Names = ({ setForm, formData, navigation }) => {
         <Button 
           type="submit" 
           className="p-btns p-3 d-block"
-          style={{background: "#5aa380", border: "none"}} onClick={next}
+          style={{background: "#5aa380", border: "none"}} 
           >
             SAVE AND CONTINUE
           </Button>
@@ -32,6 +49,7 @@ const Names = ({ setForm, formData, navigation }) => {
           >
             Skip this step for now
           </Button>
+          </Form>
       </Col>
       <Col xs={1} md={6} className="faq-section border p-4">
         <div>

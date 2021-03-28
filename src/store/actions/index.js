@@ -6,5 +6,9 @@ export {
   createForm,
   forgetpassword,
   resetpassword,
-  contactus
+  contactus,
+  createfolder,
+  createcharter,
+  charterlist,
+  renamecharter
 } from "./authActions";
