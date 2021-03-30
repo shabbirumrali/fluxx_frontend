@@ -23,18 +23,17 @@ const Members = (props) => {
   const history = useHistory();
   const { register, errors, handleSubmit,renameSubmit, reset} = useForm();
   const { className, toggle, modal } = props;
-  const [responseData, setResponseData] = useState(true);  
+  const [responseData, setResponseData] = useState(true); 
+  const [singleCharterData, setCharterData] = useState(true); 
   const onSubmit = async (data) => {
-
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));
-    }else{
-      dispatch(actions.renamecharter(data,selectedcharterid));
-      //dispatch(actions.charterlist());
-     // handleCloseFolder();
-
-
+    }if(data.newchartername != undefined){
+       dispatch(actions.renamecharter(data,selectedcharterid));
     }
+    if(Object.keys(data).length == 0){
+      dispatch(actions.deleteCharter(data,selectedcharterid));
+    }    
      reset();
   };
 
@@ -80,7 +79,35 @@ const Members = (props) => {
   const handleShow2 = () => setShow2(true)
   const handleShow3 = () => setShow3(true)
   const [selectedcharterid, chartedId] = useState(true);
-  
+  const fetchcharter = value  => () => {
+   // useEffect(() => {
+        fetchDetail(value)
+     // }, [fetchDetail])
+
+  }
+  const fetchDetail = useCallback((value) => {   
+    axios({
+      "method": "GET",
+      "url": "http://localhost:8000/v1/fetchcharter/"+value,
+      "headers": {
+         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+         'Content-Type': 'application/json', 
+      }
+    })
+    .then((response) => {
+      console.log(response.data);
+      history.push({
+          pathname: "/cmain", 
+          state: { detail: response.data.charterlist }
+        });
+
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }, [])
+ 
+  console.log(setCharterData);
   const popover = (
     <Popover>
       <Popover.Content className="demo-pop p-0"> 
@@ -132,7 +159,7 @@ const Members = (props) => {
                   <div style={{background: "#f9f9f9"}}>
                     <Image src={Document} width={36} className="m-3" alt="Folder image" />
                   </div>              
-                  <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380"}}>{list.name}</p>                
+                  <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380"}}  onClick={fetchcharter(list.name)} >{list.name}</p>                
                 
                   <div className="d-flex ml-auto option_section">
                     <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
@@ -292,7 +319,7 @@ const Members = (props) => {
           <Container>
             <Row>
               <Col className="py-1">
-                <Form>    
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>    
                   {/* form tag if needed */}
                   <p>Very First Charter Last Modified: December 17, 2020 08:57 PM ET My Very First Charter” ?</p>
                   <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">

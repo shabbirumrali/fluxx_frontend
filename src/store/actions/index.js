@@ -10,5 +10,6 @@ export {
   createfolder,
   createcharter,
   charterlist,
-  renamecharter
+  renamecharter,
+  deleteCharter
 } from "./authActions";

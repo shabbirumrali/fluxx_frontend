@@ -14,7 +14,6 @@ import Impact from "./step11";
 import Stakeholders from "./step12";
 import Risks from "./step13";
 //import "./styles.css";
-
 const steps = [
   { id: "names"    },
   { id: "address"  },
@@ -30,59 +29,61 @@ const steps = [
   { id: "stakeholder" },
   { id: "risk" }
 ];
+const MultiStepForm = (props) => {
+  
+ 
+    const objectdata = props.location.state !== undefined ? props.location.state.detail:{}; 
+    const defaultData = {
+        name: objectdata.name ? objectdata.name:"",
+        project_manager: objectdata.project_manager ? objectdata.project_manager:"",
+        project_sponsor: objectdata.project_sponsor ? objectdata.project_sponsor:"",
+        project_need: objectdata.project_need ? objectdata.project_need:"",
+        goal:objectdata.goal ? objectdata.goal: "",
+        benefits:objectdata.benefits ? objectdata.benefits :"",
+        InScope:objectdata.InScope ?  objectdata.InScope :"",
+        outScope:objectdata.outScope ? objectdata.outScope :"",
+        startDate:objectdata.startDate ? objectdata.startDate : "",
+        finishDate:objectdata.finishDate ? objectdata.finishDate : "",
+        budget:objectdata.budget ? objectdata.budget : "",
+        assumptionTime:objectdata.assumptionTime ? objectdata.assumptionTime : "",
+        impact:objectdata.impact ? objectdata.impact : "",
+        stakeholder:objectdata.stakeholder ? objectdata.stakeholder : "",
+        risks:objectdata.risks ? objectdata.risks : "",
+      };
 
-const defaultData = {
-  name: "",
-  project_manager: "",
-  project_sponsor: "",
-  project_need: "",
-  goal:"",
-  benefits:"",
-  InScope:"",
-  outScope:"",
-  startDate:"",
-  finishDate:"",
-  budget:"",
-  assumptionTime:"",
-  impact:"",
-  stakeholder:"",
-  risks:""
-};
 
-const MultiStepForm = ({ images }) => {
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
 
-  const props = { formData, setForm, navigation };
-
+  const props1 = { formData, setForm, navigation,id };
   switch (id) {
     case "names":
-      return <Names {...props} />;
+      return <Names {...props1} />;
     case "address":
-      return <Address {...props} />;
+      return <Address {...props1} />;
     case "contact":
-      return <Contact {...props} />;
+      return <Contact {...props1} />;
     case "goal":
-      return <Goal {...props} />;
+      return <Goal {...props1} />;
     case "benefits":
-      return <Benefits {...props} />;
+      return <Benefits {...props1} />;
     case "inscope":
-      return <InScope {...props} />;
+      return <InScope {...props1} />;
     case "outscope":
-      return <OutScope {...props} />; 
+      return <OutScope {...props1} />; 
     case "schedule":
-      return <Schedule {...props} />;  
+      return <Schedule {...props1} />;  
     case "budget":
-      return <Budget {...props} />;
+      return <Budget {...props1} />;
     case "assumption":
-      return <Assumptions {...props} />;    
+      return <Assumptions {...props1} />;    
     case "impact":
-      return <Impact {...props} />;    
+      return <Impact {...props1} />;    
     case "stakeholder":
-      return <Stakeholders {...props} />;         
+      return <Stakeholders {...props1} />;         
     case "risk":
-        return <Risks {...props} />;
+        return <Risks {...props1} />;
     default:
       return null;
   }

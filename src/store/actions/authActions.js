@@ -182,15 +182,13 @@ export const createfolder = (form, props) => {
   };
 };
 export const createcharter = (form, props) => {
-  let dataobject = {
-        "name":form
-  }
+
   const config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
   };  
   return (dispatch) => {
     api
-      .post("createCharter",dataobject, config)
+      .post("createCharter",form, config)
       .then((response) => {
         if (response.data.status === 200) {
           // toast.success("Your charter create Successfully");
@@ -242,6 +240,31 @@ export const renamecharter = (form, props) => {
       .then((response) => {
         if (response.data.status === 200) {
           toast.success("Your charter update Successfully");
+          window.location.href= "/members";
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+export const deleteCharter = (form, props) => {
+  let dataobject = {
+        "charterid":props
+  }
+  console.log(dataobject);
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  console.log(config);
+  return (dispatch) => {
+    api
+      .post("deleteCharter",dataobject, config)
+      .then((response) => {
+        if (response.data.status === 200) {
+          toast.success("Your charter delete Successfully");
           window.location.href= "/members";
         }
       })

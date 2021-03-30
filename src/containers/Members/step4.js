@@ -10,7 +10,16 @@ const Goal = ({ setForm, formData, navigation }) => {
   const [goalOpen, setGoalOpen] = useState(true);
   const { previous, next } = navigation;
 
-  return (   
+  return (<>
+  <Container fluid style={{background: "#3d4a5c"}}>
+        <Row>
+          <div className="container member-hello my-4">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" style={{width: "28%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>        
+        </Row>       
+      </Container>   
     <Container>
     <Row className="my-3">
       <Col xs={1} md={5} className="project_details m-2">
@@ -58,7 +67,7 @@ const Goal = ({ setForm, formData, navigation }) => {
       </Col>
     </Row>
   </Container>
-  );
+  </>);
 };
 
 export default Goal;
