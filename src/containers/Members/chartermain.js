@@ -55,6 +55,10 @@ const MultiStepForm = (props) => {
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
   const { id } = step;
+  if(objectdata.step != undefined){
+    id = objectdata.step;
+  }
+  console.log(id);
 
   const props1 = { formData, setForm, navigation,id };
   switch (id) {

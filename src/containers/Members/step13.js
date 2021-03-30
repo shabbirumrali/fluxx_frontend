@@ -1,15 +1,44 @@
 import React, { useState } from "react";
 import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-
 import ItemForm from "./ItemForm";
-
-const Risks = ({ setForm, formData, navigation }) => {
-  const { risks } = formData;
-    
-  const [risksOpen, setRisksOpen] = useState(true);
-  const { previous, next } = navigation;
+import * as Yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { connect, useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
+import * as actions from "../../store/actions/index";
+import { useHistory, Redirect } from "react-router-dom";
+const Risks = ({ setForm, formData, navigation,id }) => {
+        const dispatch = useDispatch();
+        const history  = useHistory();
+        const { register, errors, handleSubmit, reset} = useForm();
+        const { risks } = formData;    
+        const [risksOpen, setRisksOpen] = useState(true);
+        const { previous, next } = navigation;  
+        const onSubmit = async (data) => { 
+        
+          let dataobject = {
+              "goal":formData.goal,
+              "project_manager":formData.project_manager,
+              "project_sponsor":formData.project_sponsor,
+              "project_need":formData.project_need,
+              "benefits":formData.benefits,
+              "name":formData.name,
+              "InScope":formData.InScope,
+              "outScope":formData.outScope,
+              "startDate":formData.startDate,
+              "finishDate":formData.finishDate,
+              "budget":formData.budget,
+              "assumptionTime":formData.assumptionTime,
+              "impact":formData.impact,
+              "stakeholder":formData.stakeholder,
+              "risks":risks,
+              "step":id
+           }       
+          dispatch(actions.createcharter(dataobject));  
+          next();  
+       }; 
+  
 
   return (<>
   <Container fluid style={{background: "#3d4a5c"}}>
@@ -24,7 +53,8 @@ const Risks = ({ setForm, formData, navigation }) => {
     <Container>
     <Row className="my-3">
       <Col xs={1} md={5} className="project_details m-2">
-        <p> Risks </p>            
+        <p> Risks </p>
+         <Form   onSubmit={handleSubmit(onSubmit)} noValidate>              
         <ItemForm label="What are some of the things that
 could derail this project?" name="risks" value={risks} onChange={setForm} />  
         <Link className="d-block text-right my-3"
@@ -42,7 +72,7 @@ could derail this project?" name="risks" value={risks} onChange={setForm} />
             style={{color: "#5aa380", textDecoration: "none"}}  onClick={next}>
             Skip this step for now
           </Button>
-        
+        </Form>
       </Col>
 
       <Col xs={1} md={6} className="faq-section border p-4">
