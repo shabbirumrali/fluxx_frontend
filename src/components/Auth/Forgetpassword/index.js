@@ -1,5 +1,7 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Container } from "reactstrap";
+import { FormGroup, Label } from "reactstrap";
+import { Container, Row, Col, Form, Button, NavLink } from 'react-bootstrap';
+
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -26,23 +28,28 @@ const Forgetpassword = (props) => {
 
   return (
     <Container>
-      <h3>Forget Password.</h3>
-      <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-        <FormGroup>
-          <Label>Email</Label>
-          <input type="email" ref={register} name="email" />
-          {errors.email && (
-            <span className="errorMessage">{errors.email.message}</span>
-          )}
-        </FormGroup>
-        <Button type="submit">Submit</Button>
-        </Form>
-      <p>
-        All information that you provide is kept completely confidential and
-        will not be released to any other companies. Please view our Privacy
-        Policy, Terms and Conditions, and Email Policy for further information.
-      </p>
-    </Container>
+      <Row>
+        <Col md={{ span: 8, offset: 2 }} className="forgot_pass">
+         <h3 className="text-center py-3">Forget Password.</h3>
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate className="m-3">
+            <FormGroup className="form_details">
+              <Label>Email</Label>
+              <Form.Control type="email" placeholder="enter email" ref={register} name="email" /> 
+              {errors.email && (
+                <span className="errorMessage">{errors.email.message}</span>
+              )}
+            </FormGroup>            
+            <Button type="submit">Submit</Button>
+          </Form>
+            
+        </Col>        
+          <div className="m-3 mx-5 px-5 text-justify forgot_alert">
+            <p className="pt-5"> All information that you provide is kept completely confidential and
+              will not be released to any other companies. Please view our<a href="#"> Privacy
+              Policy</a>, <a href="">Terms and Conditions</a>, and <a href="">Email Policy</a> for further information.</p>
+          </div>        
+      </Row>      
+    </Container>    
   );
 };
 
