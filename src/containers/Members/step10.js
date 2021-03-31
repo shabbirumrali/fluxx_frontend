@@ -53,7 +53,7 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
           <Col xs={1} md={5} className="project_details m-2">
             <p> Assumptions </p>
              <Form   onSubmit={handleSubmit(onSubmit)} noValidate>  
-              <ItemForm label="What are the assumptions at this time?" name="assumptionTime" value={assumptionTime} onChange={setForm} />              
+              <ItemForm label="What are the assumptions at this time?" name="assumptionTime" type="textarea" value={assumptionTime} onChange={setForm} />              
               <Button variant="light" type="submit" className="p-3" onClick={previous}>
                 BACK
               </Button>

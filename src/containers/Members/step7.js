@@ -50,7 +50,7 @@ const OutScope = ({ setForm, formData, navigation,id }) => {
         <p> Out of Scope</p>
           <Form   onSubmit={handleSubmit(onSubmit)} noValidate>
           <ItemForm label="What is not included in the work
-you’ll be doing for the project?" name="outScope" value={outScope} onChange={setForm} />         
+you’ll be doing for the project?" name="outScope" value={outScope}  type="textarea" onChange={setForm} />         
           <Link className="d-block text-right my-3"
           style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
            ADD IN SCOPE ITEM +

@@ -38,7 +38,7 @@ const MultiStepForm = (props) => {
         project_manager: objectdata.project_manager ? objectdata.project_manager:"",
         project_sponsor: objectdata.project_sponsor ? objectdata.project_sponsor:"",
         project_need: objectdata.project_need ? objectdata.project_need:"",
-        goal:objectdata.goal ? objectdata.goal: "",
+        goal:objectdata.goal ? objectdata.goal: [],
         benefits:objectdata.benefits ? objectdata.benefits :"",
         InScope:objectdata.InScope ?  objectdata.InScope :"",
         outScope:objectdata.outScope ? objectdata.outScope :"",
@@ -49,17 +49,22 @@ const MultiStepForm = (props) => {
         impact:objectdata.impact ? objectdata.impact : "",
         stakeholder:objectdata.stakeholder ? objectdata.stakeholder : "",
         risks:objectdata.risks ? objectdata.risks : "",
+        step:objectdata.step ? objectdata.step :""
       };
 
 
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
-  const { id } = step;
-  if(objectdata.step != undefined){
-    id = objectdata.step;
-  }
-  console.log(id);
+  let { id } = step;
 
+  // if(objectdata.step != undefined){
+  //   id = objectdata.step;
+  // }
+  // if(id == ''){
+  //   id = 'names';
+  // }
+   console.log(id);
+   console.log(objectdata.step);
   const props1 = { formData, setForm, navigation,id };
   switch (id) {
     case "names":

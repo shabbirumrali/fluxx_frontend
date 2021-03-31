@@ -43,7 +43,7 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
       <Col xs={1} md={5} className="project_details m-2">
         <p>Benefits</p>   
          <Form   onSubmit={handleSubmit(onSubmit)} noValidate>
-          <ItemForm label="What are the benefits of each goal?" name="benefits" value={benefits} onChange={setForm} />
+          <ItemForm label="What are the benefits of each goal?" name="benefits" type="textarea" value={benefits} onChange={setForm} />
             <Link className="d-block text-right my-3"
             style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
               ADD GOAL +

@@ -55,7 +55,7 @@ const Stakeholders = ({ setForm, formData, navigation,id }) => {
       <Col xs={1} md={5} className="project_details m-2">
         <p> Stakeholders </p> 
          <Form   onSubmit={handleSubmit(onSubmit)} noValidate>             
-        <ItemForm label="Who will be affected by this project?" name="stakeholder" value={stakeholder} onChange={setForm} />  
+        <ItemForm label="Who will be affected by this project?" name="stakeholder" type="textarea" value={stakeholder} onChange={setForm} />  
         <Link className="d-block text-right my-3"
           style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
           ADD STAKEHOLDER +

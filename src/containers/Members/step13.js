@@ -56,7 +56,7 @@ const Risks = ({ setForm, formData, navigation,id }) => {
         <p> Risks </p>
          <Form   onSubmit={handleSubmit(onSubmit)} noValidate>              
         <ItemForm label="What are some of the things that
-could derail this project?" name="risks" value={risks} onChange={setForm} />  
+could derail this project?" name="risks"  type="textarea" value={risks} onChange={setForm} />  
         <Link className="d-block text-right my-3"
           style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
           ADD RISK + 

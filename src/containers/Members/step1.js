@@ -47,6 +47,7 @@ const Names = ({ setForm, formData, navigation,id }) => {
             <ItemForm
             label="What is the title of your project?"
             name="name"
+            type="textarea"
             value={name}
             onChange={setForm}
         />           

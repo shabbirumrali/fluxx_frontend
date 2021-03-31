@@ -47,7 +47,7 @@ const InScope = ({ setForm, formData, navigation,id }) => {
         <p> In Scope </p>
             <Form   onSubmit={handleSubmit(onSubmit)} noValidate>
               <ItemForm label="What is included in the work
-                      you’ll be doing for the project?" name="InScope" value={InScope} onChange={setForm} />         
+                      you’ll be doing for the project?" name="InScope" type="textarea" value={InScope} onChange={setForm} />         
               <Link className="d-block text-right my-3"
               style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
                ADD IN SCOPE ITEM +

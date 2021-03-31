@@ -54,9 +54,9 @@ const Schedule = ({ setForm, formData, navigation,id }) => {
             <p> Schedule </p>
              <Form   onSubmit={handleSubmit(onSubmit)} noValidate>            
                <ItemForm label="When do you think the project will
-                start?" name="startDate" value={startDate} onChange={setForm} />                 
+                start?" name="startDate"   type="date" value={startDate} onChange={setForm} />                 
                 <ItemForm label="When do you think the project will
-                finish?" name="finishDate" value={finishDate} onChange={setForm} />    
+                finish?" name="finishDate" type="date" value={finishDate} onChange={setForm} />    
               <Link className="d-block text-right my-3"
               style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
                ADD IN SCOPE ITEM +

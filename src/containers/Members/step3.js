@@ -41,7 +41,7 @@ const Contact = ({ setForm, formData, navigation,id }) => {
       <Col xs={1} md={5} className="project_details m-2">
         <p>Background</p>            
         <Form   onSubmit={handleSubmit(onSubmit)} noValidate>
-          <ItemForm label="Why is this project needed?" name="project_need" value={project_need} onChange={setForm} />
+          <ItemForm label="Why is this project needed?" name="project_need" type="textarea" value={project_need} onChange={setForm} />
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>
