@@ -47,10 +47,12 @@ const Goal = ({ setForm, formData, navigation,id }) => {
       <Col xs={1} md={5} className="project_details m-2">
         <p>Goals</p> 
          <Form   onSubmit={handleSubmit(onSubmit)} noValidate>  
-          <ItemForm label="What do you hope to accomplish
+            <ItemForm label="What do you hope to accomplish
               with this project? What do you
               hope to gain or retain with this
               effort?" name="goal" value={goal} type="textarea" onChange={setForm} />
+
+
             <Link className="d-block text-right my-3"
             style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
               ADD GOAL +

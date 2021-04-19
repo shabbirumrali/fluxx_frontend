@@ -203,5 +203,75 @@ label:focus,
   font-weight: 600;
   color: #a2c4ce;
 }
-
-/*new css */
+/* clanding */
+.member-hello {
+  width: 60%;
+  margin: 0 auto;
+}
+.member-hello h1 {
+  color: #f9f9f9;
+  font-weight: 600;
+}
+/*get started */
+.get_start {
+  text-align: center;
+}
+.get_start a {
+  width: 450px;
+  background: #69b791;
+  color: #efefef;
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 20px;
+}
+.get_start a:hover {
+  color: #efefef;
+  text-decoration: none;
+  background: #69b791;
+}
+/* projects */
+.projects {
+  cursor: pointer;
+}
+/* Project steps */
+.project_info {
+  width: 90%;
+  height: 100px;
+  border: 1px solid #999;
+}
+.date_info {
+  width: 90%;
+  height: 40px;
+  border: 1px solid #999;
+}
+/* move items */
+.moveto_project_charters p:first-child {
+  font-size: 16px;
+  font-weight: 400;
+  color: #5aa380;
+}
+.moveto_project_charters p:last-child {
+  color: #999;
+}
+.move_f1 {
+  box-shadow: 1px 2px 3px #999;
+  cursor: pointer;
+}
+.create-folder {
+  width: 100%;
+  height: 50px;
+  background: #f9f9f9;
+  display: flex;
+}
+.create-folder p {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+.document {
+  background: #efefef;
+}
+.document img {
+  width: 50px;
+}

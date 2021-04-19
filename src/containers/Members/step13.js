@@ -3,6 +3,7 @@ import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemForm from "./ItemForm";
 import * as Yup from "yup";
+import axios from 'axios';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -35,9 +36,30 @@ const Risks = ({ setForm, formData, navigation,id }) => {
               "risks":risks,
               "step":id
            }       
-          dispatch(actions.createcharter(dataobject));  
-          next();  
+          dispatch(actions.createcharter(formData));  
+          
        }; 
+      function finalstep(){
+
+             axios({
+              "method": "GET",
+              "url": "http://localhost:8000/v1/fetchcharter/"+formData.name,
+              "headers": {
+                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                 'Content-Type': 'application/json', 
+              }
+            })
+            .then((response) => {
+                  history.push({
+                    pathname: "/finalStep", 
+                    state: { detail: response.data }
+                });              
+            })
+            .catch((error) => {
+              console.log(error)
+            })
+          
+       };
   
 
   return (<>
@@ -65,11 +87,11 @@ could derail this project?" name="risks"  type="textarea" value={risks} onChange
             BACK
           </Button>
           <Button type="submit" className="ml-4 p-3" 
-          style={{background: "#5aa380", border: "none"}} onClick={next}>
+          style={{background: "#5aa380", border: "none"}} onClick={finalstep}  >
             SAVE AND CONTINUE
           </Button>              
           <Button variant="link" type="submit" className="d-block mt-4"
-            style={{color: "#5aa380", textDecoration: "none"}}  onClick={next}>
+            style={{color: "#5aa380", textDecoration: "none"}}  >
             Skip this step for now
           </Button>
         </Form>

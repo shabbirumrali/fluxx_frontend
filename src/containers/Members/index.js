@@ -153,7 +153,7 @@ const Members = (props) => {
           </Row>  
           {   responseData.charterlist ?
             responseData.charterlist.map((list,index) => {
-              return (<Row className="border-top">
+              return (<Row className="border-top" key={index}>
               <Col className="py-3 mt-3">
                 <div className="shadow charters" style={{background: "white"}}>
                   <div style={{background: "#f9f9f9"}}>

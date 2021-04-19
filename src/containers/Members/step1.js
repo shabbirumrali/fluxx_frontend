@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Col, Container, Row, Collapse, Button,Form } from "react-bootstrap";
 import ItemForm from "./ItemForm";
+import TitleList from  "./titleList";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -32,9 +33,10 @@ const Names = ({ setForm, formData, navigation,id }) => {
   return (<>
     <Container fluid style={{background: "#3d4a5c"}}>
         <Row>
+           <TitleList/>
           <div className="container member-hello my-4">
-            <div class="progress">
-              <div class="progress-bar" role="progressbar" style={{width: "7%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <div className="progress">
+              <div className="progress-bar" role="progressbar" style={{width: "7%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>        
         </Row>       

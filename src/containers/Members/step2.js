@@ -26,6 +26,8 @@ const Address = ({ setForm, formData, navigation,id }) => {
         "name":formData.name,
         "step":id
        }
+       // console.log(dataobject);
+       // return false;
       dispatch(actions.createcharter(dataobject));  
       next();  
    };
@@ -33,6 +35,7 @@ const Address = ({ setForm, formData, navigation,id }) => {
   return (<>
   <Container fluid style={{background: "#3d4a5c"}}>
         <Row>
+          
           <div className="container member-hello my-4">
             <div class="progress">
               <div class="progress-bar" role="progressbar" style={{width: "14%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>

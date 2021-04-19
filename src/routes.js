@@ -8,7 +8,7 @@ const Forgetpassword = lazy(() => import("./components/Auth/Forgetpassword"));
 const Resetpassword = lazy(() => import("./components/Auth/Resetpassword"));
 const Contact = lazy(() => import("./containers/Contact"));
 const Blog = lazy(() => import("./containers/Blog"));
-
+const FinalView = lazy(() => import("./containers/Members/finalLview"));
 const routes = [
   { path: "/", exact: true, component: Home },
   {
@@ -50,6 +50,11 @@ const routes = [
     path: "/reset_password/:token",
     exact: true,
     component: Resetpassword,
+  },
+  {
+    path: "/finalStep",
+    exact: true,
+    component: FinalView,
   }
 ];
 

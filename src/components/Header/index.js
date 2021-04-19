@@ -114,7 +114,7 @@ const Header = (props) => {
             {
               localStorage.getItem('email') !== '' ? 
             <Nav>
-              <NavDropdown title="useremail@whatever.com" id="basic-nav-dropdown">
+              <NavDropdown title={localStorage.getItem('email')} id="basic-nav-dropdown">
                 <NavDropdown.Item href="#"> My Project Charters </NavDropdown.Item>
                 <NavDropdown.Item href="#">My Account</NavDropdown.Item>                  
                 <NavDropdown.Divider />
