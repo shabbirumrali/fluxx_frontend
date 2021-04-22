@@ -41,6 +41,8 @@ const Members = (props) => {
     // Update the document title using the browser API
       dispatch(actions.charterlist());
   },[setResponseData, responseData]);
+  console.log(props.setResponseData);
+   
   
   
   const fetchData = useCallback(() => {
@@ -61,7 +63,7 @@ const Members = (props) => {
     })
   }, [])
   useEffect(() => {
-    fetchData()
+   // fetchData()
   }, [fetchData])
 
   const [folder, setFolder] = useState(false)
@@ -79,11 +81,8 @@ const Members = (props) => {
   const handleShow2 = () => setShow2(true)
   const handleShow3 = () => setShow3(true)
   const [selectedcharterid, chartedId] = useState(true);
-  const fetchcharter = value  => () => {
-   // useEffect(() => {
+  const fetchcharter = value  => () => {   
         fetchDetail(value)
-     // }, [fetchDetail])
-
   }
   const fetchDetail = useCallback((value) => {   
     axios({
@@ -151,8 +150,9 @@ const Members = (props) => {
               
             </Col>
           </Row>  
-          {   responseData.charterlist ?
-            responseData.charterlist.map((list,index) => {
+          { 
+          props.setResponseData ?  props.setResponseData.charterlist ?
+            props.setResponseData.charterlist.map((list,index) => {
               return (<Row className="border-top" key={index}>
               <Col className="py-3 mt-3">
                 <div className="shadow charters" style={{background: "white"}}>
@@ -172,7 +172,8 @@ const Members = (props) => {
           </Row>)
 
           })
-:null
+:null 
+:null 
         }
           
 
@@ -337,5 +338,13 @@ const Members = (props) => {
     </Container>
   )
 };
+const mapStateToProps = (state) => {
+  return {
+    setResponseData: state.auth.data   
+  };
+};
+const mapDispatchToProps = dispatch => {
+  console.log(dispatch);
+}
 
-export default Members;
+export default connect(mapStateToProps,mapDispatchToProps)(Members);

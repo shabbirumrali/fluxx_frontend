@@ -13,6 +13,12 @@ const initialState = {
 const authStart = (state, action) => {
   return updateObject(state, { error: null, loading: true });
 };
+const charterList = (state,action) =>{
+  console.log(action);
+
+return updateObject(state, {data:action.data,loading:false });
+
+}
 
 const authSuccess = (state, action) => {
   return updateObject(state, {
@@ -38,9 +44,12 @@ const setAuthRedirectPath = (state, action) => {
 };
 
 const reducer = (state = initialState, action) => {
+  console.log(action.type);
+
+
   switch (action.type) {
     case actionTypes.AUTH_START:
-      return authStart(state, action);
+      return authStart(state,action);
     case actionTypes.AUTH_SUCCESS:
       return authSuccess(state, action);
     case actionTypes.AUTH_FAIL:
@@ -52,7 +61,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_CURRENT_USER:
       return { isAuthenticated: !isEmpty(action.user), user: action.user };
     case actionTypes.CHARTERLIST:
-      return   {...state,CHARTERLIST:action.payload};
+      return charterList(state,action);
     default:
       return state;
   }

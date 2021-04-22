@@ -17,7 +17,8 @@ export const authSuccess = (token) => {
     token: token,
   };
 };
-export const charterResponse  = (data) => {
+export const charterList  = (data) => {
+  console.log(data);
  return {
     type: actionTypes.CHARTERLIST,
     data: data,
@@ -213,9 +214,10 @@ export const charterlist = (form, props) => {
     api
       .get("charterlist", config)
       .then((response) => {
-        if (response.data.status === 200) {
-           dispatch(charterResponse(response.data));
-        }
+        console.log(response.data);
+        //if (response.data.status === 200) {
+           dispatch(charterList(response.data));
+       /// }
       })
       .catch((err) => {
         if (err === "Error: Request failed with status code 500") {
