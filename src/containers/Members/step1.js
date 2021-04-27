@@ -4,11 +4,11 @@ import ItemForm from "./ItemForm";
 import TitleList from  "./titleList";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
+
 const Names = ({ setForm, formData, navigation,id }) => {
  
   const dispatch = useDispatch();
@@ -41,23 +41,24 @@ const Names = ({ setForm, formData, navigation,id }) => {
           </div>        
         </Row>       
       </Container>
-    <Container>
+    <Container  className="mb-5">
     <Row className="my-3">
       <Col xs={1} md={5} className="project_details m-2">
         <p>Project Name</p> 
-          <Form   onSubmit={handleSubmit(onSubmit)} noValidate>
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
             <ItemForm
-            label="What is the title of your project?"
-            name="name"
-            type="textarea"
-            value={name}
-            onChange={setForm}
-        />           
+              label="What is the title of your project?"
+              name="name"
+              type="textarea"
+              value={name}
+              onChange={setForm}
+              className="project_info mb-4"
+            />
         <Button 
           type="submit" 
           className="p-btns p-3 d-block"
           style={{background: "#5aa380", border: "none"}} 
-          >
+        >
             SAVE AND CONTINUE
           </Button>
           

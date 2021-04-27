@@ -33,7 +33,7 @@ const CharterLanding = () => {
                   more recently with desktop publishing software like Aldus PageMaker including versions 
                   of Lorem Ipsum.</p>                  
             </div>              
-          <div className="get-start">
+          <div className="get_start_btn mb-4">
                 <Link to="/cmain" className="py-3 px-5">
                   Get Started
                 </Link>            

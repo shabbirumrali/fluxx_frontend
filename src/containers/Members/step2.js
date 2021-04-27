@@ -3,11 +3,11 @@ import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import ItemForm from "./ItemForm";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
+import TitleList from  "./titleList";
 
 const Address = ({ setForm, formData, navigation,id }) => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const Address = ({ setForm, formData, navigation,id }) => {
   return (<>
   <Container fluid style={{background: "#3d4a5c"}}>
         <Row>
-          
+        <TitleList/>
           <div className="container member-hello my-4">
             <div class="progress">
               <div class="progress-bar" role="progressbar" style={{width: "14%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -49,12 +49,21 @@ const Address = ({ setForm, formData, navigation,id }) => {
         <p>Project Manager & Sponsor</p>
        <Form   onSubmit={handleSubmit(onSubmit)} noValidate>          
         <ItemForm
-        label="Who will be the Project Manager?"
-        name="project_manager"
-        value={project_manager}
-        onChange={setForm}
-      />
-      <ItemForm label="Who is the Project Sponsor?" name="project_sponsor" value={project_sponsor} onChange={setForm} /> 
+          label="Who will be the Project Manager?"
+          name="project_manager"
+          type="textarea"
+          value={project_manager}
+          onChange={setForm}
+          className="project_info my-3"
+        />
+        <ItemForm 
+          label="Who is the Project Sponsor?" 
+          name="project_sponsor"
+          type="textarea"
+          value={project_sponsor}
+          onChange={setForm}
+          className="project_info my-3"
+        />
 
           <Button variant="light" type="submit" className="p-3" onClick={previous}>
             BACK

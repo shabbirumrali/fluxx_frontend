@@ -110,7 +110,7 @@ export function PdfDocument(props) {
         <Document>
             <Page size="A4" style={styles.page}>
                 <View style={styles.head}>
-                    <Text style={styles.title}>Pdf Dcoument</Text>
+                    <Text style={styles.title}>Pdf Dcoument testing on the real world</Text>
                     <Text style={styles.title}>Project Name : {props.data.charterlist.name }</Text>
                     <Text style={styles.title}>Project Manager : {props.data.charterlist.project_manager }</Text>
                     <Text style={styles.title}>Project Sponsor : {props.data.charterlist.project_sponsor }</Text>
@@ -118,7 +118,7 @@ export function PdfDocument(props) {
                     <Text style={styles.title}>Goals : {props.data.charterlist.goal }</Text>
                     <Text style={styles.title}>Benefits : {props.data.charterlist.benefits }</Text>
                     <Text style={styles.title}>InScope : {props.data.charterlist.InScope }</Text>
-                     <Text style={styles.title}>OutScope : {props.data.charterlist.outScope }</Text>
+                    <Text style={styles.title}>OutScope : {props.data.charterlist.outScope }</Text>
                     <Text style={styles.title}>StartDate : {props.data.charterlist.startDate }</Text>
                     <Text style={styles.title}>FinishDate : {props.data.charterlist.finishDate }</Text>
                     <Text style={styles.title}>Budget : {props.data.charterlist.budget }</Text>

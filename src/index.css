@@ -145,15 +145,60 @@ label:focus,
   text-decoration: none;
   color: #5aa380;
 }
+
+/* Members index Page */
+.members_container {
+  width: 65% !important;
+}
+.members_container h2 {
+  font-size: 38px;
+  color: #999;
+}
 .charters {
   display: flex;
 }
 .folder-image img {
   width: 25px;
 }
-.create-charter-btn:hover {
-  background: #5aa380 !important;
+.create-charter-div .create-charter-btn {
+  text-align: center;
+  background: #69b791;
+  display: block;
+  color: #efefef;
+  text-decoration: none;
+  font-size: 24px;
+  border-radius: 10px;
 }
+.create-charter-div .create-charter-btn:hover {
+  text-decoration: none;
+  background: #5aa380;
+}
+/* -------- */
+/* Get started with charter */
+.contant {
+  width: 70%;
+}
+.contant p {
+  line-height: 28px;
+}
+.get_start_btn {
+  text-align: center;
+}
+.get_start_btn a {
+  width: 450px;
+  background: #69b791;
+  color: #efefef;
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: 400;
+  font-size: 20px;
+}
+.get_start_btn a:hover {
+  color: #efefef;
+  text-decoration: none;
+  background: #5aa380;
+}
+/* -------- */
 .option_section img {
   cursor: pointer;
 }
@@ -275,3 +320,64 @@ label:focus,
 .document img {
   width: 50px;
 }
+
+/* Progress bar title List */
+.progress_bar_details {
+  width: 80%;
+  margin: 0 auto;
+}
+.charter_heading {
+  display: flex;
+  color: #f9f9f9;
+}
+.project_charter {
+  flex: 1;
+}
+.project_charter h5 {
+  font-weight: 600;
+}
+.print_download {
+  flex: 1;
+  text-align: center;
+}
+.progress_bar_titles ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.progress_bar_titles ul li {
+  display: inline-block;
+  color: #f9f9f9;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0 15px;
+}
+/* pdf download page */
+.pdf_download_title {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.pdf_download_title p {
+  font-size: 20px;
+}
+.pdf_download_btn {
+  text-decoration: none;
+  background: #69b791;
+  color: #f9f9f9;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.pdf_download_btn:hover {
+  background: #5aa380;
+  color: #f9f9f9;
+  text-decoration: none;
+}
+.pdf_view {
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  min-height: 700px;
+  border: 1px solid #222;
+}
+/* ---------- */

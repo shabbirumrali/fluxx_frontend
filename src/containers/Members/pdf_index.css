@@ -1,0 +1,19 @@
+.pdf_frame {
+  width: 80%;
+  /* background: blueviolet; */
+}
+.project_two_col {
+  /* background: red; */
+}
+.project_two_col .col_details_headings p,
+.project_two_col .col_details_titles p {
+  /* background-color: aqua; */
+  font-size: 16px;
+  margin: 0;
+}
+.project_two_col .col_details_headings p {
+  font-weight: 600;
+}
+.project_two_col .col_details_titles p {
+  font-weight: 400;
+}

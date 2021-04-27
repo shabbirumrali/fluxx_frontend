@@ -5,10 +5,10 @@ import {
 } from "reactstrap";
 import { Container, Row, Col, Button, Image, OverlayTrigger, Popover, Modal, Form } from "react-bootstrap"
 import FloatingLabel from "react-bootstrap-floating-label"
-import Folder from '../../folder.svg'
+import Folder from '../../assets/img/folder.png'
 import More from '../../more.svg'
-import Document from '../../document.svg'
-import { Link, Router } from "react-router-dom";
+import Document from '../../assets/img/file-empty-icon.png'
+import { Link, Router, useHistory, Redirect } from "react-router-dom";
 // import InMember from "./InMember";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -16,7 +16,6 @@ import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
-import { useHistory, Redirect } from "react-router-dom";
 import moment from 'moment';
 const Members = (props) => {    
   const dispatch = useDispatch();
@@ -125,61 +124,52 @@ const Members = (props) => {
   console.log("---------->"+selectedcharterid);
 
   return (
-    <Container>
+    <Container className="members_container mt-4">
       <h2>My Project Charters</h2>
-          <Row className="my-3">
-            <Col xs lg="6">
-              <div className="d-flex">
-                <h6>My Project Charters</h6>
-                <Image width={34} height={34} className="ml-4" 
-                src={Folder} alt="Folder image" onClick={handleShowFolder} 
-                style={{cursor: "pointer"}} />
-              </div>
-            </Col>
-{/* Button */}
-            <Col>                                      
-                <Link to="/clanding" className="nav-link">
-                  <Button 
-                    name="create a new Charter"
-                    className="border-0 px-5 py-3 create-charter-btn" 
-                    style={{ background: "#69b791" }}
-                    >
-                      Create New Charter
-                  </Button>
-                </Link>                 
-              
-            </Col>
-          </Row>  
-          { 
-          props.setResponseData ?  props.setResponseData.charterlist ?
-            props.setResponseData.charterlist.map((list,index) => {
-              return (<Row className="border-top" key={index}>
-              <Col className="py-3 mt-3">
-                <div className="shadow charters" style={{background: "white"}}>
-                  <div style={{background: "#f9f9f9"}}>
-                    <Image src={Document} width={36} className="m-3" alt="Folder image" />
-                  </div>              
-                  <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380"}}  onClick={fetchcharter(list.name)} >{list.name}</p>                
-                
-                  <div className="d-flex ml-auto option_section">
-                    <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
-                    <OverlayTrigger trigger="click" placement="left" overlay={popover}>
-                      <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list.id)} />
-                    </OverlayTrigger>
-                  </div>
+        <Row className="mt-5 pb-4 border-bottom">
+          <Col xs lg="6">
+            <div className="d-flex">
+              <h6>My Project Charters</h6>
+              <Image width={34} height={34} className="ml-4"
+                src={Folder} alt="Folder image" onClick={handleShowFolder}
+                style={{cursor: "pointer"}}
+              />
+            </div>
+          </Col>
+          {/* Button */}
+          <Col className="create-charter-div mx-3">
+            <Link to="/clanding" className="py-3 create-charter-btn">
+              Create New Charter
+            </Link>              
+          </Col>
+        </Row>  
+        { 
+        props.setResponseData ?  props.setResponseData.charterlist ?
+          props.setResponseData.charterlist.map((list,index) => {
+            return (<Row key={index}>
+            <Col className="py-4">
+              <div className="shadow charters" style={{background: "white"}}>
+                <div style={{background: "#f9f9f9"}}>
+                  <Image src={Document} width={36} className="m-3" alt="Folder image" />
                 </div>              
-              </Col>  
-          </Row>)
+                <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380"}}  onClick={fetchcharter(list.name)} >{list.name}</p>                
+              
+                <div className="d-flex ml-auto option_section">
+                  <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
+                  <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+                    <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list.id)} />
+                  </OverlayTrigger>
+                </div>
+              </div>              
+            </Col>  
+        </Row>
+        )
+      }) :null  :null 
+    }        
 
-          })
-:null 
-:null 
-        }
-          
+    {/* ---------------------------MODEL-------------------------------- */}
 
-      {/* ---------------------------MODEL-------------------------------- */}
-
-      {/* Modals for create folder */}
+    {/* Modals for create folder */}
       <Modal show={folder} onHide={handleCloseFolder}>
         <Modal.Header closeButton>
           <Modal.Title>Create folder</Modal.Title>
