@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import FloatingLabel from "react-bootstrap-floating-label";
-
+import { useLocation } from 'react-router-dom';
 import Auth from "../Auth";
 import Register from "../Auth/Register";
 
@@ -21,13 +21,15 @@ const Header = (props) => {
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  const location = useLocation();
+console.log(location.pathname);
+
   return (
     <div>
       {/* -----------------------SBR-------------------------------- */}  
-     { /* <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
+     {/* <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
         <Navbar.Brand href="/"><h4>fluxx.</h4></Navbar.Brand>                
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />        
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
                 <Nav.Link href="/" className="px-4">why fluxx?</Nav.Link>
@@ -81,34 +83,36 @@ const Header = (props) => {
         <Modal.Footer className="justify-content-center model_footer">
           <p className="py-2">Don’t have an account? <a href="">Create a free account</a></p>
         </Modal.Footer>
-      </Modal> */ }
+      </Modal> */}
 
       {/* -----------------------SBR-------------------------------- */}
       <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4">        
-        <Navbar.Brand href="/"><h4>fluxx</h4></Navbar.Brand>                
+        <Navbar.Brand href="/" className="logo"><h4>fluxx.</h4></Navbar.Brand>                
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         
         <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-                <Nav.Link href="/" className="px-4">why fluxx?</Nav.Link>
-                <Link to="/blog" className="nav-link">Blog</Link>
-                <Link to="/contactus" className="nav-link">Contact</Link>  
-                {
-                localStorage.getItem('email') !== '' ?
-                <Link to="/members" className="nav-link">Members</Link>  
-                  
-                :null
-                }                
+              <Link to="/" className={location.pathname === '/' ?
+                                             "nav-link px-5 landing_page active_hover active": 
+                                             "nav-link px-5 landing_page active_hover"
+                                           } >why fluxx?</Link>
+              <Link to="/blog" className={location.pathname === '/blog'? "nav-link px-4 active" : "nav-link px-4"}>blog</Link>
+              <Link to="/contactus" className={location.pathname === '/contactus'? "nav-link px-5 active" : "nav-link px-5"}>contact</Link>
+              {
+              localStorage.getItem('email') !== '' ?
+              <Link to="/members" className={location.pathname === '/members'? "nav-link px-5 active" : "nav-link px-5"}>Members</Link>
+              :null
+              }
             </Nav>
 
             {
               localStorage.getItem('email') === '' ?
-            <Nav>                        
+            <Nav>
                 <Nav.Link eventKey={2} href="#">
                   <Button variant="black" onClick={toggle}>
-                    Sign In
-                  </Button>                          
-                </Nav.Link>                      
+                    sign in
+                  </Button>
+                </Nav.Link>
             </Nav>
               :null}
             {
@@ -127,7 +131,7 @@ const Header = (props) => {
             </Nav>
              : null
              }                                   
-        </Navbar.Collapse>                                
+        </Navbar.Collapse>
       </Navbar>
       <Auth toggle={toggle} className={className} modal={modal} />
 

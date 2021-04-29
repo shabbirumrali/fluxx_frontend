@@ -33,7 +33,7 @@ const Names = ({ setForm, formData, navigation,id }) => {
   return (<>
     <Container fluid style={{background: "#3d4a5c"}}>
         <Row>
-           <TitleList/>
+           <TitleList activeCls="step1"/>
           <div className="container member-hello my-4">
             <div className="progress">
               <div className="progress-bar" role="progressbar" style={{width: "7%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>

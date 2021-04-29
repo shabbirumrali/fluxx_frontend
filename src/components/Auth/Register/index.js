@@ -1,7 +1,7 @@
 import React from "react";
-// import { Button, Form, FormGroup, Label, Container } from "reactstrap";
+import { FormGroup, Label, Container } from "reactstrap";
 import Button from 'react-bootstrap/Button'
-import Container from 'react-bootstrap/Container'
+//import Container from 'react-bootstrap/Container'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
@@ -44,45 +44,31 @@ const Register = (props) => {
   console.log(toggle, test);
   
 
-  return (
-    <Container className="my-5">
+  return (<>
+    <Container className="my-5 signup_container">
       <h1 className="pb-4">Create Your account.</h1>
-      <Row>        
-        <Col xs={2} md={4} lg={6}>        
-          <Container className="border">              
+      <Row>
+        <Col xs={2} md={4} lg={6}>
+          <div className="border px-3">
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-
-              <FloatingLabel type="email" label="email" ref={register} name="email" className="my-3" />
-              {errors.email && (
-                  <span className="errorMessage">{errors.email.message}</span>
-                )}
-              {/* <FormGroup>
+              
+              <FormGroup>
                 <Label>Email</Label>
                 <input type="email" ref={register} name="email" />
                 {errors.email && (
                   <span className="errorMessage">{errors.email.message}</span>
                 )}
-              </FormGroup> */}
+              </FormGroup>
 
-              <FloatingLabel type="password" label="password" ref={register} name="password" className="my-3" />
-              {errors.password && (
-                  <span className="errorMessage">{errors.password.message}</span>
-                )}
-              {/* <FormGroup>
+              
+              <FormGroup>
                 <Label>Password</Label>
                 <input type="password" ref={register} name="password" />
                 {errors.password && (
                   <span className="errorMessage">{errors.password.message}</span>
                 )}
-              </FormGroup> */}
-
-              <FloatingLabel type="password" label="retype password" ref={register} name="confirmPassword" className="my-3" />
-              {errors.confirmPassword && (
-                  <span className="errorMessage">
-                    {errors.confirmPassword.message}
-                  </span>
-                )}
-              {/* <FormGroup>
+              </FormGroup>
+              <FormGroup>
                 <Label>Confirm Password</Label>
                 <input type="password" ref={register} name="confirmPassword" />
                 {errors.confirmPassword && (
@@ -90,9 +76,9 @@ const Register = (props) => {
                     {errors.confirmPassword.message}
                   </span>
                 )}
-              </FormGroup> */}
-              <div className="d-flex">
-                <Button type="submit" size="lg" className="form_btn py-3 mb-3">CREATE MY ACCOUNT</Button>
+              </FormGroup>
+              <div className="d-flex my-4">
+                <Button type="submit" size="lg" className="form_btn py-3">CREATE MY ACCOUNT</Button>
                 <div className="signup_image mx-auto">
                   <img src={Lock} alt="Lock Image"/>
                 </div>
@@ -108,7 +94,7 @@ const Register = (props) => {
                 </Button>
               </p> */}
             </Form>
-          </Container>
+          </div>
           <Row className="account-footer-part mt-3 px-3 py-2">
             <p>All information that you provide is kept completely confidential
             and will not be released to any other companies. Please view our
@@ -143,7 +129,7 @@ const Register = (props) => {
         </Col>
       </Row>      
     </Container>
-  );
+  </>);
 };
 
 export default withRouter(Register);

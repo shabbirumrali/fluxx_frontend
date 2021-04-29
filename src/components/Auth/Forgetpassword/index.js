@@ -29,25 +29,27 @@ const Forgetpassword = (props) => {
   return (
     <Container>
       <Row>
-        <Col md={{ span: 8, offset: 2 }} className="forgot_pass">
-         <h3 className="text-center py-3">Forget Password.</h3>
-          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate className="m-3">
-            <FormGroup className="form_details">
-              <Label>Email</Label>
-              <Form.Control type="email" placeholder="enter email" ref={register} name="email" /> 
-              {errors.email && (
-                <span className="errorMessage">{errors.email.message}</span>
-              )}
-            </FormGroup>            
-            <Button type="submit">Submit</Button>
-          </Form>
-            
-        </Col>        
-          <div className="m-3 mx-5 px-5 text-justify forgot_alert">
-            <p className="pt-5"> All information that you provide is kept completely confidential and
-              will not be released to any other companies. Please view our<a href="#"> Privacy
-              Policy</a>, <a href="">Terms and Conditions</a>, and <a href="">Email Policy</a> for further information.</p>
-          </div>        
+        <Col className="forgot_pass_container">
+         <h3 className="text-center py-3">Forget Password</h3>
+        
+          <div className="set_password_form py-4 px-5">
+            <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+              <FormGroup className="form_details">
+                <Label>Email</Label>
+                <Form.Control type="email" ref={register} name="email" />
+                {errors.email && (
+                  <span className="errorMessage">{errors.email.message}</span>
+                )}
+              </FormGroup>            
+              <Button type="submit" className="mt-3">SET PASSWORD</Button>
+            </Form>
+          </div>
+            <div className="forgot_privacy_info">
+              <p className="mt-3"> All information that you provide is kept completely confidential and
+                will not be released to any other companies. Please view our<a href="#"> Privacy
+                Policy</a>, <a href="">Terms and Conditions</a>, and <a href="">Email Policy</a> for further information.</p>
+            </div>           
+        </Col>                 
       </Row>      
     </Container>    
   );

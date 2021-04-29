@@ -1,4 +1,4 @@
- import React from "react";
+import React from "react";
 import { Col, Container, Image, Row } from 'react-bootstrap'
 import Walloutlet from "../../assets/img/walloutlet.jpg";
 import Fingersnap from "../../assets/img/fingersnap.png";
@@ -9,33 +9,33 @@ import Header from "../../components/Header";
 const Home = () => {
   return (
     <>
-    <header className="header">
-      <Image src={Walloutlet} fluid />
-      <h2>Projects are hard.<br />Managing them shouldn’t be.</h2>
-    </header>    
-      
+      <header className="header">
+        <Image src={Walloutlet} fluid />
+        <h2>Projects are hard.<br />Managing them shouldn’t be.</h2>
+      </header>
+
       <Container>
-            <h2 className="text-center my-5">why Fluxx ?</h2>
+        <h2 className="text-center my-5">why Fluxx ?</h2>
         <Row className="py-3 my-5">
           <Col className="align-self-center">
             <p>
               We like bells and whistles as much as the next person, but in the end,
               they just make noise. We're building Fluxx with everything you need to
-              get your work done quickly - without all of the extra fluff.            
+              get your work done quickly - without all of the extra fluff.
               <br />
               If it's in Fluxx, it's because it needs to be.
             </p>
           </Col>
           <Col>
-            <Image src={Fingersnap} className="mx-auto d-block"/>
+            <Image src={Fingersnap} className="mx-auto d-block fingersnap_image" />
           </Col>
-        </Row>                  
+        </Row>
       </Container>
 
       <Container fluid>
         <Row className="bg-light py-5 mt-5">
           <Col>
-            <Image src={Guided} className="mx-auto d-block"/>
+            <Image src={Guided} className="mx-auto d-block" />
           </Col>
 
           <Col className="align-self-center">
@@ -49,20 +49,20 @@ const Home = () => {
         </Row>
       </Container>
 
-      <Container fluid style={{ background: "#fbf7f7"}} >
+      <Container fluid style={{ background: "#fbf7f7" }} >
         <Row className="py-5">
           <Col className="align-self-center">
             <p>Your company needs visibility into what it's doing to make the
-              right decisions, but doesn't always have the resources for a
-              formal project management office. With Fluxx, you'll be able to
-              take the first step toward organization and transparency without
+            right decisions, but doesn't always have the resources for a
+            formal project management office. With Fluxx, you'll be able to
+            take the first step toward organization and transparency without
               having to add another branch to your org chart.</p>
           </Col>
           <Col>
             <Image src={Aha} className="mx-auto d-block" />
           </Col>
         </Row>
-      </Container>      
+      </Container>
     </>
   );
 };

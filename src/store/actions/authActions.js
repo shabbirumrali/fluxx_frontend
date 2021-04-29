@@ -82,7 +82,7 @@ export const createForm = (form, props) => {
       .post("register", form)
       .then((response) => {
         if (response.statusText === "OK") {
-          toast.success("You have SucessFul Registred");
+          toast.success("You have SucessFully Registred");
           history.push("/login");
         }
       })

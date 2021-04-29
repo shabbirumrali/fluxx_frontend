@@ -1,6 +1,14 @@
 * {
   font-family: 'Montserrat', sans-serif;
 }
+.logo h4 {
+  font-size: 30px;
+  font-weight: 800;
+}
+.logo h5 {
+  font-size: 22px;
+  font-weight: 800;
+}
 .header {
   position: relative;
 }
@@ -12,14 +20,18 @@
   line-height: 50px;
   font-weight: 700;
 }
+.fingersnap_image {
+  width: 165px;
+}
 .sign_in_button {
   width: 100%;
-  background-color: #69b791;
+  background-color: #69b791 !important;
   color: #fbf7f7;
-  font-size: 1.4rem;
+  font-size: 20px !important;
+  border-radius: 10px !important;
 }
 .sign_in_button:hover {
-  background-color: #5aa380;
+  background-color: #5aa380 !important;
   color: #fbf7f7;
 }
 .form_detail input {
@@ -29,6 +41,8 @@
   color: #a2c4ce;
   font-weight: 400;
 }
+
+/* SignIn Modal Fotgot password  */
 .forget_pass {
   text-align: right;
 }
@@ -37,8 +51,50 @@
   text-decoration: none;
 }
 .forget_pass p a:hover {
+  color: #5aa380 !important;
+}
+/* forgot password container */
+.set_password_form,
+.forgot_privacy_info {
+  width: 50%;
+  margin: auto;
+}
+.set_password_form {
+  box-shadow: 1px 1px 5px #999;
+}
+.forgot_privacy_info p {
+  font-size: 10px;
+}
+.forgot_privacy_info p a {
+  color: #69b791;
+  text-decoration: none;
+}
+.forgot_privacy_info p a:hover {
   color: #5aa380;
 }
+.set_password_form form label {
+  margin: 0;
+  color: #a4d3e7 !important;
+}
+#contact-form .form-group input {
+  width: 100%;
+  border-bottom: 1px solid #a4d3e7 !important;
+  border-radius: 0;
+  padding: 0;
+}
+.set_password_form form button {
+  background: #69b791;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+}
+.set_password_form form button:hover,
+.set_password_form form button:focus,
+.set_password_form form button:active {
+  background: #5aa380 !important;
+}
+/* ----- */
 .create_acc p {
   font-size: 18px;
   color: #999;
@@ -95,32 +151,45 @@ label:focus,
 }
 .model_footer {
   background: #efefef;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 .model_footer p a,
 .account_footer p a {
-  color: #5aa380;
+  color: #69b791;
   text-decoration: none;
   font-weight: 600;
   cursor: pointer;
+}
+.account_footer p a:hover {
+  color: #5aa380 !important;
 }
 .account_footer {
   font-size: 18px;
 }
 .account-footer-part a {
-  color: #5aa380;
+  color: #69b791;
   text-decoration: none;
   font-weight: 600;
 }
 .account-footer-part a:hover {
   text-decoration: none;
-  color: #69b791;
+  color: #5aa380;
 }
 .form_btn {
-  width: 50%;
-  background: #5aa380 !important;
+  width: 75%;
+  background: #69b791 !important;
   border: none !important;
+  border-radius: 15px !important;
+  margin: 0;
+  padding: 0 30px;
+}
+.form_btn:hover {
+  background: #5aa380 !important;
+}
+.signup_image img {
+  width: 48px;
+  margin: 0 auto;
 }
 .password-validation {
   color: #a2c4ce;
@@ -137,10 +206,21 @@ label:focus,
   width: 100%;
 }
 .btn_class {
-  background: #383b4c !important;
-  color: #fff;
-  font-weight: 400;
+  width: 250px;
+  background: #383b4c;
+  color: #efefef;
+  font-weight: 500 !important;
 }
+.btn_class:hover {
+  color: #f9f9f9 !important;
+  background: #404146 !important;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #a4d3e7;
+}
+
+/* footer */
 .footer-fixed p a {
   text-decoration: none;
   color: #5aa380;
@@ -379,5 +459,11 @@ label:focus,
   margin: 0 auto;
   min-height: 700px;
   border: 1px solid #222;
+}
+li.active {
+    font-weight: bold !important;
+}
+.active{
+  font-weight: bold !important;
 }
 /* ---------- */
