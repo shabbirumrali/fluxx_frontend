@@ -16,38 +16,66 @@ import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
+
 import moment from 'moment';
+import { Pagination } from "@material-ui/lab";
+import usePagination from "./Pagination";
+import { default as data } from "./MOCK_DATA.json";
+
 const Members = (props) => {    
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, errors, handleSubmit,renameSubmit, reset} = useForm();
   const { className, toggle, modal } = props;
   const [responseData, setResponseData] = useState(true); 
+  const [categoryData,setcategoryData]  = useState(true);
   const [singleCharterData, setCharterData] = useState(true); 
+  const [pageOfItems,setpageOfItems] = useState(true);
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 2;  
+  const count = Math.ceil( props.setResponseData.charterlist.length / PER_PAGE);
+  const _DATA = usePagination(props.setResponseData.charterlist, PER_PAGE);
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
   const onSubmit = async (data) => {
+     console.log(data);
+    return false;
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));
-    }if(data.newchartername != undefined){
+    }
+    if(data.newchartername != undefined){
        dispatch(actions.renamecharter(data,selectedcharterid));
     }
     if(Object.keys(data).length == 0){
       dispatch(actions.deleteCharter(data,selectedcharterid));
-    }    
+    }
+    if(data.selectCat != undefined){
+       dispatch(actions.renamecharter(data,selectedcharterid));
+    }
      reset();
   };
 
   useEffect(() => {
     // Update the document title using the browser API
       dispatch(actions.charterlist());
+      fetchcategory()
   },[setResponseData, responseData]);
   console.log(props.setResponseData);
+
+
+
+
+  
+
    
   
   
-  const fetchData = useCallback(() => {
+  const fetchcategory = useCallback(() => {
     axios({
       "method": "GET",
-      "url": "http://localhost:8000/v1/charterlist",
+      "url": "http://localhost:8000/v1/fetchcategory",
       "headers": {
          'Authorization': `Bearer ${localStorage.getItem('token')}`,
          'Content-Type': 'application/json', 
@@ -55,16 +83,13 @@ const Members = (props) => {
     })
     .then((response) => {
       console.log(response.data);
-      setResponseData(response.data)
+      setcategoryData(response.data.categoryList);
+      
     })
     .catch((error) => {
       console.log(error)
     })
-  }, [])
-  useEffect(() => {
-   // fetchData()
-  }, [fetchData])
-
+  }, []) 
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
@@ -121,7 +146,7 @@ const Members = (props) => {
       </Popover.Content>
     </Popover>
   );
-  console.log("---------->"+selectedcharterid);
+  console.log(selectedcharterid);
 
   return (
     <Container className="members_container mt-4">
@@ -145,7 +170,7 @@ const Members = (props) => {
         </Row>  
         { 
         props.setResponseData ?  props.setResponseData.charterlist ?
-          props.setResponseData.charterlist.map((list,index) => {
+          _DATA.currentData().map((list,index) => {
             return (<Row key={index}>
             <Col className="py-4">
               <div className="shadow charters" style={{background: "white"}}>
@@ -157,7 +182,7 @@ const Members = (props) => {
                 <div className="d-flex ml-auto option_section">
                   <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
                   <OverlayTrigger trigger="click" placement="left" overlay={popover}>
-                    <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list.id)} />
+                    <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
                   </OverlayTrigger>
                 </div>
               </div>              
@@ -165,7 +190,23 @@ const Members = (props) => {
         </Row>
         )
       }) :null  :null 
-    }        
+     
+      
+    } 
+     { 
+        props.setResponseData ?  props.setResponseData.charterlist ?
+        <Pagination
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+       :null
+       :null
+     }
+         
 
     {/* ---------------------------MODEL-------------------------------- */}
 
@@ -235,7 +276,7 @@ const Members = (props) => {
       {/* Modals for rename */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Rename your Document</Modal.Title>
+          <Modal.Title>Rename your Document {selectedcharterid.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
@@ -283,19 +324,53 @@ const Members = (props) => {
       {/* Modals for move to */}
       <Modal show={show2} onHide={handleClose2}>
         <Modal.Header closeButton>
-          <Modal.Title>move Item</Modal.Title>
+          <Modal.Title>Move Item {selectedcharterid.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
             <Row>
-              <p>where would you like to move <strong>"My Very First Charter" ?</strong></p>
               <Col className="py-1">
-                <p>Create New folder</p>
-              </Col>              
-                <p>My Project Charter</p>
-              <div>
-                <p>My Very First Charter</p>
-              </div>
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+                  <FormGroup >
+                  <Label htmlFor>Choose Category</Label>
+
+                <select className="form-control" name="selectCat" ref={register({
+                    required: true})}>
+                 {
+
+
+                  categoryData ?
+                  categoryData.length>0?
+                  categoryData.map((list,index) => {
+                    return (<option key={index} value={list.id}>{list.categoryname}</option>)
+                  })
+                  :null
+                  :null
+
+                 }
+                 </select>
+              </FormGroup >
+
+                  
+
+                  <Button 
+                  className="py-2 mr-2 mb-3" 
+                  style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
+                  type="submit"
+                  >
+                    Submit
+                  </Button>
+                  <Button 
+                  onClick={handleClose} 
+                  className="py-2 mx-2 mb-3" 
+                  variant="light" 
+                  style={{background:"", color: "", border: "none"}} 
+                  type="button"
+                  >
+                    CANCEL
+                  </Button>
+                </Form>
+              </Col>
             </Row>
           </Container>
         </Modal.Body>
@@ -304,7 +379,7 @@ const Members = (props) => {
       {/* Modals for Delete */}
       <Modal show={show3} onHide={handleClose3}>
         <Modal.Header closeButton>
-          <Modal.Title>MOVE HERE</Modal.Title>
+          <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
@@ -316,7 +391,7 @@ const Members = (props) => {
                   <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
                     Delete
                   </Button>
-                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="submit">
+                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="button">
                     CANCEL
                   </Button>
                 </Form>
@@ -325,6 +400,7 @@ const Members = (props) => {
           </Container>
         </Modal.Body>        
       </Modal>
+       
     </Container>
   )
 };
