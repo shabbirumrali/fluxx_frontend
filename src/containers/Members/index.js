@@ -16,6 +16,7 @@ import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
+import Pagination from "./Pagination";
 import moment from 'moment';
 const Members = (props) => {    
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Members = (props) => {
   const { register, errors, handleSubmit,renameSubmit, reset} = useForm();
   const { className, toggle, modal } = props;
   const [responseData, setResponseData] = useState(true); 
+  const [categoryData,setcategoryData]  = useState(true);
   const [singleCharterData, setCharterData] = useState(true); 
   const onSubmit = async (data) => {
     if(data.foldername != undefined){
@@ -32,22 +34,28 @@ const Members = (props) => {
     }
     if(Object.keys(data).length == 0){
       dispatch(actions.deleteCharter(data,selectedcharterid));
-    }    
+    }
+
      reset();
   };
 
   useEffect(() => {
     // Update the document title using the browser API
       dispatch(actions.charterlist());
+      fetchcategory()
   },[setResponseData, responseData]);
   console.log(props.setResponseData);
+
+
+  
+
    
   
   
-  const fetchData = useCallback(() => {
+  const fetchcategory = useCallback(() => {
     axios({
       "method": "GET",
-      "url": "http://localhost:8000/v1/charterlist",
+      "url": "http://localhost:8000/v1/fetchcategory",
       "headers": {
          'Authorization': `Bearer ${localStorage.getItem('token')}`,
          'Content-Type': 'application/json', 
@@ -55,15 +63,16 @@ const Members = (props) => {
     })
     .then((response) => {
       console.log(response.data);
-      setResponseData(response.data)
+      setcategoryData(response.data.categoryList);
+      
     })
     .catch((error) => {
       console.log(error)
     })
   }, [])
-  useEffect(() => {
-   // fetchData()
-  }, [fetchData])
+  // useEffect(() => {
+  //  fetchcategory()
+  // }, [])
 
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
@@ -165,7 +174,10 @@ const Members = (props) => {
         </Row>
         )
       }) :null  :null 
-    }        
+
+      
+    } 
+         
 
     {/* ---------------------------MODEL-------------------------------- */}
 
@@ -283,19 +295,52 @@ const Members = (props) => {
       {/* Modals for move to */}
       <Modal show={show2} onHide={handleClose2}>
         <Modal.Header closeButton>
-          <Modal.Title>move Item</Modal.Title>
+          <Modal.Title>Move Item</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
             <Row>
-              <p>where would you like to move <strong>"My Very First Charter" ?</strong></p>
               <Col className="py-1">
-                <p>Create New folder</p>
-              </Col>              
-                <p>My Project Charter</p>
-              <div>
-                <p>My Very First Charter</p>
-              </div>
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+                  <FormGroup >
+                  <Label htmlFor>Choose Category</Label>
+
+                <select className="form-control">
+                 {
+
+
+                  categoryData ?
+                  categoryData.length>0?
+                  categoryData.map((list,index) => {
+                    return (<option key={index} value={list.id}>{list.categoryname}</option>)
+                  })
+                  :null
+                  :null
+                  
+                 }
+                 </select>
+              </FormGroup >
+
+                  
+
+                  <Button 
+                  className="py-2 mr-2 mb-3" 
+                  style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
+                  type="submit"
+                  >
+                    Submit
+                  </Button>
+                  <Button 
+                  onClick={handleClose} 
+                  className="py-2 mx-2 mb-3" 
+                  variant="light" 
+                  style={{background:"", color: "", border: "none"}} 
+                  type="button"
+                  >
+                    CANCEL
+                  </Button>
+                </Form>
+              </Col>
             </Row>
           </Container>
         </Modal.Body>
@@ -304,7 +349,7 @@ const Members = (props) => {
       {/* Modals for Delete */}
       <Modal show={show3} onHide={handleClose3}>
         <Modal.Header closeButton>
-          <Modal.Title>MOVE HERE</Modal.Title>
+          <Modal.Title>Delete Item</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
@@ -316,7 +361,7 @@ const Members = (props) => {
                   <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
                     Delete
                   </Button>
-                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="submit">
+                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="button">
                     CANCEL
                   </Button>
                 </Form>
@@ -325,6 +370,7 @@ const Members = (props) => {
           </Container>
         </Modal.Body>        
       </Modal>
+       
     </Container>
   )
 };

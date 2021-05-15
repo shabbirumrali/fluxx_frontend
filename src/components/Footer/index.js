@@ -1,22 +1,23 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 
 const Footer = () => {
   return (     
-    <footer>
+    <footer className="footer">
       <Container fluid>
         <Row>
           <Col className="footer-fixed">
             <p>
               &copy; 2021 Irreverent Rogue, LLC | 
-              <a href="/" rel="noreferrer" className="px-2">
+              <Link to="/terms" rel="noreferrer" className="px-2">
                 your privacy
-              </a>
+              </Link>
               |
-              <a href="/" rel="noreferrer" className="px-2">
+              <Link to="/" rel="noreferrer" className="px-2">
                 terms
-              </a>
+              </Link>
             </p>
           </Col>
         </Row>

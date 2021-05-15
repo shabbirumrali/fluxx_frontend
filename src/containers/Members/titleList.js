@@ -16,15 +16,15 @@ const TitleList = (props) => {
                 <ul>
                     <li className={props.activeCls === 'step1' ? 'active':"" }>Project Name</li>
                     <li className={props.activeCls === 'step2' ? 'active':"" }>pm/sponsor</li>
-                    <li>background</li>
-                    <li>goals</li>
-                    <li>benefits</li>
-                    <li>scope</li>
-                    <li>schedule</li>
-                    <li>budget</li>
-                    <li>assumptions</li>
-                    <li>impact</li>
-                    <li>stakeholders</li>
+                    <li className={props.activeCls === 'step3' ? 'active':"" }>background</li>
+                    <li className={props.activeCls === 'step4' ? 'active':"" }>goals</li>
+                    <li className={props.activeCls === 'step5' ? 'active':"" }>benefits</li>
+                    <li className={props.activeCls === 'step6' ? 'active':"" }>scope</li>
+                    <li className={props.activeCls === 'step7' ? 'active':"" }>schedule</li>
+                    <li className={props.activeCls === 'step8' ? 'active':"" }>budget</li>
+                    <li className={props.activeCls === 'step9' ? 'active':"" }>assumptions</li>
+                    <li className={props.activeCls === 'step10' ? 'active':"" }>impact</li>
+                    <li className={props.activeCls === 'step11' ? 'active':"" }>stakeholders</li>
                 </ul>    
             </div>
         </div>

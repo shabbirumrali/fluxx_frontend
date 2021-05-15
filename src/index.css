@@ -1,16 +1,19 @@
+/* body */
 * {
   font-family: 'Montserrat', sans-serif;
 }
+
+/* navigation */
 .logo h4 {
   font-size: 30px;
   font-weight: 800;
 }
-.logo h5 {
-  font-size: 22px;
-  font-weight: 800;
-}
 .header {
   position: relative;
+  z-index: -1;
+}
+.header img {
+  width: 100%;
 }
 .header h2 {
   position: absolute;
@@ -20,9 +23,32 @@
   line-height: 50px;
   font-weight: 700;
 }
+.signIn_section {
+  float: right;
+}
+.landing_page a {
+  padding: 0 30px !important;
+}
+.active {
+  font-weight: 600;
+}
+
+/* landing page */
 .fingersnap_image {
   width: 165px;
 }
+.guide_section {
+  display: flex;
+}
+.guide_section div:nth-child(1) {
+  width: 100%;
+  text-align: center;
+}
+.guide_section div:nth-child(2) {
+  width: 100%;
+  padding: 0 20px;
+}
+/*  */
 .sign_in_button {
   width: 100%;
   background-color: #69b791 !important;
@@ -221,6 +247,7 @@ label:focus,
 }
 
 /* footer */
+
 .footer-fixed p a {
   text-decoration: none;
   color: #5aa380;
@@ -460,10 +487,99 @@ label:focus,
   min-height: 700px;
   border: 1px solid #222;
 }
-li.active {
-    font-weight: bold !important;
-}
-.active{
-  font-weight: bold !important;
-}
 /* ---------- */
+
+/* my_account_top_section */
+.my_account_top_section {
+  width: 50%;
+  margin: auto;
+}
+.my_account_top_section p {
+  padding: 0 0 0 40px;
+}
+.acc_setting {
+  background: #efefef;
+  display: inline-block;
+}
+.acc_setting h4 {
+  margin: 0;
+}
+.setting_block {
+  width: 45%;
+  margin: auto;
+}
+.email_section {
+  background: #fff;
+  box-shadow: 1px 1px 10px #383b4c;
+}
+.change_setting p {
+  width: 400px;
+  margin: 0;
+}
+.change_setting a {
+  border: none;
+  background: transparent;
+  color: #69b791;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none !important;
+}
+.change_setting a:hover,
+.change_setting a:focus,
+.change_setting a:active {
+  background: transparent !important;
+  color: #5aa380 !important;
+}
+.delete_account a {
+  background: #999;
+  color: #404146;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  text-decoration: none !important;
+}
+.delete_account a:hover,
+.delete_account a:active,
+.delete_account a:focus {
+  background: rgb(134, 134, 134) !important;
+  color: #32333a !important;
+}
+
+/* change email modal */
+.model_title {
+  background: #efefef;
+}
+.model_title h4 {
+  color: #404146;
+}
+form .email_change_btn {
+  background: #69b791;
+  color: #efefef;
+  border: none;
+  font-weight: 500;
+}
+form .email_change_btn:hover,
+form .email_change_btn:active,
+form .email_change_btn:focus {
+  background: #5aa380 !important;
+  color: #f9f9f9 !important;
+}
+form .cancel_btn {
+  background: #efefef;
+  color: #404146;
+  border: none;
+  font-weight: 500;
+}
+form .cancel_btn:hover,
+form .cancel_btn:focus,
+form .cancel_btn:active {
+  background: #e6e6e6 !important;
+  color: #404146 !important;
+}
+/* blog code */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
