@@ -49,7 +49,7 @@ const Auth = (props) => {
   };
 
   return (
-    <Modal isOpen={modal} toggle={toggle} className={className}>
+    <Modal isOpen={modal} toggle={toggle} className={className} centered>
       <ModalHeader closeButton className="logo"><h5>fluxx.</h5></ModalHeader>
       <ModalBody className="p-0">  
         <Container fluid="md" className="signin_color mx-0">

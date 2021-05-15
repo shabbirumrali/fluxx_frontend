@@ -16,7 +16,11 @@ import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
+<<<<<<< HEAD
 
+=======
+import Pagination from "./Pagination";
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
 import moment from 'moment';
 import { Pagination } from "@material-ui/lab";
 import usePagination from "./Pagination";
@@ -51,9 +55,13 @@ const Members = (props) => {
     if(Object.keys(data).length == 0){
       dispatch(actions.deleteCharter(data,selectedcharterid));
     }
+<<<<<<< HEAD
     if(data.selectCat != undefined){
        dispatch(actions.renamecharter(data,selectedcharterid));
     }
+=======
+
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
      reset();
   };
 
@@ -65,8 +73,11 @@ const Members = (props) => {
   console.log(props.setResponseData);
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
   
 
    
@@ -89,7 +100,15 @@ const Members = (props) => {
     .catch((error) => {
       console.log(error)
     })
+<<<<<<< HEAD
   }, []) 
+=======
+  }, [])
+  // useEffect(() => {
+  //  fetchcategory()
+  // }, [])
+
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
@@ -190,6 +209,7 @@ const Members = (props) => {
         </Row>
         )
       }) :null  :null 
+<<<<<<< HEAD
      
       
     } 
@@ -206,6 +226,11 @@ const Members = (props) => {
        :null
        :null
      }
+=======
+
+      
+    } 
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
          
 
     {/* ---------------------------MODEL-------------------------------- */}
@@ -324,7 +349,11 @@ const Members = (props) => {
       {/* Modals for move to */}
       <Modal show={show2} onHide={handleClose2}>
         <Modal.Header closeButton>
+<<<<<<< HEAD
           <Modal.Title>Move Item {selectedcharterid.name}</Modal.Title>
+=======
+          <Modal.Title>Move Item</Modal.Title>
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
@@ -334,8 +363,12 @@ const Members = (props) => {
                   <FormGroup >
                   <Label htmlFor>Choose Category</Label>
 
+<<<<<<< HEAD
                 <select className="form-control" name="selectCat" ref={register({
                     required: true})}>
+=======
+                <select className="form-control">
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
                  {
 
 
@@ -346,7 +379,11 @@ const Members = (props) => {
                   })
                   :null
                   :null
+<<<<<<< HEAD
 
+=======
+                  
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
                  }
                  </select>
               </FormGroup >
@@ -379,7 +416,11 @@ const Members = (props) => {
       {/* Modals for Delete */}
       <Modal show={show3} onHide={handleClose3}>
         <Modal.Header closeButton>
+<<<<<<< HEAD
           <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
+=======
+          <Modal.Title>Delete Item</Modal.Title>
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>

@@ -4,7 +4,6 @@ import Walloutlet from "../../assets/img/walloutlet.jpg";
 import Fingersnap from "../../assets/img/fingersnap.png";
 import Guided from "../../assets/img/guided.png";
 import Aha from "../../assets/img/aha.png";
-import Header from "../../components/Header";
 
 const Home = () => {
   return (
@@ -17,28 +16,43 @@ const Home = () => {
       <Container>
         <h2 className="text-center my-5">why Fluxx ?</h2>
         <Row className="py-3 my-5">
-          <Col className="align-self-center">
+          <Col sm={8} className="align-self-center">
             <p>
               We like bells and whistles as much as the next person, but in the end,
               they just make noise. We're building Fluxx with everything you need to
               get your work done quickly - without all of the extra fluff.
-              <br />
+            </p>
+            <p>
               If it's in Fluxx, it's because it needs to be.
             </p>
           </Col>
-          <Col>
+          <Col sm={4}>
             <Image src={Fingersnap} className="mx-auto d-block fingersnap_image" />
           </Col>
         </Row>
       </Container>
+      
+      {/* <section className="guide_section bg-light py-5">
+        <div>
+          <Image src={Guided} className="mx-auto" />
+        </div>
+        <div className="align-self-center">
+            <p>
+              Every great story has a great guide. Frodo had Gandolf, Luke had
+              Yoda, Daniel had Mr. Miyagi... you get the picture. Fluxx is
+              designed to lead you down the right path, help you when you need
+              it, and guide you (and)
+            </p>
+        </div>
+      </section> */}
 
       <Container fluid>
         <Row className="bg-light py-5 mt-5">
-          <Col>
+          <Col sm={4}>
             <Image src={Guided} className="mx-auto d-block" />
           </Col>
 
-          <Col className="align-self-center">
+          <Col sm={8} className="align-self-center">
             <p>
               Every great story has a great guide. Frodo had Gandolf, Luke had
               Yoda, Daniel had Mr. Miyagi... you get the picture. Fluxx is

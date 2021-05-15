@@ -48,9 +48,9 @@ const Register = (props) => {
     <Container className="my-5 signup_container">
       <h1 className="pb-4">Create Your account.</h1>
       <Row>
-        <Col xs={2} md={4} lg={6}>
+        <Col lg={7} sm={7}>
           <div className="border px-3">
-            <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <Form className="m-3" id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
               
               <FormGroup>
                 <Label>Email</Label>
@@ -60,7 +60,6 @@ const Register = (props) => {
                 )}
               </FormGroup>
 
-              
               <FormGroup>
                 <Label>Password</Label>
                 <input type="password" ref={register} name="password" />
@@ -102,7 +101,8 @@ const Register = (props) => {
             further information.</p>
           </Row>
         </Col>
-        <Col xs={2} md={6} lg={6} className="py-3">
+
+        <Col lg={5} sm={5} className="py-3">
           <div>
             <div className="d-flex">
               <img className="px-3 py-3" src={Document} alt=""/>

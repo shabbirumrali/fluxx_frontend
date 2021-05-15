@@ -1,16 +1,19 @@
+/* body */
 * {
   font-family: 'Montserrat', sans-serif;
 }
+
+/* navigation */
 .logo h4 {
   font-size: 30px;
   font-weight: 800;
 }
-.logo h5 {
-  font-size: 22px;
-  font-weight: 800;
-}
 .header {
   position: relative;
+  z-index: -1;
+}
+.header img {
+  width: 100%;
 }
 .header h2 {
   position: absolute;
@@ -20,9 +23,32 @@
   line-height: 50px;
   font-weight: 700;
 }
+.signIn_section {
+  float: right;
+}
+.landing_page a {
+  padding: 0 30px !important;
+}
+.active {
+  font-weight: 600;
+}
+
+/* landing page */
 .fingersnap_image {
   width: 165px;
 }
+.guide_section {
+  display: flex;
+}
+.guide_section div:nth-child(1) {
+  width: 100%;
+  text-align: center;
+}
+.guide_section div:nth-child(2) {
+  width: 100%;
+  padding: 0 20px;
+}
+/*  */
 .sign_in_button {
   width: 100%;
   background-color: #69b791 !important;
@@ -221,6 +247,7 @@ label:focus,
 }
 
 /* footer */
+
 .footer-fixed p a {
   text-decoration: none;
   color: #5aa380;
@@ -548,4 +575,14 @@ form .cancel_btn:focus,
 form .cancel_btn:active {
   background: #e6e6e6 !important;
   color: #404146 !important;
+<<<<<<< HEAD
+=======
+}
+/* blog code */
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+>>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
 }
