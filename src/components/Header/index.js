@@ -30,7 +30,7 @@ console.log(location.pathname);
               <Link to="/contactus" className={location.pathname === '/contactus'? "nav-link active" : "nav-link"}>contact</Link>
               {
               localStorage.getItem('email') !== '' ?
-              <Link to="/members" className={location.pathname === '/members'? "nav-link active" : "nav-link"}>Members</Link>
+              <Link to="/members" className={location.pathname === '/members'? "nav-link active" : "nav-link"}>members</Link>
               :null
               }
             </Nav>
@@ -49,10 +49,18 @@ console.log(location.pathname);
               localStorage.getItem('email') !== '' ? 
             <Nav>
               <NavDropdown title={localStorage.getItem('email')} id="basic-nav-dropdown">
-                <NavDropdown.Item href="#"> My Project Charters </NavDropdown.Item>
-                <NavDropdown.Item href="#">My Account</NavDropdown.Item>                  
+                <NavDropdown.Item className="dropdown_items">
+                  <Link to="/members">
+                    My Project Charters 
+                  </Link>  
+                </NavDropdown.Item>
+                <NavDropdown.Item className="dropdown_items">
+                  <Link to="/setting">
+                    My Account
+                  </Link>
+                  </NavDropdown.Item>                  
                 <NavDropdown.Divider />
-                  <NavDropdown.Item href="#" onClick={() => {
+                  <NavDropdown.Item  className="dropdown_items" onClick={() => {
                           localStorage.setItem('token','');
                           localStorage.setItem('email','');
                           window.location.href = "/";

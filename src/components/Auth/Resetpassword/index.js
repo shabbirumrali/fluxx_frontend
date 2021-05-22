@@ -60,12 +60,7 @@ const Resetpassword = (props) => {
           )}
         </FormGroup>
         <Button type="submit">Create My Account</Button>
-        {/* <p>
-          Already have an Account?{" "}
-          <Button type="button" onClick={toggle}>
-            Sign in
-          </Button>
-        </p> */}
+        
       </Form>
       <p>
         All information that you provide is kept completely confidential and

@@ -37,7 +37,7 @@ const Contact = (props) => {
       <Container>
         <Row className="justify-content-md-center">
           <Col>
-            <h3 className="text-center my-3 font-weight-bold">Contact Us</h3>
+            <h3 className="text-center my-3 font-weight-bold">contact us</h3>
             <Form className="w-50 mx-auto my-4 form_container" onSubmit={handleSubmit(onSubmit)} noValidate>
               <Form.Row className="mx-1 my-3">              
                   <Form.Group as={Col} controlId="formGridFirstName" className="mx-2">

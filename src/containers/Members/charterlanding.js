@@ -15,23 +15,9 @@ const CharterLanding = () => {
         <Row>
           <Col>
             <div className="contant border my-5 p-5 mx-auto">
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
-                  when an unknown printer took a galley of type and scrambled it to make a type 
-                  specimen book. It has survived not only five centuries, but also the leap into 
-                  electronic typesetting, remaining essentially unchanged. It was popularised in 
-                  the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
-                  more recently with desktop publishing software like Aldus PageMaker including versions 
-                  of Lorem Ipsum.</p>
-                <p>It has survived not only five centuries, but also the leap into 
-                  electronic typesetting, remaining essentially unchanged. It was popularised in 
-                  the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
-                  more recently with desktop publishing software like Aldus PageMaker including versions 
-                  of Lorem Ipsum.</p>
-                <p>It was popularised in 
-                  the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and 
-                  more recently with desktop publishing software like Aldus PageMaker including versions 
-                  of Lorem Ipsum.</p>                  
+                <p>Every project begins somewhere, and that ‘somewhere’ is the project charter. The charter outlines the main elements of the project, authorizes the existence of the project, and gives you the authority to apply organizational resources.</p>
+                <p>What does that really mean? Without a charter, it’s not a project - it’s just an idea...and we want this to be a project! So let’s walk through the elements one by one. When we’re done, you’ll have everything you need to get your project approved and get the resources you need to do it.</p>
+                <p>Your organization may not require all of the following fields. It’s OK - just leave the field blank and move on to the next section. Just keep in mind that while you might not need everything contained in the following steps, they are all good things to consider and address while working on your project.</p>
             </div>              
           <div className="get_start_btn mb-4">
                 <Link to="/cmain" className="py-3 px-5">

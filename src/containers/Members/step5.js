@@ -16,7 +16,7 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
     const { register, errors, handleSubmit, reset} = useForm();
     const { benefits } = formData;
     const [benefitOpen, setBenefitOpen] = useState(true)    
-    const [benefitOpen1, setBenefitOpen1] = useState(false)    
+    const [benefitOpen1, setBenefitOpen1] = useState(true)    
     const { previous, next } = navigation;
     const onSubmit = async (data) => {      
         let dataobject = {
@@ -33,15 +33,8 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
      };
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step5" />
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "35%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>        
-      </Row>       
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
+        <TitleList activeCls="step5" width={35}  />
     </Container>
 
     <Container>

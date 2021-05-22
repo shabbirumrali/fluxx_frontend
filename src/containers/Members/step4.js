@@ -32,15 +32,8 @@ const Goal = ({ setForm, formData, navigation,id }) => {
   
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step4" />
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "28%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>        
-      </Row>       
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
+        <TitleList activeCls="step4" width={28} />        
     </Container>   
 
     <Container>

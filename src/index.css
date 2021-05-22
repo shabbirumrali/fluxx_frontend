@@ -32,7 +32,26 @@
 .active {
   font-weight: 600;
 }
-
+.dropdown_items {
+  padding: 0.5rem 1.5rem !important;
+}
+.dropdown_items a {
+  text-decoration: none;
+  color: #212529;
+}
+.dropdown_items a:hover {
+  text-decoration: none;
+  color: #212529;
+}
+.dropdown_items:focus,
+.dropdown_items:active {
+  background: #5aa380 !important;
+  color: #efefef !important;
+}
+.dropdown_items a:focus,
+.dropdown_items a:active {
+  color: #efefef !important;
+}
 /* landing page */
 .fingersnap_image {
   width: 165px;
@@ -280,6 +299,11 @@ label:focus,
   text-decoration: none;
   background: #5aa380;
 }
+.pagination_section {
+  display: flex;
+  justify-content: center;
+}
+
 /* -------- */
 /* Get started with charter */
 .contant {
@@ -356,10 +380,6 @@ label:focus,
   color: #a2c4ce;
 }
 /* clanding */
-.member-hello {
-  width: 60%;
-  margin: 0 auto;
-}
 .member-hello h1 {
   color: #f9f9f9;
   font-weight: 600;
@@ -388,9 +408,12 @@ label:focus,
 }
 /* Project steps */
 .project_info {
-  width: 90%;
+  width: 100%;
   height: 100px;
   border: 1px solid #999;
+}
+.steps_buttons {
+  display: flex;
 }
 .date_info {
   width: 90%;
@@ -429,9 +452,10 @@ label:focus,
 }
 
 /* Progress bar title List */
-.progress_bar_details {
-  width: 80%;
-  margin: 0 auto;
+.steps_active {
+  background: #2e3642;
+  border-radius: 5px;
+  padding: 4px 15px !important;
 }
 .charter_heading {
   display: flex;
@@ -444,8 +468,8 @@ label:focus,
   font-weight: 600;
 }
 .print_download {
-  flex: 1;
-  text-align: center;
+  text-align: right;
+  color: #efefef;
 }
 .progress_bar_titles ul {
   list-style-type: none;
@@ -457,7 +481,16 @@ label:focus,
   color: #f9f9f9;
   font-size: 14px;
   font-weight: 400;
-  padding: 0 15px;
+  padding: 0 13px;
+}
+.progress_bar_titles ul li:first-child {
+  padding-left: 0;
+}
+.progress {
+  background: #2e3642 !important;
+}
+.progress-bar {
+  background: #c9daf8 !important;
 }
 /* pdf download page */
 .pdf_download_title {
@@ -575,8 +608,6 @@ form .cancel_btn:focus,
 form .cancel_btn:active {
   background: #e6e6e6 !important;
   color: #404146 !important;
-<<<<<<< HEAD
-=======
 }
 /* blog code */
 .center {
@@ -584,5 +615,49 @@ form .cancel_btn:active {
   justify-content: center;
   align-items: center;
   height: 100vh;
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
+}
+
+/* privacy policy css */
+
+.policy_header_col {
+  background: #383b4c;
+}
+.policy_header,
+.policy_content {
+  width: 80%;
+  margin: 0 auto;
+}
+.policy_header {
+  color: #efefef;
+}
+.policy_header strong {
+  font-size: 28px;
+}
+.policy_content h2,
+.policy_content h5 {
+  display: block;
+  color: #5aa380;
+}
+.policy_content hr {
+  border: 1px solid #5aa380 !important;
+}
+.policy_content_section strong {
+  color: #5aa380;
+}
+.policy_content_section ul {
+  list-style-type: none;
+}
+.policy_content_section ul li,
+.policy_content_section ol li,
+.policy_content_section p {
+  font-size: 14px;
+}
+.policy_content_section ul li,
+.policy_content_section ol li {
+  color: #222;
+  line-height: 1.6rem;
+  margin: 0.6rem 0;
+}
+.policy_content_section ul li p {
+  margin-bottom: 0;
 }
