@@ -16,11 +16,7 @@ import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
-<<<<<<< HEAD
 
-=======
-import Pagination from "./Pagination";
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
 import moment from 'moment';
 import { Pagination } from "@material-ui/lab";
 import usePagination from "./Pagination";
@@ -35,33 +31,22 @@ const Members = (props) => {
   const [categoryData,setcategoryData]  = useState(true);
   const [singleCharterData, setCharterData] = useState(true); 
   const [pageOfItems,setpageOfItems] = useState(true);
-  let [page, setPage] = useState(1);
-  const PER_PAGE = 2;  
-  const count = Math.ceil( props.setResponseData.charterlist.length / PER_PAGE);
-  const _DATA = usePagination(props.setResponseData.charterlist, PER_PAGE);
-  const handleChange = (e, p) => {
-    setPage(p);
-    _DATA.jump(p);
-  };
+  
   const onSubmit = async (data) => {
-     console.log(data);
-    return false;
+    
+     
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));
     }
     if(data.newchartername != undefined){
-       dispatch(actions.renamecharter(data,selectedcharterid));
+       dispatch(actions.renamecharter(data,selectedcharterid.id));
     }
     if(Object.keys(data).length == 0){
-      dispatch(actions.deleteCharter(data,selectedcharterid));
+      dispatch(actions.deleteCharter(data,selectedcharterid.id));
     }
-<<<<<<< HEAD
     if(data.selectCat != undefined){
-       dispatch(actions.renamecharter(data,selectedcharterid));
+       dispatch(actions.renamecharter(data,selectedcharterid.id));
     }
-=======
-
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
      reset();
   };
 
@@ -73,11 +58,8 @@ const Members = (props) => {
   console.log(props.setResponseData);
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
   
 
    
@@ -100,19 +82,12 @@ const Members = (props) => {
     .catch((error) => {
       console.log(error)
     })
-<<<<<<< HEAD
   }, []) 
-=======
-  }, [])
-  // useEffect(() => {
-  //  fetchcategory()
-  // }, [])
-
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)
+  const [showpopover,setpopover] =useState(true)
 
   const handleCloseFolder = () => setFolder(false)
   const handleClose = () => setShow(false)
@@ -120,9 +95,24 @@ const Members = (props) => {
   const handleClose3 = () => setShow3(false)
 
   const handleShowFolder = () => setFolder(true)
-  const handleShow = () => setShow(true)
-  const handleShow2 = () => setShow2(true)
-  const handleShow3 = () => setShow3(true)
+  const handleShow = () => {
+    setShow(true)
+    setShow2(false);
+    setShow3(false);
+    setpopover(false)
+  } 
+  const handleShow2 = () =>{
+        setShow2(true)
+        setShow(false)
+         setShow3(false)
+        setpopover(false)   
+  } 
+  const handleShow3 = () =>{
+    setShow3(true)
+    setShow(false)
+    setShow2(false)
+    setpopover(false)
+  } 
   const [selectedcharterid, chartedId] = useState(true);
   const fetchcharter = value  => () => {   
         fetchDetail(value)
@@ -151,7 +141,7 @@ const Members = (props) => {
  
   console.log(setCharterData);
   const popover = (
-    <Popover>
+    <Popover isOpen = {showpopover} >
       <Popover.Content className="demo-pop p-0"> 
           <div className="rename_option py-2 px-3" onClick={handleShow}>
             <p className="mb-0">Rename</p>
@@ -166,6 +156,17 @@ const Members = (props) => {
     </Popover>
   );
   console.log(selectedcharterid);
+  let [page, setPage] = useState(1);
+  const PER_PAGE = 2;  
+  const count = Math.ceil(props.setResponseData ? props.setResponseData.charterlist.length/ PER_PAGE:0);
+  const _DATA = usePagination(props.setResponseData ? props.setResponseData.charterlist :[] , PER_PAGE);
+  const handleChange = (e, p) => {
+    setPage(p);
+    _DATA.jump(p);
+  };
+  console.log(count);
+  console.log(_DATA);
+
 
   return (
     <Container className="members_container mt-4">
@@ -199,8 +200,8 @@ const Members = (props) => {
                 <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380"}}  onClick={fetchcharter(list.name)} >{list.name}</p>                
               
                 <div className="d-flex ml-auto option_section">
-                  <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
-                  <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+                  <p className="my-auto">Last Modified: {moment(list.created_at).format('MM MM Do YYYY, h:mm:ss a')}</p>                  
+                  <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
                     <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
                   </OverlayTrigger>
                 </div>
@@ -209,12 +210,11 @@ const Members = (props) => {
         </Row>
         )
       }) :null  :null 
-<<<<<<< HEAD
      
       
     } 
      { 
-        props.setResponseData ?  props.setResponseData.charterlist ?
+        props.setResponseData ?  props.setResponseData.charterlist.length ?
         <Pagination
             count={count}
             size="large"
@@ -226,11 +226,6 @@ const Members = (props) => {
        :null
        :null
      }
-=======
-
-      
-    } 
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
          
 
     {/* ---------------------------MODEL-------------------------------- */}
@@ -246,7 +241,7 @@ const Members = (props) => {
               <Col className="py-1">
                 <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
                 <FormGroup >
-                <Label htmlFor>Folder Name</Label>
+                <Label>Folder Name</Label>
                 <input
                   type="text"
                   ref={register({
@@ -349,11 +344,7 @@ const Members = (props) => {
       {/* Modals for move to */}
       <Modal show={show2} onHide={handleClose2}>
         <Modal.Header closeButton>
-<<<<<<< HEAD
           <Modal.Title>Move Item {selectedcharterid.name}</Modal.Title>
-=======
-          <Modal.Title>Move Item</Modal.Title>
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
@@ -363,12 +354,8 @@ const Members = (props) => {
                   <FormGroup >
                   <Label htmlFor>Choose Category</Label>
 
-<<<<<<< HEAD
                 <select className="form-control" name="selectCat" ref={register({
                     required: true})}>
-=======
-                <select className="form-control">
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
                  {
 
 
@@ -379,11 +366,7 @@ const Members = (props) => {
                   })
                   :null
                   :null
-<<<<<<< HEAD
 
-=======
-                  
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
                  }
                  </select>
               </FormGroup >
@@ -416,11 +399,7 @@ const Members = (props) => {
       {/* Modals for Delete */}
       <Modal show={show3} onHide={handleClose3}>
         <Modal.Header closeButton>
-<<<<<<< HEAD
           <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
-=======
-          <Modal.Title>Delete Item</Modal.Title>
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>

@@ -575,8 +575,7 @@ form .cancel_btn:focus,
 form .cancel_btn:active {
   background: #e6e6e6 !important;
   color: #404146 !important;
-<<<<<<< HEAD
-=======
+
 }
 /* blog code */
 .center {
@@ -584,5 +583,4 @@ form .cancel_btn:active {
   justify-content: center;
   align-items: center;
   height: 100vh;
->>>>>>> 18e197e7b3c51896925ae63787752694447b46e5
 }
