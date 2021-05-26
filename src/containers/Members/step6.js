@@ -11,10 +11,11 @@ import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
 const InScope = ({ setForm, formData, navigation,id }) => {
+  
       const dispatch = useDispatch();
       const history  = useHistory();
       const { register, errors, handleSubmit, reset} = useForm();
-      const { InScope } = formData;
+      const { InScope,outScope } = formData;
       const [inScopeOpen, setInScopeOpen] = useState(true);
       const { previous, next } = navigation;
       const onSubmit = async (data) => {      
@@ -26,6 +27,7 @@ const InScope = ({ setForm, formData, navigation,id }) => {
             "benefits":formData.benefits,
             "name":formData.name,
             "InScope":InScope,
+            "outScope":outScope,
             "step":id
          }       
         dispatch(actions.createcharter(dataobject));  
@@ -34,16 +36,9 @@ const InScope = ({ setForm, formData, navigation,id }) => {
 
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step6"/>
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "42%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>        
-      </Row>       
-    </Container>   
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
+        <TitleList activeCls="step6" width={42} />
+    </Container>
 
     <Container>
       <Row className="my-3">
@@ -57,7 +52,16 @@ return (
                   value={InScope} 
                   onChange={setForm} 
                   className="project_info"
-                />         
+                /> 
+             <p> Out Scope </p>   
+                <ItemForm 
+                label="What is not included in the work you’ll be doing for the project?" 
+                name="outScope" 
+                value={outScope}  
+                type="textarea" 
+                onChange={setForm} 
+                className="project_info"
+              />        
                 <Link className="d-block text-right my-2"
                 style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
                 ADD IN SCOPE ITEM +

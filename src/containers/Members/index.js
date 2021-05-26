@@ -1,17 +1,10 @@
 import React, {useState,useEffect,useCallback} from "react";
-import {  
-  FormGroup,
-  Label
-} from "reactstrap";
+import { FormGroup, Label } from "reactstrap";
 import { Container, Row, Col, Button, Image, OverlayTrigger, Popover, Modal, Form } from "react-bootstrap"
-import FloatingLabel from "react-bootstrap-floating-label"
 import Folder from '../../assets/img/folder.png'
 import More from '../../more.svg'
 import Document from '../../assets/img/file-empty-icon.png'
 import { Link, Router, useHistory, Redirect } from "react-router-dom";
-// import InMember from "./InMember";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
 import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -30,11 +23,8 @@ const Members = (props) => {
   const [responseData, setResponseData] = useState(true); 
   const [categoryData,setcategoryData]  = useState(true);
   const [singleCharterData, setCharterData] = useState(true); 
-  const [pageOfItems,setpageOfItems] = useState(true);
-  
+  const [pageOfItems,setpageOfItems] = useState(true);  
   const onSubmit = async (data) => {
-    
-     
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));
     }
@@ -56,15 +46,6 @@ const Members = (props) => {
       fetchcategory()
   },[setResponseData, responseData]);
   console.log(props.setResponseData);
-
-
-
-
-  
-
-   
-  
-  
   const fetchcategory = useCallback(() => {
     axios({
       "method": "GET",
@@ -100,12 +81,13 @@ const Members = (props) => {
     setShow2(false);
     setShow3(false);
     setpopover(false)
+
   } 
   const handleShow2 = () =>{
         setShow2(true)
         setShow(false)
-         setShow3(false)
-        setpopover(false)   
+        setShow3(false)
+        setpopover(false)
   } 
   const handleShow3 = () =>{
     setShow3(true)
@@ -113,6 +95,7 @@ const Members = (props) => {
     setShow2(false)
     setpopover(false)
   } 
+
   const [selectedcharterid, chartedId] = useState(true);
   const fetchcharter = value  => () => {   
         fetchDetail(value)
@@ -164,8 +147,7 @@ const Members = (props) => {
     setPage(p);
     _DATA.jump(p);
   };
-  console.log(count);
-  console.log(_DATA);
+  
 
 
   return (
@@ -189,7 +171,7 @@ const Members = (props) => {
           </Col>
         </Row>  
         { 
-        props.setResponseData ?  props.setResponseData.charterlist ?
+        props.setResponseData ?  props.setResponseData.charterlist.length >0 ?
           _DATA.currentData().map((list,index) => {
             return (<Row key={index}>
             <Col className="py-4">
@@ -197,10 +179,11 @@ const Members = (props) => {
                 <div style={{background: "#f9f9f9"}}>
                   <Image src={Document} width={36} className="m-3" alt="Folder image" />
                 </div>              
-                <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380"}}  onClick={fetchcharter(list.name)} >{list.name}</p>                
+                <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380", cursor: "pointer"}}  onClick={fetchcharter(list.name)} >{list.name}</p>
               
                 <div className="d-flex ml-auto option_section">
-                  <p className="my-auto">Last Modified: {moment(list.created_at).format('MM MM Do YYYY, h:mm:ss a')}</p>                  
+                  <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
+
                   <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
                     <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
                   </OverlayTrigger>
@@ -210,12 +193,12 @@ const Members = (props) => {
         </Row>
         )
       }) :null  :null 
-     
-      
+ 
     } 
      { 
         props.setResponseData ?  props.setResponseData.charterlist.length ?
         <Pagination
+            className="pagination_section"
             count={count}
             size="large"
             page={page}
@@ -226,12 +209,12 @@ const Members = (props) => {
        :null
        :null
      }
-         
+
 
     {/* ---------------------------MODEL-------------------------------- */}
 
     {/* Modals for create folder */}
-      <Modal show={folder} onHide={handleCloseFolder}>
+      <Modal show={folder} onHide={handleCloseFolder} centered>
         <Modal.Header closeButton>
           <Modal.Title>Create folder</Modal.Title>
         </Modal.Header>
@@ -241,23 +224,20 @@ const Members = (props) => {
               <Col className="py-1">
                 <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
                 <FormGroup >
-                <Label>Folder Name</Label>
-                <input
-                  type="text"
-                  ref={register({
-                    required: true})}
-                  name="foldername"
-                  />
-                  {errors.foldername && (
-                    <span className="errorMessage">
-                      Please enter a foldername
-                    </span>
-                  )}
-              </FormGroup>
-             {/* <FloatingLabel type="text" label="foldername" ref={register} name="foldername" className="my-3" />
-              {errors.foldername && (
-                  <span className="errorMessage">{errors.foldername.message}</span>
-                )} */}
+
+                  <Label htmlFor>Folder Name</Label>
+                  <input
+                    type="text"
+                    ref={register({
+                      required: true})}
+                    name="foldername"
+                    />
+                    {errors.foldername && (
+                      <span className="errorMessage">
+                        Please enter a foldername
+                      </span>
+                    )}
+                </FormGroup>             
               <Button className="py-2 mr-2 mb-3" style={{ background:"#5aa380", color: "#efefef", border: "none" }} type="submit">
                     CREATE FOLDER
                   </Button>
@@ -270,23 +250,7 @@ const Members = (props) => {
                   >
                     CANCEL
                   </Button>
-              </Form>
-                { /*<Form  >
-                  <FloatingLabel type="email" label="New file Name" className="my-3"/>
-
-                  <Button className="py-2 mr-2 mb-3" style={{ background:"#5aa380", color: "#efefef", border: "none" }} type="submit">
-                    CREATE FOLDER
-                  </Button>
-                  <Button 
-                  onClick={handleCloseFolder} 
-                  className="py-2 mx-2 mb-3" 
-                  variant="light" 
-                  style={{background:"", color: "", border: "none"}} 
-                  type="submit"
-                  >
-                    CANCEL
-                  </Button>
-                </Form> */}
+              </Form>                
               </Col>
             </Row>
           </Container>
@@ -294,7 +258,7 @@ const Members = (props) => {
       </Modal>
 
       {/* Modals for rename */}
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>Rename your Document {selectedcharterid.name}</Modal.Title>
         </Modal.Header>
@@ -342,7 +306,7 @@ const Members = (props) => {
       </Modal>
 
       {/* Modals for move to */}
-      <Modal show={show2} onHide={handleClose2}>
+      <Modal show={show2} onHide={handleClose2} centered>
         <Modal.Header closeButton>
           <Modal.Title>Move Item {selectedcharterid.name}</Modal.Title>
         </Modal.Header>
@@ -353,7 +317,6 @@ const Members = (props) => {
                 <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
                   <FormGroup >
                   <Label htmlFor>Choose Category</Label>
-
                 <select className="form-control" name="selectCat" ref={register({
                     required: true})}>
                  {
@@ -371,24 +334,23 @@ const Members = (props) => {
                  </select>
               </FormGroup >
 
-                  
 
-                  <Button 
-                  className="py-2 mr-2 mb-3" 
-                  style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
-                  type="submit"
-                  >
-                    Submit
-                  </Button>
-                  <Button 
-                  onClick={handleClose} 
-                  className="py-2 mx-2 mb-3" 
-                  variant="light" 
-                  style={{background:"", color: "", border: "none"}} 
-                  type="button"
-                  >
-                    CANCEL
-                  </Button>
+                    <Button 
+                      className="py-2 mr-2 mb-3" 
+                      style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
+                      type="submit"
+                      >
+                        Submit
+                      </Button>
+                      <Button 
+                      onClick={handleClose} 
+                      className="py-2 mx-2 mb-3" 
+                      variant="light" 
+                      style={{background:"", color: "", border: "none"}} 
+                      type="button"
+                    >
+                      CANCEL
+                    </Button>
                 </Form>
               </Col>
             </Row>
@@ -397,7 +359,7 @@ const Members = (props) => {
       </Modal>
 
       {/* Modals for Delete */}
-      <Modal show={show3} onHide={handleClose3}>
+      <Modal show={show3} onHide={handleClose3} centered>
         <Modal.Header closeButton>
           <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
         </Modal.Header>
@@ -419,8 +381,7 @@ const Members = (props) => {
             </Row>
           </Container>
         </Modal.Body>        
-      </Modal>
-       
+      </Modal>       
     </Container>
   )
 };
@@ -429,8 +390,4 @@ const mapStateToProps = (state) => {
     setResponseData: state.auth.data   
   };
 };
-const mapDispatchToProps = dispatch => {
-  console.log(dispatch);
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(Members);
+export default connect(mapStateToProps)(Members);

@@ -11,5 +11,7 @@ export {
   createcharter,
   charterlist,
   renamecharter,
-  deleteCharter
+  deleteCharter,
+  lockaccount,
+  changeemail
 } from "./authActions";

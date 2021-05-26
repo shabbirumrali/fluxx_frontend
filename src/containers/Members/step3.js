@@ -30,15 +30,8 @@ const Contact = ({ setForm, formData, navigation,id }) => {
 
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step3" />
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "21%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>        
-      </Row>       
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
+        <TitleList activeCls="step3" width={21} />
     </Container>
 
     <Container>
@@ -80,9 +73,9 @@ return (
 
               <Collapse in={background}>
                 <div id="example-collapse-text">
-                Why is the project necessary? Does it address a problem? Does it offer an
-                improvement over what you're doing currently? It may help if you imagine that
-                you’re explaining things to someone who doesn’t know anything about your project.
+                  Why is the project necessary? Does it address a problem? Does it offer an
+                  improvement over what you're doing currently? It may help if you imagine that
+                  you’re explaining things to someone who doesn’t know anything about your project.
                 </div>
               </Collapse>
             </div>

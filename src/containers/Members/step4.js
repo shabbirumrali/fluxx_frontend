@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemForm from "./ItemForm";
@@ -11,15 +11,48 @@ import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
 const Goal = ({ setForm, formData, navigation,id }) => {
+
+  console.log(setForm);
+  console.log(JSON.stringify(formData.goal));
+  console.log(JSON.parse(formData.goal));
+ 
+  //return false;
     const dispatch = useDispatch();
     const history  = useHistory();
     const { register, errors, handleSubmit, reset} = useForm();
-    const { goal }  = formData;
-    const [goalOpen, setGoalOpen] = useState(true);
-    const { previous, next } = navigation;
-    const onSubmit = async (data) => {      
+    const { goal }  = formData;    
+    const { previous, next } = navigation;   
+    const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
+      console.log(JSON.parse(formData.goal));
+     
+    // handle input change
+    // useEffect(() => {
+    //     setGoalOpen(JSON.parse(formData.goal))        
+    // });
+    const handleInputChange = (e, index) => { 
+    console.log(e);        
+      const { name, value } = e.target;
+      const list = [...goalOpen];
+      list[index][name] = value;
+      setGoalOpen(list);
+    };
+   
+    // handle click event of the Remove button
+    const handleRemoveClick = index => {
+      const list = [...goalOpen];
+      list.splice(index, 1);
+      setGoalOpen(list);
+    };
+ 
+    // handle click event of the Add button
+    const handleAddClick = () => {
+      setGoalOpen([...goalOpen, {goallist: ""}]);
+    };
+   // console.log(JSON.parse(formData));
+
+    const onSubmit = async (data) => {  
         let dataobject = {
-          "goal":goal,
+          "goal":goalOpen,
           "project_manager":formData.project_manager,
           "project_sponsor":formData.project_sponsor,
           "project_need":formData.project_need,
@@ -29,18 +62,12 @@ const Goal = ({ setForm, formData, navigation,id }) => {
         dispatch(actions.createcharter(dataobject));  
         next();  
      };
+
   
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step4" />
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "28%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>        
-      </Row>       
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
+        <TitleList activeCls="step4" width={28} />        
     </Container>   
 
     <Container>
@@ -48,18 +75,29 @@ return (
         <Col xs={1} md={5} className="project_details m-2">
           <p>Goals</p> 
           <Form onSubmit={handleSubmit(onSubmit)} noValidate>  
-              <ItemForm 
-                label="What do you hope to accomplish with this project? What do you hope to gain or retain with this effort?" 
-                name="goal" 
-                value={goal} 
-                type="textarea" 
-                onChange={setForm} 
-                className="project_info"
-              />
-              <Link className="d-block text-right my-3"
-                style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
-                ADD GOAL +
-              </Link>
+            {goalOpen.map((x, i) => {  
+              return (<><ItemForm 
+                      label="What do you hope to accomplish with this project? What do you hope to gain or retain with this effort?" 
+                      name="goal" 
+                      value={x.goal} 
+                      type="textarea" 
+                       onChange={e => handleInputChange(e, i)}
+                      className="project_info"
+                    />
+                     {goalOpen.length !== 1 && <button
+                      className="mr10"
+                      onClick={() => handleRemoveClick(i)}>Remove</button>}
+                     {goalOpen.length - 1 === i && <button onClick={handleAddClick} className="d-block text-right my-3" style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}}>ADD GOAL+</button>}
+                   </>)
+              }
+                 
+                 )
+          } 
+
+              
+
+
+
               <Button variant="light" type="submit" className="p-3" onClick={previous}>
                 BACK
               </Button>
@@ -76,7 +114,8 @@ return (
               >
                 Skip this step for now
               </Button> 
-          </Form>       
+          </Form>
+                         
         </Col>
 
         <Col xs={1} md={6} className="faq-section border p-4">

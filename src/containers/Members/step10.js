@@ -10,13 +10,13 @@ import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
-const Assumptions = ({ setForm, formData, navigation,id }) => {
-       const dispatch = useDispatch();
-       const history  = useHistory();
-       const { register, errors, handleSubmit, reset} = useForm();
-       const { assumptionTime } = formData;    
-       const [assumptionsOpen, setAssumptionsOpen] = useState(true);
-       const { previous, next } = navigation;     
+const Impact = ({ setForm, formData, navigation,id }) => {
+        const dispatch = useDispatch();
+        const history  = useHistory();
+        const { register, errors, handleSubmit, reset} = useForm();
+        const { impact } = formData;    
+        const [impactOpen, setImpactOpen] = useState(true);
+        const { previous, next } = navigation;   
         const onSubmit = async (data) => { 
         
           let dataobject = {
@@ -31,46 +31,42 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
               "startDate":formData.startDate,
               "finishDate":formData.finishDate,
               "budget":formData.budget,
-              "assumptionTime":assumptionTime,
+              "assumptionTime":formData.assumptionTime,
+              "impact":impact,
               "step":id
            }       
           dispatch(actions.createcharter(dataobject));  
           next();  
        }; 
-
   
 
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step10"/>
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "70%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-      </Row>
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
+        <TitleList activeCls="step11" width={80} />
     </Container>
-
     <Container>
       <Row className="my-3">
         <Col xs={1} md={5} className="project_details m-2">
-          <p> Assumptions </p>
-          <Form onSubmit={handleSubmit(onSubmit)} noValidate>  
+          <p> Impact </p> 
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>             
             <ItemForm 
-              label="What are the assumptions at this time?"
-              name="assumptionTime"
+              label="What will be impacted by this project?"
+              name="impact"
               type="textarea"
-              value={assumptionTime}
+              value={impact}
               onChange={setForm}
               className="project_info"
-            />              
+            />
+          <Link className="d-block text-right my-3"
+            style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
+            ADD IMPACT +
+            </Link>            
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>
             <Button type="submit" className="ml-4 p-3" 
-              style={{background: "#5aa380", border: "none"}} >
+            style={{background: "#5aa380", border: "none"}} onClick={next}>
               SAVE AND CONTINUE
             </Button>              
             <Button variant="link" type="submit" className="d-block"
@@ -79,32 +75,32 @@ return (
             </Button>
           </Form>
         </Col>
+      <Col xs={1} md={6} className="faq-section border p-4">
+        <div>
+          <p>Frequently Asked Questions</p>
 
-        <Col xs={1} md={6} className="faq-section border p-4">
-          <div>
-            <p>Frequently Asked Questions</p>
-            <div 
-              onClick={() => setAssumptionsOpen(!assumptionsOpen)}
-              aria-controls="example-collapse-text"
-              aria-expanded={assumptionsOpen}
-              className="faq-col mt-4">
-              <p> What exactly is an assumption? </p>
+          <div 
+            onClick={() => setImpactOpen(!impactOpen)}
+            aria-controls="example-collapse-text"
+            aria-expanded={impactOpen} 
+            className="faq-col mt-4" >
+            <p> What exactly is an impact? </p>
 
-              <Collapse in={assumptionsOpen}>
-                <div id="example-collapse-text">
-                  How much will all of this cost? Are you going to need new equipment? Will you
-                  need to hire outside assistance? The estimated total of all of those items
-                  should be reflected here. You may not know exactly how much you'll need yet,
-                  but try to get as close as you can with what you know right now.
-                </div>
-              </Collapse>
-            </div>
+            <Collapse in={impactOpen}>
+              <div id="example-collapse-text">
+                Take some time to think about all the
+                areas affected by this project. For instance, if you're developing a new
+                product, will marketing need to change the way they advertise? Will any operational policies and procedures need
+                to change as a result? Identifying these items early will be beneficial to you and the project team.
+              </div>
+            </Collapse>
           </div>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </Col>
+    </Row>
+  </Container>
   </>
   );
 };
 
-export default Assumptions;
+export default Impact;

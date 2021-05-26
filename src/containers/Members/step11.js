@@ -10,12 +10,12 @@ import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
-const Impact = ({ setForm, formData, navigation,id }) => {
-        const dispatch = useDispatch();
+const Stakeholders = ({ setForm, formData, navigation,id }) => {
+  const dispatch = useDispatch();
         const history  = useHistory();
         const { register, errors, handleSubmit, reset} = useForm();
-        const { impact } = formData;    
-        const [impactOpen, setImpactOpen] = useState(true);
+        const { stakeholder } = formData;    
+        const [stakeholdersOpen, setStakeholdersOpen] = useState(true);
         const { previous, next } = navigation;   
         const onSubmit = async (data) => { 
         
@@ -32,48 +32,40 @@ const Impact = ({ setForm, formData, navigation,id }) => {
               "finishDate":formData.finishDate,
               "budget":formData.budget,
               "assumptionTime":formData.assumptionTime,
-              "impact":impact,
+              "impact":formData.impact,
+              "stakeholder":stakeholder,
               "step":id
            }       
           dispatch(actions.createcharter(dataobject));  
           next();  
        }; 
-  
-
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step11"/>
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "80%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-      </Row>
-    </Container>
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
+        <TitleList activeCls="step11" width={90} />
+    </Container>   
     <Container>
       <Row className="my-3">
         <Col xs={1} md={5} className="project_details m-2">
-          <p> Impact </p> 
+          <p> Stakeholders </p> 
           <Form onSubmit={handleSubmit(onSubmit)} noValidate>             
             <ItemForm 
-              label="What will be impacted by this project?"
-              name="impact"
+              label="Who will be affected by this project?"
+              name="stakeholder"
               type="textarea"
-              value={impact}
+              value={stakeholder}
               onChange={setForm}
               className="project_info"
-            />
-          <Link className="d-block text-right my-3"
-            style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
-            ADD IMPACT +
+            />  
+            <Link className="d-block text-right my-3"
+              style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
+              ADD STAKEHOLDER +
             </Link>            
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>
             <Button type="submit" className="ml-4 p-3" 
-            style={{background: "#5aa380", border: "none"}} onClick={next}>
+            style={{background: "#5aa380", border: "none"}} >
               SAVE AND CONTINUE
             </Button>              
             <Button variant="link" type="submit" className="d-block"
@@ -82,32 +74,34 @@ return (
             </Button>
           </Form>
         </Col>
-      <Col xs={1} md={6} className="faq-section border p-4">
-        <div>
-          <p>Frequently Asked Questions</p>
 
-          <div 
-            onClick={() => setImpactOpen(!impactOpen)}
-            aria-controls="example-collapse-text"
-            aria-expanded={impactOpen} 
-            className="faq-col mt-4" >
-            <p> What exactly is an impact? </p>
+        <Col xs={1} md={6} className="faq-section border p-4">
+          <div>
+            <p>Frequently Asked Questions</p>
 
-            <Collapse in={impactOpen}>
-              <div id="example-collapse-text">
-                Take some time to think about all the
-                areas affected by this project. For instance, if you're developing a new
-                product, will marketing need to change the way they advertise? Will any operational policies and procedures need
-                to change as a result? Identifying these items early will be beneficial to you and the project team.
-              </div>
-            </Collapse>
+            <div 
+              onClick={() => setStakeholdersOpen(!stakeholdersOpen)}
+              aria-controls="example-collapse-text"
+              aria-expanded={stakeholdersOpen} 
+              className="faq-col mt-4" >
+              <p> What exactly is an impact? </p>
+
+              <Collapse in={stakeholdersOpen}>
+                <div id="example-collapse-text">
+                  Stakeholders include anyone affected by the project. If you look at the impacts
+                  listed previously, which groups are responsible for those areas? Place those
+                  groups here. Are there people who need to be kept informed of your progress? Will
+                  you need to consult with anyone else on decisions? Understanding who needs to know, what they need to know, and when
+                  they need to know will be critical to making your project a success.
+                </div>
+              </Collapse>
+            </div>
           </div>
-        </div>
-      </Col>
-    </Row>
-  </Container>
+        </Col>
+      </Row>
+    </Container>
   </>
   );
 };
 
-export default Impact;
+export default Stakeholders;

@@ -19,11 +19,23 @@ export const authSuccess = (token) => {
 };
 export const charterList  = (data) => {
   console.log(data);
- return {
+  return {
     type: actionTypes.CHARTERLIST,
     data: data,
   };
 
+}
+export const lockAccount = (data) => {
+  return {
+    type: actionTypes.LOCKACCOUNT,
+    data: data,
+  };
+}
+export const changeEmail = (data) => {
+  return {
+    type: actionTypes.CHANGEEMAIL,
+    data: data,
+  };
 }
 
 export const authFail = (error) => {
@@ -277,4 +289,57 @@ export const deleteCharter = (form, props) => {
       });
   };
 };
+
+//lock Account
+export const lockaccount = (form, props) => {
+  let dataobject = {
+        "password":form.password
+  }
+    const config = {
+           headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      'Content-Type': 'application/json'
+                     }
+          };  
+ 
+  return (dispatch) => {
+    api
+      .post("lockAccount",dataobject, config)
+      .then((response) => { 
+        response.data.lockAccount = 'success';       
+        dispatch(lockAccount(response.data));
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+
+// change Email 
+export const changeemail = (form, props) => {
+  let dataobject = {
+        "email":form.emailfirst,
+        "password":form.passwordfirst
+  }
+    const config = {
+           headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      'Content-Type': 'application/json'
+                     }
+          };
+  return (dispatch) => {
+    api
+      .post("changeEmail",dataobject, config)
+      .then((response) => {
+         response.data.changeEmail = 'success';        
+        dispatch(changeEmail(response.data));
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+
 

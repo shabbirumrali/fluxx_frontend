@@ -14,10 +14,13 @@ const authStart = (state, action) => {
   return updateObject(state, { error: null, loading: true });
 };
 const charterList = (state,action) =>{
-  console.log(action);
-
-return updateObject(state, {data:action.data,loading:false });
-
+  return updateObject(state, {data:action.data,loading:false });
+}
+const lockAccount = (state,action) =>{
+  return updateObject(state, {data:action.data,loading:false });
+}
+const changeEmail = (state,action) =>{
+  return updateObject(state, {data:action.data,loading:false });
 }
 
 const authSuccess = (state, action) => {
@@ -62,6 +65,10 @@ const reducer = (state = initialState, action) => {
       return { isAuthenticated: !isEmpty(action.user), user: action.user };
     case actionTypes.CHARTERLIST:
       return charterList(state,action);
+    case actionTypes.LOCKACCOUNT:
+      return lockAccount(state,action);
+    case actionTypes.CHANGEEMAIL:
+      return changeEmail(state,action);  
     default:
       return state;
   }

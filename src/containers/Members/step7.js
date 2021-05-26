@@ -8,17 +8,22 @@ import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import TitleList from  "./titleList";
 
-const OutScope = ({ setForm, formData, navigation,id }) => {
-   const dispatch = useDispatch();
+import moment from 'moment';
+const Schedule = ({ setForm, formData, navigation,id }) => {
+  console.log(formData);
+      const dispatch = useDispatch();
       const history  = useHistory();
       const { register, errors, handleSubmit, reset} = useForm();
-      const { outScope } = formData;
-      const [outScopeOpen, setoutScopeOpen] = useState(true);
+      let { startDate,finishDate } = formData;
+      const [scheduledopen, setscheduledopen] = useState(true);
       const { previous, next } = navigation;
-
-      const onSubmit = async (data) => {      
+       const [startdate, setStartDate] = useState(new Date());
+      const onSubmit = async (data) => { 
+      console.log(data) ;    
         let dataobject = {
             "goal":formData.goal,
             "project_manager":formData.project_manager,
@@ -27,78 +32,87 @@ const OutScope = ({ setForm, formData, navigation,id }) => {
             "benefits":formData.benefits,
             "name":formData.name,
             "InScope":formData.InScope,
-            "outScope":outScope,
+            "outScope":formData.outScope,
+            "startDate":startDate,
+            "finishDate":finishDate,
             "step":id
          }       
         dispatch(actions.createcharter(dataobject));  
         next();  
      };
+// startDate = startDate != '' ?  moment(startDate).format("DD/MM/YYYY") : startDate;
+// finishDate = finishDate != '' ?  moment(finishDate).format("DD/MM/YYYY") : finishDate;
+// console.log(startDate); 
+// console.log(moment(startDate).format("DD/MM/YYYY"));
 
-  
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step7"/>
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "49%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-      </Row>   
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
+        <TitleList activeCls="step7" width={56} />
     </Container>
+
     <Container>
       <Row className="my-3">
         <Col xs={1} md={5} className="project_details m-2">
-          <p> Out of Scope</p>
-            <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-              <ItemForm 
-                label="What is not included in the work you’ll be doing for the project?" 
-                name="outScope" 
-                value={outScope}  
-                type="textarea" 
+          <p> Schedule </p>
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate >
+              <label>When do you think the project will start?</label>
+              <ItemForm                   
+                name="startDate"
+                type="date"
+                value={startDate}
                 onChange={setForm} 
-                className="project_info"
+                className="date_info"
               />
-            <Link 
-              className="d-block text-right my-2"
-              style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} 
-            > ADD IN SCOPE ITEM +
-            </Link>
+              <br />
+              <label>When do you think the project will finish?</label>                
+              <ItemForm                   
+                name="finishDate"
+                type="date"
+                value={finishDate}
+                onChange={setForm}
+                className="date_info"
+              />    
+            <Link className="d-block text-right my-3"
+              style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
+            ADD IN SCOPE ITEM +
+            </Link>             
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>
             <Button type="submit" className="ml-4 p-3" 
-              style={{background: "#5aa380", border: "none"}} 
-            >
+            style={{background: "#5aa380", border: "none"}} >
               SAVE AND CONTINUE
             </Button>              
-            <Button 
-              variant="link" 
-              type="submit" 
-              className="d-block"
-              style={{color: "#5aa380", textDecoration: "none"}}  
-              onClick={next}
-            > Skip this step for now
-            </Button>
-        </Form>
+            <Button variant="link" type="submit" className="d-block"
+              style={{color: "#5aa380", textDecoration: "none"}} onClick={next} >
+              Skip this step for now
+            </Button> 
+          </Form>          
         </Col>
 
         <Col xs={1} md={6} className="faq-section border p-4">
           <div>
             <p>Frequently Asked Questions</p>
-            <div 
-              onClick={() => setoutScopeOpen(!outScopeOpen)}
-              aria-controls="example-collapse-text"
-              aria-expanded={outScopeOpen} 
-              className="faq-col mt-4" >
-              <p>What exactly does “Out of Scope” include? </p>
 
-              <Collapse in={outScopeOpen}>
+            <div 
+              onClick={() => setscheduledopen(!scheduledopen)}
+              aria-controls="example-collapse-text"
+              aria-expanded={scheduledopen} 
+              className="faq-col mt-4" >
+              <p> What exactly does “In Scope” include? </p>
+
+              <Collapse in={scheduledopen}>
                 <div id="example-collapse-text">
-                ""Scope creep" is one of the dangers of any project, which is why this part is important.
-                  Using our home-building example, things like landscaping, sidewalks, and furniture
-                  may be out of scope. Outline the things you <b>won't</b> be addressing as “Out of Scope”.
+                "Scope creep" is one of the dangers of any
+                  project, which is why this part is
+                  important.
+                  Using our home-building example, things
+                  like landscaping, sidewalks, and furniture
+                  may be out of scope. Outline the things
+                  you <b>won't</b> be addressing as “Out of
+                  Scope”.
+
                 </div>
               </Collapse>
             </div>
@@ -110,4 +124,4 @@ return (
   );
 };
 
-export default OutScope;
+export default Schedule;

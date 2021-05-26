@@ -6,13 +6,12 @@ import Contact from "./step3";
 import Goal from "./step4";
 import Benefits from "./step5";
 import InScope from "./step6";
-import OutScope from "./step7";
-import Schedule from "./step8";
-import Budget from "./step9";
-import Assumptions from "./step10";
-import Impact from "./step11";
-import Stakeholders from "./step12";
-import Risks from "./step13";
+import Schedule from "./step7";
+import Budget from "./step8";
+import Assumptions from "./step9";
+import Impact from "./step10";
+import Stakeholders from "./step11";
+import Risks from "./step12";
 //import "./styles.css";
 const steps = [
   { id: "names"    },
@@ -20,8 +19,7 @@ const steps = [
   { id: "contact"  },
   { id: "goal"     },
   { id: "benefits" },
-  { id: "inscope"  },
-  { id: "outscope" },
+  { id: "inscope"  },  
   { id: "schedule" },
   { id: "budget" },
   { id: "assumption" },
@@ -79,8 +77,6 @@ const MultiStepForm = (props) => {
       return <Benefits {...props1} />;
     case "inscope":
       return <InScope {...props1} />;
-    case "outscope":
-      return <OutScope {...props1} />; 
     case "schedule":
       return <Schedule {...props1} />;  
     case "budget":

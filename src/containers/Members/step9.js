@@ -10,15 +10,15 @@ import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
-const Budget = ({ setForm, formData, navigation,id }) => {
+const Assumptions = ({ setForm, formData, navigation,id }) => {
        const dispatch = useDispatch();
        const history  = useHistory();
        const { register, errors, handleSubmit, reset} = useForm();
-       const { budget } = formData;    
-       const [budgetOpen, setBudgetOpen] = useState(true);
-       const { previous, next } = navigation;      
+       const { assumptionTime } = formData;    
+       const [assumptionsOpen, setAssumptionsOpen] = useState(true);
+       const { previous, next } = navigation;     
         const onSubmit = async (data) => { 
-        console.log(data) ;    
+        
           let dataobject = {
               "goal":formData.goal,
               "project_manager":formData.project_manager,
@@ -30,47 +30,44 @@ const Budget = ({ setForm, formData, navigation,id }) => {
               "outScope":formData.outScope,
               "startDate":formData.startDate,
               "finishDate":formData.finishDate,
-              "budget":budget,
+              "budget":formData.budget,
+              "assumptionTime":assumptionTime,
               "step":id
            }       
           dispatch(actions.createcharter(dataobject));  
           next();  
        }; 
 
+  
+
 return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}>
-      <Row>
-        <TitleList activeCls="step9"/>
-        <div className="container member-hello my-4">
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style={{width: "63%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>        
-      </Row>       
-    </Container>     
+    <Container fluid style={{background: "#3d4a5c"}}  className="py-4" >
+        <TitleList activeCls="step9" width={70} />        
+    </Container>
+
     <Container>
       <Row className="my-3">
         <Col xs={1} md={5} className="project_details m-2">
-          <p> Budget </p>   
-          <Form onSubmit={handleSubmit(onSubmit)} noValidate>         
-            <ItemForm
-              label="What is the estimated total cost of your project?"
+          <p> Assumptions </p>
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>  
+            <ItemForm 
+              label="What are the assumptions at this time?"
+              name="assumptionTime"
               type="textarea"
-              name="budget"
-              value={budget}
+              value={assumptionTime}
               onChange={setForm}
               className="project_info"
-            />
+            />              
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>
-            <Button type="submit" className="ml-4 p-3" onClick={next}
+            <Button type="submit" className="ml-4 p-3" 
               style={{background: "#5aa380", border: "none"}} >
-                SAVE AND CONTINUE
+              SAVE AND CONTINUE
             </Button>              
-            <Button variant="link" type="submit" className="d-block" onClick={next}
-              style={{color: "#5aa380", textDecoration: "none"}} >
+            <Button variant="link" type="submit" className="d-block"
+              style={{color: "#5aa380", textDecoration: "none"}}  onClick={next}>
               Skip this step for now
             </Button>
           </Form>
@@ -79,15 +76,14 @@ return (
         <Col xs={1} md={6} className="faq-section border p-4">
           <div>
             <p>Frequently Asked Questions</p>
-
             <div 
-              onClick={() => setBudgetOpen(!budgetOpen)}
+              onClick={() => setAssumptionsOpen(!assumptionsOpen)}
               aria-controls="example-collapse-text"
-              aria-expanded={budgetOpen} 
-              className="faq-col mt-4" >
-              <p> What goes into the estimated budget? </p>
+              aria-expanded={assumptionsOpen}
+              className="faq-col mt-4">
+              <p> What exactly is an assumption? </p>
 
-              <Collapse in={budgetOpen}>
+              <Collapse in={assumptionsOpen}>
                 <div id="example-collapse-text">
                   How much will all of this cost? Are you going to need new equipment? Will you
                   need to hire outside assistance? The estimated total of all of those items
@@ -104,4 +100,4 @@ return (
   );
 };
 
-export default Budget;
+export default Assumptions;

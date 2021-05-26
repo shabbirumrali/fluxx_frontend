@@ -31,65 +31,58 @@ const Names = ({ setForm, formData, navigation,id }) => {
   };
 
   return (<>
-    <Container fluid style={{background: "#3d4a5c"}}>
-        <Row>
-           <TitleList activeCls="step1"/>
-          <div className="container member-hello my-4">
-            <div className="progress">
-              <div className="progress-bar" role="progressbar" style={{width: "7%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-          </div>        
-        </Row>       
-      </Container>
-    <Container  className="mb-5">
-    <Row className="my-3">
-      <Col xs={1} md={5} className="project_details m-2">
-        <p>Project Name</p> 
-          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <ItemForm
-              label="What is the title of your project?"
-              name="name"
-              type="textarea"
-              value={name}
-              onChange={setForm}
-              className="project_info mb-4"
-            />
-        <Button 
-          type="submit" 
-          className="p-btns p-3 d-block"
-          style={{background: "#5aa380", border: "none"}} 
-        >
-            SAVE AND CONTINUE
-          </Button>
-          
-          <Button variant="link" type="submit"
-          style={{color: "#5aa380", textDecoration: "none"}} onClick={next}
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4">        
+      <TitleList activeCls="step1" width={7}/>      
+    </Container>
+    <Container className="mb-5">
+      <Row className="my-5">
+        <Col sm={8} lg={6} className="project_details">
+          <p>Project Name</p> 
+            <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+              <ItemForm
+                label="What is the title of your project?"
+                name="name"
+                type="textarea"
+                value={name}
+                onChange={setForm}
+                className="project_info mb-4"
+              />
+          <Button 
+            type="submit" 
+            className="p-btns p-3 d-block"
+            style={{background: "#5aa380", border: "none"}} 
           >
-            Skip this step for now
-          </Button>
-          </Form>
-      </Col>
-      <Col xs={1} md={6} className="faq-section border p-4">
-        <div>
-          <p>Frequently Asked Questions</p>
+              SAVE AND CONTINUE
+            </Button>
+            
+            <Button variant="link" type="submit"
+            style={{color: "#5aa380", textDecoration: "none"}} onClick={next}
+            >
+              Skip this step for now
+            </Button>
+            </Form>
+        </Col>
+        <Col sm={4} lg={5} className="faq-section border p-4 m-1">
+          <div>
+            <p>Frequently Asked Questions</p>
 
-          <div 
-            onClick={() => setProjectOpen(!projectOpen)}
-            aria-controls="example-collapse-text"
-            aria-expanded={projectOpen} 
-            className="faq-col mt-4" >
-            <p> What should I name my project? </p>
+            <div 
+              onClick={() => setProjectOpen(!projectOpen)}
+              aria-controls="example-collapse-text"
+              aria-expanded={projectOpen} 
+              className="faq-col mt-4" >
+              <p> What should I name my project? </p>
 
-            <Collapse in={projectOpen}>
-              <div id="example-collapse-text">
-                Your project name should be something clear and concise. We suggest avoiding acronyms unless you spell them out. For example, instead of "BPE", use "Best Project Ever (BPE)".
-              </div>
-            </Collapse>
+              <Collapse in={projectOpen}>
+                <div id="example-collapse-text">
+                  Your project name should be something clear and concise. We suggest avoiding acronyms unless you spell them out. For example, instead of "BPE", use "Best Project Ever (BPE)".
+                </div>
+              </Collapse>
+            </div>
           </div>
-        </div>
-      </Col>
-    </Row>
-  </Container>
+        </Col>
+      </Row>
+    </Container>
 </>);
 };
 
