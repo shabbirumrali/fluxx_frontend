@@ -24,7 +24,7 @@ const Setting = (props) => {
   const handleDeleteAccClose = () => setDeleteAcc(false);
   const handleDeleteAccShow = () => setDeleteAcc(true);
   const {register,errors,handleSubmit,reset} = useForm();
-  console.log(props);
+  
   const onSubmit = async (data) => {
     if(data.emailfirst != undefined && data.passwordfirst != undefined ){
       dispatch(actions.changeemail(data));
@@ -60,7 +60,7 @@ const Setting = (props) => {
           <div className="my_account_top_section mt-5">
             <div className="d-flex">
               <h3>My Account</h3>
-              <p>username@gmail.com</p>
+              <p>{localStorage.getItem('email')}</p>
             </div>
             <div className="acc_setting mt-5 p-3">
               <h4>ACCOUNT SETTINGS</h4>
@@ -74,7 +74,7 @@ const Setting = (props) => {
             <div className="email_section my-4 p-3">
               <h6>Email</h6>
               <div className="change_setting d-flex my-4">
-                <p>username@gmail.com</p>
+                <p>{localStorage.getItem('email')}</p>
                 <Link onClick={handleShow}>Change Email</Link>
               </div>
               {/*  */}

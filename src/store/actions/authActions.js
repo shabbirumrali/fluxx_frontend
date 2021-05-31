@@ -37,6 +37,12 @@ export const changeEmail = (data) => {
     data: data,
   };
 }
+export const fetchprojectlist = (data) => {
+  return {
+    type: actionTypes.PROJECTLIST,
+    data: data,
+  };
+}
 
 export const authFail = (error) => {
   return {
@@ -254,7 +260,7 @@ export const renamecharter = (form, props) => {
       .then((response) => {
         if (response.data.status === 200) {
           toast.success("Your charter update Successfully");
-          window.location.href= "/members";
+           history.push("/members");
         }
       })
       .catch((err) => {
@@ -279,7 +285,8 @@ export const deleteCharter = (form, props) => {
       .then((response) => {
         if (response.data.status === 200) {
           toast.success("Your charter delete Successfully");
-          window.location.href= "/members";
+       
+           history.push("/members");
         }
       })
       .catch((err) => {
@@ -340,6 +347,56 @@ export const changeemail = (form, props) => {
         }
       });
   };
+};
+
+// change Email 
+export const moveCharter = (form, props) => {
+  console.log(form);
+  console.log(props);
+  let dataobject = {
+        "categoryId":form.selectCat,
+        "projectId":props.id,
+        "projectname":props.name
+  }
+    const config = {
+           headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
+                      'Content-Type': 'application/json'
+                     }
+          };
+  return (dispatch) => {
+    api
+      .post("updateCharterCategory",dataobject, config)
+      .then((response) => {
+          if (response.data.status === 200) {
+             toast.success("Your charter move Successfully");
+             
+             history.push("/members");
+          }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+
+export const fetchcategoryProjects = (form, props) => {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    };  
+    return (dispatch) => {
+      api
+        .get("fetchcategoryprojects/"+form, config)
+        .then((response) => {
+            dispatch(fetchprojectlist(response.data));        
+        })
+        .catch((err) => {
+          if (err === "Error: Request failed with status code 500") {
+            toast.error(" Token Expire !!");
+          }
+        });
+    };
 };
 
 

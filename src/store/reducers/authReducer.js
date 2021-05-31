@@ -11,18 +11,17 @@ const initialState = {
 };
 
 const authStart = (state, action) => {
-  return updateObject(state, { error: null, loading: true });
+   return updateObject(state, { error: null, loading: true });
 };
 const charterList = (state,action) =>{
-  return updateObject(state, {data:action.data,loading:false });
+   return updateObject(state, {data:action.data,loading:false });
 }
 const lockAccount = (state,action) =>{
-  return updateObject(state, {data:action.data,loading:false });
+   return updateObject(state, {data:action.data,loading:false });
 }
 const changeEmail = (state,action) =>{
-  return updateObject(state, {data:action.data,loading:false });
+   return updateObject(state, {data:action.data,loading:false });
 }
-
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
@@ -68,7 +67,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOCKACCOUNT:
       return lockAccount(state,action);
     case actionTypes.CHANGEEMAIL:
-      return changeEmail(state,action);  
+      return changeEmail(state,action);     
     default:
       return state;
   }

@@ -1,21 +1,22 @@
 import React, {useState,useEffect,useCallback} from "react";
 import { FormGroup, Label } from "reactstrap";
-import { Container, Row, Col, Button, Image, OverlayTrigger, Popover, Modal, Form } from "react-bootstrap"
-import Folder from '../../assets/img/folder.png'
-import More from '../../more.svg'
-import Document from '../../assets/img/file-empty-icon.png'
+import { Container, Row, Col, Button, Image, OverlayTrigger, Popover, Modal, Form } from "react-bootstrap";
+import Folder from '../../assets/img/folder.png';
+import More from '../../more.svg';
+import Document from '../../assets/img/file-empty-icon.png';
+import folderDoc from '../../assets/img/iconfolder.svg';
 import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
-
 import moment from 'moment';
 import { Pagination } from "@material-ui/lab";
 import usePagination from "./Pagination";
 import { default as data } from "./MOCK_DATA.json";
 
-const Members = (props) => {    
+const Members = (props) => {
+    
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, errors, handleSubmit,renameSubmit, reset} = useForm();
@@ -27,6 +28,7 @@ const Members = (props) => {
   const onSubmit = async (data) => {
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));
+      handleCloseFolder();
     }
     if(data.newchartername != undefined){
        dispatch(actions.renamecharter(data,selectedcharterid.id));
@@ -35,17 +37,16 @@ const Members = (props) => {
       dispatch(actions.deleteCharter(data,selectedcharterid.id));
     }
     if(data.selectCat != undefined){
-       dispatch(actions.renamecharter(data,selectedcharterid.id));
+       dispatch(actions.moveCharter(data,selectedcharterid));
+       handleClose2();
     }
      reset();
   };
-
-  useEffect(() => {
-    // Update the document title using the browser API
-      dispatch(actions.charterlist());
-      fetchcategory()
+  
+  useEffect(() => {          
+      fetchcategory()     
   },[setResponseData, responseData]);
-  console.log(props.setResponseData);
+  console.log(props);
   const fetchcategory = useCallback(() => {
     axios({
       "method": "GET",
@@ -63,7 +64,7 @@ const Members = (props) => {
     .catch((error) => {
       console.log(error)
     })
-  }, []) 
+  }, [])   
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
@@ -100,6 +101,9 @@ const Members = (props) => {
   const fetchcharter = value  => () => {   
         fetchDetail(value)
   }
+  const fetchcategoryProjects = value  => () => { 
+        history.push("/members/"+value)
+  }
   const fetchDetail = useCallback((value) => {   
     axios({
       "method": "GET",
@@ -122,7 +126,7 @@ const Members = (props) => {
     })
   }, [])
  
-  console.log(setCharterData);
+  
   const popover = (
     <Popover isOpen = {showpopover} >
       <Popover.Content className="demo-pop p-0"> 
@@ -138,9 +142,9 @@ const Members = (props) => {
       </Popover.Content>
     </Popover>
   );
-  console.log(selectedcharterid);
   let [page, setPage] = useState(1);
   const PER_PAGE = 2;  
+  
   const count = Math.ceil(props.setResponseData ? props.setResponseData.charterlist.length/ PER_PAGE:0);
   const _DATA = usePagination(props.setResponseData ? props.setResponseData.charterlist :[] , PER_PAGE);
   const handleChange = (e, p) => {
@@ -169,7 +173,32 @@ const Members = (props) => {
               Create New Charter
             </Link>              
           </Col>
-        </Row>  
+        </Row>
+    { 
+        categoryData ?
+          categoryData.length>0?
+             categoryData.map((list,index) => {
+                 return (<Row key={index}>
+                          <Col className="py-4">
+                            <div className="shadow charters" style={{background: "white"}}>
+                              <div style={{background: "#f9f9f9"}}>
+                                <Image src={folderDoc} width={36} className="m-3" alt="Folder image" />
+                              </div>              
+                              <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380", cursor: "pointer"}}  onClick={fetchcategoryProjects(list.id)} >{list. categoryname}</p>
+                            
+                              <div className="d-flex ml-auto option_section">
+                                <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
+
+                                <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
+                                  <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
+                                </OverlayTrigger>
+                              </div>
+                            </div>              
+                          </Col>  
+                      </Row>
+                     )
+          }) :null  :null
+    }   
         { 
         props.setResponseData ?  props.setResponseData.charterlist.length >0 ?
           _DATA.currentData().map((list,index) => {
@@ -316,7 +345,7 @@ const Members = (props) => {
               <Col className="py-1">
                 <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
                   <FormGroup >
-                  <Label htmlFor>Choose Category</Label>
+                  <Label htmlFor>Choose Folder</Label>
                 <select className="form-control" name="selectCat" ref={register({
                     required: true})}>
                  {
@@ -343,7 +372,7 @@ const Members = (props) => {
                         Submit
                       </Button>
                       <Button 
-                      onClick={handleClose} 
+                      onClick={handleClose2} 
                       className="py-2 mx-2 mb-3" 
                       variant="light" 
                       style={{background:"", color: "", border: "none"}} 
@@ -386,8 +415,14 @@ const Members = (props) => {
   )
 };
 const mapStateToProps = (state) => {
+
   return {
     setResponseData: state.auth.data   
   };
 };
-export default connect(mapStateToProps)(Members);
+const mapDispatchToProps = (dispatch) => {
+  dispatch(actions.charterlist());
+  return {};
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Members);

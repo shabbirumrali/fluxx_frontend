@@ -13,5 +13,7 @@ export {
   renamecharter,
   deleteCharter,
   lockaccount,
-  changeemail
+  changeemail,
+  moveCharter,
+  fetchcategoryProjects
 } from "./authActions";

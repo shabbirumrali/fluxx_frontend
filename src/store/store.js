@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, combineReducers, compose } from "redux";
 
 import authReducer from "./reducers/authReducer";
+import charterReducer from "./reducers/charterReducer";
 import thunk from "redux-thunk";
 
 import { setCurrentUser } from "../store/actions/authActions";
@@ -10,6 +11,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  charter:charterReducer
 });
 
 const store = createStore(

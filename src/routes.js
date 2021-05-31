@@ -12,7 +12,7 @@ const FinalView = lazy(() => import("./containers/Members/finalLview"));
 const Terms = lazy(() => import("./components/Footer/Terms"));
 const Privacy = lazy(() => import("./components/Footer/Privacy"));
 const Setting = lazy(() => import("./containers/Setting/Setting"));
-
+const Memberdetail = lazy(() => import("./containers/Members/Memberdetail"));
 const routes = [
   { path: "/", exact: true, component: Home },
   {
@@ -74,6 +74,11 @@ const routes = [
     path: "/setting",
     exact: true,
     component: Setting,
+  },
+  {
+    path: "/members/:memberid",
+    exact: true,
+    component: Memberdetail,
   }
 ];
 
