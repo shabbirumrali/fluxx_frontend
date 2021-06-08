@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemForm from "./ItemForm";
@@ -18,13 +18,42 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
     const [benefitOpen, setBenefitOpen] = useState(true)    
     const [benefitOpen1, setBenefitOpen1] = useState(true)    
     const { previous, next } = navigation;
+    const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
+      console.log(JSON.parse(formData.goal).length);
+      console.log(formData.goal.length);
+     
+    // handle input change
+    useEffect(() => {
+        //setGoalOpen(JSON.parse(formData.goal))        
+    });
+   
+    const handleInputChange = (e, index) => { 
+    console.log(e);        
+      const { name, value } = e.target;
+      const list = [...goalOpen];
+      list[index][name] = value;
+      setGoalOpen(list);
+      
+    };
+   
+    // handle click event of the Remove button
+    const handleRemoveClick = index => {
+      const list = [...goalOpen];
+      list.splice(index, 1);
+      setGoalOpen(list);
+    };
+ 
+    // handle click event of the Add button
+    const handleAddClick = () => {
+      console.log('sdfsdfs');
+      setGoalOpen([...goalOpen, {goallist: ""}]);
+    };
     const onSubmit = async (data) => {      
         let dataobject = {
-            "goal":formData.goal,
             "project_manager":formData.project_manager,
             "project_sponsor":formData.project_sponsor,
             "project_need":formData.project_need,
-            "benefits":benefits,
+            "benefits":goalOpen,
             "name":formData.name,
             "step":id
          }       
@@ -42,33 +71,40 @@ return (
         <Col xs={1} md={5} className="project_details m-2">
           <p>Benefits</p>
           <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <ItemForm 
+          {goalOpen.map((x, i) => { 
+            return(<><ItemForm 
               label="What are the benefits of each goal?" 
               name="benefits" 
-              type="textarea" 
-              value={benefits} 
-              onChange={setForm} 
+              type="textarea"
+              value={x.benefits}  
+              onChange={e => handleInputChange(e, i)}
               className="project_info"
             />
-              <Link className="d-block text-right my-3"
-              style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
-                ADD GOAL +
-              </Link>
-              <Button variant="light" type="submit" className="p-3" onClick={previous}>
-                BACK
-              </Button>
-              <Button type="submit" className="ml-4 p-3" 
-              style={{background: "#5aa380", border: "none"}} onClick={next}>
-                SAVE AND CONTINUE
-              </Button>              
-              <Button 
-                variant="link" 
-                type="submit" 
-                className="d-block"
-                style={{color: "#5aa380", textDecoration: "none"}}  onClick={next}>
-                Skip this step for now
-              </Button>
-              </Form>        
+             {goalOpen.length !== 1 && <button
+                      className="mr10"
+                      onClick={() => handleRemoveClick(i)}>Remove</button>}
+                     {goalOpen.length - 1 === i && <button onClick={handleAddClick}
+                      className="d-block text-right my-3" style={{color: "#5aa380",
+                       textDecoration: "none", fontWeight: "600",
+                   cursor: "pointer"}}>ADD Benefits+</button>}</>)
+          })
+        }
+             
+          <Button variant="light" type="submit" className="p-3" onClick={previous}>
+            BACK
+          </Button>
+          <Button type="submit" className="ml-4 p-3" 
+          style={{background: "#5aa380", border: "none"}} >
+            SAVE AND CONTINUE
+          </Button>              
+          <Button 
+            variant="link" 
+            type="submit" 
+            className="d-block"
+            style={{color: "#5aa380", textDecoration: "none"}}  onClick={next}>
+            Skip this step for now
+          </Button>
+          </Form>        
         </Col>
 
         <Col xs={1} md={6} className="faq-section border p-4">

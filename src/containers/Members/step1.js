@@ -10,6 +10,7 @@ import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
 
 const Names = ({ setForm, formData, navigation,id }) => {
+  console.log(formData);
  
   const dispatch = useDispatch();
   const history = useHistory();

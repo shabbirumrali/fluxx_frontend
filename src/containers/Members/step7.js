@@ -40,10 +40,7 @@ const Schedule = ({ setForm, formData, navigation,id }) => {
         dispatch(actions.createcharter(dataobject));  
         next();  
      };
-// startDate = startDate != '' ?  moment(startDate).format("DD/MM/YYYY") : startDate;
-// finishDate = finishDate != '' ?  moment(finishDate).format("DD/MM/YYYY") : finishDate;
-// console.log(startDate); 
-// console.log(moment(startDate).format("DD/MM/YYYY"));
+
 
 return (
   <>
@@ -73,10 +70,7 @@ return (
                 onChange={setForm}
                 className="date_info"
               />    
-            <Link className="d-block text-right my-3"
-              style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
-            ADD IN SCOPE ITEM +
-            </Link>             
+                        
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>

@@ -10,6 +10,9 @@ import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
 const Address = ({ setForm, formData, navigation,id }) => {
+  //console.log(setForm);
+  console.log(formData);
+  
   const dispatch = useDispatch();
   const history  = useHistory();
   const [pmasOpen, setPmasOpen] = useState(true);

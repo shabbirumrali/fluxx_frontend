@@ -28,25 +28,29 @@ const steps = [
   { id: "risk" }
 ];
 const MultiStepForm = (props) => {
+  console.log(props);
+  
   
  
     const objectdata = props.location.state !== undefined ? props.location.state.detail:{}; 
+      console.log(objectdata.goal);
+
     const defaultData = {
         name: objectdata.name ? objectdata.name:"",
         project_manager: objectdata.project_manager ? objectdata.project_manager:"",
         project_sponsor: objectdata.project_sponsor ? objectdata.project_sponsor:"",
         project_need: objectdata.project_need ? objectdata.project_need:"",
-        goal:objectdata.goal ? objectdata.goal: [],
-        benefits:objectdata.benefits ? objectdata.benefits :"",
+        goal:objectdata.goal ? JSON.parse(objectdata.goal): null,
+        benefits:objectdata.benefits ? JSON.parse(objectdata.benefits) :null,
         InScope:objectdata.InScope ?  objectdata.InScope :"",
         outScope:objectdata.outScope ? objectdata.outScope :"",
         startDate:objectdata.startDate ? objectdata.startDate : "",
         finishDate:objectdata.finishDate ? objectdata.finishDate : "",
         budget:objectdata.budget ? objectdata.budget : "",
         assumptionTime:objectdata.assumptionTime ? objectdata.assumptionTime : "",
-        impact:objectdata.impact ? objectdata.impact : "",
-        stakeholder:objectdata.stakeholder ? objectdata.stakeholder : "",
-        risks:objectdata.risks ? objectdata.risks : "",
+        impact:objectdata.impact ? objectdata.impact : null,
+        stakeholder:objectdata.stakeholder ? objectdata.stakeholder : null,
+        risks:objectdata.risks ? objectdata.risks : null,
         step:objectdata.step ? objectdata.step :""
       };
 

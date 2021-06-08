@@ -5,7 +5,7 @@ import Folder from '../../assets/img/folder.png';
 import More from '../../more.svg';
 import Document from '../../assets/img/file-empty-icon.png';
 import folderDoc from '../../assets/img/iconfolder.svg';
-import { Link, Router, useHistory, Redirect } from "react-router-dom";
+import { Link, Router, useHistory, Redirect,useParams } from "react-router-dom";
 import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -16,6 +16,8 @@ import { Pagination } from "@material-ui/lab";
 import usePagination from "./Pagination";
 import { default as data } from "./MOCK_DATA.json";
 
+
+
 const Members = (props) => {    
   const dispatch = useDispatch();
   const history = useHistory();
@@ -25,49 +27,35 @@ const Members = (props) => {
   const [categoryData,setcategoryData]  = useState(true);
   const [singleCharterData, setCharterData] = useState(true); 
   const [pageOfItems,setpageOfItems] = useState(true);  
-  // const onSubmit = async (data) => {
-  //   if(data.foldername != undefined){
-  //     dispatch(actions.createfolder(data));
-  //     handleCloseFolder();
+  const onSubmit = async (data) => {
+    if(data.foldername != undefined){
+      dispatch(actions.createfolder(data));
+      handleCloseFolder();
 
-  //   }
-  //   if(data.newchartername != undefined){
-  //      dispatch(actions.renamecharter(data,selectedcharterid.id));
-  //   }
-  //   if(Object.keys(data).length == 0){
-  //     dispatch(actions.deleteCharter(data,selectedcharterid.id));
-  //   }
-  //   if(data.selectCat != undefined){
-  //     console.log(data.selectCat);
-  //      dispatch(actions.moveCharter(data,selectedcharterid.id));
-  //      handleClose2();
-  //   }
-  //    reset();
-  // };
-  console.log(props);
+    }
+    // if(data.newchartername != undefined){
+    //    dispatch(actions.renamecharter(data,selectedcharterid.id));
+    // }
+    // if(Object.keys(data).length == 0){
+    //   dispatch(actions.deleteCharter(data,selectedcharterid.id));
+    // }
+    // if(data.selectCat != undefined){
+    //   console.log(data.selectCat);
+    //    dispatch(actions.moveCharter(data,selectedcharterid.id));
+    //    handleClose2();
+    // }
+     reset();
+  };
+  
 
 
-  useEffect(() => {       
-     dispatch(actions.fetchcategoryProjects(props.match.params.memberid));
-     fetchcategory()
-  },[setResponseDatadetail, responseData]);
-  const fetchcategory = useCallback(() => {
-    axios({
-      "method": "GET",
-      "url": "http://localhost:8000/v1/fetchcategory",
-      "headers": {
-         'Authorization': `Bearer ${localStorage.getItem('token')}`,
-         'Content-Type': 'application/json', 
-      }
-    })
-    .then((response) => {      
-      setcategoryData(response.data.categoryList);
-      
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }, []) 
+  useEffect(() => {
+    //console.log(props.location.state.catlist);
+     dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));
+     //fetchcategory()
+     setcategoryData(props.location.state.catlist);
+  }, [])
+  
  
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
@@ -118,10 +106,11 @@ const Members = (props) => {
       </Popover.Content>
     </Popover>
   );
+  console.log(props);
   let [page, setPage] = useState(1);
   const PER_PAGE = 1;  
   const count = Math.ceil(props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length/ PER_PAGE:0);
-  const _DATA = usePagination(props.setResponseDatadetail.categoryList[0] ? props.setResponseDatadetail.categoryList[0].CategoryProjects :[] , PER_PAGE);
+  const _DATA = usePagination(props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects :[] , PER_PAGE);
   const handleChange = (e, p) => {
     setPage(p);
     _DATA.jump(p);
@@ -131,9 +120,9 @@ const Members = (props) => {
 
   return (
     <Container className="members_container mt-4">
-      <h2>{props.setResponseDatadetail.categoryList[0] ? props.setResponseDatadetail.categoryList[0].categoryname:""}  Project List</h2>
+      <h2>{props.setResponseDatadetail? props.setResponseDatadetail.categoryList[0].categoryname:""}  Project List</h2>
        { 
-        props.setResponseDatadetail.categoryList ?  props.setResponseDatadetail.categoryList[0].CategoryProjects.length >0 ?
+        props.setResponseDatadetail ?  props.setResponseDatadetail.categoryList[0].CategoryProjects.length >0 ?
           _DATA.currentData().map((list,index) => {
             return (<Row key={index}>
             <Col className="py-4">
@@ -158,7 +147,7 @@ const Members = (props) => {
  
     }
     { 
-       props.setResponseDatadetail.categoryList ?  props.setResponseDatadetail.categoryList[0].CategoryProjects.length >0 ?
+       props.setResponseDatadetail ?  props.setResponseDatadetail.categoryList[0].CategoryProjects.length >0 ?
         <Pagination
             className="pagination_section"
             count={count}
@@ -180,4 +169,9 @@ const mapStateToProps = (state) => {
     setResponseDatadetail: state.charter.data,     
   };
 };
-export default connect(mapStateToProps)(Members);
+const mapDispatchToProps = (dispatch) => {
+   //dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()))
+   return {};
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(Members);

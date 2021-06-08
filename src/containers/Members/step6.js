@@ -24,7 +24,6 @@ const InScope = ({ setForm, formData, navigation,id }) => {
             "project_manager":formData.project_manager,
             "project_sponsor":formData.project_sponsor,
             "project_need":formData.project_need,
-            "benefits":formData.benefits,
             "name":formData.name,
             "InScope":InScope,
             "outScope":outScope,
@@ -61,11 +60,7 @@ return (
                 type="textarea" 
                 onChange={setForm} 
                 className="project_info"
-              />        
-                <Link className="d-block text-right my-2"
-                style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
-                ADD IN SCOPE ITEM +
-                </Link>
+              />   
                 <Button variant="light" type="submit" className="p-3" onClick={previous}>
                   BACK
                 </Button>

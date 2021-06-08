@@ -43,7 +43,8 @@ const Members = (props) => {
      reset();
   };
   
-  useEffect(() => {          
+  useEffect(() => { 
+      dispatch(actions.charterlist());         
       fetchcategory()     
   },[setResponseData, responseData]);
   console.log(props);
@@ -102,7 +103,10 @@ const Members = (props) => {
         fetchDetail(value)
   }
   const fetchcategoryProjects = value  => () => { 
-        history.push("/members/"+value)
+        history.push({
+          pathname: "/members/"+value, 
+          state: { catlist: categoryData}
+        });
   }
   const fetchDetail = useCallback((value) => {   
     axios({
@@ -114,10 +118,10 @@ const Members = (props) => {
       }
     })
     .then((response) => {
-      console.log(response.data);
+      //console.log(response.data);
       history.push({
           pathname: "/cmain", 
-          state: { detail: response.data.charterlist }
+          state: { detail: response.data.charterlist}
         });
 
     })
@@ -421,7 +425,7 @@ const mapStateToProps = (state) => {
   };
 };
 const mapDispatchToProps = (dispatch) => {
-  dispatch(actions.charterlist());
+  
   return {};
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemForm from "./ItemForm";
@@ -17,25 +17,50 @@ const Risks = ({ setForm, formData, navigation,id }) => {
         const { register, errors, handleSubmit, reset} = useForm();
         const { risks } = formData;    
         const [risksOpen, setRisksOpen] = useState(true);
-        const { previous, next } = navigation;  
+        const { previous, next } = navigation; 
+        const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
+       
+       
+        // handle input change
+        useEffect(() => {
+            //setGoalOpen(JSON.parse(formData.goal))        
+        });
+        const handleInputChange = (e, index) => { 
+        console.log(e);        
+          const { name, value } = e.target;
+          const list = [...goalOpen];
+          list[index][name] = value;
+          setGoalOpen(list);
+          
+        };
+       
+        // handle click event of the Remove button
+        const handleRemoveClick = index => {
+          const list = [...goalOpen];
+          list.splice(index, 1);
+          setGoalOpen(list);
+        };
+     
+        // handle click event of the Add button
+        const handleAddClick = () => {
+          console.log('sdfsdfs');
+          setGoalOpen([...goalOpen, {goallist: ""}]);
+        }; 
+ 
         const onSubmit = async (data) => { 
         
-          let dataobject = {
-              "goal":formData.goal,
+          let dataobject = {             
               "project_manager":formData.project_manager,
               "project_sponsor":formData.project_sponsor,
-              "project_need":formData.project_need,
-              "benefits":formData.benefits,
+              "project_need":formData.project_need,              
               "name":formData.name,
               "InScope":formData.InScope,
               "outScope":formData.outScope,
               "startDate":formData.startDate,
               "finishDate":formData.finishDate,
               "budget":formData.budget,
-              "assumptionTime":formData.assumptionTime,
-              "impact":formData.impact,
-              "stakeholder":formData.stakeholder,
-              "risks":risks,
+              "assumptionTime":formData.assumptionTime,                           
+              "risks":goalOpen,
               "step":id
            }       
           dispatch(actions.createcharter(formData));  
@@ -74,18 +99,27 @@ return (
         <Col xs={1} md={5} className="project_details m-2">
           <p> Risks </p>
           <Form onSubmit={handleSubmit(onSubmit)} noValidate>              
-            <ItemForm
-              label="What are some of the things that could derail this project?"
-              name="risks"
-              type="textarea"
-              value={risks}
-              onChange={setForm}
-              className="project_info"
-            />  
-            <Link className="d-block text-right my-3"
-              style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}} >
-              ADD RISK + 
-            </Link>            
+             {goalOpen.map((x, i) => {  
+              return (<><ItemForm 
+                      label="What are some of the things that could derail this project?" 
+                      name="risks" 
+                      value={x.risks} 
+                      type="textarea" 
+                       onChange={e => handleInputChange(e, i)}
+                      className="project_info"
+                    />
+                     {goalOpen.length !== 1 && <button
+                      className="mr10"
+                      onClick={() => handleRemoveClick(i)}>Remove</button>}
+                     {goalOpen.length - 1 === i && <button onClick={handleAddClick} className="d-block text-right my-3" style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}}>ADD RISK +</button>}
+                   </>)
+              }
+                 
+                 )
+            } 
+
+
+
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>

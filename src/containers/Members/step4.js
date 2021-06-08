@@ -11,30 +11,29 @@ import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
 const Goal = ({ setForm, formData, navigation,id }) => {
-
-  console.log(setForm);
-  console.log(JSON.stringify(formData.goal));
-  console.log(JSON.parse(formData.goal));
- 
-  //return false;
+    //console.log(setForm);
     const dispatch = useDispatch();
     const history  = useHistory();
     const { register, errors, handleSubmit, reset} = useForm();
     const { goal }  = formData;    
-    const { previous, next } = navigation;   
+    const { previous, next } = navigation;
+
     const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
-      console.log(JSON.parse(formData.goal));
-     
+      console.log(JSON.parse(formData.goal).length);
+    //  console.log(formData.goal.length);
+     console.log(JSON.parse(formData.goal));
     // handle input change
-    // useEffect(() => {
-    //     setGoalOpen(JSON.parse(formData.goal))        
-    // });
+    useEffect(() => { 
+        //setGoalOpen(JSON.parse(formData.goal))        
+    });
+   
     const handleInputChange = (e, index) => { 
     console.log(e);        
       const { name, value } = e.target;
       const list = [...goalOpen];
       list[index][name] = value;
       setGoalOpen(list);
+      
     };
    
     // handle click event of the Remove button
@@ -46,6 +45,7 @@ const Goal = ({ setForm, formData, navigation,id }) => {
  
     // handle click event of the Add button
     const handleAddClick = () => {
+      console.log('sdfsdfs');
       setGoalOpen([...goalOpen, {goallist: ""}]);
     };
    // console.log(JSON.parse(formData));
@@ -76,7 +76,7 @@ return (
           <p>Goals</p> 
           <Form onSubmit={handleSubmit(onSubmit)} noValidate>  
             {goalOpen.map((x, i) => {  
-              return (<><ItemForm 
+              return (<><ItemForm  key={x}
                       label="What do you hope to accomplish with this project? What do you hope to gain or retain with this effort?" 
                       name="goal" 
                       value={x.goal} 
