@@ -12,12 +12,10 @@ import {
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Link } from "react-router-dom";
+import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
-import { useHistory, Redirect } from "react-router-dom";
-
 const Auth = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -34,12 +32,18 @@ const Auth = (props) => {
   }
 
   let authRedirect = null;
-  if (props.isAuthenticated) {
-    console.log(props.authRedirectPath);
-    console.log(props);
-    window.location.href = props.authRedirectPath;
-    authRedirect = <Redirect to={props.authRedirectPath} />;
-  }
+
+  console.log(props.isAuthenticated);
+  
+
+  useEffect(() => { 
+     console.log('sdfsdfsdfs');
+      if (props.isAuthenticated == true) {
+          toggle(!toggle);
+          history.push("/members");
+
+      }
+  },[props.isAuthenticated]); 
 
   const redirect = () => {
     history.push("/register");

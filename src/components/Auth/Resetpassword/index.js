@@ -5,10 +5,20 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { withRouter,useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import * as actions from "../../../store/actions/index";
 import { createBrowserHistory } from "history";
 
 const Resetpassword = (props) => {
+  const history = useHistory();
+  const checkAuthToken = async () => {
+    const token = localStorage.getItem("token");
+    if(token != ''){       
+        history.push({
+         pathname:  "/members",        
+        });
+    }
+  };
   const validationSchema = Yup.object().shape({    
     password: Yup.string()
       .matches(

@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { FormGroup, Label } from "reactstrap";
 import { Container, Row, Col, Form, Button, NavLink } from 'react-bootstrap';
-
+import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,7 +14,16 @@ const Forgetpassword = (props) => {
     email: Yup.string().required("Email is required").email("Email is invalid"),
   });
 
+  const history = useHistory();
   const dispatch = useDispatch();
+  const checkAuthToken = async () => {
+    const token = localStorage.getItem("token");
+    if(token != ''){       
+        history.push({
+         pathname:  "/members",        
+        });
+    }
+  };
   
   const { register, errors, handleSubmit, reset } = useForm({
     resolver: yupResolver(validationSchema),
@@ -24,6 +33,10 @@ const Forgetpassword = (props) => {
     dispatch(actions.forgetpassword(data));
     reset();
   };
+  useEffect(() => { 
+      checkAuthToken();
+      
+  },[]); 
 
 
   return (

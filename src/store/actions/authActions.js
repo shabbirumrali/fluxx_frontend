@@ -79,6 +79,7 @@ export const auth = (form) => {
           localStorage.setItem("email", response.data.user.email);
           dispatch(authSuccess(response.data));
           toast.success(response.data.message);
+          //history.push("/members");
         }
       })
       .catch((err) => {
