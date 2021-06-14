@@ -5,7 +5,8 @@ import Fingersnap from "../../assets/img/fingersnap.png";
 import Guided from "../../assets/img/guided.png";
 import Aha from "../../assets/img/aha.png";
 
-const Home = () => {
+const Home = (props) => {
+  console.log(props);
   return (
     <>
       <header className="header">

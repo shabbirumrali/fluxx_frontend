@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { FormGroup, Label, Container } from "reactstrap";
 import Button from 'react-bootstrap/Button'
 //import Container from 'react-bootstrap/Container'
@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form'
 import FloatingLabel from "react-bootstrap-floating-label";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
+import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -17,6 +18,15 @@ import Lifesaver from '../../../assets/img/lifesaver.png'
 import * as actions from "../../../store/actions/index";
 
 const Register = (props) => {
+  const history = useHistory();
+  const checkAuthToken = async () => {
+    const token = localStorage.getItem("token");
+    if(token != ''){       
+        history.push({
+         pathname:  "/members",        
+        });
+    }
+  };
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
@@ -42,7 +52,10 @@ const Register = (props) => {
   };
 
   console.log(toggle, test);
-  
+  useEffect(() => { 
+      checkAuthToken();
+      
+  },[]); 
 
   return (<>
     <Container className="my-5 signup_container">

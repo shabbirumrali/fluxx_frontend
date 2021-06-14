@@ -21,8 +21,8 @@ const store = createStore(
 
 // setAuthToken(store);
 
-// if (localStorage.token) {
-//   store.dispatch(setCurrentUser(jwt(localStorage.token)));
+// if (localStorage.token ) {
+//   store.dispatch(setCurrentUser(localStorage.token));
 // }
 
 export default store;

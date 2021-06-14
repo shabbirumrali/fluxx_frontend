@@ -17,6 +17,8 @@ const Layout = lazy(() => import("./hoc"));
 
 
 function App() {
+
+    
   const routes = (
     <Switch>
       <Route path="/" render={(props) => <Layout {...props} />} />    

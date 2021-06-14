@@ -14,11 +14,21 @@ import moment from 'moment';
 import { Pagination } from "@material-ui/lab";
 import usePagination from "./Pagination";
 import { default as data } from "./MOCK_DATA.json";
-
+import appConfig from "./../../config";
 const Members = (props) => {
-    
   const dispatch = useDispatch();
   const history = useHistory();
+  const checkAuthToken = async () => {
+    const token = localStorage.getItem("token");
+    if(token == ''){       
+        history.push({
+        pathname:  "/",        
+     });
+    }
+  };
+  
+    
+  
   const { register, errors, handleSubmit,renameSubmit, reset} = useForm();
   const { className, toggle, modal } = props;
   const [responseData, setResponseData] = useState(true); 
@@ -44,28 +54,10 @@ const Members = (props) => {
   };
   
   useEffect(() => { 
-      dispatch(actions.charterlist());         
-      fetchcategory()     
-  },[setResponseData, responseData]);
-  console.log(props);
-  const fetchcategory = useCallback(() => {
-    axios({
-      "method": "GET",
-      "url": "http://localhost:8000/v1/fetchcategory",
-      "headers": {
-         'Authorization': `Bearer ${localStorage.getItem('token')}`,
-         'Content-Type': 'application/json', 
-      }
-    })
-    .then((response) => {
-      console.log(response.data);
-      setcategoryData(response.data.categoryList);
-      
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }, [])   
+      checkAuthToken();
+      dispatch(actions.charterlist());
+      dispatch(actions.categoryList());
+  },[]);    
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
@@ -108,10 +100,11 @@ const Members = (props) => {
           state: { catlist: categoryData}
         });
   }
+  
   const fetchDetail = useCallback((value) => {   
     axios({
       "method": "GET",
-      "url": "http://localhost:8000/v1/fetchcharter/"+value,
+      "url": appConfig.config().baseUrl+"/fetchcharter/"+value,
       "headers": {
          'Authorization': `Bearer ${localStorage.getItem('token')}`,
          'Content-Type': 'application/json', 
@@ -179,9 +172,8 @@ const Members = (props) => {
           </Col>
         </Row>
     { 
-        categoryData ?
-          categoryData.length>0?
-             categoryData.map((list,index) => {
+        props.setcategoryData ?
+             props.setcategoryData.categoryList.map((list,index) => {
                  return (<Row key={index}>
                           <Col className="py-4">
                             <div className="shadow charters" style={{background: "white"}}>
@@ -201,7 +193,7 @@ const Members = (props) => {
                           </Col>  
                       </Row>
                      )
-          }) :null  :null
+          }) :null  
     }   
         { 
         props.setResponseData ?  props.setResponseData.charterlist.length >0 ?
@@ -419,9 +411,10 @@ const Members = (props) => {
   )
 };
 const mapStateToProps = (state) => {
-
+    console.log(state);
   return {
-    setResponseData: state.auth.data   
+    setResponseData: state.auth.data,
+    setcategoryData:state.auth.newdata
   };
 };
 const mapDispatchToProps = (dispatch) => {

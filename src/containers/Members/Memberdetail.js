@@ -49,10 +49,8 @@ const Members = (props) => {
   
 
 
-  useEffect(() => {
-    //console.log(props.location.state.catlist);
-     dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));
-     //fetchcategory()
+  useEffect(() => {    
+     dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));     
      setcategoryData(props.location.state.catlist);
   }, [])
   
@@ -169,9 +167,5 @@ const mapStateToProps = (state) => {
     setResponseDatadetail: state.charter.data,     
   };
 };
-const mapDispatchToProps = (dispatch) => {
-   //dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()))
-   return {};
-};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Members);
+export default connect(mapStateToProps,null)(Members);

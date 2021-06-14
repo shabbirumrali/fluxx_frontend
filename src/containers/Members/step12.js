@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
 import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
-
+import appConfig from "./../../config";
 const Risks = ({ setForm, formData, navigation,id }) => {
         const dispatch = useDispatch();
         const history  = useHistory();
@@ -70,7 +70,7 @@ const Risks = ({ setForm, formData, navigation,id }) => {
 
              axios({
               "method": "GET",
-              "url": "http://localhost:8000/v1/fetchcharter/"+formData.name,
+              "url": appConfig.config().baseUrl+"/fetchcharter/"+formData.name,
               "headers": {
                  'Authorization': `Bearer ${localStorage.getItem('token')}`,
                  'Content-Type': 'application/json', 

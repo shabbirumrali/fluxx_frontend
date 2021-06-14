@@ -18,7 +18,7 @@ export const authSuccess = (token) => {
   };
 };
 export const charterList  = (data) => {
-  console.log(data);
+  //console.log(data);
   return {
     type: actionTypes.CHARTERLIST,
     data: data,
@@ -43,6 +43,13 @@ export const fetchprojectlist = (data) => {
     data: data,
   };
 }
+export const categorylist = (data) => {
+  return {
+    type: actionTypes.CATEGORYLIST,
+    data: data,
+  };
+}
+
 
 export const authFail = (error) => {
   return {
@@ -232,7 +239,7 @@ export const charterlist = (form, props) => {
     api
       .get("charterlist", config)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         //if (response.data.status === 200) {
            dispatch(charterList(response.data));
        /// }
@@ -390,6 +397,24 @@ export const fetchcategoryProjects = (form, props) => {
         .get("fetchcategoryprojects/"+form, config)
         .then((response) => {
             dispatch(fetchprojectlist(response.data));        
+        })
+        .catch((err) => {
+          if (err === "Error: Request failed with status code 500") {
+            toast.error(" Token Expire !!");
+          }
+        });
+    };
+};
+
+export const categoryList = (form, props) => {
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    };  
+    return (dispatch) => {
+      api
+        .get("fetchcategory", config)
+        .then((response) => {
+            dispatch(categorylist(response.data));        
         })
         .catch((err) => {
           if (err === "Error: Request failed with status code 500") {

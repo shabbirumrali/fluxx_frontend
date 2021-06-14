@@ -22,6 +22,9 @@ const lockAccount = (state,action) =>{
 const changeEmail = (state,action) =>{
    return updateObject(state, {data:action.data,loading:false });
 }
+const catList = (state,action) =>{
+   return updateObject(state, {newdata:action.data,loading:false,isAuthenticated:true});
+}
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
@@ -67,7 +70,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOCKACCOUNT:
       return lockAccount(state,action);
     case actionTypes.CHANGEEMAIL:
-      return changeEmail(state,action);     
+      return changeEmail(state,action); 
+    case actionTypes.CATEGORYLIST:
+      return catList(state,action);       
     default:
       return state;
   }

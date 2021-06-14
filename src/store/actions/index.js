@@ -15,5 +15,6 @@ export {
   lockaccount,
   changeemail,
   moveCharter,
-  fetchcategoryProjects
+  fetchcategoryProjects,
+  categoryList
 } from "./authActions";
