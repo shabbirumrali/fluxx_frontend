@@ -35,7 +35,24 @@ const FinalStepIframe = (props) => {
                     <p>Goals:</p>
                 </Col>
                 <Col className="col_details_titles" sm={9}>
-                    <p><ul><li>{props.data.charterlist.goal }</li></ul></p>
+                    <p><ul>{
+
+                        props.data.charterlist.goal ?
+
+                        JSON.parse(props.data.charterlist.goal).length > 0 ?
+
+                        JSON.parse(props.data.charterlist.goal).map((list,index) => {
+                            return (<>
+                                     <li>{list.goal}</li>
+                                    </>)
+
+                        })
+
+                        :null
+                        :null 
+
+
+                    }</ul></p>
                 </Col>
             </Row>
             <Row className="project_two_col my-5">
@@ -43,7 +60,24 @@ const FinalStepIframe = (props) => {
                     <p>Benefits:</p>
                 </Col>
                 <Col className="col_details_titles" sm={9}>
-                    <p><ul><li>{props.data.charterlist.benefits }</li></ul></p>
+                    <p><ul>{
+
+                        props.data.charterlist.benefits ?
+
+                        JSON.parse(props.data.charterlist.benefits).length > 0 ?
+
+                        JSON.parse(props.data.charterlist.benefits).map((list,index) => {
+                            return (<>
+                                     <li>{list.benefits}</li>
+                                    </>)
+
+                        })
+
+                        :null
+                        :null 
+
+
+                    }</ul></p>
                 </Col>
             </Row>
             <Row className="project_two_col my-5">
@@ -68,15 +102,42 @@ const FinalStepIframe = (props) => {
             <Row className="project_two_col my-5">
                 <Col className="col_details_headings" sm={3}><p>Impact:</p></Col>
                 <Col className="col_details_titles" sm={9}>
-                    <p><ul><li>{props.data.charterlist.impact }</li></ul></p>
+                    <p><ul>{
+
+                        props.data.charterlist.impact ?
+
+                        JSON.parse(props.data.charterlist.impact).length > 0 ?
+
+                        JSON.parse(props.data.charterlist.impact).map((list,index) => {
+                            return (<>
+                                     <li>{list.impact}</li>
+                                    </>)
+
+                        })
+
+                        :null
+                        :null 
+
+
+                    }</ul></p>
                 </Col>
             </Row>
             <Row className="project_two_col my-5">
-                <Col className="col_details_headings" sm={3}><p>Risks:</p></Col>
+                <Col className="col_details_headings" sm={3}><p>StakeHolders:</p></Col>
                 <Col className="col_details_titles" sm={9}>
-                    <p><ul><li>{props.data.charterlist.risks }</li></ul></p>
+                    <p><ul>{
+                        props.data.charterlist.stakeholder ?
+                        JSON.parse(props.data.charterlist.stakeholder).length > 0 ?
+                        JSON.parse(props.data.charterlist.stakeholder).map((list,index) => {
+                            return (<>
+                                     <li>{list.stakeholder}</li>
+                                    </>)
+                                })
+                        :null
+                        :null
+                    }</ul></p>
                 </Col>
-            </Row>
+            </Row>            
             
         </Container>
     )

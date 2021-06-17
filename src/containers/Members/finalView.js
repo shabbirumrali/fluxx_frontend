@@ -115,16 +115,70 @@ export function PdfDocument(props) {
                     <Text style={styles.title}>Project Manager : {props.data.charterlist.project_manager }</Text>
                     <Text style={styles.title}>Project Sponsor : {props.data.charterlist.project_sponsor }</Text>
                     <Text style={styles.title}>Project Need : {props.data.charterlist.project_need }</Text>
-                    <Text style={styles.title}>Goals : {props.data.charterlist.goal }</Text>
-                    <Text style={styles.title}>Benefits : {props.data.charterlist.benefits }</Text>
+                    <Text style={styles.title}>Goals :
+                    {
+
+                        props.data.charterlist.goal ?
+
+                        JSON.parse(props.data.charterlist.goal).length > 0 ?
+
+                        JSON.parse(props.data.charterlist.goal).map((list,index) => {
+                            return (<>
+                                     {list.goal}
+                                    </>)
+
+                        })
+
+                        :null
+                        :null 
+
+
+                       }
+
+   
+                       </Text>
+                    <Text style={styles.title}>Benefits : 
+
+                      {
+                        props.data.charterlist.benefits ?
+                        JSON.parse(props.data.charterlist.benefits).length > 0 ?
+                        JSON.parse(props.data.charterlist.benefits).map((list,index) => {
+                            return (<>
+                                     {list.benefits}
+                                    </>)
+                        })
+                        :null
+                        :null 
+                       }
+                       </Text>
                     <Text style={styles.title}>InScope : {props.data.charterlist.InScope }</Text>
                     <Text style={styles.title}>OutScope : {props.data.charterlist.outScope }</Text>
                     <Text style={styles.title}>StartDate : {props.data.charterlist.startDate }</Text>
                     <Text style={styles.title}>FinishDate : {props.data.charterlist.finishDate }</Text>
                     <Text style={styles.title}>Budget : {props.data.charterlist.budget }</Text>
                     <Text style={styles.title}>AssumptionTime : {props.data.charterlist.assumptionTime }</Text>
-                    <Text style={styles.title}>Impact : {props.data.charterlist.impact }</Text>
-                    <Text style={styles.title}>Stakeholder : {props.data.charterlist.stakeholder }</Text>
+                    <Text style={styles.title}>Impact : {
+                        props.data.charterlist.impact ?
+                        JSON.parse(props.data.charterlist.impact).length > 0 ?
+                        JSON.parse(props.data.charterlist.impact).map((list,index) => {
+                            return (<>
+                                     {list.impact}
+                                    </>)
+                        })
+                        :null
+                        :null 
+                       } </Text>
+                    <Text style={styles.title}>Stakeholder : {
+                        props.data.charterlist.stakeholder ?
+                        JSON.parse(props.data.charterlist.stakeholder).length > 0 ?
+                        JSON.parse(props.data.charterlist.stakeholder).map((list,index) => {
+                            return (<>
+                                     {list.stakeholder}
+                                    </>)
+                        })
+                        :null
+                        :null 
+                       }</Text>
                     <Text style={styles.title}>Risks : {props.data.charterlist.risks }</Text>
                 </View>                          
             </Page>

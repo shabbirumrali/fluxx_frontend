@@ -664,3 +664,6 @@ form .cancel_btn:active {
   margin-bottom: 0;
 
 }
+.col_details_titles li{
+  list-style:none;
+}

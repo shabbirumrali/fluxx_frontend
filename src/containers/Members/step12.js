@@ -63,7 +63,8 @@ const Risks = ({ setForm, formData, navigation,id }) => {
               "risks":goalOpen,
               "step":id
            }       
-          dispatch(actions.createcharter(formData));  
+          dispatch(actions.createcharter(formData)); 
+           finalstep();
           
        }; 
       function finalstep(){
@@ -123,7 +124,7 @@ return (
             <Button variant="light" type="submit" className="p-3" onClick={previous}>
               BACK
             </Button>
-            <Button type="submit" className="ml-4 p-3" onClick={finalstep}
+            <Button type="submit" className="ml-4 p-3" 
               style={{background: "#5aa380", border: "none"}} >
               SAVE AND CONTINUE
             </Button>              

@@ -19,8 +19,8 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
     const [benefitOpen1, setBenefitOpen1] = useState(true)    
     const { previous, next } = navigation;
     const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
-      console.log(JSON.parse(formData.goal).length);
-      console.log(formData.goal.length);
+      // console.log(JSON.parse(formData.goal).length);
+      // console.log(formData.goal.length);
      
     // handle input change
     useEffect(() => {

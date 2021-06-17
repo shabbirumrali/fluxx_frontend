@@ -60,7 +60,7 @@ const Stakeholders = ({ setForm, formData, navigation,id }) => {
               "finishDate":formData.finishDate,
               "budget":formData.budget,
               "assumptionTime":formData.assumptionTime,              
-              "stakeholder":stakeholder,
+              "stakeholder":goalOpen,
               "step":id
            }       
           dispatch(actions.createcharter(dataobject));  

@@ -19,16 +19,16 @@ const Goal = ({ setForm, formData, navigation,id }) => {
     const { previous, next } = navigation;
 
     const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
-      console.log(JSON.parse(formData.goal).length);
-    //  console.log(formData.goal.length);
-     console.log(JSON.parse(formData.goal));
+    //   console.log(JSON.parse(formData.goal).length);
+    // //  console.log(formData.goal.length);
+    //  console.log(JSON.parse(formData.goal));
     // handle input change
     useEffect(() => { 
         //setGoalOpen(JSON.parse(formData.goal))        
     });
    
     const handleInputChange = (e, index) => { 
-    console.log(e);        
+    //console.log(e);        
       const { name, value } = e.target;
       const list = [...goalOpen];
       list[index][name] = value;
