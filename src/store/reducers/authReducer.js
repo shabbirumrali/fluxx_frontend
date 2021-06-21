@@ -25,6 +25,10 @@ const changeEmail = (state,action) =>{
 const catList = (state,action) =>{
    return updateObject(state, {newdata:action.data,loading:false,isAuthenticated:true});
 }
+const postList = (state,action) =>{
+  console.log(action);
+   return updateObject(state, {postdata:action.data,loading:false});
+}
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
@@ -72,7 +76,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.CHANGEEMAIL:
       return changeEmail(state,action); 
     case actionTypes.CATEGORYLIST:
-      return catList(state,action);       
+      return catList(state,action);  
+    case actionTypes.POSTLIST:
+      return postList(state,action);        
     default:
       return state;
   }

@@ -49,6 +49,13 @@ export const categorylist = (data) => {
     data: data,
   };
 }
+export const postlist = (data) => {
+  return {
+    type: actionTypes.POSTLIST,
+    data: data,
+  };
+}
+
 
 
 export const authFail = (error) => {
@@ -424,5 +431,26 @@ export const categoryList = (form, props) => {
         });
     };
 };
+export const fetchPosts = (form,props) => {
+    // const config = {
+    //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    // };  
+    return (dispatch) => {
+      api
+        .get("wordpressadmin/wp-json/wp/v2/posts?per_page=100")
+        .then((response) => {
+             console.log(response.data);
+            dispatch(postlist(response.data));        
+        })
+        .catch((err) => {
+          if (err === "Error: Request failed with status code 500") {
+            toast.error(" Token Expire !!");
+          }
+        });
+    };
+};
+
+
+
 
 
