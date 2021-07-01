@@ -38,6 +38,7 @@ const Members = (props) => {
   const onSubmit = async (data) => {
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));
+      dispatch(actions.categoryList());
       handleCloseFolder();
     }
     if(data.newchartername != undefined){
@@ -62,19 +63,21 @@ const Members = (props) => {
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
   const [show3, setShow3] = useState(false)
+  const [show4, setShow4] = useState(false)
   const [showpopover,setpopover] =useState(true)
-
+  const [showpopover1,setpopover1] =useState(true)
   const handleCloseFolder = () => setFolder(false)
   const handleClose = () => setShow(false)
   const handleClose2 = () => setShow2(false)
   const handleClose3 = () => setShow3(false)
-
-  const handleShowFolder = () => setFolder(true)
+  const handleClose4 = () => setShow4(false) 
+  const handleShowFolder = () => setFolder(true) 
   const handleShow = () => {
     setShow(true)
     setShow2(false);
     setShow3(false);
     setpopover(false)
+    setShow4(false)
 
   } 
   const handleShow2 = () =>{
@@ -82,13 +85,23 @@ const Members = (props) => {
         setShow(false)
         setShow3(false)
         setpopover(false)
+        setShow4(false)
   } 
   const handleShow3 = () =>{
     setShow3(true)
     setShow(false)
     setShow2(false)
     setpopover(false)
+    setShow4(false)
   } 
+  const handleShow4 = () =>{
+        setpopover(false)
+        setShow4(true)
+         setShow(false)
+        setShow2(false);
+        setShow3(false);
+
+  }
 
   const [selectedcharterid, chartedId] = useState(true);
   const fetchcharter = value  => () => {   
@@ -124,6 +137,15 @@ const Members = (props) => {
   }, [])
  
   
+  const popover1 = (
+    <Popover isOpen = {showpopover1} >
+      <Popover.Content className="demo-pop p-0">
+          <div className="delete_option py-2 px-3" onClick={handleShow4}>
+            <p className="mb-0">Delete</p>            
+          </div>
+      </Popover.Content>
+    </Popover>
+  );
   const popover = (
     <Popover isOpen = {showpopover} >
       <Popover.Content className="demo-pop p-0"> 
@@ -185,7 +207,7 @@ const Members = (props) => {
                               <div className="d-flex ml-auto option_section">
                                 <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
 
-                                <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
+                                <OverlayTrigger trigger="click" placement="left" overlay={popover1} rootClose>
                                   <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
                                 </OverlayTrigger>
                               </div>
@@ -347,13 +369,11 @@ const Members = (props) => {
                  {
 
 
-                  categoryData ?
-                  categoryData.length>0?
-                  categoryData.map((list,index) => {
+                  props.setcategoryData ?
+                  props.setcategoryData.categoryList.map((list,index) => {
                     return (<option key={index} value={list.id}>{list.categoryname}</option>)
                   })
-                  :null
-                  :null
+                  :null                  
 
                  }
                  </select>
@@ -385,6 +405,31 @@ const Members = (props) => {
 
       {/* Modals for Delete */}
       <Modal show={show3} onHide={handleClose3} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0">          
+          <Container>
+            <Row>
+              <Col className="py-1">
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>    
+                  {/* form tag if needed */}
+                  <p>Very First Charter Last Modified: December 17, 2020 08:57 PM ET My Very First Charter” ?</p>
+                  <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
+                    Delete
+                  </Button>
+                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="button">
+                    CANCEL
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>        
+      </Modal>
+
+       {/* Modals for Delete folder */}
+      <Modal show={show4} onHide={handleClose4} centered>
         <Modal.Header closeButton>
           <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
         </Modal.Header>
