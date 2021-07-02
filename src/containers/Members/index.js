@@ -51,7 +51,12 @@ const Members = (props) => {
        dispatch(actions.moveCharter(data,selectedcharterid));
        handleClose2();
     }
-     reset();
+    if(data.deletefolder != undefined){
+       dispatch(actions.deleteFolder(data,selectedfolderid.id));
+       dispatch(actions.categoryList());
+       handleClose4();
+    }    
+    reset();
   };
   
   useEffect(() => { 
@@ -104,6 +109,7 @@ const Members = (props) => {
   }
 
   const [selectedcharterid, chartedId] = useState(true);
+  const [selectedfolderid, folderId] = useState(true);
   const fetchcharter = value  => () => {   
         fetchDetail(value)
   }
@@ -135,8 +141,8 @@ const Members = (props) => {
       console.log(error)
     })
   }, [])
- 
-  
+
+  // refresh the page if folder delete 
   const popover1 = (
     <Popover isOpen = {showpopover1} >
       <Popover.Content className="demo-pop p-0">
@@ -208,7 +214,7 @@ const Members = (props) => {
                                 <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
 
                                 <OverlayTrigger trigger="click" placement="left" overlay={popover1} rootClose>
-                                  <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
+                                  <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => folderId(list)} />
                                 </OverlayTrigger>
                               </div>
                             </div>              
@@ -431,19 +437,25 @@ const Members = (props) => {
        {/* Modals for Delete folder */}
       <Modal show={show4} onHide={handleClose4} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
+          <Modal.Title>Delete Folder  {selectedfolderid.categoryname}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>
             <Row>
               <Col className="py-1">
-                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>    
-                  {/* form tag if needed */}
-                  <p>Very First Charter Last Modified: December 17, 2020 08:57 PM ET My Very First Charter” ?</p>
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+                  
+                  <input
+                  type="hidden"
+                  ref={register({
+                    required: true})}
+                  name="deletefolder"
+                  value={selectedfolderid.id}
+                  />                                 
                   <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
                     Delete
                   </Button>
-                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="button">
+                  <Button className="py-2 mx-2 mb-3" onClick={handleClose4} variant="light" style={{background:"", color: "", border: "none"}} type="button">
                     CANCEL
                   </Button>
                 </Form>
@@ -459,12 +471,10 @@ const mapStateToProps = (state) => {
     console.log(state);
   return {
     setResponseData: state.auth.data,
-    setcategoryData:state.auth.newdata
+    setcategoryData:state.auth.newdata,
+    setfolderData:state.auth.folderdata
   };
 };
-const mapDispatchToProps = (dispatch) => {
-  
-  return {};
-};
 
-export default connect(mapStateToProps,mapDispatchToProps)(Members);
+
+export default connect(mapStateToProps,null)(Members);

@@ -2,7 +2,7 @@ import APIUtil from "../../api";
 import * as actionTypes from "./actionTypes";
 import { toast } from "react-toastify";
 import history from "../../history";
-
+import axios from "axios";
 const api = new APIUtil();
 
 export const authStart = () => {
@@ -55,6 +55,15 @@ export const postlist = (data) => {
     data: data,
   };
 }
+
+export const folderlist = (data) => {
+  return {
+    type: actionTypes.FOLDERLIST,
+    data: data,
+  };
+}
+
+
 
 
 
@@ -205,7 +214,8 @@ export const createfolder = (form, props) => {
       .then((response) => {
         if (response.data.status === 200) {
            toast.success("Your Folder create Successfully");
-           history.push("/members");
+           //history.push("/members");
+            //dispatch(categList(response.data));
         }
       })
       .catch((err) => {
@@ -366,8 +376,7 @@ export const changeemail = (form, props) => {
 
 // change Email 
 export const moveCharter = (form, props) => {
-  console.log(form);
-  console.log(props);
+  
   let dataobject = {
         "categoryId":form.selectCat,
         "projectId":props.id,
@@ -436,7 +445,7 @@ export const fetchPosts = (form,props) => {
     //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
     // };  
     return (dispatch) => {
-      api
+      axios
         .get("wordpressadmin/wp-json/wp/v2/posts?per_page=100")
         .then((response) => {
              console.log(response.data);
@@ -449,6 +458,32 @@ export const fetchPosts = (form,props) => {
         });
     };
 };
+
+export const deleteFolder = (form, props) => {
+  let dataobject = {
+        "folderid":props
+  }
+  const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  return (dispatch) => {
+    api
+      .post("deletefolder",dataobject, config)
+      .then((response) => {
+        if (response.data.status === 200) {
+           toast.success("Your folder delete Successfully");       
+           history.push("/members");
+           dispatch(folderlist(response.data));
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+
 
 
 

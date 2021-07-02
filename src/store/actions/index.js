@@ -17,5 +17,6 @@ export {
   moveCharter,
   fetchcategoryProjects,
   categoryList,
-  fetchPosts
+  fetchPosts,
+  deleteFolder
 } from "./authActions";

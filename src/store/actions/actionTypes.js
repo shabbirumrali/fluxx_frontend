@@ -13,3 +13,4 @@ export const MOVECHARTERLIST = "MOVECHARTERLIST";
 export const PROJECTLIST = "PROJECTLIST";
 export const CATEGORYLIST = "CATEGORYLIST";
 export const POSTLIST  =  "POSTLIST";
+export const FOLDERLIST  =  "FOLDERLIST";
