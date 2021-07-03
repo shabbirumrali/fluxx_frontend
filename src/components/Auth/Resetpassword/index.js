@@ -22,7 +22,7 @@ const Resetpassword = (props) => {
   const validationSchema = Yup.object().shape({    
     password: Yup.string()
       .matches(
-        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+         /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
         "Password must contain one capital letter, one number, one special character and atleast eight characters."
       )
       .required("Password is required"),
