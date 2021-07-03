@@ -31,7 +31,7 @@ const Register = (props) => {
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
       .matches(
-        /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
         "Password must contain one capital letter, one number, one special character and atleast eight characters."
       )
       .required("Password is required"),
