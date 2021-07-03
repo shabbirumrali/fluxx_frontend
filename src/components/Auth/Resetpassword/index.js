@@ -51,7 +51,7 @@ const Resetpassword = (props) => {
  
   return (
     <Container>
-      <h3>Create Your account.</h3>
+      <h3>Update  Password.</h3>
       <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>        
         <FormGroup>
           <Label>Password</Label>
@@ -69,7 +69,7 @@ const Resetpassword = (props) => {
             </span>
           )}
         </FormGroup>
-        <Button type="submit">Create My Account</Button>
+        <Button type="submit">submit</Button>
         
       </Form>
       <p>
