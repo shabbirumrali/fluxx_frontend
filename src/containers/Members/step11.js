@@ -23,8 +23,10 @@ const Stakeholders = ({ setForm, formData, navigation,id }) => {
        
         // handle input change
         useEffect(() => {
-            //setGoalOpen(JSON.parse(formData.goal))        
-        });
+          if(formData.stakeholder != '' && formData.stakeholder != null){
+            setGoalOpen(formData.stakeholder)        
+          }
+        },[]);
         const handleInputChange = (e, index) => { 
         console.log(e);        
           const { name, value } = e.target;

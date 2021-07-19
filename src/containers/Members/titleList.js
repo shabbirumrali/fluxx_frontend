@@ -4,6 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 const TitleList = ({ activeCls, width }) => {
 
     console.log(activeCls);
+
+   
     return (
         <>
             <Container>
@@ -15,7 +17,7 @@ const TitleList = ({ activeCls, width }) => {
                     </Col>
                     <Col sm={6} lg={6}>
                         <div className="print_download">
-                            <p>print / download</p>
+                           <p  onClick={() => setTimeout(window.print, 100)}  style={{cursor:'pointer'}}>print / download</p>
                         </div>
                     </Col>
                 </Row>

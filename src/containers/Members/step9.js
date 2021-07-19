@@ -16,7 +16,8 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
        const { register, errors, handleSubmit, reset} = useForm();
        const { assumptionTime } = formData;    
        const [assumptionsOpen, setAssumptionsOpen] = useState(true);
-       const { previous, next } = navigation;     
+       const { previous, next } = navigation;
+       console.log(next);     
         const onSubmit = async (data) => { 
         
           let dataobject = {

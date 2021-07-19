@@ -11,7 +11,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import TitleList from  "./titleList";
 
 const Goal = ({ setForm, formData, navigation,id }) => {
-    //console.log(setForm);
+    console.log(formData);
     const dispatch = useDispatch();
     const history  = useHistory();
     const { register, errors, handleSubmit, reset} = useForm();
@@ -21,12 +21,15 @@ const Goal = ({ setForm, formData, navigation,id }) => {
     const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
     //   console.log(JSON.parse(formData.goal).length);
     // //  console.log(formData.goal.length);
-    //  console.log(JSON.parse(formData.goal));
+    // console.log(formData.goal);
     // handle input change
+    console.log(formData.goal);
     useEffect(() => { 
-        //setGoalOpen(JSON.parse(formData.goal))        
-    });
-   
+      if(formData.goal != '' && formData.goal != null){
+        setGoalOpen(formData.goal)
+      }        
+    },[]);
+   console.log(goalOpen);
     const handleInputChange = (e, index) => { 
     //console.log(e);        
       const { name, value } = e.target;

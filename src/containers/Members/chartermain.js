@@ -33,7 +33,7 @@ const MultiStepForm = (props) => {
   
  
     const objectdata = props.location.state !== undefined ? props.location.state.detail:{}; 
-      console.log(objectdata.goal);
+     
 
     const defaultData = {
         name: objectdata.name ? objectdata.name:"",
@@ -48,9 +48,9 @@ const MultiStepForm = (props) => {
         finishDate:objectdata.finishDate ? objectdata.finishDate : "",
         budget:objectdata.budget ? objectdata.budget : "",
         assumptionTime:objectdata.assumptionTime ? objectdata.assumptionTime : "",
-        impact:objectdata.impact ? objectdata.impact : null,
-        stakeholder:objectdata.stakeholder ? objectdata.stakeholder : null,
-        risks:objectdata.risks ? objectdata.risks : null,
+        impact:objectdata.impact ? JSON.parse(objectdata.impact): null,
+        stakeholder:objectdata.stakeholder ? JSON.parse(objectdata.stakeholder)  : null,
+        risks:objectdata.risks ? JSON.parse(objectdata.risks) : null,
         step:objectdata.step ? objectdata.step :""
       };
 

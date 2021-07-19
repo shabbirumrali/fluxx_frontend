@@ -20,12 +20,12 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
     const { previous, next } = navigation;
     const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
       // console.log(JSON.parse(formData.goal).length);
-      // console.log(formData.goal.length);
+       //console.log(formData);
      
     // handle input change
     useEffect(() => {
-        //setGoalOpen(JSON.parse(formData.goal))        
-    });
+        setGoalOpen(formData.benefits)        
+    },[]);
    
     const handleInputChange = (e, index) => { 
     console.log(e);        

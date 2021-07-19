@@ -50,10 +50,10 @@ const Header = (props) => {
             <Nav>
               <NavDropdown title={localStorage.getItem('email')} id="basic-nav-dropdown">
                 <NavDropdown.Item className="dropdown_items">
-                  <Link to="/members">
-                    My Project Charters 
-                  </Link>  
-                </NavDropdown.Item>
+                  
+                   <Link to="/members"> My Project Charters </Link>
+                  
+                </NavDropdown.Item>  
                 <NavDropdown.Item className="dropdown_items">
                   <Link to="/setting">
                     My Account

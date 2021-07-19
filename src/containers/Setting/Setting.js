@@ -20,9 +20,12 @@ const Setting = (props) => {
   const handleShow = () => setShow(true);
 
   const [deleteAcc, setDeleteAcc] = useState(false);
+  const [Resetpassword, setResetpassword] = useState(false);
 
   const handleDeleteAccClose = () => setDeleteAcc(false);
   const handleDeleteAccShow = () => setDeleteAcc(true);
+  const handleresetShow =()   => setResetpassword(true);
+  const handleresetClose =() => setResetpassword(false);
   const {register,errors,handleSubmit,reset} = useForm();
   
   const onSubmit = async (data) => {
@@ -32,6 +35,10 @@ const Setting = (props) => {
     if(data.password != undefined ){
       dispatch(actions.lockaccount(data));
     }    
+    if(data.oldpassword != undefined && data.newpassword != undefined ){
+      dispatch(actions.updatepassword(data));
+      handleresetClose();
+    }
     reset();
   }  
   if(props.responsesettingData != undefined && props.responsesettingData.success == false){
@@ -88,7 +95,7 @@ const Setting = (props) => {
             <div className="email_section my-4 p-3">
               <h6>Password</h6>
               <div className="change_setting mt-4">
-                <Link className="p-0">Reset my Fluxx Password</Link>
+                <Link className="p-0" onClick={handleresetShow}>Reset my Fluxx password</Link>
               </div>              
             </div>
           
@@ -189,6 +196,57 @@ const Setting = (props) => {
             </Button>
           </Form>
         </Modal.Body>
+      </Modal>
+      <Modal show={Resetpassword} onHide={handleresetClose} aria-labelledby="contained-modal-title-vcenter"
+      centered>
+        <Modal.Header className="model_title py-3" closeButton>
+            <h4 className="m-0">Reset Password</h4>
+        </Modal.Header>
+        <Modal.Body className="email_change">
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            
+            <FormGroup>
+              <label  style={{color: "#a4d3e7"}}>old password</label>
+              <input
+                    type="password"
+                    ref={register({
+                      required: true})}
+                    name="oldpassword"
+                    />
+                    {errors.password && (
+                      <span className="errorMessage">
+                        Please enter a old password
+                      </span>
+                    )}
+               {errors.wrongpassword ?
+                  <span className="errorMessage">Old Password is incorrect</span>
+               :null }
+            </FormGroup>
+            <FormGroup>
+              <label  style={{color: "#a4d3e7"}}>New Password</label>
+              <input
+                    type="password"
+                    ref={register({
+                      required: true})}
+                    name="newpassword"
+                    />
+                    {errors.password && (
+                      <span className="errorMessage">
+                        Please enter a new password
+                      </span>
+                    )}
+               {errors.wrongpassword ?
+                  <span className="errorMessage">New Password is incorrect</span>
+               :null }
+            </FormGroup>
+            <Button  type="submit" className="email_change_btn py-2 my-2">
+              Change Password
+            </Button>
+            <Button onClick={handleClose} className="cancel_btn py-2 m-2">
+              CANCEL
+            </Button>
+          </Form>
+        </Modal.Body>        
       </Modal>
 
   </>

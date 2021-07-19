@@ -62,10 +62,13 @@ export const folderlist = (data) => {
     data: data,
   };
 }
+export const renamelist = (data) => {
+  return {
+       type: actionTypes.RENAMELIST,
+       data:data
+  };
 
-
-
-
+}
 
 export const authFail = (error) => {
   return {
@@ -124,7 +127,7 @@ export const createForm = (form, props) => {
       .post("register", form)
       .then((response) => {
         if (response.statusText === "OK") {
-          toast.success("You have SucessFully Registred");
+          toast.success("Account creation successful.");
           history.push("/login");
         }
       })
@@ -189,7 +192,7 @@ export const contactus = (form, props) => {
       .post("contactus", form)
       .then((response) => {
         if (response.data.status === 200) {
-          toast.success("Thank you for submitting the contact.We will contact you shortly");
+          toast.success("Thank you for contacting us. We will respond shortly.");
           history.push("/contactus");
         }
       })
@@ -213,7 +216,7 @@ export const createfolder = (form, props) => {
       .post("createCategory",dataobject, config)
       .then((response) => {
         if (response.data.status === 200) {
-           toast.success("Your Folder create Successfully");
+           toast.success("Folder creation successful");
            //history.push("/members");
             //dispatch(categList(response.data));
         }
@@ -283,10 +286,11 @@ export const renamecharter = (form, props) => {
     api
       .post("renamecharter",dataobject, config)
       .then((response) => {
-        if (response.data.status === 200) {
-          toast.success("Your charter update Successfully");
-           history.push("/members");
-        }
+        //if (response.data.status === 200) {
+            response.data.renameList = 'sucessdata';
+            toast.success("Your charter update Successfully");
+            dispatch(renamelist(response.data));
+        //}
       })
       .catch((err) => {
         if (err === "Error: Request failed with status code 500") {
@@ -309,9 +313,9 @@ export const deleteCharter = (form, props) => {
       .post("deleteCharter",dataobject, config)
       .then((response) => {
         if (response.data.status === 200) {
-          toast.success("Your charter delete Successfully");
+           toast.success("Your charter delete Successfully");
        
-           history.push("/members");
+           //history.push("/members");
         }
       })
       .catch((err) => {
@@ -376,12 +380,25 @@ export const changeemail = (form, props) => {
 
 // change Email 
 export const moveCharter = (form, props) => {
-  
-  let dataobject = {
-        "categoryId":form.selectCat,
-        "projectId":props.id,
-        "projectname":props.name
+  let dataobject;
+  if(form.selectCat == "uncategorized"){
+               dataobject = {
+                   "categoryId":form.selectCat,
+                   "projectId":props.projectId,
+                   "projectname":props.projectname,
+                   "currentCategory":props.categoryId
+              }
+
+  }else{
+        dataobject = {
+           "categoryId":form.selectCat,
+           "projectId":props.id,
+           "projectname":props.name
+      }
+
   }
+  
+  
     const config = {
            headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,
                       'Content-Type': 'application/json'
@@ -394,7 +411,7 @@ export const moveCharter = (form, props) => {
           if (response.data.status === 200) {
              toast.success("Your charter move Successfully");
              
-             history.push("/members");
+             window.location.href ="/members";
           }
       })
       .catch((err) => {
@@ -446,7 +463,7 @@ export const fetchPosts = (form,props) => {
     // };  
     return (dispatch) => {
       axios
-        .get("wordpressadmin/wp-json/wp/v2/posts?per_page=100")
+        .get("wordpress_blog/wp-json/wp/v2/posts?per_page=100")
         .then((response) => {
              console.log(response.data);
             dispatch(postlist(response.data));        
@@ -474,6 +491,33 @@ export const deleteFolder = (form, props) => {
            toast.success("Your folder delete Successfully");       
            history.push("/members");
            dispatch(folderlist(response.data));
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+
+export const updatepassword = (form, props) => {
+  
+  let dataobject = {
+        "oldpassword":form.oldpassword,
+        "newpassword":form.newpassword,
+  }
+  const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  }; 
+  
+  return (dispatch) => {
+    api
+      .post("updatepassword", dataobject,config)
+      .then((response) => {
+        if (response.data.status === 200) {
+          toast.success("Your password is successfully updated");
+          history.push("/setting");
         }
       })
       .catch((err) => {

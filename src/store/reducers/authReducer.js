@@ -25,13 +25,16 @@ const changeEmail = (state,action) =>{
 const catList = (state,action) =>{
    return updateObject(state, {newdata:action.data,loading:false,isAuthenticated:true});
 }
-const postList = (state,action) =>{
-  
+const postList = (state,action) =>{  
    return updateObject(state, {postdata:action.data,loading:false});
 }
 const folderList = (state,action) =>{
      
     return updateObject(state, {folderdata:action.data,loading:false});
+}
+const renameList  =(state,action) => {
+
+    return updateObject(state, {renamedata:action.data,loading:false});
 }
 const authSuccess = (state, action) => {
   return updateObject(state, {
@@ -84,7 +87,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.POSTLIST:
       return  postList(state,action); 
     case actionTypes.FOLDERLIST:
-      return folderList(state,action); 
+      return folderList(state,action);
+    case actionTypes.RENAMELIST:
+      return renameList(state,action);   
     default:
       return state;
   }

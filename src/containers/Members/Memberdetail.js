@@ -16,7 +16,7 @@ import { Pagination } from "@material-ui/lab";
 import usePagination from "./Pagination";
 import { default as data } from "./MOCK_DATA.json";
 
-
+import appConfig from "./../../config";
 
 const Members = (props) => {    
   const dispatch = useDispatch();
@@ -27,6 +27,7 @@ const Members = (props) => {
   const [categoryData,setcategoryData]  = useState(true);
   const [singleCharterData, setCharterData] = useState(true); 
   const [pageOfItems,setpageOfItems] = useState(true);  
+  const [selectedcharterid, chartedId] = useState(true);
   const onSubmit = async (data) => {
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));
@@ -39,19 +40,48 @@ const Members = (props) => {
     // if(Object.keys(data).length == 0){
     //   dispatch(actions.deleteCharter(data,selectedcharterid.id));
     // }
-    // if(data.selectCat != undefined){
-    //   console.log(data.selectCat);
-    //    dispatch(actions.moveCharter(data,selectedcharterid.id));
-    //    handleClose2();
-    // }
+    if(data.selectCat == "uncategorized"){
+         console.log(selectedcharterid);
+         let currentCat = window.location.pathname.split("/").pop();
+         data.currentCategory = currentCat;
+         dispatch(actions.moveCharter(data,selectedcharterid));
+         handleClose2();
+    }
      reset();
   };
+
+  const fetchcharterdetail = value  => () => { 
+  console.log(value);  
+        fetchcDetail(value)
+  }
+  const fetchcDetail = useCallback((value) => {   
+    axios({
+      "method": "GET",
+      "url": appConfig.config().baseUrl+"/fetchcharter/"+value,
+      "headers": {
+         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+         'Content-Type': 'application/json', 
+      }
+    })
+    .then((response) => {
+      //console.log(response.data);
+      history.push({
+          pathname: "/cmain", 
+          state: { detail: response.data.charterlist}
+        });
+
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }, [])
   
 
 
   useEffect(() => {    
-     dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));     
-     setcategoryData(props.location.state.catlist);
+     dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));  
+     dispatch(actions.categoryList());
+     //setcategoryData(props.location.state.catlist);
   }, [])
   
  
@@ -128,13 +158,13 @@ const Members = (props) => {
                 <div style={{background: "#f9f9f9"}}>
                   <Image src={Document} width={36} className="m-3" alt="Folder image" />
                 </div>              
-                <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380", cursor: "pointer"}}>{list.projectname}</p>
+                <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380", cursor: "pointer"}} onClick={fetchcharterdetail(list.projectname)}>{list.projectname}</p>
               
                 <div className="d-flex ml-auto option_section">
                   <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
 
                   <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
-                    <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image"  />
+                    <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
                   </OverlayTrigger>
                 </div>
               </div>              
@@ -158,13 +188,64 @@ const Members = (props) => {
        :null
        :null
      }
+      {/* Modals for move to */}
+      <Modal show={show2} onHide={handleClose2} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Move Item  </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0">          
+          <Container>
+            <Row>
+              <Col className="py-1">
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+                  <FormGroup >
+                  <Label htmlFor>Choose Folder</Label>
+                <select className="form-control" name="selectCat" ref={register({
+                    required: true})}>
+                    <option value='uncategorized'>uncategorized</option>
+                  {
+                  props.setcategoryData ?
+                  props.setcategoryData.categoryList.map((list,index) => {
+                    return (<option key={index} value={list.id}>{list.categoryname}</option>)
+                  })
+                  :null                
+
+                 }
+                 </select>
+              </FormGroup >
+
+
+                    <Button 
+                      className="py-2 mr-2 mb-3" 
+                      style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
+                      type="submit"
+                      >
+                        Submit
+                      </Button>
+                      <Button 
+                      onClick={handleClose2} 
+                      className="py-2 mx-2 mb-3" 
+                      variant="light" 
+                      style={{background:"", color: "", border: "none"}} 
+                      type="button"
+                    >
+                      CANCEL
+                    </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+      </Modal>
+
 
     </Container>
   )
 };
 const mapStateToProps = (state) => {
   return {
-    setResponseDatadetail: state.charter.data,     
+    setResponseDatadetail: state.charter.data,
+    setcategoryData:state.auth.newdata,     
   };
 };
 

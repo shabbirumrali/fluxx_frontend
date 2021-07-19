@@ -65,7 +65,7 @@ const Contact = (props) => {
                   )}
                 </Form.Group>
                 <Form.Group as={Col} controlId="formGridPassword" className="mx-2">
-                  <Form.Label>subject *</Form.Label>
+                  <Form.Label>subject*</Form.Label>
                   <Form.Control type="text" name="subject" ref={register} />
                   {errors.subject && (
                     <span className="errorMessage">{errors.subject.message}</span>

@@ -1,6 +1,6 @@
-const DEV = "https://fluxxcharter.com/v1";
-const QA = "https://fluxxcharter.com/v1";
-const LOCAL = "https://fluxxcharter.com/v1";
+const DEV = "http://localhost:8000/v1";
+const QA = "http://localhost:8000/v1";
+const LOCAL = "http://localhost:8000/v1";
 
 export default {
   config: () => {

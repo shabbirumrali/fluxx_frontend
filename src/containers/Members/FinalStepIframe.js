@@ -137,6 +137,22 @@ const FinalStepIframe = (props) => {
                         :null
                     }</ul></p>
                 </Col>
+            </Row>  
+            <Row className="project_two_col my-5">
+                <Col className="col_details_headings" sm={3}><p>Risks:</p></Col>
+                <Col className="col_details_titles" sm={9}>
+                    <p><ul>{
+                        props.data.charterlist.risks ?
+                        JSON.parse(props.data.charterlist.risks).length > 0 ?
+                        JSON.parse(props.data.charterlist.risks).map((list,index) => {
+                            return (<>
+                                     <li>{list.risks}</li>
+                                    </>)
+                                })
+                        :null
+                        :null
+                    }</ul></p>
+                </Col>
             </Row>            
             
         </Container>

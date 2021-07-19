@@ -16,6 +16,8 @@ import usePagination from "./Pagination";
 import { default as data } from "./MOCK_DATA.json";
 import appConfig from "./../../config";
 const Members = (props) => {
+
+  console.log(props);
   const dispatch = useDispatch();
   const history = useHistory();
   const checkAuthToken = async () => {
@@ -43,12 +45,14 @@ const Members = (props) => {
     }
     if(data.newchartername != undefined){
        dispatch(actions.renamecharter(data,selectedcharterid.id));
+       handleClose();
     }
     if(Object.keys(data).length == 0){
       dispatch(actions.deleteCharter(data,selectedcharterid.id));
     }
     if(data.selectCat != undefined){
        dispatch(actions.moveCharter(data,selectedcharterid));
+       dispatch(actions.categoryList());
        handleClose2();
     }
     if(data.deletefolder != undefined){
@@ -58,12 +62,17 @@ const Members = (props) => {
     }    
     reset();
   };
+  // if(props.setrenameData != undefined){
+  //   dispatch(actions.charterlist());
+  // }
   
   useEffect(() => { 
       checkAuthToken();
       dispatch(actions.charterlist());
       dispatch(actions.categoryList());
-  },[]);    
+  },[responseData]);
+
+
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
   const [show2, setShow2] = useState(false)
@@ -226,6 +235,7 @@ const Members = (props) => {
         { 
         props.setResponseData ?  props.setResponseData.charterlist.length >0 ?
           _DATA.currentData().map((list,index) => {
+            if(list.assignCat == 0){
             return (<Row key={index}>
             <Col className="py-4">
               <div className="shadow charters" style={{background: "white"}}>
@@ -245,6 +255,7 @@ const Members = (props) => {
             </Col>  
         </Row>
         )
+       }
       }) :null  :null 
  
     } 
@@ -472,7 +483,8 @@ const mapStateToProps = (state) => {
   return {
     setResponseData: state.auth.data,
     setcategoryData:state.auth.newdata,
-    setfolderData:state.auth.folderdata
+    setfolderData:state.auth.folderdata,
+    setrenameData:state.auth.renamedata
   };
 };
 

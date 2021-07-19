@@ -19,12 +19,15 @@ const Impact = ({ setForm, formData, navigation,id }) => {
         const { previous, next } = navigation;  
 
         const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
-       
+       console.log(formData);
        
         // handle input change
         useEffect(() => {
-            //setGoalOpen(JSON.parse(formData.goal))        
-        });
+          if(formData.impact != '' && formData.impact != null){
+            setGoalOpen(formData.impact)   
+            }     
+        },[]);
+        console.log(goalOpen);
         const handleInputChange = (e, index) => { 
         console.log(e);        
           const { name, value } = e.target;

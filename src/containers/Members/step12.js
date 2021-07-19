@@ -20,11 +20,13 @@ const Risks = ({ setForm, formData, navigation,id }) => {
         const { previous, next } = navigation; 
         const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
        
-       
+       // console.log(formData);
         // handle input change
         useEffect(() => {
-            //setGoalOpen(JSON.parse(formData.goal))        
-        });
+          if(formData.risks != '' && formData.risks != null){
+            setGoalOpen(formData.risks) 
+            }       
+        },[]);
         const handleInputChange = (e, index) => { 
         console.log(e);        
           const { name, value } = e.target;
@@ -63,7 +65,7 @@ const Risks = ({ setForm, formData, navigation,id }) => {
               "risks":goalOpen,
               "step":id
            }       
-          dispatch(actions.createcharter(formData)); 
+           dispatch(actions.createcharter(dataobject)); 
            finalstep();
           
        }; 

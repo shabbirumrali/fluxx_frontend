@@ -179,7 +179,18 @@ export function PdfDocument(props) {
                         :null
                         :null 
                        }</Text>
-                    <Text style={styles.title}>Risks : {props.data.charterlist.risks }</Text>
+                    <Text style={styles.title}>Risks : {
+                        props.data.charterlist.risks ?
+                        JSON.parse(props.data.charterlist.risks).length > 0 ?
+                        JSON.parse(props.data.charterlist.risks).map((list,index) => {
+                            return (<>
+                                     {list.risks}
+                                    </>)
+                        })
+                        :null
+                        :null 
+                       }</Text>
+                    
                 </View>                          
             </Page>
         </Document>

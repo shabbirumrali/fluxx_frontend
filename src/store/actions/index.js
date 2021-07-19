@@ -18,5 +18,7 @@ export {
   fetchcategoryProjects,
   categoryList,
   fetchPosts,
-  deleteFolder
+  deleteFolder,
+  renamelist,
+  updatepassword
 } from "./authActions";
