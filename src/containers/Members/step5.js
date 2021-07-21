@@ -24,7 +24,9 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
      
     // handle input change
     useEffect(() => {
-        setGoalOpen(formData.benefits)        
+      if(formData.benefits != '' && formData.benefits != null){
+        setGoalOpen(formData.benefits)  
+        }      
     },[]);
    
     const handleInputChange = (e, index) => { 

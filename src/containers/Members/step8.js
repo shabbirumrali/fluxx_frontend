@@ -16,7 +16,7 @@ const Budget = ({ setForm, formData, navigation,id }) => {
        const { register, errors, handleSubmit, reset} = useForm();
        const { budget } = formData;    
        const [budgetOpen, setBudgetOpen] = useState(true);
-       const { previous, next } = navigation;      
+       const { previous, next,go } = navigation;      
         const onSubmit = async (data) => { 
         console.log(data) ;    
           let dataobject = {
@@ -36,12 +36,17 @@ const Budget = ({ setForm, formData, navigation,id }) => {
           dispatch(actions.createcharter(dataobject));  
           next();  
        }; 
+       const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
+
+  };
 
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
       <Row>
-        <TitleList activeCls="step8" width={63} />
+        <TitleList activeCls="step8" width={63} sendDataToParent={sendDataToParent} />
       </Row>       
     </Container>     
     <Container>

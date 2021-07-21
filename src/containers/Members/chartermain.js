@@ -57,6 +57,8 @@ const MultiStepForm = (props) => {
 
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
+  
+
   let { id } = step;
 
   // if(objectdata.step != undefined){
@@ -96,6 +98,7 @@ const MultiStepForm = (props) => {
     default:
       return null;
   }
+
 };
 
 export default MultiStepForm;

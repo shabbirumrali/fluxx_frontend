@@ -17,7 +17,7 @@ const Names = ({ setForm, formData, navigation,id }) => {
     const [projectOpen, setProjectOpen] = useState(true);
     const { register, errors, handleSubmit, reset} = useForm();
   const { name } = formData;
-  const { next } = navigation;
+  const { next,go } = navigation;
   const onSubmit = async (data) => {
     console.log(name);
     if(name!= ''){
@@ -30,10 +30,15 @@ const Names = ({ setForm, formData, navigation,id }) => {
     }
     
   };
+  const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
+
+  };
 
   return (<>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4">        
-      <TitleList activeCls="step1" width={7}/>      
+      <TitleList activeCls="step1" width={7} sendDataToParent={sendDataToParent}/>      
     </Container>
     <Container className="mb-5">
       <Row className="my-5">

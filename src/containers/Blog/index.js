@@ -25,8 +25,9 @@ const Blog = (props) => {
      useEffect(() => { 
         dispatch(actions.fetchPosts());
       },[]);
+     console.log(props.setpostData)
 
-     
+
 
   return (
      <><Container fluid>
@@ -34,20 +35,9 @@ const Blog = (props) => {
           <Col className='main-col-section'>
             <div className='blog-inside-section1 font-dec'>
               <div className='divider-blog'>
-                <Image src={BlogImage} />
-                <div className='big-blog-contain'>
-                  <h6 className='my-3'>Health</h6>
-                  <h3>This blog you realy want to know so read</h3>
-                  <p>
-                    Don't remove them with a burned-out match, and other saftey
-                    tips you need, this is some stupid text just for fun! I want
-                    to increase text to check weather the sections are working
-                    correct or not if yes then its pritty awesome if not then we
-                    have to thing for something different
-                  </p>
-                  <h5>Auther Name</h5>
-                </div>
-              </div>
+
+
+               </div>
             </div>
 
             <div className='blog-inside-section2 font-dec'>

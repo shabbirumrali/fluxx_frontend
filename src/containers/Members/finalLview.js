@@ -19,7 +19,7 @@ return (
 <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
         <Row>
-            <TitleList width={100} />                  
+            <TitleList width={100}  />                  
         </Row>       
     </Container>
     <div className="pdf_download_title my-5">

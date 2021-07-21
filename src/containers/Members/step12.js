@@ -90,6 +90,7 @@ const Risks = ({ setForm, formData, navigation,id }) => {
             })
           
        };
+       
   
 
 return (

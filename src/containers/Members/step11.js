@@ -67,7 +67,9 @@ const Stakeholders = ({ setForm, formData, navigation,id }) => {
            }       
           dispatch(actions.createcharter(dataobject));  
           next();  
-       }; 
+       };
+
+        
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      

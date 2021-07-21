@@ -19,7 +19,9 @@ const Address = ({ setForm, formData, navigation,id }) => {
   const [pmasOpen2, setPmasOpen2] = useState(true);
   const { register, errors, handleSubmit, reset} = useForm();
   const {  project_manager, project_sponsor } = formData;
-  const { previous, next } = navigation; 
+  const { previous, next, go } = navigation; 
+
+  console.log(navigation);
   const onSubmit = async (data) => {
     console.log(project_manager);
     console.log(project_sponsor);     
@@ -33,12 +35,21 @@ const Address = ({ setForm, formData, navigation,id }) => {
        // return false;
       dispatch(actions.createcharter(dataobject));  
       next();  
+
    };
+
+ const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
+
+  };
 
   return (
   <>
-    <Container fluid style={{background: "#3d4a5c"}}  className="py-4">        
-      <TitleList activeCls="step2" width={14}/>              
+    <Container fluid style={{background: "#3d4a5c"}}  className="py-4"> 
+       
+      <TitleList activeCls="step2" width={14} sendDataToParent={sendDataToParent} />
+                    
     </Container>
     <Container>
       <Row className="my-3">
