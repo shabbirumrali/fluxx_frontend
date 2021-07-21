@@ -17,7 +17,7 @@ const Risks = ({ setForm, formData, navigation,id }) => {
         const { register, errors, handleSubmit, reset} = useForm();
         const { risks } = formData;    
         const [risksOpen, setRisksOpen] = useState(true);
-        const { previous, next } = navigation; 
+        const { previous, next,go } = navigation; 
         const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
        
        // console.log(formData);
@@ -90,13 +90,17 @@ const Risks = ({ setForm, formData, navigation,id }) => {
             })
           
        };
-       
+    const sendDataToParent = (index) => { // the callback. Use a better name
+        console.log(index);
+        go(index);
+
+      };   
   
 
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4">      
-        <TitleList activeCls="step12" width={100} />                   
+        <TitleList activeCls="step12" width={100} sendDataToParent={sendDataToParent}  />                   
     </Container>    
     <Container>
       <Row className="my-3">

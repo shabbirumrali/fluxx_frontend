@@ -16,7 +16,7 @@ const Impact = ({ setForm, formData, navigation,id }) => {
         const { register, errors, handleSubmit, reset} = useForm();
         const { impact } = formData;    
         const [impactOpen, setImpactOpen] = useState(true);
-        const { previous, next } = navigation;  
+        const { previous, next,go } = navigation;  
 
         const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
        console.log(formData);
@@ -68,13 +68,17 @@ const Impact = ({ setForm, formData, navigation,id }) => {
           dispatch(actions.createcharter(dataobject));  
           next();  
        }; 
-       
+       const sendDataToParent = (index) => { // the callback. Use a better name
+        console.log(index);
+        go(index);
+
+      };
   
 
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
-        <TitleList activeCls="step11" width={80} />
+        <TitleList activeCls="step11" width={80} sendDataToParent={sendDataToParent} />
     </Container>
     <Container>
       <Row className="my-3">

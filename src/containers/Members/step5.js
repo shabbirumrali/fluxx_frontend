@@ -17,7 +17,7 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
     const { benefits } = formData;
     const [benefitOpen, setBenefitOpen] = useState(true)    
     const [benefitOpen1, setBenefitOpen1] = useState(true)    
-    const { previous, next } = navigation;
+    const { previous, next,go } = navigation;
     const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
       // console.log(JSON.parse(formData.goal).length);
        //console.log(formData);
@@ -62,10 +62,15 @@ const Benefits = ({ setForm, formData, navigation,id }) => {
         dispatch(actions.createcharter(dataobject));  
         next();  
      };
+     const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
+
+  };
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
-        <TitleList activeCls="step5" width={35}  />
+        <TitleList activeCls="step5" width={35} sendDataToParent={sendDataToParent}  />
     </Container>
 
     <Container>

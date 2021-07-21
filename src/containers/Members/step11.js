@@ -17,7 +17,7 @@ const Stakeholders = ({ setForm, formData, navigation,id }) => {
         const { register, errors, handleSubmit, reset} = useForm();
         const { stakeholder } = formData;    
         const [stakeholdersOpen, setStakeholdersOpen] = useState(true);
-        const { previous, next } = navigation;   
+        const { previous, next,go } = navigation;   
         const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
        
        
@@ -68,12 +68,17 @@ const Stakeholders = ({ setForm, formData, navigation,id }) => {
           dispatch(actions.createcharter(dataobject));  
           next();  
        };
+       const sendDataToParent = (index) => { // the callback. Use a better name
+        console.log(index);
+        go(index);
 
-        
+      };
+
+
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
-        <TitleList activeCls="step11" width={90} />
+        <TitleList activeCls="step11" width={90} sendDataToParent={sendDataToParent} />
     </Container>   
     <Container>
       <Row className="my-3">

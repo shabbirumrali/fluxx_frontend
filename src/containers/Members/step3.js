@@ -15,7 +15,7 @@ const Contact = ({ setForm, formData, navigation,id }) => {
   const { register, errors, handleSubmit, reset} = useForm();
   const { project_need } = formData;
   const [background, setBackground] = useState(true);
-  const { previous, next } = navigation;
+  const { previous, next ,go} = navigation;
   const onSubmit = async (data) => {      
       let dataobject = {
         "project_need":project_need,
@@ -27,11 +27,15 @@ const Contact = ({ setForm, formData, navigation,id }) => {
       dispatch(actions.createcharter(dataobject));  
       next();  
    };
+const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
 
+  };
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
-        <TitleList activeCls="step3" width={21} />
+        <TitleList activeCls="step3" width={21} sendDataToParent={sendDataToParent}  />
     </Container>
 
     <Container>

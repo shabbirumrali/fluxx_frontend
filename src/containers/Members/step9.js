@@ -16,7 +16,7 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
        const { register, errors, handleSubmit, reset} = useForm();
        const { assumptionTime } = formData;    
        const [assumptionsOpen, setAssumptionsOpen] = useState(true);
-       const { previous, next } = navigation;
+       const { previous, next,go } = navigation;
        console.log(next);     
         const onSubmit = async (data) => { 
         
@@ -39,12 +39,16 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
           next();  
        }; 
 
-  
+  const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
+
+  };
 
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}}  className="py-4" >
-        <TitleList activeCls="step9" width={70} />        
+        <TitleList activeCls="step9" width={70} sendDataToParent={sendDataToParent} />        
     </Container>
 
     <Container>

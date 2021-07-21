@@ -17,7 +17,7 @@ const InScope = ({ setForm, formData, navigation,id }) => {
       const { register, errors, handleSubmit, reset} = useForm();
       const { InScope,outScope } = formData;
       const [inScopeOpen, setInScopeOpen] = useState(true);
-      const { previous, next } = navigation;
+      const { previous, next,go } = navigation;
       const onSubmit = async (data) => {      
         let dataobject = {
             "goal":formData.goal,
@@ -32,11 +32,16 @@ const InScope = ({ setForm, formData, navigation,id }) => {
         dispatch(actions.createcharter(dataobject));  
         next();  
      };
+     const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
+
+  };
 
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
-        <TitleList activeCls="step6" width={42} />
+        <TitleList activeCls="step6" width={42}  sendDataToParent={sendDataToParent}/>
     </Container>
 
     <Container>

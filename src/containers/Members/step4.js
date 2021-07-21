@@ -16,7 +16,7 @@ const Goal = ({ setForm, formData, navigation,id }) => {
     const history  = useHistory();
     const { register, errors, handleSubmit, reset} = useForm();
     const { goal }  = formData;    
-    const { previous, next } = navigation;
+    const { previous, next,go } = navigation;
 
     const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
     //   console.log(JSON.parse(formData.goal).length);
@@ -65,12 +65,17 @@ const Goal = ({ setForm, formData, navigation,id }) => {
         dispatch(actions.createcharter(dataobject));  
         next();  
      };
+     const sendDataToParent = (index) => { // the callback. Use a better name
+    console.log(index);
+    go(index);
+
+  };
 
   
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
-        <TitleList activeCls="step4" width={28} />        
+        <TitleList activeCls="step4" width={28}  sendDataToParent={sendDataToParent}/>        
     </Container>   
 
     <Container>
