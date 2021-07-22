@@ -39,8 +39,7 @@ const Members = (props) => {
   const [pageOfItems,setpageOfItems] = useState(true);  
   const onSubmit = async (data) => {
     if(data.foldername != undefined){
-      dispatch(actions.createfolder(data));
-      dispatch(actions.categoryList());
+      dispatch(actions.createfolder(data));      
       handleCloseFolder();
     }
     if(data.newchartername != undefined){
@@ -49,28 +48,29 @@ const Members = (props) => {
     }
     if(Object.keys(data).length == 0){
       dispatch(actions.deleteCharter(data,selectedcharterid.id));
+      handleClose3();
+
     }
     if(data.selectCat != undefined){
        dispatch(actions.moveCharter(data,selectedcharterid));
-       dispatch(actions.categoryList());
        handleClose2();
+      
     }
     if(data.deletefolder != undefined){
-       dispatch(actions.deleteFolder(data,selectedfolderid.id));
-       dispatch(actions.categoryList());
+       dispatch(actions.deleteFolder(data,selectedfolderid.id));       
        handleClose4();
+       dispatch(actions.categoryList());
     }    
     reset();
   };
-  // if(props.setrenameData != undefined){
-  //   dispatch(actions.charterlist());
-  // }
   
   useEffect(() => { 
       checkAuthToken();
       dispatch(actions.charterlist());
       dispatch(actions.categoryList());
-  },[responseData]);
+      
+  },[]);
+
 
 
   const [folder, setFolder] = useState(false)

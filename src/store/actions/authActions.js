@@ -250,9 +250,7 @@ export const createcharter = (form, props) => {
   };
 };
 export const charterlist = (form, props) => {
-  let dataobject = {
-        "name":form
-  }
+  
   const config = {
     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
   };  
@@ -286,11 +284,10 @@ export const renamecharter = (form, props) => {
     api
       .post("renamecharter",dataobject, config)
       .then((response) => {
-        //if (response.data.status === 200) {
+            dispatch(charterlist()); 
             response.data.renameList = 'sucessdata';
             toast.success("Your charter update Successfully");
-            dispatch(renamelist(response.data));
-        //}
+            history.push("/members");
       })
       .catch((err) => {
         if (err === "Error: Request failed with status code 500") {
@@ -314,8 +311,8 @@ export const deleteCharter = (form, props) => {
       .then((response) => {
         if (response.data.status === 200) {
            toast.success("Your charter delete Successfully");
-       
-           //history.push("/members");
+           dispatch(charterlist()); 
+           history.push("/members");
         }
       })
       .catch((err) => {
@@ -386,15 +383,17 @@ export const moveCharter = (form, props) => {
                    "categoryId":form.selectCat,
                    "projectId":props.projectId,
                    "projectname":props.projectname,
-                   "currentCategory":props.categoryId
+                   "currentCategory":props.categoryId,
+                   "movefromcat":props.id
               }
 
   }else{
         dataobject = {
            "categoryId":form.selectCat,
            "projectId":props.id,
-           "projectname":props.name
-      }
+           "projectname":props.name ? props.name: props.projectname,
+           "movefromcat":props.id 
+          }
 
   }
   
@@ -411,7 +410,8 @@ export const moveCharter = (form, props) => {
           if (response.data.status === 200) {
              toast.success("Your charter move Successfully");
              
-             window.location.href ="/members";
+             dispatch(charterlist()); 
+             history.push("/members");
           }
       })
       .catch((err) => {
@@ -463,7 +463,7 @@ export const fetchPosts = (form,props) => {
     // };  
     return (dispatch) => {
       axios
-        .get("wordpress_blog/wp-json/wp/v2/posts?per_page=100")
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?per_page=100&_embed")
         .then((response) => {
              console.log(response.data);
             dispatch(postlist(response.data));        

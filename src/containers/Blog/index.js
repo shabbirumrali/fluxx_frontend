@@ -1,4 +1,4 @@
-import React, {useState,useEffect,useCallback} from "react"
+import React, {useState,useEffect,useCallback, useLayoutEffect} from "react"
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -19,13 +19,25 @@ import BlogImage from '../../assets/img/blogImg/image1.jpg';
 const Blog = (props) => {
    const dispatch = useDispatch();
    const history = useHistory();
+   const [data, setData] = useState(props.setpostData);
 
-   console.log(props);
-    
-     useEffect(() => { 
-        dispatch(actions.fetchPosts());
-      },[]);
-     console.log(props.setpostData)
+   useLayoutEffect(() => {
+    dispatch(actions.fetchPosts())
+  },[]);
+
+    useEffect(() => { 
+      
+
+        console.log(data);
+
+    },[]);
+
+
+   const removeHTML = (str) => { 
+      var tmp = document.createElement("DIV");
+      tmp.innerHTML = str;
+      return tmp.textContent || tmp.innerText || "";
+  }
 
 
 
@@ -34,49 +46,50 @@ const Blog = (props) => {
         <Row>
           <Col className='main-col-section'>
             <div className='blog-inside-section1 font-dec'>
-              <div className='divider-blog'>
-
-
+            
+               <div className='divider-blog'>
+                   <Image src={BlogImage} /> 
                </div>
             </div>
 
             <div className='blog-inside-section2 font-dec'>
               <div className='divider-blog'>
-                <Image src={BlogImage} />
-                <div className='big-blog-contain'>
-                  <h6 className='my-3'>Health</h6>
-                  <h3>This blog you realy want to know so read</h3>
-                  <h5>Auther Name</h5>
-                </div>
-              </div>
-              <div className='divider-blog'>
-                <Image src={BlogImage} />
-                <div className='big-blog-contain'>
-                  <h6 className='my-3'>Health</h6>
-                  <h3>This blog you realy want to know so read</h3>
-                  <h5>Auther Name</h5>
-                </div>
-              </div>
+                    {
+                      props.setpostData ?
+                      props.setpostData.length > 0 ?  
+                      props.setpostData.map((post,index) => {
+                    return (<><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                            <div className='big-blog-contain'>
+                              <h6 className='my-3'>{post.title.rendered}</h6>
+                              <h3>{removeHTML(post.content.rendered)}</h3>
+                              <h5>Auther Name</h5>
+                            </div>
+                            </>);
+                    })
+                      :null:null
+                    }
+              </div>              
             </div>
 
             <div className='blog-inside-section3 font-dec'>
-              <div className='divider-blog'>
-                <Image src={BlogImage} />
-                <div className='big-blog-contain'>
-                  <h6 className='my-3'>Health</h6>
-                  <h3>This blog you realy want to know so read</h3>
-                  <h5>Auther Name</h5>
-                </div>
-              </div>
+             <div className='divider-blog'>
+                    {
+                      props.setpostData ?
+                      props.setpostData.length > 0 ?  
+                      props.setpostData.map((post,index) => {
+                    return (<><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                            <div className='big-blog-contain'>
+                              <h6 className='my-3'>{post.title.rendered}</h6>
+                              <h3>{removeHTML(post.content.rendered)}</h3>
+                              <h5>Auther Name</h5>
+                            </div>
+                            </>);
+                    })
+                      :null:null
+                    }
+              </div> 
 
-              <div className='divider-blog'>
-                <Image src={BlogImage} />
-                <div className='big-blog-contain'>
-                  <h6 className='my-3'>Health</h6>
-                  <h3>This blog you realy want to know so read</h3>
-                  <h5>Auther Name</h5>
-                </div>
-              </div>
+              
             </div>
           </Col>
         </Row>
@@ -219,6 +232,8 @@ const Blog = (props) => {
   );
 };
 const mapStateToProps = (state) => {
+   
+
    return {
       setpostData:state.auth.postdata
    };

@@ -14,27 +14,27 @@ Font.register({
   family: 'Oswald',
   src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
 });
+
 const styles = StyleSheet.create({
     page: {
-        backgroundColor: "#ffffff",
-        
+        backgroundColor: "#ffffff",        
         padding: 40
     },
     title:{
         fontSize: 24,
         marginBottom: '20px',
+        justifyContent: 'space-between',
+        display: 'flex'
         
     },
     head:{
-        textAlign:'center'
+        textAlign:'left'
     },
     date: {
         textAlign: 'right',
     },
     second:{
-        textAlgin:'left',
-        width: '100%',
-        marginRight: 'auto'
+       fontWeight: 700,
     },
     title:{
         marginBottom: '20',
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
         display: 'table',
         paddingTop: '30px'
     },
+   
     section:{
         width: "70%", 
     },
@@ -102,6 +103,15 @@ const styles = StyleSheet.create({
         padding: 10,
         fontWeight: 700,
         fontFamily: "Oswald"
+    },
+    titileOne:{
+        fontWeight: 700,
+        fontSize: 16
+    },
+    titileTwo:{
+        textAlign:'right',
+        fontWeight: 700,
+        fontSize: 14
     }
 });
 export function PdfDocument(props) {
@@ -111,53 +121,84 @@ export function PdfDocument(props) {
             <Page size="A4" style={styles.page}>
                 <View style={styles.head}>
                     <Text style={styles.title}>Pdf Dcoument testing on the real world</Text>
-                    <Text style={styles.title}>Project Name : {props.data.charterlist.name }</Text>
-                    <Text style={styles.title}>Project Manager : {props.data.charterlist.project_manager }</Text>
-                    <Text style={styles.title}>Project Sponsor : {props.data.charterlist.project_sponsor }</Text>
-                    <Text style={styles.title}>Project Need : {props.data.charterlist.project_need }</Text>
-                    <Text style={styles.title}>Goals :
-                    {
-
-                        props.data.charterlist.goal ?
-
-                        JSON.parse(props.data.charterlist.goal).length > 0 ?
-
-                        JSON.parse(props.data.charterlist.goal).map((list,index) => {
-                            return (<>
-                                     {list.goal}
-                                    </>)
-
-                        })
-
-                        :null
-                        :null 
+                    <Text style={styles.title}><Text style={styles.titileOne}>Project Name : </Text> 
 
 
-                       }
+                             <Text style={styles.titileTwo}>{props.data.charterlist.name }</Text>
+                    </Text>
+                    <Text style={styles.title}>
 
-   
-                       </Text>
-                    <Text style={styles.title}>Benefits : 
+                          <Text style={styles.titileOne}>Project Manager : </Text>
+                           <Text style={styles.titileTwo}>{props.data.charterlist.project_manager }</Text>
+                           </Text>
+                    <Text style={styles.title}><Text style={styles.titileOne}>Project Sponsor : </Text> <Text style={styles.titileTwo}>{props.data.charterlist.project_sponsor }</Text></Text>
+                    <Text style={styles.title}><Text style={styles.titileOne}>Project Need : </Text> <Text style={styles.titileTwo}> {props.data.charterlist.project_need }</Text></Text>
+                    <Text style={styles.title}>
+                               <Text style={styles.titileOne}>Goals :</Text><Text style={styles.titileTwo}> 
+                                        {
+                                            props.data.charterlist.goal ?
+                                            JSON.parse(props.data.charterlist.goal).length > 0 ?
+                                            JSON.parse(props.data.charterlist.goal).map((list,index) => {
+                                                return (<>
+                                                         <Text> {list.goal} {"\n"}</Text>
+                                                        </>)
 
-                      {
-                        props.data.charterlist.benefits ?
-                        JSON.parse(props.data.charterlist.benefits).length > 0 ?
-                        JSON.parse(props.data.charterlist.benefits).map((list,index) => {
-                            return (<>
-                                     {list.benefits}
-                                    </>)
-                        })
-                        :null
-                        :null 
-                       }
-                       </Text>
-                    <Text style={styles.title}>InScope : {props.data.charterlist.InScope }</Text>
-                    <Text style={styles.title}>OutScope : {props.data.charterlist.outScope }</Text>
-                    <Text style={styles.title}>StartDate : {props.data.charterlist.startDate }</Text>
-                    <Text style={styles.title}>FinishDate : {props.data.charterlist.finishDate }</Text>
-                    <Text style={styles.title}>Budget : {props.data.charterlist.budget }</Text>
-                    <Text style={styles.title}>AssumptionTime : {props.data.charterlist.assumptionTime }</Text>
-                    <Text style={styles.title}>Impact : {
+                                            })
+                                            :null
+                                            :null 
+                                           }
+                               </Text>
+                    </Text>
+                    <Text style={styles.title}>
+                           <Text style={styles.titileOne}>Benefits :</Text>
+                            <Text style={styles.titileTwo}>
+                                  {
+                                    props.data.charterlist.benefits ?
+                                    JSON.parse(props.data.charterlist.benefits).length > 0 ?
+                                    JSON.parse(props.data.charterlist.benefits).map((list,index) => {
+                                        return (<>
+                                                 {list.benefits}
+                                                </>)
+                                    })
+                                    :null
+                                    :null 
+                                   }
+                            </Text>
+                    </Text>
+                    <Text style={styles.title}>
+                          <Text style={styles.titileOne}>InScope : </Text>
+                          <Text style={styles.titileTwo}>{props.data.charterlist.InScope }</Text>
+                    </Text>
+                    <Text style={styles.title}>
+                          <Text style={styles.titileOne}>OutScope :</Text>
+                          <Text style={styles.titileTwo}>{props.data.charterlist.outScope }</Text>
+                    </Text>
+                    <Text style={styles.title}>
+                          <Text style={styles.titileOne}>StartDate :</Text>
+                          <Text style={styles.titileTwo}>{props.data.charterlist.startDate }</Text>
+                    </Text>
+                    <Text style={styles.title}>
+
+                               <Text style={styles.titileOne}>FinishDate :</Text>
+
+
+                               <Text style={styles.titileTwo}>{props.data.charterlist.finishDate }</Text>
+                    </Text>
+                    <Text style={styles.title}>
+                        <Text style={styles.titileOne}>Budget : </Text>
+
+                        <Text style={styles.titileTwo}> {props.data.charterlist.budget }</Text>
+                    </Text>
+                    <Text style={styles.title}>
+                        <Text style={styles.titileOne}> AssumptionTime : </Text>
+                       <Text style={styles.titileTwo}>{props.data.charterlist.assumptionTime }</Text>
+                    </Text>
+                    
+
+                    <Text style={styles.title}>
+                      <Text style={styles.titileOne}>Impact : </Text>
+                      <Text style={styles.titileTwo}>
+                       {
                         props.data.charterlist.impact ?
                         JSON.parse(props.data.charterlist.impact).length > 0 ?
                         JSON.parse(props.data.charterlist.impact).map((list,index) => {
@@ -167,8 +208,11 @@ export function PdfDocument(props) {
                         })
                         :null
                         :null 
-                       } </Text>
-                    <Text style={styles.title}>Stakeholder : {
+                       }</Text>
+                    </Text>
+                    <Text style={styles.title}>
+                       <Text style={styles.titileOne}>Stakeholder : </Text>
+                       <Text style={styles.titileTwo}> {
                         props.data.charterlist.stakeholder ?
                         JSON.parse(props.data.charterlist.stakeholder).length > 0 ?
                         JSON.parse(props.data.charterlist.stakeholder).map((list,index) => {
@@ -179,7 +223,11 @@ export function PdfDocument(props) {
                         :null
                         :null 
                        }</Text>
-                    <Text style={styles.title}>Risks : {
+                    </Text>  
+                    <Text style={styles.title}>
+                      <Text style={styles.titileOne}>Risks :</Text>
+                      <Text style={styles.titileTwo}> 
+                       {
                         props.data.charterlist.risks ?
                         JSON.parse(props.data.charterlist.risks).length > 0 ?
                         JSON.parse(props.data.charterlist.risks).map((list,index) => {
@@ -190,7 +238,7 @@ export function PdfDocument(props) {
                         :null
                         :null 
                        }</Text>
-                    
+                    </Text>
                 </View>                          
             </Page>
         </Document>

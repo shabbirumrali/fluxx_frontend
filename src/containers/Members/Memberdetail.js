@@ -34,19 +34,24 @@ const Members = (props) => {
       handleCloseFolder();
 
     }
-    // if(data.newchartername != undefined){
-    //    dispatch(actions.renamecharter(data,selectedcharterid.id));
-    // }
-    // if(Object.keys(data).length == 0){
-    //   dispatch(actions.deleteCharter(data,selectedcharterid.id));
-    // }
-    if(data.selectCat == "uncategorized"){
-         console.log(selectedcharterid);
-         let currentCat = window.location.pathname.split("/").pop();
-         data.currentCategory = currentCat;
+    if(data.newchartername != undefined){
+       dispatch(actions.renamecharter(data,selectedcharterid.id));
+       handleClose();
+    }
+    if(Object.keys(data).length == 0){
+      dispatch(actions.deleteCharter(data,selectedcharterid.id));
+      handleClose3();
+    }
+      if(data.selectCat == "uncategorized"){
+           console.log(selectedcharterid);
+           let currentCat = window.location.pathname.split("/").pop();
+           data.currentCategory = currentCat;
+           dispatch(actions.moveCharter(data,selectedcharterid));
+           handleClose2();
+      }else{
          dispatch(actions.moveCharter(data,selectedcharterid));
          handleClose2();
-    }
+      }
      reset();
   };
 
@@ -236,6 +241,79 @@ const Members = (props) => {
             </Row>
           </Container>
         </Modal.Body>
+      </Modal>
+
+      {/* Modals for rename */}
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Rename your Document {selectedcharterid.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0">          
+          <Container>
+            <Row>
+              <Col className="py-1">
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+                  <FormGroup >
+                <Label htmlFor>New Name</Label>
+                <input
+                  type="text"
+                  ref={register({
+                    required: true})}
+                  name="newchartername"
+                  />
+                  {errors.newchartername && (
+                    <span className="errorMessage">
+                      Please enter a Document name
+                    </span>
+                  )}
+              </FormGroup>
+
+                  <Button 
+                  className="py-2 mr-2 mb-3" 
+                  style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
+                  type="submit"
+                  >
+                    RENAME
+                  </Button>
+                  <Button 
+                  onClick={handleClose} 
+                  className="py-2 mx-2 mb-3" 
+                  variant="light" 
+                  style={{background:"", color: "", border: "none"}} 
+                  type="submit"
+                  >
+                    CANCEL
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>
+      </Modal>
+
+      {/* Modals for Delete */}
+      <Modal show={show3} onHide={handleClose3} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="p-0">          
+          <Container>
+            <Row>
+              <Col className="py-1">
+                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>    
+                  {/* form tag if needed */}
+                  <p>Very First Charter Last Modified: December 17, 2020 08:57 PM ET My Very First Charter” ?</p>
+                  <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
+                    Delete
+                  </Button>
+                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="button">
+                    CANCEL
+                  </Button>
+                </Form>
+              </Col>
+            </Row>
+          </Container>
+        </Modal.Body>        
       </Modal>
 
 

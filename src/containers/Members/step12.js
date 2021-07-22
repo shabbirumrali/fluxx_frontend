@@ -17,7 +17,7 @@ const Risks = ({ setForm, formData, navigation,id }) => {
         const { register, errors, handleSubmit, reset} = useForm();
         const { risks } = formData;    
         const [risksOpen, setRisksOpen] = useState(true);
-        const { previous, next,go } = navigation; 
+        const { previous, next, go } = navigation; 
         const [goalOpen, setGoalOpen] = useState([{ goallist: ""}]);
        
        // console.log(formData);
@@ -91,7 +91,7 @@ const Risks = ({ setForm, formData, navigation,id }) => {
           
        };
     const sendDataToParent = (index) => { // the callback. Use a better name
-        console.log(index);
+          console.log(index);
         go(index);
 
       };   

@@ -60,7 +60,7 @@ const TitleList = ({ activeCls, width,sendDataToParent }) => {
                           sendDataToParent('stakeholder');
                         }}>stakeholders</li>                    
                                 <li className={activeCls === 'step12' ? 'steps_active':"" } onClick={() => {
-                          sendDataToParent('risks');
+                          sendDataToParent('risk');
                         }}>risks</li>                    
                             </ul>    
                         </div>
