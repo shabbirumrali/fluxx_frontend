@@ -15,3 +15,4 @@ export const CATEGORYLIST = "CATEGORYLIST";
 export const POSTLIST  =  "POSTLIST";
 export const FOLDERLIST  =  "FOLDERLIST";
 export const RENAMELIST  =  "RENAMELIST";
+export const SINGLEPOST  =  "SINGLEPOST";

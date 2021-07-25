@@ -20,5 +20,6 @@ export {
   fetchPosts,
   deleteFolder,
   renamelist,
-  updatepassword
+  updatepassword,
+  fetchsinglepost
 } from "./authActions";

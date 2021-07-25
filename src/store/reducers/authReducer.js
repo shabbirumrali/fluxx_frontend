@@ -36,11 +36,16 @@ const renameList  =(state,action) => {
 
     return updateObject(state, {renamedata:action.data,loading:false});
 }
+const postDetail =(state,action) => {
+
+  return updateObject(state, {postdetail:action.data,loading:false});
+}
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
     error: null,
-    loading: false,
+    loading: false
+
   });
 };
 
@@ -89,7 +94,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FOLDERLIST:
       return folderList(state,action);
     case actionTypes.RENAMELIST:
-      return renameList(state,action);   
+      return renameList(state,action);  
+    case actionTypes.SINGLEPOST:
+      return postDetail(state,action); 
     default:
       return state;
   }

@@ -55,6 +55,12 @@ export const postlist = (data) => {
     data: data,
   };
 }
+export const singlepostdetail = (data) =>{
+    return {
+      type: actionTypes.SINGLEPOST,
+      data: data,
+    };
+}
 
 export const folderlist = (data) => {
   return {
@@ -96,6 +102,7 @@ export const auth = (form) => {
           localStorage.setItem("token", response.data.user.token);
           localStorage.setItem("role", response.data.user.role);
           localStorage.setItem("email", response.data.user.email);
+          localStorage.setItem("subscribeUser", response.data.user.subscribe);
           dispatch(authSuccess(response.data));
           toast.success(response.data.message);
           //history.push("/members");
@@ -458,15 +465,33 @@ export const categoryList = (form, props) => {
     };
 };
 export const fetchPosts = (form,props) => {
-    // const config = {
-    //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
-    // };  
+    const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    };  
     return (dispatch) => {
       axios
-        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?per_page=100&_embed")
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?per_page=100&_embed",config)
         .then((response) => {
              console.log(response.data);
             dispatch(postlist(response.data));        
+        })
+        .catch((err) => {
+          if (err === "Error: Request failed with status code 500") {
+            toast.error(" Token Expire !!");
+          }
+        });
+    };
+};
+export const fetchsinglepost = (form,props) => {
+  const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    };
+    return (dispatch) => {
+      axios
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts/"+form+"?&_embed",config)
+        .then((response) => {
+             console.log(response.data);
+             dispatch(singlepostdetail(response.data));        
         })
         .catch((err) => {
           if (err === "Error: Request failed with status code 500") {

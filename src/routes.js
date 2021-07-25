@@ -13,6 +13,7 @@ const Terms = lazy(() => import("./components/Footer/Terms"));
 const Privacy = lazy(() => import("./components/Footer/Privacy"));
 const Setting = lazy(() => import("./containers/Setting/Setting"));
 const Memberdetail = lazy(() => import("./containers/Members/Memberdetail"));
+const Blogdetail  = lazy(() => import("./containers/Blog/blogdetail"));
 const routes = [
   { path: "/", exact: true, component: Home },
   {
@@ -44,6 +45,11 @@ const routes = [
     path: "/blog",
     exact: true,
     component: Blog,
+  },
+  {
+    path: "/blog/:id",
+    exact: true,
+    component: Blogdetail,
   },
   {
     path: "/forgetpassword",

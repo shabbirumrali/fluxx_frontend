@@ -25,22 +25,18 @@ const Blog = (props) => {
     dispatch(actions.fetchPosts())
   },[]);
 
-    useEffect(() => { 
-      
-
-        console.log(data);
-
-    },[]);
-
-
    const removeHTML = (str) => { 
       var tmp = document.createElement("DIV");
       tmp.innerHTML = str;
       return tmp.textContent || tmp.innerText || "";
-  }
-
-
-
+    }
+    const fetchpostdetail = value  => () => { 
+      console.log(value)
+        history.push({
+          pathname: "/blog/"+value.id, 
+          state: { blogdetail: value}
+        });
+    }
   return (
      <><Container fluid>
         <Row>
@@ -58,14 +54,17 @@ const Blog = (props) => {
                       props.setpostData ?
                       props.setpostData.length > 0 ?  
                       props.setpostData.map((post,index) => {
-                    return (<><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                        if(index<5){
+                    return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
                             <div className='big-blog-contain'>
                               <h6 className='my-3'>{post.title.rendered}</h6>
                               <h3>{removeHTML(post.content.rendered)}</h3>
                               <h5>Auther Name</h5>
-                            </div>
+                            </div></a>
                             </>);
+                     }
                     })
+
                       :null:null
                     }
               </div>              
@@ -94,34 +93,7 @@ const Blog = (props) => {
           </Col>
         </Row>
 
-        <Row className="border-top">
-          <Col className='blog-content-section my-3'>
-            <div className='blog1 d-flex font-dec'>
-              <Image src={BlogImage} />
-              <div className='big-blog-contain divider-blog'>
-                <h6 className='mb-3'>Health</h6>
-                <h3>This blog you realy want to know so read</h3>
-                <h5>Auther Name</h5>              
-              </div>
-            </div>
-            <div className='blog2 d-flex font-dec'>
-              <Image src={BlogImage} />
-              <div className='big-blog-contain divider-blog'>
-                <h6 className='mb-3'>Health</h6>
-                <h3>This blog you realy want to know so read</h3>
-                <h5>Auther Name</h5>              
-              </div>
-            </div>
-            <div className='blog3 d-flex font-dec'>
-              <Image src={BlogImage} />
-              <div className='big-blog-contain divider-blog'>
-                <h6 className='mb-3'>Health</h6>
-                <h3>This blog you realy want to know so read</h3>
-                <h5>Auther Name</h5>              
-              </div>
-            </div>
-          </Col>
-        </Row>
+       
 
         <Row>
           <Col className="my-3">

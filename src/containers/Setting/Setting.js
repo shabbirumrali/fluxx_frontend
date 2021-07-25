@@ -12,6 +12,7 @@ import * as actions from "../../store/actions/index";
 import moment from 'moment';
 import { toast } from "react-toastify";
 const Setting = (props) => {
+  
   const dispatch = useDispatch();
   const history = useHistory();
   const [show, setShow] = useState(false);
@@ -87,7 +88,7 @@ const Setting = (props) => {
               {/*  */}
               <div>
               <Form.Group id="formGridCheckbox">
-                <Form.Check type="checkbox" label="Email me special offers and news" />
+                <Form.Check type="checkbox" value="" checked={localStorage.getItem('subscribeUser')}  label="Email me special offers and news" />
               </Form.Group>
               </div>
             </div>

@@ -37,9 +37,11 @@ const Auth = (props) => {
   
 
   useEffect(() => { 
-     console.log('sdfsdfsdfs');
+    
       if (props.isAuthenticated == true) {
           toggle(!toggle);
+        
+    
           history.push("/members");
 
       }
@@ -126,7 +128,7 @@ const Auth = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
-    authRedirectPath: state.auth.authRedirectPath,
+    authRedirectPath: state.auth.authRedirectPath,   
   };
 };
 
