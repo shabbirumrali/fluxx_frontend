@@ -43,7 +43,7 @@ const Forgetpassword = (props) => {
     <Container>
       <Row>
         <Col className="forgot_pass_container">
-         <h3 className="text-center py-3">Forget Password</h3>
+         <h3 className="text-center py-3">Forgot Password</h3>
         
           <div className="set_password_form py-4 px-5">
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -59,8 +59,8 @@ const Forgetpassword = (props) => {
           </div>
             <div className="forgot_privacy_info">
               <p className="mt-3"> All information that you provide is kept completely confidential and
-                will not be released to any other companies. Please view our<a href="#"> Privacy
-                Policy</a>, <a href="">Terms and Conditions</a>, and <a href="">Email Policy</a> for further information.</p>
+                will not be released to any other companies. Please view our <Link to="/privacypolicy"> Privacy Policy</Link>
+               , <Link to="/terms">Terms and Conditions</Link>, and <a href="">Email Policy</a> for further information.</p>
             </div>           
         </Col>                 
       </Row>      

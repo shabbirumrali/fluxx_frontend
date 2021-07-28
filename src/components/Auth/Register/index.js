@@ -32,7 +32,7 @@ const Register = (props) => {
     password: Yup.string()
       .matches(
         /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/,
-        "Password must contain one capital letter, one number, one special character and atleast eight characters."
+        "Password must contain one capital letter, one number, one special character and at least eight characters."
       )
       .required("Password is required"),
     confirmPassword: Yup.string()
@@ -110,7 +110,7 @@ const Register = (props) => {
           <Row className="account-footer-part mt-3 px-3 py-2">
             <p>All information that you provide is kept completely confidential
             and will not be released to any other companies. Please view our
-            <a href="#"> Privacy Policy</a>, <a href="#">Terms and Conditions</a>, and <a href="#">Email Policy </a>for
+            <Link to="/privacypolicy"> Privacy Policy</Link>, <Link to="/terms">Terms and Conditions</Link>, and <a href="#">Email Policy </a>for
             further information.</p>
           </Row>
         </Col>

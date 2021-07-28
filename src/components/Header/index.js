@@ -4,6 +4,7 @@ import {Nav, Navbar, Button, NavDropdown} from 'react-bootstrap'
 import Auth from "../Auth";
 
 const Header = (props) => {
+    console.log('dfdfd');
   const { toggle, className, modal } = props;
   const [show, setShow] = useState(false)
 
@@ -39,7 +40,7 @@ const Header = (props) => {
               localStorage.getItem('email') === '' ?
             <Nav>
                 <Nav.Link eventKey={2} href="#">
-                  <Button variant="black" onClick={toggle}>
+                  <Button variant="black" onClick={toggle} >
                     sign in
                   </Button>
                 </Nav.Link>

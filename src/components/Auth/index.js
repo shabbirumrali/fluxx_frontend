@@ -103,7 +103,7 @@ const Auth = (props) => {
                     <div className="col forget_pass">
                     <p className="m-0">
                       <Link to="#" rel="noreferrer" onClick={forgetpassword} style={{color: "#5aa380", textDecoration: "none"}}>
-                        I forget my password.
+                        I forgot my password.
                       </Link>
                     </p>
                   </div>
