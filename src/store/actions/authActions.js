@@ -224,6 +224,7 @@ export const createfolder = (form, props) => {
       .then((response) => {
         if (response.data.status === 200) {
            toast.success("Folder creation successful");
+           dispatch(categoryList());
            //history.push("/members");
             //dispatch(categList(response.data));
         }
@@ -293,7 +294,7 @@ export const renamecharter = (form, props) => {
       .then((response) => {
             dispatch(charterlist()); 
             response.data.renameList = 'sucessdata';
-            toast.success("Your charter update Successfully");
+            toast.success("Rename successful");
             history.push("/members");
       })
       .catch((err) => {
@@ -303,7 +304,8 @@ export const renamecharter = (form, props) => {
       });
   };
 };
-export const deleteCharter = (form, props) => {
+export const deleteCharter = (form, props,detail) => {
+  console.log(detail);
   let dataobject = {
         "charterid":props
   }
@@ -317,9 +319,10 @@ export const deleteCharter = (form, props) => {
       .post("deleteCharter",dataobject, config)
       .then((response) => {
         if (response.data.status === 200) {
-           toast.success("Your charter delete Successfully");
-           dispatch(charterlist()); 
-           history.push("/members");
+           toast.success("Deletion successful");
+           window.location.href = "/members/"+props;
+          // dispatch(charterlist()); 
+           //history.push("/members/"+props);
         }
       })
       .catch((err) => {
@@ -415,7 +418,7 @@ export const moveCharter = (form, props) => {
       .post("updateCharterCategory",dataobject, config)
       .then((response) => {
           if (response.data.status === 200) {
-             toast.success("Your charter move Successfully");
+             toast.success("Move successful");
              
              dispatch(charterlist()); 
              history.push("/members");

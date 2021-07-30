@@ -47,7 +47,7 @@ const Members = (props) => {
        handleClose();
     }
     if(Object.keys(data).length == 0){
-      dispatch(actions.deleteCharter(data,selectedcharterid.id));
+      dispatch(actions.deleteCharter(data,selectedcharterid.id,'main'));
       handleClose3();
 
     }
@@ -448,7 +448,7 @@ const Members = (props) => {
        {/* Modals for Delete folder */}
       <Modal show={show4} onHide={handleClose4} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Delete Folder  {selectedfolderid.categoryname}</Modal.Title>
+          <Modal.Title>Delete   {selectedfolderid.categoryname}</Modal.Title>
         </Modal.Header>
         <Modal.Body className="p-0">          
           <Container>

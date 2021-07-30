@@ -39,7 +39,7 @@ const Members = (props) => {
        handleClose();
     }
     if(Object.keys(data).length == 0){
-      dispatch(actions.deleteCharter(data,selectedcharterid.id));
+      dispatch(actions.deleteCharter(data,selectedcharterid.id,'detail'));
       handleClose3();
     }
       if(data.selectCat == "uncategorized"){
@@ -153,7 +153,7 @@ const Members = (props) => {
 
   return (
     <Container className="members_container mt-4">
-      <h2>{props.setResponseDatadetail? props.setResponseDatadetail.categoryList[0].categoryname:""}  Project List</h2>
+      <h2>{props.setResponseDatadetail? props.setResponseDatadetail.categoryList[0].categoryname:""}  </h2>
        { 
         props.setResponseDatadetail ?  props.setResponseDatadetail.categoryList[0].CategoryProjects.length >0 ?
           _DATA.currentData().map((list,index) => {
@@ -207,7 +207,7 @@ const Members = (props) => {
                   <Label htmlFor>Choose Folder</Label>
                 <select className="form-control" name="selectCat" ref={register({
                     required: true})}>
-                    <option value='uncategorized'>uncategorized</option>
+                    <option value='uncategorized'>Root</option>
                   {
                   props.setcategoryData ?
                   props.setcategoryData.categoryList.map((list,index) => {
