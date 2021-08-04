@@ -39,7 +39,7 @@ const Contact = (props) => {
           <Col>
             <h3 className="text-center my-3 font-weight-bold">contact us</h3>
             <Form className="w-50 mx-auto my-4 form_container" onSubmit={handleSubmit(onSubmit)} noValidate>
-              <Form.Row className="mx-1 my-3">              
+              <Form.Row className="mx-1 my-3">
                   <Form.Group as={Col} controlId="formGridFirstName" className="mx-2">
                     <Form.Label>first name*</Form.Label>
                     <Form.Control type="text" ref={register} name="firstname" />
@@ -87,7 +87,7 @@ const Contact = (props) => {
             </Form>
           </Col>
         </Row>        
-      </Container>              
+      </Container>
     </div>
   );
 };

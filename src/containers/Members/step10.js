@@ -33,8 +33,7 @@ const Impact = ({ setForm, formData, navigation,id }) => {
           const { name, value } = e.target;
           const list = [...goalOpen];
           list[index][name] = value;
-          setGoalOpen(list);
-          
+          setGoalOpen(list);          
         };
        
         // handle click event of the Remove button
@@ -49,9 +48,8 @@ const Impact = ({ setForm, formData, navigation,id }) => {
           console.log('sdfsdfs');
           setGoalOpen([...goalOpen, {goallist: ""}]);
         }; 
-        const onSubmit = async (data) => { 
-        
-          let dataobject = {              
+        const onSubmit = async (data) => {        
+          let dataobject = {
               "project_manager":formData.project_manager,
               "project_sponsor":formData.project_sponsor,
               "project_need":formData.project_need,              
@@ -64,83 +62,78 @@ const Impact = ({ setForm, formData, navigation,id }) => {
               "assumptionTime":formData.assumptionTime,
               "impact":goalOpen,
               "step":id
-           }       
-          dispatch(actions.createcharter(dataobject));  
-          next();  
+            }       
+          dispatch(actions.createcharter(dataobject));
+          next();
        }; 
-       const sendDataToParent = (index) => { // the callback. Use a better name
-        console.log(index);
-        go(index);
-
-      };
-  
-
+       const sendDataToParent = (index) => { 
+         // the callback. Use a better name
+          console.log(index);
+          go(index);
+        };
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >      
         <TitleList activeCls="step11" width={80} sendDataToParent={sendDataToParent} />
     </Container>
-    <Container>
-      <Row className="my-3">
-        <Col xs={1} md={5} className="project_details m-2">
-          <p> Impact </p> 
-          <Form onSubmit={handleSubmit(onSubmit)} noValidate>             
-            {goalOpen.map((x, i) => {  
-              return (<><ItemForm 
-                      label="What will be impacted by this project?" 
-                      name="impact" 
-                      value={x.impact} 
-                      type="textarea" 
-                       onChange={e => handleInputChange(e, i)}
-                      className="project_info"
-                    />
-                     {goalOpen.length !== 1 && <button
-                      className="mr10"
-                      onClick={() => handleRemoveClick(i)}>Remove</button>}
-                     {goalOpen.length - 1 === i && <button onClick={handleAddClick} className="d-block text-right my-3" style={{color: "#5aa380", textDecoration: "none", fontWeight: "600", cursor: "pointer"}}>ADD IMPACT +</button>}
-                   </>)
-              }
-                 
-                 )
-            } 
 
-            <Button variant="light" type="submit" className="p-3" onClick={previous}>
-              BACK
-            </Button>
-            <Button type="submit" className="ml-4 p-3" 
-            style={{background: "#5aa380", border: "none"}} >
-              SAVE AND CONTINUE
-            </Button>              
-            <Button variant="link" type="submit" className="d-block"
-              style={{color: "#5aa380", textDecoration: "none"}}  onClick={next}>
-              Skip this step for now
-            </Button>
+    <Container className="charter_steps_container">
+      <p> Impact </p> 
+      <Row className="charter_steps">
+        <Col xs={12} sm={8} lg={6} className="project_details">
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+            {goalOpen.map((x, i) => {
+              return (
+                <div className="project_charter_textarea_div">
+                  <ItemForm label="What will be impacted by this project?"
+                    name="impact" value={x.impact} type="textarea"
+                    onChange={e => handleInputChange(e, i)} className="project_info" />
+                  <div className="add_remove_btn_unit">
+                    {goalOpen.length !== 1 && <Button variant="link" style={{color: '#212529', border: 'none'}} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
+                    {goalOpen.length - 1 === i && <Button variant="link" onClick={handleAddClick} className="add_goal"  style={{textDecoration: "none" }}>ADD IMPACT <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                  </div>
+                </div>
+              )}
+            )}
+            <div className="nextstep_charter_btn">
+              <Button variant="light" type="submit" className="back_btn" onClick={previous}>
+                BACK
+              </Button>
+              <div className="charter_btn">
+                <Button type="submit" className="saveancontinue_btn"
+                style={{background: "#5aa380", border: "none"}} >
+                  SAVE AND CONTINUE
+                </Button>              
+                <Button variant="link" type="submit" className="skipstep_btn"
+                  style={{color: "#5aa380", textDecoration: "none"}}  onClick={next}>
+                  Skip this step for now
+                </Button>
+              </div>
+            </div>
           </Form>
         </Col>
-      <Col xs={1} md={6} className="faq-section border p-4">
-        <div>
-          <p>Frequently Asked Questions</p>
 
-          <div 
-            onClick={() => setImpactOpen(!impactOpen)}
-            aria-controls="example-collapse-text"
-            aria-expanded={impactOpen} 
-            className="faq-col mt-4" >
-            <p> What exactly is an impact? </p>
-
+        <Col xs={12} sm={4} lg={5} className="faq-section p-2">
+          <div>
+            <p>Frequently Asked Questions</p>
+            <div 
+              onClick={() => setImpactOpen(!impactOpen)}
+              aria-controls="example-collapse-text" aria-expanded={impactOpen} 
+              className="faq-col" >
+              <p> What exactly is an impact? </p>
+            </div>
             <Collapse in={impactOpen}>
-              <div id="example-collapse-text">
-                Take some time to think about all the
-                areas affected by this project. For instance, if you're developing a new
-                product, will marketing need to change the way they advertise? Will any operational policies and procedures need
-                to change as a result? Identifying these items early will be beneficial to you and the project team.
+              <div className="faq-content" id="example-collapse-text">
+                <p>Take some time to think about all the areas affected by this project. For 
+                  instance, if you're developing a new product, will marketing need to change
+                  the way they advertise? Will any operational policies and procedures need
+                  to change as a result? Identifying these items early will be beneficial to you and the project team.</p>
               </div>
-            </Collapse>
+            </Collapse>            
           </div>
-        </div>
-      </Col>
-    </Row>
-  </Container>
+        </Col>
+      </Row>
+    </Container>
   </>
   );
 };

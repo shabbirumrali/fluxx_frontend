@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Collapse, Button,Form } from "react-bootstrap";
+import { Col, Container, Row, Collapse, Button, Form, Accordion } from "react-bootstrap";
 import ItemForm from "./ItemForm";
 import TitleList from  "./titleList";
 import * as Yup from "yup";
@@ -36,55 +36,53 @@ const Names = ({ setForm, formData, navigation,id }) => {
 
   };
 
-  return (<>
-    <Container fluid style={{background: "#3d4a5c"}} className="py-4">        
-      <TitleList activeCls="step1" width={7} sendDataToParent={sendDataToParent}/>      
+return (
+  <>
+    <Container fluid style={{background: "#3d4a5c"}} className="py-4">
+      <TitleList activeCls="step1" width={7} sendDataToParent={sendDataToParent}/>
     </Container>
-    <Container className="mb-5">
-      <Row className="my-5">
-        <Col sm={8} lg={6} className="project_details">
-          <p>Project Name</p> 
-            <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-              <ItemForm
-                label="What is the title of your project?"
-                name="name"
-                type="textarea"
-                value={name}
-                onChange={setForm}
-                className="project_info mb-4"
-              />
-          <Button 
-            type="submit" 
-            className="p-btns p-3 d-block"
-            style={{background: "#5aa380", border: "none"}} 
-          >
-              SAVE AND CONTINUE
-            </Button>
-            
-            <Button variant="link" type="submit"
-            style={{color: "#5aa380", textDecoration: "none"}} onClick={next}
-            >
-              Skip this step for now
-            </Button>
+
+    <Container className="charter_steps_container">
+      <p>project name</p>
+      <Row className="charter_steps">
+        <Col sm={12} lg={6} className="project_details">
+            <Form onSubmit={ handleSubmit(onSubmit) } noValidate>
+              <div className="project_charter_textarea_div">
+                <ItemForm label="What is the title of your project?"
+                  name="name" type="textarea" value={name}
+                  onChange={setForm} className="project_info"
+                />
+              </div>
+              <div className="charter_btn">
+                <Button type="submit" className="saveancontinue_btn"
+                  style={{background: '#5aa380', border: 'none'}} >
+                  SAVE AND CONTINUE
+                </Button>
+
+                <Button variant="link" type="submit" className="skipstep_btn"
+                  style={{textDecoration: "none"}} onClick={next} >
+                  Skip this step for now
+                </Button>
+              </div>
             </Form>
         </Col>
-        <Col sm={4} lg={5} className="faq-section border p-4 m-1">
+
+        {/* Faq Step 1 */}
+        <Col sm={4} lg={5} className="faq-section p-2">
           <div>
             <p>Frequently Asked Questions</p>
-
-            <div 
+            <div
               onClick={() => setProjectOpen(!projectOpen)}
               aria-controls="example-collapse-text"
-              aria-expanded={projectOpen} 
-              className="faq-col mt-4" >
+              aria-expanded={projectOpen}
+              className="faq-col">
               <p> What should I name my project? </p>
-
+            </div>
               <Collapse in={projectOpen}>
-                <div id="example-collapse-text">
-                  Your project name should be something clear and concise. We suggest avoiding acronyms unless you spell them out. For example, instead of "BPE", use "Best Project Ever (BPE)".
+                <div className="faq-content" id="example-collapse-text">
+                  <p>Your project name should be something clear and concise. We suggest avoiding acronyms unless you spell them out. For example, instead of "BPE", use "Best Project Ever (BPE)".</p>
                 </div>
               </Collapse>
-            </div>
           </div>
         </Col>
       </Row>

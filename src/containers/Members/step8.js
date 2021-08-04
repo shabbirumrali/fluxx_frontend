@@ -45,57 +45,54 @@ const Budget = ({ setForm, formData, navigation,id }) => {
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
-      <Row>
-        <TitleList activeCls="step8" width={63} sendDataToParent={sendDataToParent} />
-      </Row>       
-    </Container>     
-    <Container>
-      <Row className="my-3">
-        <Col xs={1} md={5} className="project_details m-2">
-          <p> Budget </p>   
-          <Form onSubmit={handleSubmit(onSubmit)} noValidate>         
-            <ItemForm
-              label="What is the estimated total cost of your project?"
-              type="textarea"
-              name="budget"
-              value={budget}
-              onChange={setForm}
-              className="project_info"
-            />
-            <Button variant="light" type="submit" className="p-3" onClick={previous}>
-              BACK
-            </Button>
-            <Button type="submit" className="ml-4 p-3" onClick={next}
-              style={{background: "#5aa380", border: "none"}} >
-                SAVE AND CONTINUE
-            </Button>              
-            <Button variant="link" type="submit" className="d-block" onClick={next}
-              style={{color: "#5aa380", textDecoration: "none"}} >
-              Skip this step for now
-            </Button>
+      <TitleList activeCls="step8" width={63} sendDataToParent={sendDataToParent} />
+    </Container>
+
+    <Container className="charter_steps_container">
+      <p> Budget </p>
+      <Row className="charter_steps">
+        <Col xs={12} sm={8} lg={6} className="project_details">
+          <Form onSubmit={handleSubmit(onSubmit)} noValidate>
+            <div className="project_charter_textarea_div">
+              <ItemForm label="What is the estimated total cost of your project?"
+                type="textarea" name="budget" value={budget}
+                onChange={setForm} className="project_info" />
+            </div>
+            <div className="nextstep_charter_btn">
+              <Button variant="light" type="submit" className="back_btn" onClick={previous}>
+                BACK
+              </Button>
+              <div className="charter_btn">
+                <Button type="submit" className="saveancontinue_btn" onClick={next}
+                  style={{background: "#5aa380", border: "none"}} >
+                    SAVE AND CONTINUE
+                </Button>              
+                <Button variant="link" type="submit"  className="skipstep_btn" onClick={next}
+                  style={{color: "#5aa380", textDecoration: "none"}} >
+                  Skip this step for now
+                </Button>
+              </div>
+            </div>
           </Form>
         </Col>
 
-        <Col xs={1} md={6} className="faq-section border p-4">
+        <Col xs={12} sm={4} lg={5} className="faq-section p-2">
           <div>
             <p>Frequently Asked Questions</p>
 
-            <div 
-              onClick={() => setBudgetOpen(!budgetOpen)}
-              aria-controls="example-collapse-text"
-              aria-expanded={budgetOpen} 
-              className="faq-col mt-4" >
-              <p> What goes into the estimated budget? </p>
-
+            <div onClick={() => setBudgetOpen(!budgetOpen)}
+              aria-controls="example-collapse-text" aria-expanded={budgetOpen} 
+              className="faq-col" >
+              <p>What goes into the estimated budget?</p>
+            </div>
               <Collapse in={budgetOpen}>
-                <div id="example-collapse-text">
-                  How much will all of this cost? Are you going to need new equipment? Will you
+                <div className="faq-content" id="example-collapse-text">
+                  <p>How much will all of this cost? Are you going to need new equipment? Will you
                   need to hire outside assistance? The estimated total of all of those items
                   should be reflected here. You may not know exactly how much you'll need yet,
-                  but try to get as close as you can with what you know right now.
+                  but try to get as close as you can with what you know right now.</p>
                 </div>
-              </Collapse>
-            </div>
+              </Collapse>            
           </div>
         </Col>
       </Row>

@@ -20,23 +20,22 @@ const Members = (props) => {
   console.log(props);
   const dispatch = useDispatch();
   const history = useHistory();
+
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
-    if(token == ''){       
+    if(token == ''){
         history.push({
-        pathname:  "/",        
+        pathname:  "/",
      });
     }
   };
   
-    
-  
   const { register, errors, handleSubmit,renameSubmit, reset} = useForm();
   const { className, toggle, modal } = props;
-  const [responseData, setResponseData] = useState(true); 
+  const [responseData, setResponseData] = useState(true);
   const [categoryData,setcategoryData]  = useState(true);
-  const [singleCharterData, setCharterData] = useState(true); 
-  const [pageOfItems,setpageOfItems] = useState(true);  
+  const [singleCharterData, setCharterData] = useState(true);
+  const [pageOfItems,setpageOfItems] = useState(true);
   const onSubmit = async (data) => {
     if(data.foldername != undefined){
       dispatch(actions.createfolder(data));      
@@ -47,20 +46,18 @@ const Members = (props) => {
        handleClose();
     }
     if(Object.keys(data).length == 0){
-      dispatch(actions.deleteCharter(data,selectedcharterid.id,'main'));
+      dispatch(actions.deleteCharter(data,selectedcharterid.id));
       handleClose3();
-
     }
     if(data.selectCat != undefined){
        dispatch(actions.moveCharter(data,selectedcharterid));
-       handleClose2();
-      
+       handleClose2();      
     }
     if(data.deletefolder != undefined){
        dispatch(actions.deleteFolder(data,selectedfolderid.id));       
        handleClose4();
        dispatch(actions.categoryList());
-    }    
+    }
     reset();
   };
   
@@ -68,10 +65,7 @@ const Members = (props) => {
       checkAuthToken();
       dispatch(actions.charterlist());
       dispatch(actions.categoryList());
-      
   },[]);
-
-
 
   const [folder, setFolder] = useState(false)
   const [show, setShow] = useState(false)
@@ -92,14 +86,13 @@ const Members = (props) => {
     setShow3(false);
     setpopover(false)
     setShow4(false)
-
-  } 
+  }
   const handleShow2 = () =>{
-        setShow2(true)
-        setShow(false)
-        setShow3(false)
-        setpopover(false)
-        setShow4(false)
+    setShow2(true)
+    setShow(false)
+    setShow3(false)
+    setpopover(false)
+    setShow4(false)
   } 
   const handleShow3 = () =>{
     setShow3(true)
@@ -109,76 +102,77 @@ const Members = (props) => {
     setShow4(false)
   } 
   const handleShow4 = () =>{
-        setpopover(false)
-        setShow4(true)
-         setShow(false)
-        setShow2(false);
-        setShow3(false);
-
+    setpopover(false)
+    setShow4(true)
+    setShow(false)
+    setShow2(false);
+    setShow3(false);
   }
 
   const [selectedcharterid, chartedId] = useState(true);
   const [selectedfolderid, folderId] = useState(true);
   const fetchcharter = value  => () => {   
-        fetchDetail(value)
+    fetchDetail(value)
   }
   const fetchcategoryProjects = value  => () => { 
-        history.push({
-          pathname: "/members/"+value, 
-          state: { catlist: categoryData}
-        });
-  }
-  
+    history.push({
+      pathname: "/members/"+value,
+      state: { catlist: categoryData}
+    });
+  }  
   const fetchDetail = useCallback((value) => {   
     axios({
       "method": "GET",
       "url": appConfig.config().baseUrl+"/fetchcharter/"+value,
       "headers": {
-         'Authorization': `Bearer ${localStorage.getItem('token')}`,
-         'Content-Type': 'application/json', 
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json'
       }
     })
     .then((response) => {
       //console.log(response.data);
       history.push({
-          pathname: "/cmain", 
-          state: { detail: response.data.charterlist}
-        });
-
+        pathname: "/cmain",
+        state: { detail: response.data.charterlist}
+      });
     })
     .catch((error) => {
       console.log(error)
     })
   }, [])
 
-  // refresh the page if folder delete 
+  // refresh the page if folder delete
   const popover1 = (
     <Popover isOpen = {showpopover1} >
-      <Popover.Content className="demo-pop p-0">
-          <div className="delete_option py-2 px-3" onClick={handleShow4}>
-            <p className="mb-0">Delete</p>            
+      <Popover.Content className="demo-pop">
+          <div className="options" onClick={handleShow4}>
+            <i className="fa fa-times" aria-hidden="true"></i>
+            <p>Delete</p>
           </div>
       </Popover.Content>
     </Popover>
   );
   const popover = (
     <Popover isOpen = {showpopover} >
-      <Popover.Content className="demo-pop p-0"> 
-          <div className="rename_option py-2 px-3" onClick={handleShow}>
-            <p className="mb-0">Rename</p>
+      <Popover.Content className="demo-pop">
+          <div className="options" onClick={handleShow}>
+            <i className="fa fa-i-cursor" aria-hidden="true"></i>
+            <p>Rename</p>
           </div>
-          <div className="moveto_option py-2 px-3" onClick={handleShow2}>
-            <p className="mb-0">Move To</p>
+          <div className="options" onClick={handleShow2}>
+            <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <p>Move To</p>
           </div>
-          <div className="delete_option py-2 px-3" onClick={handleShow3}>
-            <p className="mb-0">Delete</p>            
+          <div className="options" onClick={handleShow3}>
+            <i className="fa fa-times" aria-hidden="true"></i>
+            <p>Delete</p>
           </div>
       </Popover.Content>
     </Popover>
   );
+
   let [page, setPage] = useState(1);
-  const PER_PAGE = 2;  
-  
+  const PER_PAGE = 2;
   const count = Math.ceil(props.setResponseData ? props.setResponseData.charterlist.length/ PER_PAGE:0);
   const _DATA = usePagination(props.setResponseData ? props.setResponseData.charterlist :[] , PER_PAGE);
   const handleChange = (e, p) => {
@@ -186,69 +180,67 @@ const Members = (props) => {
     _DATA.jump(p);
   };
   
-
-
   return (
-    <Container className="members_container mt-4">
+    <Container className="members_container">
       <h2>My Project Charters</h2>
-        <Row className="mt-5 pb-4 border-bottom">
-          <Col xs lg="6">
-            <div className="d-flex">
+        <Row className="project_charter">
+          <Col sm={6} xs={12} md={6} lg={6} className="myproject_charter">
+            <div className="charter_leftsection">
               <h6>My Project Charters</h6>
-              <Image width={34} height={34} className="ml-4"
-                src={Folder} alt="Folder image" onClick={handleShowFolder}
+              <Image width={34} height={34} className=""
+                src={Folder} alt="Create new folder" onClick={handleShowFolder}
                 style={{cursor: "pointer"}}
               />
             </div>
           </Col>
           {/* Button */}
-          <Col className="create-charter-div mx-3">
-            <Link to="/clanding" className="py-3 create-charter-btn">
-              Create New Charter
-            </Link>              
+          <Col sm={6} xs={12} md={6} lg={6} className="create_charter_btn_container">
+            <div className="create_charter_right_btn">
+              <Link to="/clanding" className="create_charter_btn">
+                Create New Charter
+              </Link>
+            </div>
           </Col>
         </Row>
-    { 
+      { 
         props.setcategoryData ?
-             props.setcategoryData.categoryList.map((list,index) => {
-                 return (<Row key={index}>
-                          <Col className="py-4">
-                            <div className="shadow charters" style={{background: "white"}}>
-                              <div style={{background: "#f9f9f9"}}>
-                                <Image src={folderDoc} width={36} className="m-3" alt="Folder image" />
-                              </div>              
-                              <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380", cursor: "pointer"}}  onClick={fetchcategoryProjects(list.id)} >{list. categoryname}</p>
-                            
-                              <div className="d-flex ml-auto option_section">
-                                <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
-
-                                <OverlayTrigger trigger="click" placement="left" overlay={popover1} rootClose>
-                                  <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => folderId(list)} />
-                                </OverlayTrigger>
-                              </div>
-                            </div>              
-                          </Col>  
-                      </Row>
-                     )
-          }) :null  
-    }   
-        { 
+          props.setcategoryData.categoryList.map((list,index) => {
+          return (
+            <Row key={index}>
+              <Col className="personal_charters">
+                <div className="personal_charters_subparts">
+                  <div className="personal_charter_imgsection">
+                    <Image src={folderDoc} width={36} alt="folder" />
+                  </div>
+                  <p className="personal_charter_name" style={{color: "#5aa380", cursor: "pointer"}} onClick={fetchcategoryProjects(list.id)} >{list. categoryname}</p>
+                  <div className="last_modified_unit">
+                    <p>Last Modified: { moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a') }</p>
+                    <OverlayTrigger trigger="click" placement="left" overlay={popover1} rootClose>
+                      <i className="fa fa-ellipsis-v" aria-hidden="true" onClick={() => folderId(list)}></i>
+                      {/* <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => folderId(list)} /> */}
+                    </OverlayTrigger>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          )}) : null }
+      { 
         props.setResponseData ?  props.setResponseData.charterlist.length >0 ?
           _DATA.currentData().map((list,index) => {
             if(list.assignCat == 0){
             return (<Row key={index}>
-            <Col className="py-4">
-              <div className="shadow charters" style={{background: "white"}}>
-                <div style={{background: "#f9f9f9"}}>
-                  <Image src={Document} width={36} className="m-3" alt="Folder image" />
+            <Col className="personal_charters">
+              <div className="personal_charters_subparts">
+                <div className="personal_charter_imgsection">
+                  <Image src={Document} width={36} alt="document" />
                 </div>              
-                <p className="pl-3 my-auto font-weight-bold" style={{color: "#5aa380", cursor: "pointer"}}  onClick={fetchcharter(list.name)} >{list.name}</p>
+                <p className="personal_charter_name" style={{color: "#5aa380", cursor: "pointer"}}  onClick={fetchcharter(list.name)} >{list.name}</p>
               
-                <div className="d-flex ml-auto option_section">
-                  <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                  
-
+                <div className="last_modified_unit">
+                  <p>Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>
                   <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
-                    <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} />
+                    <i className="fa fa-ellipsis-v" aria-hidden="true" onClick={() => chartedId(list)}></i>
+                    {/* <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => chartedId(list)} /> */}
                   </OverlayTrigger>
                 </div>
               </div>              
@@ -256,230 +248,123 @@ const Members = (props) => {
         </Row>
         )
        }
-      }) :null  :null 
- 
-    } 
-     { 
-        props.setResponseData ?  props.setResponseData.charterlist.length ?
-        <Pagination
-            className="pagination_section"
-            count={count}
-            size="large"
-            page={page}
-            variant="outlined"
-            shape="rounded"
-            onChange={handleChange}
-          />
-       :null
-       :null
-     }
-
+      }) :null  :null } 
+      { props.setResponseData ?  props.setResponseData.charterlist.length ?
+        <Pagination className="pagination_section" count={count} size="large"
+          page={page} variant="outlined" shape="rounded" onChange={handleChange} />
+          : null : null }
 
     {/* ---------------------------MODEL-------------------------------- */}
 
     {/* Modals for create folder */}
       <Modal show={folder} onHide={handleCloseFolder} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Create folder</Modal.Title>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">Create folder</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="p-0">          
-          <Container>
-            <Row>
-              <Col className="py-1">
-                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-                <FormGroup >
-
-                  <Label htmlFor>Folder Name</Label>
-                  <input
-                    type="text"
-                    ref={register({
-                      required: true})}
-                    name="foldername"
-                    />
-                    {errors.foldername && (
-                      <span className="errorMessage">
-                        Please enter a foldername
-                      </span>
-                    )}
-                </FormGroup>             
-              <Button className="py-2 mr-2 mb-3" style={{ background:"#5aa380", color: "#efefef", border: "none" }} type="submit">
-                    CREATE FOLDER
-                  </Button>
-                  <Button 
-                  onClick={handleCloseFolder} 
-                  className="py-2 mx-2 mb-3" 
-                  variant="light" 
-                  style={{background:"", color: "", border: "none"}} 
-                  type="submit"
-                  >
-                    CANCEL
-                  </Button>
-              </Form>                
-              </Col>
-            </Row>
-          </Container>
+        <Modal.Body clasName="modal_body_section">
+            <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <FormGroup>
+              <Label htmlFor>Folder Name</Label>
+              <input type="text" ref={register({ required: true })} name="foldername" />
+                {errors.foldername && (
+                  <span className="errorMessage"> Please enter a foldername </span>
+                )}
+            </FormGroup>
+          <div className="modal_btn_section_create_folder">
+            <Button className="modal_trigger_btn" type="submit"> Create Folder </Button>
+            <Button onClick={handleCloseFolder} className="modal_cancel_btn" variant="light" type="submit" > Cancel </Button>
+          </div>
+          </Form>
         </Modal.Body>        
       </Modal>
 
       {/* Modals for rename */}
       <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Rename your Document {selectedcharterid.name}</Modal.Title>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">
+            Rename your Document {selectedcharterid.name}            
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body className="p-0">          
-          <Container>
-            <Row>
-              <Col className="py-1">
-                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-                  <FormGroup >
-                <Label htmlFor>New Name</Label>
-                <input
-                  type="text"
-                  ref={register({
-                    required: true})}
-                  name="newchartername"
-                  />
-                  {errors.newchartername && (
-                    <span className="errorMessage">
-                      Please enter a Document name
-                    </span>
-                  )}
-              </FormGroup>
-
-                  <Button 
-                  className="py-2 mr-2 mb-3" 
-                  style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
-                  type="submit"
-                  >
-                    RENAME
-                  </Button>
-                  <Button 
-                  onClick={handleClose} 
-                  className="py-2 mx-2 mb-3" 
-                  variant="light" 
-                  style={{background:"", color: "", border: "none"}} 
-                  type="submit"
-                  >
-                    CANCEL
-                  </Button>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
+        <Modal.Body clasName="modal_body_section">
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <FormGroup className="modal_form_content">
+              <Label htmlFor>New File Name</Label>
+              <input type="text" ref={register({ required: true})} name="newchartername" />
+                {errors.newchartername && ( 
+                  <span className="errorMessage"> Please enter a Document name </span>
+                )}
+            </FormGroup>
+            <div className="modal_btn_section">
+              <Button className="modal_trigger_btn" type="submit">Rename</Button>
+              <Button className="modal_cancel_btn" onClick={handleClose} variant="light" type="submit">Cancel</Button>
+            </div>
+          </Form>          
         </Modal.Body>
       </Modal>
 
       {/* Modals for move to */}
       <Modal show={show2} onHide={handleClose2} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Move Item {selectedcharterid.name}</Modal.Title>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">Move Item</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="p-0">          
-          <Container>
-            <Row>
-              <Col className="py-1">
-                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-                  <FormGroup >
-                  <Label htmlFor>Choose Folder</Label>
-                <select className="form-control" name="selectCat" ref={register({
-                    required: true})}>
-                 {
-
-
-                  props.setcategoryData ?
-                  props.setcategoryData.categoryList.map((list,index) => {
-                    return (<option key={index} value={list.id}>{list.categoryname}</option>)
-                  })
-                  :null                  
-
-                 }
-                 </select>
-              </FormGroup >
-
-
-                    <Button 
-                      className="py-2 mr-2 mb-3" 
-                      style={{ background: "#5aa380", color: "#efefef", border: "none" }} 
-                      type="submit"
-                      >
-                        Submit
-                      </Button>
-                      <Button 
-                      onClick={handleClose2} 
-                      className="py-2 mx-2 mb-3" 
-                      variant="light" 
-                      style={{background:"", color: "", border: "none"}} 
-                      type="button"
-                    >
-                      CANCEL
-                    </Button>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
+        <Modal.Body clasName="modal_body_section">
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <FormGroup className="modal_form_content">
+              <Label htmlFor>Where would you like to move <span>"{selectedcharterid.name}"</span> ?</Label>
+                <select className="form-control" name="selectCat" ref={register({required: true})}>
+                  { props.setcategoryData ? props.setcategoryData.categoryList.map((list,index) => {
+                    return (
+                      <option key={index} value={list.id}>{list.categoryname}</option>)
+                  }) : null }
+                </select>
+            </FormGroup>
+              <div className="modal_btn_section">
+                <Button className="modal_trigger_btn" type="submit">Submit </Button>
+                <Button className="modal_cancel_btn" onClick={handleClose2}  variant="light" type="button">CANCEL</Button>
+              </div>
+          </Form>              
         </Modal.Body>
       </Modal>
 
       {/* Modals for Delete */}
       <Modal show={show3} onHide={handleClose3} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Delete Item {selectedcharterid.name}</Modal.Title>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">Delete Item</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="p-0">          
-          <Container>
-            <Row>
-              <Col className="py-1">
-                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>    
-                  {/* form tag if needed */}
-                  <p>Very First Charter Last Modified: December 17, 2020 08:57 PM ET My Very First Charter” ?</p>
-                  <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
-                    Delete
-                  </Button>
-                  <Button className="py-2 mx-2 mb-3" onClick={handleClose3} variant="light" style={{background:"", color: "", border: "none"}} type="button">
-                    CANCEL
-                  </Button>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
+        <Modal.Body clasName="modal_body_section">
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            {/* form tag if needed */}
+            <div className="modal_delete_msg">
+              <p>Are you sure you want to delete <span>"{selectedcharterid.name}"</span></p>
+            </div>
+            <div className="modal_btn_section">
+              <Button className="modal_trigger_btn" type="submit">Delete</Button>
+              <Button className="modal_cancel_btn" onClick={handleClose3} variant="light" type="button">Cancel</Button>
+            </div>
+          </Form>
         </Modal.Body>        
       </Modal>
 
        {/* Modals for Delete folder */}
       <Modal show={show4} onHide={handleClose4} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Delete   {selectedfolderid.categoryname}</Modal.Title>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">Delete Folder {selectedfolderid.categoryname}</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="p-0">          
-          <Container>
-            <Row>
-              <Col className="py-1">
-                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-                  
-                  <input
-                  type="hidden"
-                  ref={register({
-                    required: true})}
-                  name="deletefolder"
-                  value={selectedfolderid.id}
-                  />                                 
-                  <Button className="py-2 mr-2 mb-3" style={{background:"#5aa380", color: "#efefef", border: "none"}} type="submit">
-                    Delete
-                  </Button>
-                  <Button className="py-2 mx-2 mb-3" onClick={handleClose4} variant="light" style={{background:"", color: "", border: "none"}} type="button">
-                    CANCEL
-                  </Button>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
-        </Modal.Body>        
+        <Modal.Body clasName="modal_body_section">
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>                  
+            <input type="hidden" ref={register({ required: true})} name="deletefolder" value={selectedfolderid.id} />
+            <div className="modal_btn_section">
+              <Button className="modal_trigger_btn" type="submit"> Delete </Button>
+              <Button className="modal_cancel_btn" onClick={handleClose4} variant="light" type="button"> Cancel </Button>
+            </div>
+          </Form>
+        </Modal.Body>
       </Modal>       
     </Container>
   )
 };
 const mapStateToProps = (state) => {
-    console.log(state);
+  console.log(state);
   return {
     setResponseData: state.auth.data,
     setcategoryData:state.auth.newdata,
