@@ -135,7 +135,11 @@ export const createForm = (form, props) => {
       .then((response) => {
         if (response.statusText === "OK") {
           toast.success("Account creation successful.");
-          history.push("/login");
+          history.push({
+            pathname: "/",
+            state: { loginopen: true}
+          });
+          window.location.href = "/";
         }
       })
       .catch((err) => {

@@ -18,6 +18,7 @@ import Lifesaver from '../../../assets/img/lifesaver.png'
 import * as actions from "../../../store/actions/index";
 
 const Register = (props) => {
+  console.log(props);
   const history = useHistory();
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
@@ -41,7 +42,7 @@ const Register = (props) => {
   });
 
   const dispatch = useDispatch();
-  const { toggle, test } = props;
+  const { className, toggle, modal } = props;
   const { register, errors, handleSubmit, reset } = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -51,7 +52,7 @@ const Register = (props) => {
     reset();
   };
 
-  console.log(toggle, test);
+ console.log(toggle);
   useEffect(() => { 
       checkAuthToken();
       
@@ -97,7 +98,7 @@ const Register = (props) => {
               </div>
 
               <div className="account_footer py-3">
-                <p className="text-center">Already have an account ? <a href className=""> Sign In</a></p>
+                <p className="text-center">Already have an account ? <a href className="" onClick={toggle}> Sign In</a></p>
               </div>
               {/* <p>
                 Already have an Account?{" "}
