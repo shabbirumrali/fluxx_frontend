@@ -19,7 +19,7 @@ import * as actions from "../../store/actions/index";
 const Auth = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { register, errors, handleSubmit, reset} = useForm();
+  const { register, errors, handleSubmit, reset } = useForm();
   const { className, toggle, modal } = props;
 
   const onSubmit = async (data) => {
@@ -34,101 +34,74 @@ const Auth = (props) => {
   let authRedirect = null;
 
   console.log(props.isAuthenticated);
-  
 
-  useEffect(() => { 
-    
-      if (props.isAuthenticated == true) {
-          toggle(!toggle);
-        
-    
-          history.push("/members");
+  useEffect(() => {
 
-      }
-  },[props.isAuthenticated]); 
+    if (props.isAuthenticated == true) {
+      toggle(!toggle);
+      history.push("/members");
+    }
+  }, [props.isAuthenticated]);
 
   const redirect = () => {
     history.push("/register");
     console.log(toggle);
     toggle(!toggle);
-
   };
 
   return (
     <Modal isOpen={modal} toggle={toggle} className={className} centered>
-      <ModalHeader closeButton className="logo"><h5>fluxx.</h5></ModalHeader>
-      <ModalBody className="p-0">  
-        <Container fluid="md" className="signin_color mx-0">
-            <Row className="py-3">
-              <Col className="sign_in_fluxx py-1"><p className="m-0"> Sign in to Fluxx. </p></Col>
-            </Row>
-        </Container>
-
-         <Container>
-            <Row>
-              <Col className="py-1 mx-4">
-                <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-                  <FormGroup >
-                    <Label htmlFor style={{color: "#a4d3e7"}}>email</Label>
-                    <input
-                      type="email"
-                      ref={register({
-                        required: true,
-                        pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                      })}
-                      name="email"
-                    />
-                    {errors.email && (
-                      <span className="errorMessage">
-                        Please enter a valid email address
-                      </span>
-                    )}
-                  </FormGroup>
-                  <FormGroup>
-                    <Label htmlFor style={{color: "#a4d3e7"}}>password</Label>
-                    <input
-                      type="password"
-                      ref={register({
-                        required: true,
-                        pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
-                      })}
-                      name="password"
-                    />
-                    {errors.password && (
-                      <span className="errorMessage">
-                        Please enter a valid password
-                      </span>
-                    )}
-                  </FormGroup>
-                    <div className="col forget_pass">
-                    <p className="m-0">
-                      <Link to="#" rel="noreferrer" onClick={forgetpassword} style={{color: "#5aa380", textDecoration: "none"}}>
-                        I forgot my password.
-                      </Link>
-                    </p>
-                  </div>
-                  {
-
-                  }
-                  <Button type="submit" className="sign_in_button py-3 my-3" block style={{border: "none"}}>
-                    SIGN IN
-                  </Button>
-                </Form>
-              </Col>
-            </Row>
-          </Container>
-      </ModalBody>      
-      <ModalFooter className="justify-content-center model_footer">
-          <p className="py-2">Don’t have an account? <a href="#" onClick={redirect} >Create a free account</a></p>
-        </ModalFooter>
-      </Modal>
+      <ModalHeader className="modal_logo" closeButton>
+        <h5>fluxx.</h5>
+      </ModalHeader>
+      <ModalBody className="p-0">
+        <div className="signin_modal_header">
+          <p className="m-0"> Sign in to Fluxx. </p>
+        </div>
+        <div className="modal_form_body">
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <FormGroup >
+              <Label htmlFor>email</Label>
+              <input type="email" name="email"
+                ref={register({
+                  required: true, pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                })}
+              />
+              {errors.email && (<span className="errorMessage"> Please enter a valid email address </span>)}
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor>password</Label>
+              <input type="password" name="password"
+                ref={register({
+                  required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+                })}
+              />
+              {errors.password && (<span className="errorMessage"> Please enter a valid password </span>)}
+            </FormGroup>
+            <div className="forget_pass">
+              <p className="m-0">
+                <Link to="#" rel="noreferrer" onClick={forgetpassword} style={{ color: "#5aa380", textDecoration: "none" }}>
+                  I forgot my password.
+                </Link>
+              </p>
+            </div>
+            <Button type="submit" className="sign_in_button" style={{ border: "none" }}>
+              SIGN IN
+            </Button>
+          </Form>
+        </div>
+      </ModalBody>
+      <ModalFooter className="model_footer">
+        <p>Don’t have an account? <a href="#" onClick={redirect} >Create a free account</a></p>
+      </ModalFooter>
+    </Modal>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.token !== null,
-    authRedirectPath: state.auth.authRedirectPath,   
+    authRedirectPath: state.auth.authRedirectPath,
   };
 };
 

@@ -6,9 +6,20 @@ body {
   padding: 0 !important;
 }
 /* navigation */
-.logo h4 {
-  font-size: 30px;
-  font-weight: 800;
+.logo h2{
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 1px;  
+  color: hsl(0, 0%, 30%);
+}
+.modal_logo {
+  display: block;
+}
+.modal_logo h5{
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: hsl(0, 0%, 30%);
 }
 .header_text_overlay {
   display: flex;
@@ -30,25 +41,24 @@ body {
 .active {
   font-weight: 600;
 }
-.dropdown_items {
+/* .dropdown_items {
   padding: 0.5rem 1.5rem !important;
-}
+} */
 .dropdown_items a {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
   text-decoration: none;
-  color: #212529;
+  padding: 10px 40px 10px 20px;
+  color: hsl(0, 0%, 50%);  
 }
-.dropdown_items a:hover {
-  text-decoration: none;
-  color: #212529;
-}
-.dropdown_items:focus,
-.dropdown_items:active {
-  background: #5aa380 !important;
-  color: #efefef !important;
-}
+.dropdown_items a:hover,
 .dropdown_items a:focus,
 .dropdown_items a:active {
   color: #efefef !important;
+  text-decoration: none;
+  background: #69b791;
+  padding: 10px 40px 10px 20px;
 }
 /* landing page */
 .why_fluxx {
@@ -128,18 +138,7 @@ body {
   width: 100%;
   padding: 0 20px;
 }
-/*  */
-.sign_in_button {
-  width: 100%;
-  background-color: #69b791 !important;
-  color: #fbf7f7;
-  font-size: 20px !important;
-  border-radius: 10px !important;
-}
-.sign_in_button:hover {
-  background-color: #5aa380 !important;
-  color: #fbf7f7;
-}
+
 .form_detail input {
   border-bottom: 1px solid #a2c4ce !important;
 }
@@ -148,58 +147,83 @@ body {
   font-weight: 400;
 }
 
-/* SignIn Modal Fotgot password  */
-.forget_pass {
-  text-align: right;
-}
-.forget_pass p a {
-  color: #69b791;
-  text-decoration: none;
-}
-.forget_pass p a:hover {
-  color: #5aa380 !important;
-}
+
 /* forgot password container */
-.set_password_form,
-.forgot_privacy_info {
-  width: 50%;
-  margin: auto;
+.forgot_password_row {
+  height: 80vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.set_password_form {
-  box-shadow: 1px 1px 5px #999;
+.forgot_pass_container {  
+  /* background-color: #7491c3; */
+}
+.forgot_pass_container h3{
+  text-align: center;
+  color: hsl(0, 0%, 30%);
+  display: block;
+  margin: 5% 0;
+}
+.forgot_pass_email {
+  /* background: red;   */
+}
+.forgot_pass_email form {
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid hsl(0, 0%, 80%);
+}
+.forgot_pass_email form label {
+  color: #a2c4ce;
+  font-weight: 500;
+  margin: 0;
+}
+.forgot_pass_email form input {
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 0;
+  border-bottom: 1px solid hsl(0, 0%, 50%);
+}
+.forgot_pass_email form button {
+  width: 99%;
+  display: block;
+  border: none;   
+  margin: 20px auto  10px auto;
+  color: hsl(0, 0%, 98%);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 12px 0;
+  text-transform: uppercase;
+  background: #69b791;
+  transition: all 0.6s ease-in-out;
+}
+.forgot_pass_email form button:hover,
+.forgot_pass_email form button:focus,
+.forgot_pass_email form button:active {
+  background: #5aa380;
+  color: hsl(0, 0%, 99%);
+}
+.forgot_privacy_info {
+  
 }
 .forgot_privacy_info p {
-  font-size: 10px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding: 20px 0;
+  color: hsl(0, 0%, 10%);
 }
 .forgot_privacy_info p a {
   color: #69b791;
   text-decoration: none;
+  font-weight: 500;
 }
 .forgot_privacy_info p a:hover {
   color: #5aa380;
+  text-decoration: underline;
 }
-.set_password_form form label {
-  margin: 0;
-  color: #a4d3e7 !important;
-}
-#contact-form .form-group input {
-  width: 100%;
-  border-bottom: 1px solid #a4d3e7 !important;
-  border-radius: 0;
-  padding: 0;
-}
-.set_password_form form button {
-  background: #69b791;
-  border: none;
-  width: 100%;
-  padding: 10px;
-  font-size: 18px;
-}
-.set_password_form form button:hover,
-.set_password_form form button:focus,
-.set_password_form form button:active {
-  background: #5aa380 !important;
-}
+
+/* Create Account */
 /* ----- */
 .create_acc p {
   font-size: 18px;
@@ -213,7 +237,147 @@ body {
 .create_acc p a:hover {
   color: #5aa380;
 }
-
+.signup_container {
+  /* background: goldenrod; */
+}
+.signup_row {  
+  display: flex;
+  justify-content: center;
+}
+.create_your_account {  
+  /* background: yellow; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.account_form {
+  width: 80%;
+  /* background: rebeccapurple; */
+}
+.account_form h2{
+  color: hsl(0, 0%, 30%);
+  font-size: 2.4rem;
+  font-weight: 400;
+  margin: 8% 0;
+  display: block;
+}
+.account_form form{
+  border-radius: 1%;
+  border: 1px solid hsl(0, 0%, 85%);
+}
+.account_form_handle {
+  padding: 30px;
+}
+.account_form_handle .form-group label {
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #a2c4ce;
+}
+.account_form_handle .form-group input{
+  width: 100%;
+  display: block;
+  background: transparent;  
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid hsl(0, 0%, 50%);
+}
+.create_account_btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+}
+.create_account_btn .form_btn {
+  background: #69b791;
+  color: hsl(0, 0%, 95%);
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 15px 50px;
+  transition: all 0.3s ease-in-out;
+}
+.create_account_btn .form_btn:hover {
+  color: hsl(0, 0%, 99%);
+  background: #5aa380;
+}
+.signup_image img {  
+  width: 35px;
+}
+.account_footer {
+  margin-top: 20px;
+}
+.account_footer p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: hsl(0, 0%, 40%);  
+  margin: 0;
+}
+.account_footer p a {
+  color: #69b791;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.account_footer p a:hover {
+  color: #5aa380;
+}
+.create_account_footer {
+  display: block;
+}
+.create_account_footer p {
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding: 20px 0;
+  color: hsl(0, 0%, 10%);
+}
+.create_account_footer a {
+  color: #69b791;
+  text-decoration: none;
+  font-weight: 600;  
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+.create_account_footer a:hover {
+  text-decoration: none;
+  color: #5aa380;
+  text-decoration: underline;
+}
+.message_create{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  /* background: #ff5000; */
+}
+.unit_message_box {
+  display: flex;  
+  align-items: center;
+  margin: 40px 0;
+}
+.unit_message_box img {
+  width: 35px;
+}
+.unit_message_box p {
+  margin-bottom: 0;
+  margin-left: 15px;
+  font-size: 1rem;  
+  color: hsl(0, 0%, 30%);
+}
+.password_validation {
+  color: #78a1ad;
+}
+.password_validation p {
+  color: #78a1ad;
+  margin: 0;
+}
+.password_validation ul li {
+  list-style-type: square;
+}
 textarea:hover,
 input:hover,
 textarea:active,
@@ -231,81 +395,103 @@ label:focus,
   box-shadow: none !important;
 }
 
-#contact-form .form-group input {
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #000;
-}
-
 .errorMessage {
   color: #ff5000;
   font-size: 12px;
 }
 /*------------- SBR------------ */
-.sign_in_fluxx p {
-  color: #222;
-  font-size: 22px;
+/* Sign In modal */
+.signin_modal_header p {
+  padding: 20px 0;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: hsl(0, 0%, 30%);  
 }
-.signin_color {
-  background-color: #efefef;
+.signin_modal_header {
+  background: hsl(0, 0%, 95%);
   text-align: center;
 }
-.input_fileds {
+.modal_form_body {
+  padding: 20px 50px;
+}
+.modal_form_body form label{
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: #a2c4ce;
+}
+.modal_form_body form input{
+  width: 100%;
+  display: block;
+  background: transparent;  
   border: none;
-  border-bottom: 1px solid red;
   border-radius: 0;
+  border-bottom: 1px solid hsl(0, 0%, 50%);
+}
+.modal_form_body form .sign_in_button {
+  width: 100%;
+  display: block;
+  margin: 10px auto;
+  padding: 12px 0;
+  color: hsl(0, 0%, 98%);
+  background: #69b791;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 5px !important;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal_form_body form .sign_in_button:hover {
+  background-color: #5aa380 !important;
+  color: hsl(0, 0%, 99%);
+}
+/* SignIn Modal Fotgot password  */
+.forget_pass {
+  display: block;  
+  text-align: right;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.forget_pass p a {
+  color: #69b791;
+  font-weight: 500;  
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
+}
+.forget_pass p a:hover {
+  text-decoration: underline !important;
+  color: #759b89 !important;  
 }
 .model_footer {
-  background: #efefef;
-  font-size: 16px;
-  font-weight: 400;
+  display: flex;
+  justify-content: center !important;
+  align-items: center;
+  background: hsl(0, 0%, 95%);
+  font-size: 1.1rem;
+  font-weight: 400;  
 }
-.model_footer p a,
-.account_footer p a {
+.model_footer p {
+  color: hsl(0, 0%, 30%);
+}
+.model_footer p a {
   color: #69b791;
   text-decoration: none;
   font-weight: 600;
+  letter-spacing: 1px;
   cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
-.account_footer p a:hover {
-  color: #5aa380 !important;
-}
-.account_footer {
-  font-size: 18px;
-}
-.account-footer-part a {
-  color: #69b791;
-  text-decoration: none;
-  font-weight: 600;
-}
-.account-footer-part a:hover {
-  text-decoration: none;
+.model_footer p a:hover {
+  text-decoration: underline;
   color: #5aa380;
-}
-.form_btn {
-  width: 75%;
-  background: #69b791 !important;
-  border: none !important;
-  border-radius: 15px !important;
-  margin: 0;
-  padding: 0 30px;
-}
-.form_btn:hover {
-  background: #5aa380 !important;
-}
-.signup_image img {
-  width: 48px;
-  margin: 0 auto;
-}
-.password-validation {
-  color: #a2c4ce;
 }
 .form_container label {
   font-weight: 600;
 }
 .form_container input,
 .form_container textarea {
-  border: 2px solid #383b4c;
+  border: 2px solid #3f466d;
   border-radius: 0;
 }
 .test {
@@ -325,7 +511,6 @@ label:focus,
 .form-group textarea:focus {
   border-color: #a4d3e7;
 }
-
 /* footer */
 .footer-fixed p a {
   text-decoration: none;
@@ -333,17 +518,12 @@ label:focus,
 }
 
 /* Members index Page */
-
-.members_container {
-  margin: 40px 0;
+.members_container {  
+  margin: 3% 0;
   width: 70% !important;
-  /* background: red; */
-}
-.members_container h5 {
-  font-weight: 600;
 }
 .members_container h2 {
-  font-size: 38px;
+  font-size: 2rem;
   display: block;
   color: hsl(0, 0%, 45%);
 }
@@ -397,6 +577,8 @@ label:focus,
   text-transform: capitalize;
   font-weight: 600;
   letter-spacing: 1px;
+  cursor: pointer;
+  color: #69b791;
 }
 .last_modified_unit {
   width: 100%;
@@ -476,9 +658,15 @@ label:focus,
   font-weight: 700;
 }
 .modal_form_content label {
+  display: block;
   font-size: 1rem;
-  color: hsl(0, 0%, 30%);
-  font-weight: 400;
+  color: #a2c4ce;
+  font-weight: 500;
+}
+.modal_form_content input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid hsl(0, 0%, 50%);
 }
 .modal_form_content label span {
   font-weight: 600;
@@ -486,15 +674,19 @@ label:focus,
 .modal_form_content select option {
   text-transform: capitalize;
 }
-.modal_btn_section_create_folder {
-  width: 75%;
+.modal_btn_section_create_folder {  
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;  
+}
+.modal_btn_section_create_folder .modal_cancel_btn {
+  margin-left: 20px;
 }
 .modal_btn_section {
-  width: 60%;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+}
+.modal_btn_section .modal_cancel_btn {
+  margin-left: 20px;  
 }
 .modal_btn_section button,
 .modal_btn_section_create_folder button {
@@ -568,15 +760,6 @@ label:focus,
   text-decoration: none;
   background: #5aa380;
 }
-/* -------- */
-/* .option_section img {
-  cursor: pointer;
-}
-.option_section img:hover {
-  background: #383b4c;
-  margin: 15px;
-  border-radius: 50%;
-} */
 .demo-pop {
   width: 150px;
   padding: 0 !important;
@@ -625,6 +808,44 @@ label:focus,
 }
 .form-labels {
   font-weight: 500;
+}
+.members_folder_container {
+  width: 70% !important;
+  height: 80vh;
+  margin: 2% auto;
+}
+.members_folder_container h2{
+  text-transform: capitalize;
+  color: hsl(0, 0%, 40%);
+  font-size: 2rem;
+}
+.members_empty_folder {
+  width: 50%;
+  height: 40vh;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.members_empty_folder .members_empty_folder_inside {  
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+}
+.members_empty_folder_inside p{
+  margin: 0;
+  color: hsl(0, 0%, 50%);
+  font-size: 1.4rem;
+}
+.members_empty_folder_inside button{
+  color: hsl(0, 0%, 50%);
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  font-weight: 400;
+  transition: all 0.6s ease-in-out;
+}
+.members_empty_folder_inside button:hover{
+  color: hsl(0, 0%, 40%);
 }
 /* Faq Section */
 .faq-section {
@@ -911,82 +1132,156 @@ label:focus,
   min-height: 700px;
   border: 1px solid #222;
 }
-/* ---------- */
+/* ----- Setting ----- */
 
 /* my_account_top_section */
-.my_account_top_section {
-  width: 50%;
-  margin: auto;
+.account_setting_row {
+  height: 75vh;
+  background: hsl(0, 0%, 95%);
 }
-.my_account_top_section p {
-  padding: 0 0 0 40px;
+.my_account_top_section {
+  margin: 0 auto;  
+}
+.account_setting_header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.account_setting_header {
+  margin: 5% 0;
+  color: hsl(0, 0%, 30%);
+}
+.account_setting_header h3 {
+  margin-bottom: 0;
+  font-weight: 400;  
+}
+.account_setting_header p {
+  margin-bottom: 0;
+  margin-left: 20px;
 }
 .acc_setting {
-  background: #efefef;
+  background: hsl(0, 0%, 95%);  
   display: inline-block;
 }
-.acc_setting h4 {
+.acc_setting h5 {
   margin: 0;
+  padding: 15px 20px;
+  color: hsl(0, 0%, 40%);
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-.setting_block {
-  width: 45%;
-  margin: auto;
+.setting_block {  
+  margin: 0 auto;
+  /* background-color: yellow; */
+  padding: 10px;
 }
-.email_section {
-  background: #fff;
-  box-shadow: 1px 1px 10px #383b4c;
+.setting_section {
+  margin: 20px auto;
+  padding: 30px 20px;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 1px 1px 10px hsl(0, 0%, 65%);
 }
-.change_setting p {
+.setting_section h5 {
+  font-size: 1.3rem;
+  color: hsl(0, 0%, 30%);
+}
+.setting_section .change_setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;  
+}
+.setting_section .change_setting p {
   width: 400px;
   margin: 0;
+  color: hsl(0, 0%, 40%);
 }
-.change_setting a {
+.setting_section .change_setting a {
   border: none;
   background: transparent;
   color: #69b791;
-  font-size: 16px;
+  font-size: 1.1rem;
   font-weight: 600;
-  text-decoration: none !important;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
 }
-.change_setting a:hover,
-.change_setting a:focus,
-.change_setting a:active {
-  background: transparent !important;
-  color: #5aa380 !important;
+.setting_section .change_setting a:hover,
+.setting_section .change_setting a:focus,
+.setting_section .change_setting a:active {  
+  color: #5aa380;
 }
-.delete_account a {
-  background: #b7b7b7;
-  color: #404146;
+.setting_checkbox {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.setting_checkbox p{
+  margin-left: 20px;
+  margin-bottom: 0;
+  color: hsl(0, 0%, 40%);
+  font-size: 0.9rem;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 25px;
+  margin-bottom: 0;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.setting_section_password {
+  margin: 20px auto;
+  padding: 20px;
+  background: hsl(0, 0%, 100%);
+  box-shadow: 1px 1px 10px hsl(0, 0%, 65%);
+}
+.setting_section_password h5 {
+  font-size: 1.3rem;
+  color: hsl(0, 0%, 30%);
+}
+.setting_section_password .change_setting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.setting_section_password .change_setting a {
   border: none;
-  border-radius: 10px;
-  font-weight: 500;
-  text-decoration: none !important;
+  background: transparent;
+  color: #69b791;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
 }
-.delete_account a:hover,
-.delete_account a:active,
-.delete_account a:focus {
-  background: rgb(134, 134, 134) !important;
-  color: #32333a !important;
+.setting_section_password .change_setting a:hover,
+.setting_section_password .change_setting a:focus,
+.setting_section_password .change_setting a:active {  
+  color: #5aa380;
 }
-
-/* change email modal */
-.model_title {
-  background: #efefef;
+.my_account_top_section .delete_account {
+  margin: 50px 0;
 }
-.model_title h4 {
-  color: #404146;
-}
-form .email_change_btn {
-  background: #69b791;
-  color: #efefef;
+.my_account_top_section .delete_account a {
+  background: hsl(0, 0%, 70%);
+  color: hsl(0, 0%, 30%);
+  text-transform: uppercase;
+  padding: 20px 30px;
   border: none;
+  border-radius: 5px;
   font-weight: 500;
+  text-decoration: none;
+  transition: all 0.5s ease-in-out;
 }
-form .email_change_btn:hover,
-form .email_change_btn:active,
-form .email_change_btn:focus {
-  background: #5aa380 !important;
-  color: #f9f9f9 !important;
+.my_account_top_section .delete_account a:hover,
+.my_account_top_section .delete_account a:active,
+.my_account_top_section .delete_account a:focus {
+  background: hsl(0, 0%, 75%);
+  color: hsl(0, 0%, 25%);
 }
 form .cancel_btn {
   background: #efefef;
@@ -1391,25 +1686,7 @@ form .cancel_btn:active {
   width: 300px;
   height: 200px;
 }
-/* setting check box */
-.setting_checkbox {
-  display: flex;
-}
-.setting_checkbox p{
-  margin-left: 20px;
-}
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 52px;
-  height: 25px;
-}
 
-.switch input { 
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
 
 .slider {
   position: absolute;

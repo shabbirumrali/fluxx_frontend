@@ -1,10 +1,6 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { FormGroup, Label, Container } from "reactstrap";
-import Button from 'react-bootstrap/Button'
-//import Container from 'react-bootstrap/Container'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import Form from 'react-bootstrap/Form'
+import { Col, Row, Form, Image, Button } from 'react-bootstrap'
 import FloatingLabel from "react-bootstrap-floating-label";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -22,10 +18,10 @@ const Register = (props) => {
   const history = useHistory();
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
-    if(token != ''){       
-        history.push({
-         pathname:  "/members",        
-        });
+    if (token != '') {
+      history.push({
+        pathname: "/members",
+      });
     }
   };
   const validationSchema = Yup.object().shape({
@@ -52,96 +48,82 @@ const Register = (props) => {
     reset();
   };
 
- console.log(toggle);
-  useEffect(() => { 
-      checkAuthToken();
-      
-  },[]); 
+  console.log(toggle);
+  useEffect(() => {
+    checkAuthToken();
+
+  }, []);
 
   return (<>
-    <Container className="my-5 signup_container">
-      <h1 className="pb-4">Create Your account.</h1>
-      <Row>
-        <Col lg={7} sm={7}>
-          <div className="border px-3">
-            <Form className="m-3" id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-              
-              <FormGroup>
-                <Label>Email</Label>
-                <input type="email" ref={register} name="email" />
-                {errors.email && (
-                  <span className="errorMessage">{errors.email.message}</span>
-                )}
-              </FormGroup>
-
-              <FormGroup>
-                <Label>Password</Label>
-                <input type="password" ref={register} name="password" />
-                {errors.password && (
-                  <span className="errorMessage">{errors.password.message}</span>
-                )}
-              </FormGroup>
-              <FormGroup>
-                <Label>Confirm Password</Label>
-                <input type="password" ref={register} name="confirmPassword" />
-                {errors.confirmPassword && (
-                  <span className="errorMessage">
-                    {errors.confirmPassword.message}
-                  </span>
-                )}
-              </FormGroup>
-              <div className="d-flex my-4">
-                <Button type="submit" size="lg" className="form_btn py-3">CREATE MY ACCOUNT</Button>
-                <div className="signup_image mx-auto">
-                  <img src={Lock} alt="Lock Image"/>
+    <Container className="signup_container">
+      <Row className="signup_row">
+        <Col lg={7} sm={7} xs={12} md={12} className="create_your_account">
+          <div className="account_form">
+            <h2>Create your account.</h2>
+            <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+              <div className="account_form_handle">
+                <FormGroup>
+                  <Label>email</Label>
+                  <input type="email" ref={register} name="email" />
+                  {errors.email && (<span className="errorMessage">{errors.email.message}</span>)}
+                </FormGroup>
+                <FormGroup>
+                  <Label>password</Label>
+                  <input type="password" ref={register} name="password" />
+                  {errors.password && (<span className="errorMessage">{errors.password.message}</span>)}
+                </FormGroup>
+                <FormGroup>
+                  <Label>retype password</Label>
+                  <input type="password" ref={register} name="confirmPassword" />
+                  {errors.confirmPassword && (<span className="errorMessage"> {errors.confirmPassword.message} </span>)}
+                </FormGroup>
+                <div className="create_account_btn">
+                  <Button type="submit" className="form_btn">Create my Account</Button>
+                  <div className="signup_image">
+                    <img src={Lock} alt="Lock Image" />
+                  </div>
+                </div>
+                <div className="account_footer">
+                  <p className="text-center">Already have an account? <a href="" onClick={toggle}> Sign In</a></p>
                 </div>
               </div>
-
-              <div className="account_footer py-3">
-                <p className="text-center">Already have an account ? <a href className="" onClick={toggle}> Sign In</a></p>
-              </div>
-              {/* <p>
-                Already have an Account?{" "}
-                <Button type="button" onClick={toggle}>
-                  Sign in
-                </Button>
-              </p> */}
             </Form>
+            <div className="create_account_footer">
+              <p>All information that you provide is kept completely confidential
+                and will not be released to any other companies. Please view our <Link to="/privacypolicy">Privacy Policy</Link>, <Link to="/terms">Terms and Conditions</Link> for
+                further information.</p>
+            </div>
           </div>
-          <Row className="account-footer-part mt-3 px-3 py-2">
-            <p>All information that you provide is kept completely confidential
-            and will not be released to any other companies. Please view our
-            <Link to="/privacypolicy"> Privacy Policy</Link>, <Link to="/terms">Terms and Conditions</Link>, and <a href="#">Email Policy </a>for
-            further information.</p>
-          </Row>
+
         </Col>
 
-        <Col lg={5} sm={5} className="py-3">
-          <div>
-            <div className="d-flex">
-              <img className="px-3 py-3" src={Document} alt=""/>
-              <p className="py-3">Create and save unlimited project charters</p>
+        <Col lg={5} sm={5} xs={12} md={7} className="message_create">
+          <div className="message_creation_inside_box">
+            <div className="unit_message_box">
+              <Image src={Document} alt="Document" />
+              <p>Create and save unlimited project charters</p>
             </div>
-            <div className="d-flex">
-              <img className="px-3 py-3" src={Lock} alt=""/>
-              <p className="py-3">Never lose your work</p>
+            <div className="unit_message_box">
+              <Image src={Lock} alt="Lock" />
+              <p>Never lose your work</p>
             </div>
-            <div className="d-flex">
-              <img className="px-3 py-3" src={Lifesaver} alt=""/>
-              <p className="py-3">Free email support</p>
+            <div className="unit_message_box">
+              <Image src={Lifesaver} alt="Lifesaver" />
+              <p>Free email support</p>
             </div>
-          </div>
-          <div className="password-validation">
-            <p className="mt-5 mb-0">Password :</p>
-            <ul>
-              <li>Must include at least one capital letter</li>
-              <li>Must include at least one number</li>
-              <li>Must include at least one special character</li>
-              <li>Must be at least eight characters</li>
-            </ul>
+
+            <div className="password_validation">
+              <p>Password :</p>
+              <ul>
+                <li>Must include at least one capital letter</li>
+                <li>Must include at least one number</li>
+                <li>Must include at least one special character</li>
+                <li>Must be at least eight characters</li>
+              </ul>
+            </div>
           </div>
         </Col>
-      </Row>      
+      </Row>
     </Container>
   </>);
 };

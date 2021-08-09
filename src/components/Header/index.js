@@ -15,9 +15,8 @@ const Header = (props) => {
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4 shadow-sm">
-        <Navbar.Brand href="/" className="logo"><h4>fluxx.</h4></Navbar.Brand>
+        <Navbar.Brand href="/" className="logo"><h2>fluxx.</h2></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto landing_page">
             <Link to="/" className={location.pathname === '/' ? "nav-link active" : "nav-link"} >why fluxx?</Link>
@@ -40,16 +39,16 @@ const Header = (props) => {
           {localStorage.getItem('email') !== '' ?
             <Nav>
               <NavDropdown title={localStorage.getItem('email')} id="basic-nav-dropdown">
-                <NavDropdown.Item className="dropdown_items">
+                <NavDropdown.Item className="dropdown_items p-0">
                   <Link to="/members"> My Project Charters </Link>
                 </NavDropdown.Item>
-                <NavDropdown.Item className="dropdown_items">
+                <NavDropdown.Item className="dropdown_items p-0">
                   <Link to="/setting">
                     My Account
                   </Link>
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item className="dropdown_items" onClick={() => {
+                <NavDropdown.Item className="py-2 signout_dropdown_items" onClick={() => {
                   localStorage.setItem('token', '');
                   localStorage.setItem('email', '');
                   window.location.href = "/";

@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { FormGroup, Label } from "reactstrap";
 import { Container, Row, Col, Form, Button, NavLink } from 'react-bootstrap';
 import { Link, Router, useHistory, Redirect } from "react-router-dom";
@@ -18,13 +18,13 @@ const Forgetpassword = (props) => {
   const dispatch = useDispatch();
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
-    if(token != ''){       
-        history.push({
-         pathname:  "/members",        
-        });
+    if (token != '') {
+      history.push({
+        pathname: "/members",
+      });
     }
   };
-  
+
   const { register, errors, handleSubmit, reset } = useForm({
     resolver: yupResolver(validationSchema),
   });
@@ -33,38 +33,34 @@ const Forgetpassword = (props) => {
     dispatch(actions.forgetpassword(data));
     reset();
   };
-  useEffect(() => { 
-      checkAuthToken();
-      
-  },[]); 
-
+  useEffect(() => {
+    checkAuthToken();
+  }, []);
 
   return (
     <Container>
-      <Row>
-        <Col className="forgot_pass_container">
-         <h3 className="text-center py-3">Forgot Password</h3>
-        
-          <div className="set_password_form py-4 px-5">
+      <Row className="forgot_password_row">
+        <Col sm={12} lg={6} md={12} xs={12} className="forgot_pass_container">
+          <h3>Forgot Password</h3>
+
+          <div className="forgot_pass_email">
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
               <FormGroup className="form_details">
-                <Label>Email</Label>
+                <Label>email</Label>
                 <Form.Control type="email" ref={register} name="email" />
-                {errors.email && (
-                  <span className="errorMessage">{errors.email.message}</span>
-                )}
-              </FormGroup>            
-              <Button type="submit" className="mt-3">SET PASSWORD</Button>
+                {errors.email && (<span className="errorMessage">{errors.email.message}</span>)}
+              </FormGroup>
+              <Button type="submit">Set Password</Button>
             </Form>
           </div>
-            <div className="forgot_privacy_info">
-              <p className="mt-3"> All information that you provide is kept completely confidential and
-                will not be released to any other companies. Please view our <Link to="/privacypolicy"> Privacy Policy</Link>
-               , <Link to="/terms">Terms and Conditions</Link>, and <a href="">Email Policy</a> for further information.</p>
-            </div>           
-        </Col>                 
-      </Row>      
-    </Container>    
+          <div className="forgot_privacy_info">
+            <p> All information that you provide is kept completely confidential and
+              will not be released to any other companies. Please view our <Link to="/privacypolicy"> Privacy Policy</Link>
+              , <Link to="/terms">Terms and Conditions</Link> for further information.</p>
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

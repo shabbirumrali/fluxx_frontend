@@ -12,11 +12,9 @@ import * as actions from "../../store/actions/index";
 import moment from 'moment';
 import { toast } from "react-toastify";
 const Setting = (props) => {
-
   const dispatch = useDispatch();
   const history = useHistory();
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -64,203 +62,123 @@ const Setting = (props) => {
     <>
       <Container fluid>
         <Row>
-          <Col>
-            <div className="my_account_top_section mt-5">
-              <div className="d-flex">
-                <h3>My Account</h3>
-                <p>{localStorage.getItem('email')}</p>
-              </div>
-              <div className="acc_setting mt-5 p-3">
-                <h4>ACCOUNT SETTINGS</h4>
-              </div>
+          <Col lg={6} xs={12} md={12} sm={6} className="my_account_top_section">
+            <div className="account_setting_header">
+              <h3>My Account</h3>
+              <p>{localStorage.getItem('email')}</p>
+            </div>
+            <div className="acc_setting">
+              <h5>Account Settings</h5>
             </div>
           </Col>
         </Row>
-        <Row style={{ background: "#efefef" }}>
-          <Col>
+        <Row className="account_setting_row">
+          <Col lg={6} xs={12} md={12} sm={6} className="my_account_top_section">
             <div className="setting_block">
-              <div className="email_section my-4 p-3">
-                <h6>Email</h6>
-                <div className="change_setting d-flex my-4">
+              <div className="setting_section">
+                <h5>Email</h5>
+                <div className="change_setting">
                   <p>{localStorage.getItem('email')}</p>
                   <Link onClick={handleShow}>Change Email</Link>
                 </div>
-                {/*  */}
+
                 <div className="setting_checkbox">
-                  <label className="switch">
+                  <Label className="switch">
                     <input type="checkbox" />
                     <span className="slider round"></span>
-                  </label>
+                  </Label>
                   <p>Email me special offers and news</p>
                 </div>
-                {/* <div>
-                  <Form.Group id="formGridCheckbox">
-                    <Form.Check type="checkbox" value="" checked={localStorage.getItem('subscribeUser')} label="Email me special offers and news" />
-                  </Form.Group>
-                </div> */}
               </div>
 
-              <div className="email_section my-4 p-3">
-                <h6>Password</h6>
-                <div className="change_setting mt-4">
-                  <Link className="p-0" onClick={handleresetShow}>Reset my Fluxx password</Link>
+              <div className="setting_section_password">
+                <h5>Password</h5>
+                <div className="change_setting">
+                  <Link onClick={handleresetShow}>Reset my Fluxx password</Link>
                 </div>
               </div>
-
-              <div className="delete_account my-5">
-                <Link onClick={handleDeleteAccShow} className="p-4" >DELETE ACCOUNT</Link>
+              <div className="delete_account">
+                <Link onClick={handleDeleteAccShow} >Delete Account</Link>
               </div>
-
             </div>
           </Col>
         </Row>
       </Container>
 
       {/* Change email modal */}
-      <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter"
-        centered>
-        <Modal.Header className="model_title py-3" closeButton>
-          <h4 className="m-0">Change Your Email</h4>
+      <Modal show={show} onHide={handleClose} aria-labelledby="contained-modal-title-vcenter" centered>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">Change Your Email</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="email_change">
+        <Modal.Body clasName="modal_body_section">
           <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-            <FormGroup>
-              <label style={{ color: "#a4d3e7" }}>email</label>
-              <input
-                type="email"
-                ref={register({
-                  required: true,
-                  pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                })}
-                name="emailfirst"
-              />
-              {errors.email && (
-                <span className="errorMessage">
-                  Please enter a valid email address
-                </span>
-              )}
+            <FormGroup className="modal_form_content">
+              <label>email</label>
+              <input type="email" name="emailfirst" ref={register({ required: true, pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, })} />
+              {errors.email && (<span className="errorMessage"> Please enter a valid email address </span>)}
             </FormGroup>
-            <FormGroup>
-              <label style={{ color: "#a4d3e7" }}>password</label>
-              <input
-                type="password"
-                ref={register({
-                  required: true
-                })}
-                name="passwordfirst"
-              />
-              {errors.password && (
-                <span className="errorMessage">
-                  Please enter a password
-                </span>
-              )}
-              {errors.wrongpassword ?
-                <span className="errorMessage">Password is incorrect</span>
-                : null}
+            <FormGroup className="modal_form_content">
+              <label>password</label>
+              <input type="password" ref={register({ required: true })} name="passwordfirst" />
+              {errors.password && (<span className="errorMessage"> Please enter a password </span>)}
+              {errors.wrongpassword ? <span className="errorMessage">Password is incorrect</span> : null}
             </FormGroup>
-            <Button type="submit" className="email_change_btn py-2 my-2">
-              CHANGE EMAIL
-            </Button>
-            <Button onClick={handleClose} className="cancel_btn py-2 m-2">
-              CANCEL
-            </Button>
+            <div className="modal_btn_section_create_folder">
+              <Button type="submit" className="modal_trigger_btn"> Change Email </Button>
+              <Button variant="light" type="submit" onClick={handleClose} className="modal_cancel_btn"> Cancel </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>
 
       {/* Delete Account Modal */}
-      <Modal show={deleteAcc} onHide={handleDeleteAccClose} aria-labelledby="contained-modal-title-vcenter"
-        centered>
-        <Modal.Header className="model_title py-3" closeButton>
-          <h4 className="m-0">Delete Account</h4>
+      <Modal show={deleteAcc} onHide={handleDeleteAccClose} aria-labelledby="contained-modal-title-vcenter" centered>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">Delete Account</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body clasName="modal_body_section">
           <p>Are you sure you want to delete your account ?</p>
-
           <p>If you delete your account you will permananently lose access to all of the documents you have created</p>
           <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-            <FormGroup>
-              <label style={{ color: "#a4d3e7" }}>Password</label>
-              <input
-                type="password"
-                ref={register({
-                  required: true
-                })}
-                name="password"
-              />
-              {errors.password && (
-                <span className="errorMessage">
-                  Please enter a password
-                </span>
-              )}
-              {errors.wrongpassword ?
-                <span className="errorMessage">Password is incorrect</span>
-                : null}
-
+            <FormGroup className="modal_form_content">
+              <Label>Password</Label>
+              <input type="password" ref={register({ required: true })} name="password" />
+              {errors.password && (<span className="errorMessage"> Please enter a password </span>)}
+              {errors.wrongpassword ? <span className="errorMessage">Password is incorrect</span> : null}
             </FormGroup>
-            <Button type="submit" variant="secondary" className="email_change_btn py-2 my-2">
-              DELETE ACCOUNT
-            </Button>
-            <Button variant="primary" onClick={handleDeleteAccClose} className="cancel_btn py-2 m-2">
-              CANCEL
-            </Button>
+            <div className="modal_btn_section_create_folder">
+              <Button type="submit" className="modal_trigger_btn"> Delete Account </Button>
+              <Button className="modal_cancel_btn" variant="light" type="submit" onClick={handleDeleteAccClose}> CANCEL </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>
-      <Modal show={Resetpassword} onHide={handleresetClose} aria-labelledby="contained-modal-title-vcenter"
-        centered>
-        <Modal.Header className="model_title py-3" closeButton>
-          <h4 className="m-0">Reset Password</h4>
+      {/* -------- set Password ---------- */}
+      <Modal show={Resetpassword} onHide={handleresetClose} aria-labelledby="contained-modal-title-vcenter" centered>
+        <Modal.Header className="modal_header_section" closeButton>
+          <Modal.Title className="modal_title_section">Set Password</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="email_change">
+        <Modal.Body clasName="modal_body_section">
           <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-
-            <FormGroup>
-              <label style={{ color: "#a4d3e7" }}>old password</label>
-              <input
-                type="password"
-                ref={register({
-                  required: true
-                })}
-                name="oldpassword"
-              />
-              {errors.password && (
-                <span className="errorMessage">
-                  Please enter a old password
-                </span>
-              )}
-              {errors.wrongpassword ?
-                <span className="errorMessage">Old Password is incorrect</span>
-                : null}
+            <FormGroup className="modal_form_content">
+              <Label>old password</Label>
+              <input type="password" ref={register({ required: true })} name="oldpassword" />
+              {errors.password && (<span className="errorMessage"> Please enter a old password </span>)}
+              {errors.wrongpassword ? <span className="errorMessage">Old Password is incorrect</span> : null}
             </FormGroup>
-            <FormGroup>
-              <label style={{ color: "#a4d3e7" }}>new Password</label>
-              <input
-                type="password"
-                ref={register({
-                  required: true
-                })}
-                name="newpassword"
-              />
-              {errors.password && (
-                <span className="errorMessage">
-                  Please enter a new password
-                </span>
-              )}
-              {errors.wrongpassword ?
-                <span className="errorMessage">New Password is incorrect</span>
-                : null}
+            <FormGroup className="modal_form_content">
+              <Label>new Password</Label>
+              <input type="password" ref={register({ required: true })} name="newpassword" />
+              {errors.password && (<span className="errorMessage"> Please enter a new password </span>)}
+              {errors.wrongpassword ? <span className="errorMessage">New Password is incorrect</span> : null}
             </FormGroup>
-            <Button type="submit" className="email_change_btn py-2 my-2">
-              Change Password
-            </Button>
-            <Button onClick={handleClose} className="cancel_btn py-2 m-2">
-              CANCEL
-            </Button>
+            <div className="modal_btn_section_create_folder">
+              <Button type="submit" className="modal_trigger_btn"> Change Password </Button>
+              <Button onClick={handleresetClose} className="modal_cancel_btn" variant="light" type="submit"> Cancel </Button>
+            </div>
           </Form>
         </Modal.Body>
       </Modal>
-
     </>
   )
 }
@@ -270,4 +188,3 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps)(Setting);
-

@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Container } from "reactstrap";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { withRouter,useParams } from "react-router-dom";
+import { withRouter, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import * as actions from "../../../store/actions/index";
@@ -13,16 +13,16 @@ const Resetpassword = (props) => {
   const history = useHistory();
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
-    if(token != ''){       
-        history.push({
-         pathname:  "/members",        
-        });
+    if (token != '') {
+      history.push({
+        pathname: "/members",
+      });
     }
   };
-  const validationSchema = Yup.object().shape({    
+  const validationSchema = Yup.object().shape({
     password: Yup.string()
       .matches(
-         /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
+        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
         "Password must contain one capital letter, one number, one special character and atleast eight characters."
       )
       .required("Password is required"),
@@ -42,17 +42,15 @@ const Resetpassword = (props) => {
     const history = createBrowserHistory();
     const splitdata = history.location.pathname.split("/")
 
-
-    
-    dispatch(actions.resetpassword(data,splitdata[2]));
+    dispatch(actions.resetpassword(data, splitdata[2]));
     reset();
   };
 
- 
+
   return (
     <Container>
       <h3>Update  Password.</h3>
-      <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>        
+      <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
         <FormGroup>
           <Label>Password</Label>
           <input type="password" ref={register} name="password" />
@@ -70,7 +68,7 @@ const Resetpassword = (props) => {
           )}
         </FormGroup>
         <Button type="submit">submit</Button>
-        
+
       </Form>
       <p>
         All information that you provide is kept completely confidential and
