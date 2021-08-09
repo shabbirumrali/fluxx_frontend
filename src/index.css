@@ -32,6 +32,9 @@ body {
   margin: 0;
   color: hsl(0, 0%, 20%);
 }
+.header_banner_text {
+  width: 560px;  
+}
 .signIn_section {
   float: right;
 }

@@ -14,16 +14,19 @@ const Home = (props) => {
         <Card className="header_card">
           <Card.Img src={Walloutlet} alt="Header Image" />
           <Card.ImgOverlay className="header_text_overlay">
-            <Card.Title className="header_text">Projects are hard. <br />
-              <Typewriter
-                onInit={(typewriter) => {
-                  typewriter
-                    .pauseFor(1000)
-                    .deleteAll()
-                    .typeString("Managing them shouldn’t be.")
-                    .start();
-                }}
-              />
+            <Card.Title className="header_text">
+              <div className="header_banner_text">
+                Projects are hard. <br />
+                <Typewriter
+                  onInit={(typewriter) => {
+                    typewriter
+                      .pauseFor(1000)
+                      .deleteAll()
+                      .typeString("Managing them shouldn’t be.")
+                      .start();
+                  }}
+                />
+              </div>
             </Card.Title>
           </Card.ImgOverlay>
         </Card>
