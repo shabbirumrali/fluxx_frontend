@@ -20,12 +20,15 @@ const Setting = (props) => {
 
   const [deleteAcc, setDeleteAcc] = useState(false);
   const [Resetpassword, setResetpassword] = useState(false);
-
+  
   const handleDeleteAccClose = () => setDeleteAcc(false);
   const handleDeleteAccShow = () => setDeleteAcc(true);
   const handleresetShow = () => setResetpassword(true);
   const handleresetClose = () => setResetpassword(false);
   const { register, errors, handleSubmit, reset } = useForm();
+
+  
+  
 
   const onSubmit = async (data) => {
     if (data.emailfirst != undefined && data.passwordfirst != undefined) {
@@ -84,7 +87,7 @@ const Setting = (props) => {
 
                 <div className="setting_checkbox">
                   <Label className="switch">
-                    <input type="checkbox" />
+                    <input type="checkbox" checked={localStorage.getItem('subscribeUser') === "true" ? "checked":""}/>
                     <span className="slider round"></span>
                   </Label>
                   <p>Email me special offers and news</p>

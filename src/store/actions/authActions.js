@@ -519,7 +519,7 @@ export const deleteFolder = (form, props) => {
         if (response.data.status === 200) {
            toast.success("Your folder delete Successfully");       
            history.push("/members");
-           dispatch(folderlist(response.data));
+           dispatch(categoryList());
         }
       })
       .catch((err) => {
