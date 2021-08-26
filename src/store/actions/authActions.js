@@ -532,6 +532,30 @@ export const deleteFolder = (form, props) => {
       });
   };
 };
+export const renameFolder = (form, props) => {
+  let dataobject = {
+        "folderid":form.folderId,
+        "newfoldername":form.newfoldername
+  }
+  const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  return (dispatch) => {
+    api
+      .post("renamefolder",dataobject, config)
+      .then((response) => {
+        if (response.data.status === 200) {
+           toast.success("Rename successful");          
+           dispatch(categoryList());
+        }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
 
 export const updatepassword = (form, props) => {
   

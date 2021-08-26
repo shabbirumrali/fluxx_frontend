@@ -54,9 +54,14 @@ const Members = (props) => {
       handleClose2();
     }
     if (data.deletefolder != undefined) {
-      dispatch(actions.deleteFolder(data, selectedfolderid.id));
-      handleClose4();
-      dispatch(actions.categoryList());
+        dispatch(actions.deleteFolder(data, selectedfolderid.id));
+        handleClose4();
+        dispatch(actions.categoryList());
+    }
+    if (data.newfoldername != undefined) {
+        dispatch(actions.renameFolder(data, selectedfolderid.id));
+        handleClose5();
+        dispatch(actions.categoryList());
     }
     reset();
   };
@@ -375,11 +380,12 @@ const Members = (props) => {
           <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
             <FormGroup className="modal_form_content">
               <Label htmlFor>New Folder Name</Label>
-              <input type="text" ref={register({ required: true })} name="newchartername" />
+              <input type="text" ref={register({ required: true })} name="newfoldername" />
               {errors.newchartername && (
                 <span className="errorMessage"> Please enter a Document name </span>
               )}
             </FormGroup>
+            <input type="hidden" ref={register({ required: true })}  name="folderId" value={selectedfolderid.id} />
             <div className="modal_btn_section">
               <Button className="modal_trigger_btn" type="submit">Rename</Button>
               <Button className="modal_cancel_btn" onClick={handleClose5} variant="light" type="submit">Cancel</Button>
@@ -391,7 +397,7 @@ const Members = (props) => {
       {/* Modals for Delete folder */}
       <Modal show={show4} onHide={handleClose4} centered>
         <Modal.Header className="modal_header_section" closeButton>
-          <Modal.Title className="modal_title_section">Delete Folder {selectedfolderid.categoryname}</Modal.Title>
+          <Modal.Title className="modal_title_section">Delete  {selectedfolderid.categoryname}</Modal.Title>
         </Modal.Header>
         <Modal.Body clasName="modal_body_section">
           <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>

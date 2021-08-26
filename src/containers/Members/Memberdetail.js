@@ -142,16 +142,14 @@ const Members = (props) => {
     setPage(p);
     _DATA.jump(p);
   };
+
   return (
     <>
       <Container className="members_folder_container">
         <h2>{props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].categoryname : ""}</h2>
-        <div className="members_empty_folder">
-          <div className="members_empty_folder_inside">
-            <p>This folder is empty.</p>
-            <Button className="modal_cancel_btn" variant="light" type="submit"> Back </Button>
-          </div>
-        </div>
+        
+        
+
         {props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length > 0 ?
           _DATA.currentData().map((list, index) => {
             return (
@@ -173,13 +171,26 @@ const Members = (props) => {
                 </Col>
               </Row>
             )
-          }) : null : null}
+          }) : <div className="members_empty_folder">
+                <div className="members_empty_folder_inside">
+                  <p>This folder is empty.</p>
+                  <Link to="/members"><Button className="modal_cancel_btn" variant="light" type="submit"> Back </Button></Link>
+                </div>
+              </div> 
+
+       : null}
         {
           props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length > 0 ?
             <Pagination className="pagination_section" count={count}
               size="large" page={page} variant="outlined" shape="rounded" onChange={handleChange}
-            /> : null : null
-        }
+            />
+             : null
+
+             : null
+
+         }
+
+
 
         {/* ---------------------------MODEL-------------------------------- */}
 

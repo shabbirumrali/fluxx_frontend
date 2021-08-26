@@ -802,7 +802,7 @@ label:focus,
 .charter_steps_container p {
   font-size: 1.4rem;
   font-weight: 500;
-  text-transform: capitalize;
+  
 }
 .charter_steps {
   display: flex;

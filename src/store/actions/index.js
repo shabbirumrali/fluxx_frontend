@@ -19,6 +19,7 @@ export {
   categoryList,
   fetchPosts,
   deleteFolder,
+  renameFolder,
   renamelist,
   updatepassword,
   fetchsinglepost
