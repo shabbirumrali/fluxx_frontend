@@ -106,7 +106,7 @@ const InScope = ({ setForm, formData, navigation, id }) => {
 
                     <div className="add_remove_btn_unit">
                       {goalOpen.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
-                      {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD InScope <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                      {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD ITEMS <i class="fa fa-plus" aria-hidden="true"></i></Button>}
                     </div>
                   </div>
                 )
@@ -123,7 +123,7 @@ const InScope = ({ setForm, formData, navigation, id }) => {
 
                       <div className="add_remove_btn_unit">
                         {goalOpen1.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick1(i)}>Remove</Button>}
-                        {goalOpen1.length - 1 === i && <Button onClick={handleAddClick1} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD OutScope <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                        {goalOpen1.length - 1 === i && <Button onClick={handleAddClick1} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD ITEMS <i class="fa fa-plus" aria-hidden="true"></i></Button>}
                       </div>
                     </div>
                   )
