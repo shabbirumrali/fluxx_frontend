@@ -401,10 +401,13 @@ export const moveCharter = (form, props) => {
                    "movefromcat":props.id
               }
 
-  }else{
+  }else{ 
+         if(props.projectId == undefined){
+             props.projectId = props.id; 
+         }
         dataobject = {
            "categoryId":form.selectCat,
-           "projectId":props.projectId,
+           "projectId": props.projectId,
            "projectname":props.name ? props.name: props.projectname,
            "movefromcat":props.id 
           }
