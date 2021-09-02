@@ -187,11 +187,11 @@ export function PdfDocument(props) {
                     <View style={styles.pdfContainerHeaderSection}>
                         <View style={styles.pdfContainerHeaderpart}>
                             <Text style={styles.pdfHeaderTitle}>Project Manager:</Text>
-                            <Text style={styles.pdfHeaderSubSection}>fsdfds</Text>
+                            <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.project_manager}</Text>
                         </View>
                         <View style={styles.pdfContainerHeaderpart}>
                             <Text style={styles.pdfHeaderTitle}>Project Start Date:</Text>
-                            <Text style={styles.pdfHeaderSubSection}>Hello fluxx</Text>
+                            <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.startDate}</Text>
                         </View>
                     </View>
 
@@ -202,162 +202,223 @@ export function PdfDocument(props) {
                         </View>
                         <View style={styles.pdfContainerHeaderpart}>
                             <Text style={styles.pdfHeaderTitle}>Project end Date:</Text>
-                            <Text style={styles.pdfHeaderSubSection}>fluxx</Text>
+                            <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.finishDate}</Text>
                         </View>
                     </View>
 
                     <View style={styles.pdfContainerHeaderSection}>
                         <View style={styles.pdfContainerHeaderpart}>
                             <Text style={styles.pdfHeaderTitle}>Project Budget:</Text>
-                            <Text style={styles.pdfHeaderSubSection}>1200$</Text>
+                            <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.budget}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerHeaderSection}>
+                        <View style={styles.pdfContainerHeaderpart}>
+                            <Text style={styles.pdfHeaderTitle}>Project Need:</Text>
+                            <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.project_need}</Text>
                         </View>
                     </View>
 
                     <View style={styles.pdfContainerContentSection}>
-
                         <View style={styles.pdfContainerContentPart}>
                             <Text style={styles.pdfContentTitle}>Goal: </Text>
                             <View style={styles.pdfContentContainer}>
-                                <View style={styles.pdfContentContainerSection}>
-                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
-                                    <Text style={styles.pdfContentSubSection}>
-                                        Text block example and other thing to think of I don't know what to do  and how to check because this spelling check is way to harder and this is only one example and other things to implements here
-                                    </Text>
-                                </View>
-                                <View style={styles.pdfContentContainerSection}>
-                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
-                                    <Text style={styles.pdfContentSubSection}>
-                                        Text block example and other thing to think of I don't know what to do  and how to check because this spelling check is way to harder and this is only one example and other things to implements here
-                                    </Text>
-                                </View>
-                            </View>
-                        </View>
-
-                    </View>
-                </View>
-
-                {/* -------------------------------------------- */}
-                {/* Seprate file create by shyam */}
-                <View style={styles.head}>
-                    <Text style={styles.title}>Pdf Dcoument testing on the real world</Text>
-                    <Text style={styles.title}><Text style={styles.titileOne}>Project Name : </Text>
-
-
-                        <Text style={styles.titileTwo}>{props.data.charterlist.name}</Text>
-                    </Text>
-                    <Text style={styles.title}>
-
-                        <Text style={styles.titileOne}>Project Manager : </Text>
-                        <Text style={styles.titileTwo}>{props.data.charterlist.project_manager}</Text>
-                    </Text>
-                    <Text style={styles.title}><Text style={styles.titileOne}>Project Sponsor : </Text> <Text style={styles.titileTwo}>{props.data.charterlist.project_sponsor}</Text></Text>
-                    <Text style={styles.title}><Text style={styles.titileOne}>Project Need : </Text> <Text style={styles.titileTwo}> {props.data.charterlist.project_need}</Text></Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>Goals :</Text><Text style={styles.titileTwo}>
-                            {
+                                {
                                 props.data.charterlist.goal ?
                                     JSON.parse(props.data.charterlist.goal).length > 0 ?
                                         JSON.parse(props.data.charterlist.goal).map((list, index) => {
                                             return (<>
-                                                <Text> {list.goal} {"\n"}</Text>
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.goal}
+                                                    </Text>
+                                                </View>
                                             </>)
 
                                         })
                                         : null
                                     : null
-                            }
-                        </Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>Benefits :</Text>
-                        <Text style={styles.titileTwo}>
-                            {
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>Benefits: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                {
                                 props.data.charterlist.benefits ?
                                     JSON.parse(props.data.charterlist.benefits).length > 0 ?
                                         JSON.parse(props.data.charterlist.benefits).map((list, index) => {
                                             return (<>
-                                                {list.benefits}
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.benefits}
+                                                    </Text>
+                                                </View>
                                             </>)
+
                                         })
                                         : null
                                     : null
-                            }
-                        </Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>InScope : </Text>
-                        <Text style={styles.titileTwo}>{props.data.charterlist.InScope}</Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>OutScope :</Text>
-                        <Text style={styles.titileTwo}>{props.data.charterlist.outScope}</Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>StartDate :</Text>
-                        <Text style={styles.titileTwo}>{props.data.charterlist.startDate}</Text>
-                    </Text>
-                    <Text style={styles.title}>
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>InScope: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                {
+                                props.data.charterlist.InScope ?
+                                    JSON.parse(props.data.charterlist.InScope).length > 0 ?
+                                        JSON.parse(props.data.charterlist.InScope).map((list, index) => {
+                                            return (<>
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.InScope}
+                                                    </Text>
+                                                </View>
+                                            </>)
 
-                        <Text style={styles.titileOne}>FinishDate :</Text>
+                                        })
+                                        : null
+                                    : null
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>OutScope: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                {
+                                props.data.charterlist.outScope ?
+                                    JSON.parse(props.data.charterlist.outScope).length > 0 ?
+                                        JSON.parse(props.data.charterlist.outScope).map((list, index) => {
+                                            return (<>
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.outScope}
+                                                    </Text>
+                                                </View>
+                                            </>)
 
+                                        })
+                                        : null
+                                    : null
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>Assumptions: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                {
+                                props.data.charterlist.assumptionTime ?
+                                    JSON.parse(props.data.charterlist.assumptionTime).length > 0 ?
+                                        JSON.parse(props.data.charterlist.assumptionTime).map((list, index) => {
+                                            return (<>
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.assumptionTime}
+                                                    </Text>
+                                                </View>
+                                            </>)
 
-                        <Text style={styles.titileTwo}>{props.data.charterlist.finishDate}</Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>Budget : </Text>
-
-                        <Text style={styles.titileTwo}> {props.data.charterlist.budget}</Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}> AssumptionTime : </Text>
-                        <Text style={styles.titileTwo}>{props.data.charterlist.assumptionTime}</Text>
-                    </Text>
-
-
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>Impact : </Text>
-                        <Text style={styles.titileTwo}>
-                            {
+                                        })
+                                        : null
+                                    : null
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>Impact: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                {
                                 props.data.charterlist.impact ?
                                     JSON.parse(props.data.charterlist.impact).length > 0 ?
                                         JSON.parse(props.data.charterlist.impact).map((list, index) => {
                                             return (<>
-                                                {list.impact}
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.impact}
+                                                    </Text>
+                                                </View>
                                             </>)
+
                                         })
                                         : null
                                     : null
-                            }</Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>Stakeholder : </Text>
-                        <Text style={styles.titileTwo}> {
-                            props.data.charterlist.stakeholder ?
-                                JSON.parse(props.data.charterlist.stakeholder).length > 0 ?
-                                    JSON.parse(props.data.charterlist.stakeholder).map((list, index) => {
-                                        return (<>
-                                            {list.stakeholder}
-                                        </>)
-                                    })
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>Stakeholder: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                {
+                                props.data.charterlist.stakeholder ?
+                                    JSON.parse(props.data.charterlist.stakeholder).length > 0 ?
+                                        JSON.parse(props.data.charterlist.stakeholder).map((list, index) => {
+                                            return (<>
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.stakeholder}
+                                                    </Text>
+                                                </View>
+                                            </>)
+
+                                        })
+                                        : null
                                     : null
-                                : null
-                        }</Text>
-                    </Text>
-                    <Text style={styles.title}>
-                        <Text style={styles.titileOne}>Risks :</Text>
-                        <Text style={styles.titileTwo}>
-                            {
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>Risks: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                {
                                 props.data.charterlist.risks ?
                                     JSON.parse(props.data.charterlist.risks).length > 0 ?
                                         JSON.parse(props.data.charterlist.risks).map((list, index) => {
                                             return (<>
-                                                {list.risks}
+                                                <View style={styles.pdfContentContainerSection}>
+                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    <Text style={styles.pdfContentSubSection}>
+                                                        {list.risks}
+                                                    </Text>
+                                                </View>
                                             </>)
+
                                         })
                                         : null
                                     : null
-                            }</Text>
-                    </Text>
+                                 }
+                                
+                            </View>
+                        </View>
+                    </View>
                 </View>
             </Page>
         </Document>

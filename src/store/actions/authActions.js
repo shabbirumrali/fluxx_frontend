@@ -203,7 +203,7 @@ export const contactus = (form, props) => {
       .post("contactus", form)
       .then((response) => {
         if (response.data.status === 200) {
-          toast.success("Thank you for contacting us. We will respond shortly.");
+          //toast.success("Thank you for contacting us. We will respond shortly.");
           history.push("/contactus");
         }
       })
@@ -404,7 +404,7 @@ export const moveCharter = (form, props) => {
   }else{
         dataobject = {
            "categoryId":form.selectCat,
-           "projectId":props.id,
+           "projectId":props.projectId,
            "projectname":props.name ? props.name: props.projectname,
            "movefromcat":props.id 
           }

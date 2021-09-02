@@ -83,20 +83,73 @@ const FinalStepIframe = (props) => {
             <Row className="project_two_col my-5">
                 <Col className="col_details_headings" sm={3}><p>In Scope:</p></Col>
                 <Col className="col_details_titles" sm={9}>
-                    <p><ul><li>{props.data.charterlist.InScope }</li></ul></p>
+                    <p><ul>{
+
+                        props.data.charterlist.InScope ?
+
+                        JSON.parse(props.data.charterlist.InScope).length > 0 ?
+
+                        JSON.parse(props.data.charterlist.InScope).map((list,index) => {
+                            return (<>
+                                     <li>{list.InScope}</li>
+                                    </>)
+
+                        })
+
+                        :null
+                        :null 
+
+
+                    }</ul></p>
+                   
                 </Col>
             </Row>
             <Row className="project_two_col my-5">
                 <Col className="col_details_headings" sm={3}><p>Out of Scope:</p></Col>
                 <Col className="col_details_titles" sm={9}>
-                    <p><ul><li>{props.data.charterlist.outScope }</li></ul></p>
+                <p><ul>{
+
+                        props.data.charterlist.outScope ?
+
+                        JSON.parse(props.data.charterlist.outScope).length > 0 ?
+
+                        JSON.parse(props.data.charterlist.outScope).map((list,index) => {
+                            return (<>
+                                     <li>{list.outScope}</li>
+                                    </>)
+
+                        })
+
+                        :null
+                        :null 
+
+
+                    }</ul></p>
+                   
                 </Col>
             </Row>
             <Row className="project_two_col my-5">
                 <Col className="col_details_headings" sm={3}><p>Assumptions:</p></Col>
                 <Col className="col_details_titles" sm={9}>
-                    <p><ul><li>
-                   {props.data.charterlist.assumptionTime }</li></ul></p>
+                 <p><ul>{
+
+                        props.data.charterlist.assumptionTime ?
+
+                        JSON.parse(props.data.charterlist.assumptionTime).length > 0 ?
+
+                        JSON.parse(props.data.charterlist.assumptionTime).map((list,index) => {
+                            return (<>
+                                     <li>{list.assumptionTime}</li>
+                                    </>)
+
+                        })
+
+                        :null
+                        :null 
+
+
+                    }</ul></p>
+                   
                 </Col>
             </Row>
             <Row className="project_two_col my-5">

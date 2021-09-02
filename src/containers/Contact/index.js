@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { Image, OverlayTrigger, Popover, Modal } from "react-bootstrap";
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -20,16 +21,21 @@ const Contact = (props) => {
       description:Yup.string().required("Description is required"),
     });
     console.log(validationSchema);
-
+    const { className,  modal } = props;
     const dispatch = useDispatch();
 
     const { register, errors, handleSubmit, reset } = useForm({
       resolver: yupResolver(validationSchema),
     });
-
+    const [showModal, setshowModal] = useState(false);    
+    const handleClose = () => setshowModal(false)
     const onSubmit = async (data) => {
       dispatch(actions.contactus(data));
-      reset();
+        
+        setTimeout(() => {
+            setshowModal(true);
+        }, 3000);   
+        reset();
     };
 
   return (
@@ -86,9 +92,19 @@ const Contact = (props) => {
                 </div>              
             </Form>
           </Col>
+          {/* Modals for Delete folder */}
+          <Modal show={showModal} onHide={handleClose} centered>
+            <Modal.Header className="modal_header_section" closeButton>
+              <Modal.Title className="modal_title_section">Confirmation Box</Modal.Title>
+            </Modal.Header>
+            <Modal.Body clasName="modal_body_section">
+                Thank you for contacting us. We will respond shortly.
+            </Modal.Body>
+          </Modal>
         </Row>        
       </Container>
     </div>
+
   );
 };
 

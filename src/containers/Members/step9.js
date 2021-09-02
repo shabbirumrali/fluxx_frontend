@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemForm from "./ItemForm";
@@ -17,7 +17,13 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
        const { assumptionTime } = formData;    
        const [assumptionsOpen, setAssumptionsOpen] = useState(true);
        const { previous, next,go } = navigation;
-       console.log(next);     
+       const [goalOpen, setGoalOpen] = useState([{ goallist: "" }]);
+       
+        useEffect(() => {
+          if (formData.assumptionTime != '' && formData.assumptionTime != null) {
+              setGoalOpen(formData.assumptionTime)
+          }          
+        }, []);
         const onSubmit = async (data) => {        
           let dataobject = {
               "goal":formData.goal,
@@ -31,7 +37,7 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
               "startDate":formData.startDate,
               "finishDate":formData.finishDate,
               "budget":formData.budget,
-              "assumptionTime":assumptionTime,
+              "assumptionTime":goalOpen,
               "step":id
            }       
           dispatch(actions.createcharter(dataobject));
@@ -40,6 +46,24 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
       const sendDataToParent = (index) => { // the callback. Use a better name
         console.log(index);
         go(index);
+      };
+      const handleInputChange = (e, index) => {
+          console.log(e);
+          const { name, value } = e.target;
+          const list = [...goalOpen];
+          list[index][name] = value;
+          setGoalOpen(list);
+        }; 
+      // handle click event of the Remove button
+      const handleRemoveClick = index => {
+        const list = [...goalOpen];
+        list.splice(index, 1);
+        setGoalOpen(list);
+      }; 
+      // handle click event of the Add button
+      const handleAddClick = () => {
+        console.log('sdfsdfs');
+        setGoalOpen([...goalOpen, { goallist: "" }]);
       };
 
 return (
@@ -54,9 +78,23 @@ return (
         <Col xs={12} sm={8} lg={6} className="project_details">
           <Form onSubmit={handleSubmit(onSubmit)} noValidate>
             <div className="project_charter_textarea_div">
-              <ItemForm label="What are the assumptions at this time?"
-                name="assumptionTime" type="textarea" className="project_info"
-                value={assumptionTime} onChange={setForm} />
+              {goalOpen.map((x, i) => {
+                  return (
+                    <div className="project_charter_textarea_div">
+                      <ItemForm
+                        name="assumptionTime" type="textarea" value={x.assumptionTime}
+                        onChange={e => handleInputChange(e, i)}
+                        className="project_info" />
+
+                      <div className="add_remove_btn_unit">
+                        {goalOpen.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
+                        {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD Assumption <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                      </div>
+                    </div>
+                  )
+                }
+                )}    
+              
             </div>
             <div className="nextstep_charter_btn">
               <Button variant="light" type="submit" className="back_btn" onClick={previous}>

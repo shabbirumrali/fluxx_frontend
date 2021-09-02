@@ -197,6 +197,7 @@ const Members = (props) => {
   let [page, setPage] = useState(1);
   const PER_PAGE = 2;
   const count = Math.ceil(props.setResponseData ? props.setResponseData.charterlist.length / PER_PAGE : 0);
+  console.log(count);
   const _DATA = usePagination(props.setResponseData ? props.setResponseData.charterlist : [], PER_PAGE);
   const handleChange = (e, p) => {
     setPage(p);

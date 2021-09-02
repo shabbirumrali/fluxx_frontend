@@ -1128,6 +1128,17 @@ label:focus,
   color: #f9f9f9;
   text-decoration: none;
 }
+.pdf_download_btn2 {
+  text-decoration: none;  
+  color: #f9f9f9;
+  border-radius: 10px;
+  
+}
+.pdf_download_btn2:hover {
+  
+  color: #f9f9f9;
+  text-decoration: none;
+}
 .pdf_view {
   width: 70%;
   display: block;

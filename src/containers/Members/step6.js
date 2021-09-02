@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Container, Form, Row, Collapse, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ItemForm from "./ItemForm";
@@ -18,6 +18,16 @@ const InScope = ({ setForm, formData, navigation, id }) => {
   const [inScopeOpen, setInScopeOpen] = useState(true);
   const [outScopeOpen, setOutScopeOpen] = useState(true);
   const { previous, next, go } = navigation;
+  const [goalOpen, setGoalOpen] = useState([{ goallist: "" }]);
+  const [goalOpen1, setGoalOpen1] = useState([{ goallist1: "" }]);
+  useEffect(() => {
+    if (formData.InScope != '' && formData.InScope != null) {
+      setGoalOpen(formData.InScope)
+    }
+    if (formData.outScope != '' && formData.outScope != null) {
+      setGoalOpen1(formData.outScope)
+    }
+  }, []);
   const onSubmit = async (data) => {
     let dataobject = {
       "goal": formData.goal,
@@ -25,17 +35,54 @@ const InScope = ({ setForm, formData, navigation, id }) => {
       "project_sponsor": formData.project_sponsor,
       "project_need": formData.project_need,
       "name": formData.name,
-      "InScope": InScope,
-      "outScope": outScope,
+      "InScope": goalOpen,
+      "outScope": goalOpen1,
       "step": id
     }
     dispatch(actions.createcharter(dataobject));
     next();
   };
+  
   // the callback. Use a better name
   const sendDataToParent = (index) => {
     console.log(index);
     go(index);
+  };
+  const handleInputChange = (e, index) => {
+    console.log(e);
+    const { name, value } = e.target;
+    const list = [...goalOpen];
+    list[index][name] = value;
+    setGoalOpen(list);
+  };
+  const handleInputChange1 = (e, index) => {
+    console.log(e);
+    const { name, value } = e.target;
+    const list = [...goalOpen1];
+    list[index][name] = value;
+    setGoalOpen1(list);
+  };
+
+  // handle click event of the Remove button
+  const handleRemoveClick = index => {
+    const list = [...goalOpen];
+    list.splice(index, 1);
+    setGoalOpen(list);
+  };
+  const handleRemoveClick1 = index => {
+    const list = [...goalOpen1];
+    list.splice(index, 1);
+    setGoalOpen1(list);
+  };
+
+  // handle click event of the Add button
+  const handleAddClick = () => {
+    console.log('sdfsdfs');
+    setGoalOpen([...goalOpen, { goallist: "" }]);
+  };
+   const handleAddClick1 = () => {
+    console.log('sdfsdfs');
+    setGoalOpen1([...goalOpen1, { goallist1: "" }]);
   };
 
   return (
@@ -48,19 +95,40 @@ const InScope = ({ setForm, formData, navigation, id }) => {
         <p> In Scope </p>
         <Row className="charter_steps">
           <Col xs={12} sm={8} lg={6} className="project_details">
-            <Form onSubmit={handleSubmit(onSubmit)} noValidate>
-              <div className="project_charter_textarea_div">
-                <ItemForm label="What is included in the work you’ll be doing for the project?"
-                  name="InScope" type="textarea" value={InScope}
-                  onChange={setForm} className="project_info" />
-              </div>
+            <Form onSubmit={handleSubmit(onSubmit)} noValidate>  
+               {goalOpen.map((x, i) => {
+                return (
+                  <div className="project_charter_textarea_div">
+                    <ItemForm
+                      name="InScope" type="textarea" value={x.InScope}
+                      onChange={e => handleInputChange(e, i)}
+                      className="project_info" />
+
+                    <div className="add_remove_btn_unit">
+                      {goalOpen.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
+                      {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD InScope <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                    </div>
+                  </div>
+                )
+              }
+              )}             
               <p> Out of Scope </p>
-              <div className="project_charter_textarea_div">
-                <ItemForm label="What is not included in the work you’ll be doing for the project?"
-                  name="outScope" value={outScope} type="textarea"
-                  onChange={setForm} className="project_info"
-                />
-              </div>
+                {goalOpen1.map((x, i) => {
+                  return (
+                    <div className="project_charter_textarea_div">
+                      <ItemForm
+                        name="outScope" type="textarea" value={x.outScope}
+                        onChange={e => handleInputChange1(e, i)}
+                        className="project_info" />
+
+                      <div className="add_remove_btn_unit">
+                        {goalOpen1.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick1(i)}>Remove</Button>}
+                        {goalOpen1.length - 1 === i && <Button onClick={handleAddClick1} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD OutScope <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                      </div>
+                    </div>
+                  )
+                }
+              )}              
               <div className="nextstep_charter_btn">
                 <Button variant="light" type="submit" className="back_btn" onClick={previous}>
                   BACK

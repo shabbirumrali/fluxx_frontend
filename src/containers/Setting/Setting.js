@@ -170,7 +170,7 @@ const Setting = (props) => {
               {errors.wrongpassword ? <span className="errorMessage">Old Password is incorrect</span> : null}
             </FormGroup>
             <FormGroup className="modal_form_content">
-              <Label>new Password</Label>
+              <Label>new password</Label>
               <input type="password" ref={register({ required: true })} name="newpassword" />
               {errors.password && (<span className="errorMessage"> Please enter a new password </span>)}
               {errors.wrongpassword ? <span className="errorMessage">New Password is incorrect</span> : null}

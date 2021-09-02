@@ -53,7 +53,7 @@ const Members = (props) => {
     }
     reset();
   };
-
+  console.log(selectedcharterid);
   const fetchcharterdetail = value => () => {
     console.log(value);
     fetchcDetail(value)
@@ -135,7 +135,7 @@ const Members = (props) => {
   );
   console.log(props);
   let [page, setPage] = useState(1);
-  const PER_PAGE = 1;
+  const PER_PAGE = 3;
   const count = Math.ceil(props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length / PER_PAGE : 0);
   const _DATA = usePagination(props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects : [], PER_PAGE);
   const handleChange = (e, p) => {
@@ -164,7 +164,7 @@ const Members = (props) => {
                     <div className="last_modified_unit">
                       <p className="my-auto">Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>
                       <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
-                        <i className="fa fa-ellipsis-v" aria-hidden="true" onClick={() => chartedId(list)}></i>
+                        <i className="fa fa-ellipsis-v" aria-hidden="true" onClick={() => chartedId(list)} id={list.projectId}></i>
                       </OverlayTrigger>
                     </div>
                   </div>
@@ -248,7 +248,7 @@ const Members = (props) => {
           <Modal.Body clasName="modal_body_section">
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="modal_delete_msg">
-                <p>Are you sure you want to delete <span>"document Name"</span></p>
+                <p>Are you sure you want to delete <span>{selectedcharterid.projectname}</span></p>
               </div>
               <div className="modal_btn_section">
                 <Button className="modal_trigger_btn" type="submit"> Delete </Button>
