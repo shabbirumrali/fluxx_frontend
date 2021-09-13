@@ -49,6 +49,7 @@ const Impact = ({ setForm, formData, navigation, id }) => {
     setGoalOpen([...goalOpen, { goallist: "" }]);
   };
   const onSubmit = async (data) => {
+    formData.impact = goalOpen;
     let dataobject = {
       "project_manager": formData.project_manager,
       "project_sponsor": formData.project_sponsor,
@@ -85,7 +86,7 @@ const Impact = ({ setForm, formData, navigation, id }) => {
               <label htmlFor="">What will be impacted by this project?</label>
               {goalOpen.map((x, i) => {
                 return (
-                  <div className="project_charter_textarea_div">
+                  <div className="project_charter_textarea_div" key={i}>
                     <ItemForm
                       name="impact" value={x.impact} type="textarea"
                       onChange={e => handleInputChange(e, i)} className="project_info" />

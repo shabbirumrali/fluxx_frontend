@@ -11,6 +11,7 @@ import { useHistory, Redirect } from "react-router-dom";
 import TitleList from "./titleList";
 
 const Benefits = ({ setForm, formData, navigation, id }) => {
+  console.log(navigation);
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, errors, handleSubmit, reset } = useForm();
@@ -49,6 +50,7 @@ const Benefits = ({ setForm, formData, navigation, id }) => {
     setGoalOpen([...goalOpen, { goallist: "" }]);
   };
   const onSubmit = async (data) => {
+    formData.benefits = goalOpen;
     let dataobject = {
       "project_manager": formData.project_manager,
       "project_sponsor": formData.project_sponsor,
@@ -78,7 +80,7 @@ const Benefits = ({ setForm, formData, navigation, id }) => {
               <label htmlFor="">What are the benefits of each goal?</label>
               {goalOpen.map((x, i) => {
                 return (
-                  <div className="project_charter_textarea_div">
+                  <div className="project_charter_textarea_div" key={i}>
                     <ItemForm
                       name="benefits" type="textarea" value={x.benefits}
                       onChange={e => handleInputChange(e, i)}

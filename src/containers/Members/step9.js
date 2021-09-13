@@ -24,7 +24,8 @@ const Assumptions = ({ setForm, formData, navigation,id }) => {
               setGoalOpen(formData.assumptionTime)
           }          
         }, []);
-        const onSubmit = async (data) => {        
+        const onSubmit = async (data) => {  
+              formData.assumptionTime = goalOpen;
           let dataobject = {
               "goal":formData.goal,
               "project_manager":formData.project_manager,
@@ -80,7 +81,7 @@ return (
             <div className="project_charter_textarea_div">
               {goalOpen.map((x, i) => {
                   return (
-                    <div className="project_charter_textarea_div">
+                    <div className="project_charter_textarea_div" key={i}>
                       <ItemForm
                         name="assumptionTime" type="textarea" value={x.assumptionTime}
                         onChange={e => handleInputChange(e, i)}

@@ -29,6 +29,8 @@ const InScope = ({ setForm, formData, navigation, id }) => {
     }
   }, []);
   const onSubmit = async (data) => {
+    formData.InScope = goalOpen;
+    formData.outScope = goalOpen1;
     let dataobject = {
       "goal": formData.goal,
       "project_manager": formData.project_manager,
@@ -98,7 +100,7 @@ const InScope = ({ setForm, formData, navigation, id }) => {
             <Form onSubmit={handleSubmit(onSubmit)} noValidate>  
                {goalOpen.map((x, i) => {
                 return (
-                  <div className="project_charter_textarea_div">
+                  <div className="project_charter_textarea_div" key={i}>
                     <ItemForm
                       name="InScope" type="textarea" value={x.InScope}
                       onChange={e => handleInputChange(e, i)}
@@ -115,7 +117,7 @@ const InScope = ({ setForm, formData, navigation, id }) => {
               <p> Out of Scope </p>
                 {goalOpen1.map((x, i) => {
                   return (
-                    <div className="project_charter_textarea_div">
+                    <div className="project_charter_textarea_div" key={i}>
                       <ItemForm
                         name="outScope" type="textarea" value={x.outScope}
                         onChange={e => handleInputChange1(e, i)}

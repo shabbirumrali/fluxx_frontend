@@ -49,7 +49,7 @@ const Stakeholders = ({ setForm, formData, navigation, id }) => {
   };
 
   const onSubmit = async (data) => {
-
+      formData.stakeholder = goalOpen;
     let dataobject = {
       "project_manager": formData.project_manager,
       "project_sponsor": formData.project_sponsor,
@@ -88,7 +88,7 @@ const Stakeholders = ({ setForm, formData, navigation, id }) => {
               <label htmlFor="">Who will be affected by this project?</label>
               {goalOpen.map((x, i) => {
                 return (
-                  <div className="project_charter_textarea_div">
+                  <div className="project_charter_textarea_div" key={i}>
                     <ItemForm
                       name="stakeholder" value={x.stakeholder} type="textarea"
                       className="project_info" onChange={e => handleInputChange(e, i)} />

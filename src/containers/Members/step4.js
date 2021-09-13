@@ -20,9 +20,7 @@ const Goal = ({ setForm, formData, navigation, id }) => {
   const [faqGoalOpen, setfaqGoalOpen] = useState(true);
 
   const [goalOpen, setGoalOpen] = useState([{ goallist: "" }]);
-  // console.log(JSON.parse(formData.goal).length);
-  // console.log(formData.goal.length);
-  // console.log(formData.goal);
+ 
   // handle input change
   console.log(formData.goal);
   useEffect(() => {
@@ -51,9 +49,12 @@ const Goal = ({ setForm, formData, navigation, id }) => {
     console.log('sdfsdfs');
     setGoalOpen([...goalOpen, { goallist: "" }]);
   };
-  // console.log(JSON.parse(formData));
+ console.log(goalOpen);
 
   const onSubmit = async (data) => {
+    console.log(formData.goal);
+    console.log(goalOpen);
+    formData.goal = goalOpen;
     let dataobject = {
       "goal": goalOpen,
       "project_manager": formData.project_manager,
@@ -62,7 +63,7 @@ const Goal = ({ setForm, formData, navigation, id }) => {
       "name": formData.name,
       "step": id
     }
-    dispatch(actions.createcharter(dataobject));
+    dispatch(actions.createcharter(dataobject));    
     next();
   };
   const sendDataToParent = (index) => {
@@ -85,7 +86,7 @@ const Goal = ({ setForm, formData, navigation, id }) => {
               <label htmlFor="">What do you hope to accomplish with this project? What do you hope to gain or retain with this effort?</label>
               {goalOpen.map((x, i) => {
                 return (
-                  <div className="project_charter_textarea_div">
+                  <div className="project_charter_textarea_div" key={i}>
                     <ItemForm key={x} name="goal" value={x.goal} className="project_info"
                       type="textarea" onChange={e => handleInputChange(e, i)}
                     />

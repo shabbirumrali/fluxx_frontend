@@ -6,7 +6,9 @@ import { PdfDocument } from "./finalView";
 import { Link, Router, useHistory, Redirect, useParams } from "react-router-dom";
 import appConfig from "./../../config";
 import axios from 'axios';
-const TitleList = ({ activeCls, width, sendDataToParent,pdfdata }) => {
+const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata }) => {
+
+    console.log(showdownload+"------>");
     
   const history = useHistory();
   const sendDataToParent1 =  (value) => {
@@ -33,23 +35,7 @@ const TitleList = ({ activeCls, width, sendDataToParent,pdfdata }) => {
                         </div>
                     </Col>
                     <Col sm={6} lg={6}>
-                        <div className="print_download">
-                            <p>
-                                
-                                print / download
-                                {
-                                    pdfdata ?
-                                <PDFDownloadLink
-                                    document={<PdfDocument data={pdfdata} />}
-                                    fileName="charter.pdf"
-                                    className="pdf_download_btn2 px-5 py-3"
-                                >
-                                {({ blob, url, loading, error }) =>
-                                  loading ? "Loading document..." : <Image src={PrintDownload} className="print_Download_image" alt="Print & Download" />
-                                }
-                              </PDFDownloadLink> :null}
-                            </p>
-                        </div>
+                       
                     </Col>
                 </Row>
                 <Row>
@@ -68,6 +54,17 @@ const TitleList = ({ activeCls, width, sendDataToParent,pdfdata }) => {
                                 <li className={activeCls === 'step10' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('impact'); }}>impact</li>
                                 <li className={activeCls === 'step11' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('stakeholder'); }}>stakeholders</li>
                                 <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('risk'); }}>risks</li>
+                                { showdownload ? 
+                                <PDFDownloadLink
+                                    document={<PdfDocument data={pdfdata} />}
+                                    fileName="charter.pdf"
+                                    
+                                >
+                                {({ blob, url, loading, error }) =>
+                                  loading ? "Loading document..." : <li className="steps_active memberSteps">Print & Download</li>
+                                }
+                              </PDFDownloadLink>
+                                :null }
                             </ul>
 
                         </div>
@@ -85,6 +82,17 @@ const TitleList = ({ activeCls, width, sendDataToParent,pdfdata }) => {
                                 <li className={activeCls === 'step10' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('impact'); }}>impact</li>
                                 <li className={activeCls === 'step11' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('stakeholder'); }}>stakeholders</li>
                                 <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('risk'); }}>risks</li>
+                                { showdownload ? 
+                                <PDFDownloadLink
+                                    document={<PdfDocument data={pdfdata} />}
+                                    fileName="charter.pdf"
+                                    
+                                >
+                                {({ blob, url, loading, error }) =>
+                                  loading ? "Loading document..." : <li className="steps_active memberSteps">Print & Download</li>
+                                }
+                              </PDFDownloadLink>
+                                :null }
                             </ul>
 
                         </div> }
