@@ -12,6 +12,7 @@ import Assumptions from "./step9";
 import Impact from "./step10";
 import Stakeholders from "./step11";
 import Risks from "./step12";
+import MovieList from "./finalLview";
 //import "./styles.css";
 import axios from 'axios';
 import appConfig from "./../../config";
@@ -27,7 +28,8 @@ const steps = [
   { id: "assumption" },
   { id: "impact" },
   { id: "stakeholder" },
-  { id: "risk" }
+  { id: "risk" },
+  { id: "print" }
 ];
 const MultiStepForm = (props) => {
   console.log(props);
@@ -54,7 +56,7 @@ const MultiStepForm = (props) => {
         assumptionTime:objectdata.assumptionTime ? JSON.parse(objectdata.assumptionTime) :null,
         impact:objectdata.impact ? JSON.parse(objectdata.impact): null,
         stakeholder:objectdata.stakeholder ? JSON.parse(objectdata.stakeholder)  : null,
-        risks:objectdata.risks ? JSON.parse(objectdata.risks) : null,
+        risks:objectdata.risks ? JSON.parse(objectdata.risks) : null,        
         step:objectdata.step ? objectdata.step :""
       };
 
@@ -99,6 +101,8 @@ const MultiStepForm = (props) => {
       return <Stakeholders {...props1} />;         
     case "risk":
         return <Risks {...props1} />;
+    case "print":
+          return <MovieList {...props1} />;    
     default:
       return null;
   }

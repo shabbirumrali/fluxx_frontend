@@ -360,7 +360,7 @@ const Members = (props) => {
           <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
             {/* form tag if needed */}
             <div className="modal_delete_msg">
-              <p>Are you sure you want to delete <span>"{selectedcharterid.name}"</span></p>
+              <p>Are you sure you want to delete <span>"{selectedcharterid.name}" ?</span></p>
             </div>
             <div className="modal_btn_section">
               <Button className="modal_trigger_btn" type="submit">Delete</Button>
@@ -398,7 +398,7 @@ const Members = (props) => {
       {/* Modals for Delete folder */}
       <Modal show={show4} onHide={handleClose4} centered>
         <Modal.Header className="modal_header_section" closeButton>
-          <Modal.Title className="modal_title_section">Delete  {selectedfolderid.categoryname}</Modal.Title>
+          <Modal.Title className="modal_title_section">Delete  {selectedfolderid.categoryname} ?</Modal.Title>
         </Modal.Header>
         <Modal.Body clasName="modal_body_section">
           <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>

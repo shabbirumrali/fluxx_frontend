@@ -4,19 +4,23 @@ import Header from "../components/Header";
 import Content from "./content";
 
 const Layout = (props) => {
-	
+  console.log(props);
+  
   const [modal, setModal] = useState(false);
-  const toggle = () => setModal(!modal);
-
-  useEffect(() => { 
-  	//console.log(props.location.state.loginopen);
+  const toggle = () => setModal(!modal);  
+  useEffect(() => {   	
   	if(props.location.state !== undefined){
   	 if(props.location.state.loginopen == true){
-  		setModal(true);
+      console.log(props.location.state.loginopen);
+  		 setModal(true);
   	 }
     }
       
    },[]);
+  //  const [panelsData, changePanel] = useState(data);
+  //  useEffect(() => {
+  //   setModal(data);
+  // }, [data]);
 
   return (
     <>

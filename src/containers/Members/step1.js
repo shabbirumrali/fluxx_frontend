@@ -39,7 +39,7 @@ const Names = ({ setForm, formData, navigation,id }) => {
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4">
-      <TitleList activeCls="step1" width={7} sendDataToParent={sendDataToParent}/>
+      <TitleList activeCls="step1" width={7} sendDataToParent={sendDataToParent}  projectna={name}/>
     </Container>
 
     <Container className="charter_steps_container">

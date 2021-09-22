@@ -75,7 +75,7 @@ const Goal = ({ setForm, formData, navigation, id }) => {
   return (
     <>
       <Container fluid style={{ background: "#3d4a5c" }} className="py-4" >
-        <TitleList activeCls="step4" width={28} sendDataToParent={sendDataToParent} />
+        <TitleList activeCls="step4" width={28} sendDataToParent={sendDataToParent} projectna={formData.name} />
       </Container>
 
       <Container className="charter_steps_container">

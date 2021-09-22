@@ -6,9 +6,10 @@ import { PdfDocument } from "./finalView";
 import { Link, Router, useHistory, Redirect, useParams } from "react-router-dom";
 import appConfig from "./../../config";
 import axios from 'axios';
-const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata }) => {
+const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,projectna }) => {
+    
 
-    console.log(showdownload+"------>");
+    console.log(projectna+"------>");
     
   const history = useHistory();
   const sendDataToParent1 =  (value) => {
@@ -18,11 +19,27 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata }) 
               state: { detail: pdfdata.charterlist }
             });
        
-  }
- 
+  } 
 
-    
-
+  const finalstep = () => {
+            axios({
+            "method": "GET",
+            "url": appConfig.config().baseUrl + "/fetchcharter/" + projectna,
+            "headers": {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                'Content-Type': 'application/json',
+            }
+            })
+            .then((response) => {
+                history.push({
+                pathname: "/finalStep",
+                state: { detail: response.data }
+                });
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+  };
  
     
     return (
@@ -61,10 +78,10 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata }) 
                                     
                                 >
                                 {({ blob, url, loading, error }) =>
-                                  loading ? "Loading document..." : <li className="steps_active memberSteps">Print & Download</li>
+                                  loading ? "Loading document..." : <li className="steps_active memberSteps" >Print & Download</li>
                                 }
                               </PDFDownloadLink>
-                                :null }
+                                :<li className="memberSteps" onClick={finalstep}>Print & Download</li> }
                             </ul>
 
                         </div>
@@ -92,7 +109,7 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata }) 
                                   loading ? "Loading document..." : <li className="steps_active memberSteps">Print & Download</li>
                                 }
                               </PDFDownloadLink>
-                                :null }
+                                :<li className="memberSteps" onClick={finalstep}>Print & Download</li> }
                             </ul>
 
                         </div> }

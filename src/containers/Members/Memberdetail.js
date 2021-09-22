@@ -38,7 +38,9 @@ const Members = (props) => {
       handleClose();
     }
     if (Object.keys(data).length == 0) {
-      dispatch(actions.deleteCharter(data, selectedcharterid.id));
+      dispatch(actions.deleteCharter(data, selectedcharterid.projectId));
+      setTimeout(function(){  dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));
+      }, 2000);
       handleClose3();
     }
     if (data.selectCat == "uncategorized") {
@@ -47,7 +49,8 @@ const Members = (props) => {
       data.currentCategory = currentCat;
       dispatch(actions.moveCharter(data, selectedcharterid));
       handleClose2();
-    } else {
+    }
+    if (Object.keys(data).length >0) {
       dispatch(actions.moveCharter(data, selectedcharterid));
       handleClose2();
     }
@@ -248,7 +251,7 @@ const Members = (props) => {
           <Modal.Body clasName="modal_body_section">
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
               <div className="modal_delete_msg">
-                <p>Are you sure you want to delete <span>{selectedcharterid.projectname}</span></p>
+                <p>Are you sure you want to delete <span>{selectedcharterid.projectname} ?</span></p>
               </div>
               <div className="modal_btn_section">
                 <Button className="modal_trigger_btn" type="submit"> Delete </Button>

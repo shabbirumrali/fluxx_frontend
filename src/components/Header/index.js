@@ -59,7 +59,7 @@ const Header = (props) => {
           }
         </Navbar.Collapse>
       </Navbar>
-      <Auth toggle={toggle} className={className} modal={modal} />
+      <Auth toggle={toggle} className={className} modal={modal} forcesign="0" />
     </>
   );
 };

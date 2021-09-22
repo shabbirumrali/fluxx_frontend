@@ -1,6 +1,7 @@
-import React, { useEffect } from "react";
+import React, {useState, useEffect } from "react";
 import { FormGroup, Label, Container } from "reactstrap";
-import { Col, Row, Form, Image, Button } from 'react-bootstrap'
+
+import {  Row, Col, Button, Image, OverlayTrigger, Popover, Modal, Form } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap-floating-label";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
@@ -36,19 +37,41 @@ const Register = (props) => {
       .oneOf([Yup.ref("password"), null], "Passwords must match")
       .required("Confirm Password is required"),
   });
-
+ 
   const dispatch = useDispatch();
+  const [folder, setFolder] = useState(false);
+  const handleCloseFolder = () => setFolder(false)
+  const handleShowFolder = () => setFolder(true)
   const { className, toggle, modal } = props;
   const { register, errors, handleSubmit, reset } = useForm({
     resolver: yupResolver(validationSchema),
   });
-
+  // const onSubmit1 = async (data) => {
+  //   console.log('fghgfhf');
+  //   return false;
+  //   dispatch(actions.createForm(data));
+  //   reset();
+  // };
   const onSubmit = async (data) => {
-    dispatch(actions.createForm(data));
+    console.log('fghgfhf');
+    return false;
+    dispatch(actions.auth(data));
     reset();
   };
 
-  console.log(toggle);
+  const opensign = () =>{
+
+    history.push({
+      pathname: "/",
+      state: { loginopen: true}
+    });
+   // window.location.href = "/";
+  }
+  const forgetpassword = () => {
+   // toggle(!toggle);
+    history.push("/forgetpassword");
+  }
+
   useEffect(() => {
     checkAuthToken();
 
@@ -84,7 +107,7 @@ const Register = (props) => {
                   </div>
                 </div>
                 <div className="account_footer">
-                  <p className="text-center">Already have an account? <a href="" onClick={toggle}> Sign In</a></p>
+                  <p className="text-center">Already have an account? <a href="#" onClick={handleShowFolder} > Sign In</a></p>
                 </div>
               </div>
             </Form>
@@ -94,6 +117,48 @@ const Register = (props) => {
                 further information.</p>
             </div>
           </div>
+          <Modal show={folder} onHide={handleCloseFolder} centered>
+            <Modal.Header className="modal_header_section" closeButton>
+              <Modal.Title className="modal_title_section">fluxx.</Modal.Title>
+            </Modal.Header>
+            <Modal.Body clasName="modal_body_section">
+            <div className="signin_modal_header">
+              <p className="m-0"> Sign in to Fluxx. </p>
+            </div>
+        <div className="modal_form_body">
+          <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+            <FormGroup >
+              <Label htmlFor>email</Label>
+              <input type="email" name="email"
+                ref={register({
+                  required: true, pattern: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                })}
+              />
+              {errors.email && (<span className="errorMessage"> Please enter a valid email address </span>)}
+            </FormGroup>
+            <FormGroup>
+              <Label htmlFor>password</Label>
+              <input type="password" name="password1"
+                ref={register({
+                  required: true, pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+                })}
+              />
+              {errors.password1 && (<span className="errorMessage"> Please enter a valid password </span>)}
+            </FormGroup>
+            <div className="forget_pass">
+              <p className="m-0">
+                <Link to="#" rel="noreferrer" onClick={forgetpassword} style={{ color: "#5aa380", textDecoration: "none" }}>
+                  I forgot my password.
+                </Link>
+              </p>
+            </div>
+            <Button type="submit" className="sign_in_button" style={{ border: "none" }}>
+              SIGN IN
+            </Button>
+          </Form>
+        </div>
+            </Modal.Body>
+          </Modal>
 
         </Col>
 
@@ -125,6 +190,7 @@ const Register = (props) => {
         </Col>
       </Row>
     </Container>
+  
   </>);
 };
 

@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     },
     pdfHeaderTitle: {
         fontSize: 14,
-        fontWeight: 600,
+        fontWeight: 800,
     },
     pdfHeaderSubSection: {
         fontSize: 14,
@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'orange',
         justifyContent: 'flex-start',
         marginTop: 15,
+       
     },
     pdfContentContainer: {
         display: 'flex',
@@ -156,6 +157,7 @@ const styles = StyleSheet.create({
     },
     pdfContentTitle: {
         width: '20%',
+        fontSize: 14,
     },
     pdfBulletStyle: {
         width: '10%',

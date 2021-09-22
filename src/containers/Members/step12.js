@@ -92,7 +92,7 @@ const Risks = ({ setForm, formData, navigation, id }) => {
   return (
     <>
       <Container fluid style={{ background: "#3d4a5c" }} className="py-4">
-        <TitleList activeCls="step12" width={100} sendDataToParent={sendDataToParent} />
+        <TitleList activeCls="step12" width={100} sendDataToParent={sendDataToParent} projectna={formData.name} />
       </Container>
       <Container className="charter_steps_container">
         <p> Risks </p>

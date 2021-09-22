@@ -17,11 +17,12 @@ import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
 const Auth = (props) => {
+  console.log(props);
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, errors, handleSubmit, reset } = useForm();
-  const { className, toggle, modal } = props;
-
+  const { className, toggle, modal,forcesign} = props;
+  
   const onSubmit = async (data) => {
     dispatch(actions.auth(data));
     reset();

@@ -69,7 +69,7 @@ const Benefits = ({ setForm, formData, navigation, id }) => {
   return (
     <>
       <Container fluid style={{ background: "#3d4a5c" }} className="py-4" >
-        <TitleList activeCls="step5" width={35} sendDataToParent={sendDataToParent} />
+        <TitleList activeCls="step5" width={35} sendDataToParent={sendDataToParent} projectna={formData.name} />
       </Container>
 
       <Container className="charter_steps_container">

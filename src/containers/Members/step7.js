@@ -50,7 +50,7 @@ const Schedule = ({ setForm, formData, navigation,id }) => {
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4" >
-        <TitleList activeCls="step7" width={56} sendDataToParent={sendDataToParent} />
+        <TitleList activeCls="step7" width={56} sendDataToParent={sendDataToParent} projectna={formData.name} />
     </Container>
 
     <Container className="charter_steps_container">
