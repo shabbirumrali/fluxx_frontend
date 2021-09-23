@@ -7,7 +7,7 @@ import Guided from "../../assets/img/guided.png";
 import Aha from "../../assets/img/aha.png";
 
 const Home = (props) => {
-  console.log(props);
+
   return (
     <>
       <header className="header">
