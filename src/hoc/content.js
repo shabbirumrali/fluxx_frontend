@@ -18,9 +18,9 @@ const Content = ({toggle}) => {
           key={i}
           path={route.path}
           exact={route.exact}
-          render={() => (
+          render={(props) => (
             <div>
-              <route.component  toggle={toggle}  />
+              <route.component  {...props} toggle={toggle}  />
             </div>
           )}
         />
