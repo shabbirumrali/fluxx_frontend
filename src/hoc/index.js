@@ -25,7 +25,7 @@ const Layout = (props) => {
   return (
     <>
       <Header toggle={toggle} className="signin" modal={modal} />
-      <Content />
+      <Content toggle={toggle} className="signin" modal={modal} />
       <Footer />
     </>
   );

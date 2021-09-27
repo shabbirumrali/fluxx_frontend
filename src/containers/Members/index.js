@@ -321,7 +321,7 @@ const Members = (props) => {
             </FormGroup>
             <div className="modal_btn_section">
               <Button className="modal_trigger_btn" type="submit">Rename</Button>
-              <Button className="modal_cancel_btn" onClick={handleClose} variant="light" type="submit">Cancel</Button>
+              <Button className="modal_cancel_btn" onClick={handleClose} variant="light" >Cancel</Button>
             </div>
           </Form>
         </Modal.Body>
@@ -345,7 +345,7 @@ const Members = (props) => {
             </FormGroup>
             <div className="modal_btn_section">
               <Button className="modal_trigger_btn" type="submit">Submit </Button>
-              <Button className="modal_cancel_btn" onClick={handleClose2} variant="light" type="submit">CANCEL</Button>
+              <Button className="modal_cancel_btn" onClick={handleClose2} variant="light" >CANCEL</Button>
             </div>
           </Form>
         </Modal.Body>
@@ -364,7 +364,7 @@ const Members = (props) => {
             </div>
             <div className="modal_btn_section">
               <Button className="modal_trigger_btn" type="submit">Delete</Button>
-              <Button className="modal_cancel_btn" onClick={handleClose3} variant="light" type="submit">Cancel</Button>
+              <Button className="modal_cancel_btn" onClick={handleClose3} variant="light">Cancel</Button>
             </div>
           </Form>
         </Modal.Body>
@@ -389,7 +389,7 @@ const Members = (props) => {
             <input type="hidden" ref={register({ required: true })}  name="folderId" value={selectedfolderid.id} />
             <div className="modal_btn_section">
               <Button className="modal_trigger_btn" type="submit">Rename</Button>
-              <Button className="modal_cancel_btn" onClick={handleClose5} variant="light" type="submit">Cancel</Button>
+              <Button className="modal_cancel_btn" onClick={handleClose5} variant="light" >Cancel</Button>
             </div>
           </Form>
         </Modal.Body>
@@ -405,7 +405,7 @@ const Members = (props) => {
             <input type="hidden" ref={register({ required: true })} name="deletefolder" value={selectedfolderid.id} />
             <div className="modal_btn_section">
               <Button className="modal_trigger_btn" type="submit"> Delete </Button>
-              <Button className="modal_cancel_btn" onClick={handleClose4} variant="light" type="button"> Cancel </Button>
+              <Button className="modal_cancel_btn" onClick={handleClose4} variant="light" > Cancel </Button>
             </div>
           </Form>
         </Modal.Body>

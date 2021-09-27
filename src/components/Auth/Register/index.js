@@ -15,7 +15,7 @@ import Lifesaver from '../../../assets/img/lifesaver.png'
 import * as actions from "../../../store/actions/index";
 
 const Register = (props) => {
-  console.log(props);
+ 
   const history = useHistory();
   const checkAuthToken = async () => {
     const token = localStorage.getItem("token");
@@ -39,9 +39,7 @@ const Register = (props) => {
   });
  //const [state,dispatch] = useReducer(reducer,{count:0,showtext});
   const dispatch = useDispatch();
-  const [folder, setFolder] = useState(false);
-  const handleCloseFolder = () => setFolder(false)
-  const handleShowFolder = () => setFolder(true)
+  
   const { className, toggle, modal } = props;
   const { register, errors, handleSubmit, reset } = useForm({
     resolver: yupResolver(validationSchema),
@@ -101,7 +99,7 @@ const Register = (props) => {
                   </div>
                 </div>
                 <div className="account_footer">
-                  <p className="text-center">Already have an account? <a href="#" onClick={handleShowFolder} > Sign In</a></p>
+                  <p className="text-center">Already have an account? <a href="#" onClick={toggle} > Sign In</a></p>
                 </div>
               </div>
             </Form>

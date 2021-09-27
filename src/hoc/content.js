@@ -8,7 +8,9 @@ const loading = (
   </div>
 );
 
-const Content = () => {
+const Content = ({toggle}) => {
+
+  
   const allRouter = routes.map((route, i) => {
     return (
       route.component && (
@@ -16,9 +18,9 @@ const Content = () => {
           key={i}
           path={route.path}
           exact={route.exact}
-          render={(props) => (
+          render={() => (
             <div>
-              <route.component {...props} />
+              <route.component  toggle={toggle}  />
             </div>
           )}
         />
