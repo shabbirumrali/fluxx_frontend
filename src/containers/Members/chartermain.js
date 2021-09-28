@@ -32,49 +32,39 @@ const steps = [
   { id: "print" }
 ];
 const MultiStepForm = (props) => {
-  console.log(props);
-
-  
-  
-  
- 
-    const objectdata = props.location.state !== undefined ? props.location.state.detail:{}; 
-     
-
-    const defaultData = {
-        name: objectdata.name ? objectdata.name:"",
-        project_manager: objectdata.project_manager ? objectdata.project_manager:"",
-        project_sponsor: objectdata.project_sponsor ? objectdata.project_sponsor:"",
-        project_need: objectdata.project_need ? objectdata.project_need:"",
-        goal:objectdata.goal ? JSON.parse(objectdata.goal): null,
-        benefits:objectdata.benefits ? JSON.parse(objectdata.benefits) :null,
-        InScope:objectdata.InScope ? JSON.parse(objectdata.InScope) :null,
-        outScope:objectdata.outScope ? JSON.parse(objectdata.outScope) :null,
-        startDate:objectdata.startDate ? objectdata.startDate : "",
-        finishDate:objectdata.finishDate ? objectdata.finishDate : "",
-        budget:objectdata.budget ? objectdata.budget : "",
-        assumptionTime:objectdata.assumptionTime ? JSON.parse(objectdata.assumptionTime) :null,
-        impact:objectdata.impact ? JSON.parse(objectdata.impact): null,
-        stakeholder:objectdata.stakeholder ? JSON.parse(objectdata.stakeholder)  : null,
-        risks:objectdata.risks ? JSON.parse(objectdata.risks) : null,        
-        step:objectdata.step ? objectdata.step :""
-      };
-
+  console.log(props); 
+  const objectdata = props.location.state !== undefined ? props.location.state.detail:{};      
+  const defaultData = {
+    name: objectdata.name ? objectdata.name:"",
+    project_manager: objectdata.project_manager ? objectdata.project_manager:"",
+    project_sponsor: objectdata.project_sponsor ? objectdata.project_sponsor:"",
+    project_need: objectdata.project_need ? objectdata.project_need:"",
+    goal:objectdata.goal ? JSON.parse(objectdata.goal): null,
+    benefits:objectdata.benefits ? JSON.parse(objectdata.benefits) :null,
+    InScope:objectdata.InScope ? JSON.parse(objectdata.InScope) :null,
+    outScope:objectdata.outScope ? JSON.parse(objectdata.outScope) :null,
+    startDate:objectdata.startDate ? objectdata.startDate : "",
+    finishDate:objectdata.finishDate ? objectdata.finishDate : "",
+    budget:objectdata.budget ? objectdata.budget : "",
+    assumptionTime:objectdata.assumptionTime ? JSON.parse(objectdata.assumptionTime) :null,
+    impact:objectdata.impact ? JSON.parse(objectdata.impact): null,
+    stakeholder:objectdata.stakeholder ? JSON.parse(objectdata.stakeholder)  : null,
+    risks:objectdata.risks ? JSON.parse(objectdata.risks) : null,        
+    step:objectdata.step ? objectdata.step :""
+  };
 
   const [formData, setForm] = useForm(defaultData);
   const { step, navigation } = useStep({ initialStep: 0, steps });
-  
 
   let { id } = step;
-
   // if(objectdata.step != undefined){
   //   id = objectdata.step;
   // }
   // if(id == ''){
   //   id = 'names';
   // }
-   console.log(id);
-   console.log(objectdata.step);
+  console.log(id);
+  console.log(objectdata.step);
   const props1 = { formData, setForm, navigation,id };
   switch (id) {
     case "names":
@@ -106,7 +96,6 @@ const MultiStepForm = (props) => {
     default:
       return null;
   }
-
 };
 
 export default MultiStepForm;

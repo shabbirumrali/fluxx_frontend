@@ -6,16 +6,16 @@ body {
   padding: 0 !important;
 }
 /* navigation */
-.logo h2{
+.logo h2 {
   font-size: 2.1rem;
   font-weight: 700;
-  letter-spacing: 1px;  
+  letter-spacing: 1px;
   color: hsl(0, 0%, 30%);
 }
 .modal_logo {
   display: block;
 }
-.modal_logo h5{
+.modal_logo h5 {
   font-size: 1.9rem;
   font-weight: 700;
   letter-spacing: 1px;
@@ -33,7 +33,7 @@ body {
   color: hsl(0, 0%, 20%);
 }
 .header_banner_text {
-  width: 560px;  
+  width: 560px;
 }
 .signIn_section {
   float: right;
@@ -53,7 +53,7 @@ body {
   justify-content: flex-start;
   text-decoration: none;
   padding: 10px 40px 10px 20px;
-  color: hsl(0, 0%, 50%);  
+  color: hsl(0, 0%, 50%);
 }
 .dropdown_items a:hover,
 .dropdown_items a:focus,
@@ -61,6 +61,21 @@ body {
   color: #efefef !important;
   text-decoration: none;
   background: #69b791;
+  padding: 10px 40px 10px 20px;
+}
+.signout_dropdown_items {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-decoration: none;
+  padding: 10px 40px 10px 20px;
+}
+.signout_dropdown_items:hover,
+.signout_dropdown_items:focus,
+.signout_dropdown_items:active {
+  color: hsl(0, 0%, 90%) !important;
+  text-decoration: none;
+  background: #69b791 !important;
   padding: 10px 40px 10px 20px;
 }
 /* landing page */
@@ -150,18 +165,17 @@ body {
   font-weight: 400;
 }
 
-
 /* forgot password container */
 .forgot_password_row {
-  height: 80vh;  
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.forgot_pass_container {  
+.forgot_pass_container {
   /* background-color: #7491c3; */
 }
-.forgot_pass_container h3{
+.forgot_pass_container h3 {
   text-align: center;
   color: hsl(0, 0%, 30%);
   display: block;
@@ -190,8 +204,8 @@ body {
 .forgot_pass_email form button {
   width: 99%;
   display: block;
-  border: none;   
-  margin: 20px auto  10px auto;
+  border: none;
+  margin: 20px auto 10px auto;
   color: hsl(0, 0%, 98%);
   font-size: 1.2rem;
   font-weight: 500;
@@ -208,7 +222,6 @@ body {
   color: hsl(0, 0%, 99%);
 }
 .forgot_privacy_info {
-  
 }
 .forgot_privacy_info p {
   font-size: 0.8rem;
@@ -243,11 +256,11 @@ body {
 .signup_container {
   /* background: goldenrod; */
 }
-.signup_row {  
+.signup_row {
   display: flex;
   justify-content: center;
 }
-.create_your_account {  
+.create_your_account {
   /* background: yellow; */
   display: flex;
   justify-content: center;
@@ -257,14 +270,14 @@ body {
   width: 80%;
   /* background: rebeccapurple; */
 }
-.account_form h2{
+.account_form h2 {
   color: hsl(0, 0%, 30%);
   font-size: 2.4rem;
   font-weight: 400;
   margin: 8% 0;
   display: block;
 }
-.account_form form{
+.account_form form {
   border-radius: 1%;
   border: 1px solid hsl(0, 0%, 85%);
 }
@@ -277,10 +290,10 @@ body {
   letter-spacing: 1px;
   color: #a2c4ce;
 }
-.account_form_handle .form-group input{
+.account_form_handle .form-group input {
   width: 100%;
   display: block;
-  background: transparent;  
+  background: transparent;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid hsl(0, 0%, 50%);
@@ -308,7 +321,7 @@ body {
   color: hsl(0, 0%, 99%);
   background: #5aa380;
 }
-.signup_image img {  
+.signup_image img {
   width: 35px;
 }
 .account_footer {
@@ -317,7 +330,7 @@ body {
 .account_footer p {
   font-size: 1.2rem;
   font-weight: 400;
-  color: hsl(0, 0%, 40%);  
+  color: hsl(0, 0%, 40%);
   margin: 0;
 }
 .account_footer p a {
@@ -342,7 +355,7 @@ body {
 .create_account_footer a {
   color: #69b791;
   text-decoration: none;
-  font-weight: 600;  
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
@@ -351,14 +364,14 @@ body {
   color: #5aa380;
   text-decoration: underline;
 }
-.message_create{
+.message_create {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   /* background: #ff5000; */
 }
 .unit_message_box {
-  display: flex;  
+  display: flex;
   align-items: center;
   margin: 40px 0;
 }
@@ -368,7 +381,7 @@ body {
 .unit_message_box p {
   margin-bottom: 0;
   margin-left: 15px;
-  font-size: 1rem;  
+  font-size: 1rem;
   color: hsl(0, 0%, 30%);
 }
 .password_validation {
@@ -408,7 +421,7 @@ label:focus,
   padding: 20px 0;
   font-weight: 400;
   font-size: 1.4rem;
-  color: hsl(0, 0%, 30%);  
+  color: hsl(0, 0%, 30%);
 }
 .signin_modal_header {
   background: hsl(0, 0%, 95%);
@@ -417,16 +430,16 @@ label:focus,
 .modal_form_body {
   padding: 20px 50px;
 }
-.modal_form_body form label{
+.modal_form_body form label {
   margin: 0;
   font-weight: 500;
   letter-spacing: 1px;
   color: #a2c4ce;
 }
-.modal_form_body form input{
+.modal_form_body form input {
   width: 100%;
   display: block;
-  background: transparent;  
+  background: transparent;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid hsl(0, 0%, 50%);
@@ -451,20 +464,20 @@ label:focus,
 }
 /* SignIn Modal Fotgot password  */
 .forget_pass {
-  display: block;  
+  display: block;
   text-align: right;
   margin-top: 10px;
   margin-bottom: 15px;
 }
 .forget_pass p a {
   color: #69b791;
-  font-weight: 500;  
+  font-weight: 500;
   text-decoration: none;
   transition: all 0.5s ease-in-out;
 }
 .forget_pass p a:hover {
   text-decoration: underline !important;
-  color: #759b89 !important;  
+  color: #759b89 !important;
 }
 .model_footer {
   display: flex;
@@ -472,7 +485,7 @@ label:focus,
   align-items: center;
   background: hsl(0, 0%, 95%);
   font-size: 1.1rem;
-  font-weight: 400;  
+  font-weight: 400;
 }
 .model_footer p {
   color: hsl(0, 0%, 30%);
@@ -521,7 +534,7 @@ label:focus,
 }
 
 /* Members index Page */
-.members_container {  
+.members_container {
   margin: 3% 0;
   width: 70% !important;
 }
@@ -677,9 +690,9 @@ label:focus,
 .modal_form_content select option {
   text-transform: capitalize;
 }
-.modal_btn_section_create_folder {  
+.modal_btn_section_create_folder {
   display: flex;
-  justify-content: flex-start;  
+  justify-content: flex-start;
 }
 .modal_btn_section_create_folder .modal_cancel_btn {
   margin-left: 20px;
@@ -689,7 +702,7 @@ label:focus,
   justify-content: flex-start;
 }
 .modal_btn_section .modal_cancel_btn {
-  margin-left: 20px;  
+  margin-left: 20px;
 }
 .modal_btn_section button,
 .modal_btn_section_create_folder button {
@@ -802,7 +815,6 @@ label:focus,
 .charter_steps_container p {
   font-size: 1.4rem;
   font-weight: 500;
-  
 }
 .charter_steps {
   display: flex;
@@ -817,37 +829,37 @@ label:focus,
   height: 80vh;
   margin: 2% auto;
 }
-.members_folder_container h2{
+.members_folder_container h2 {
   text-transform: capitalize;
   color: hsl(0, 0%, 40%);
   font-size: 2rem;
 }
 .members_empty_folder {
   width: 50%;
-  height: 40vh;  
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.members_empty_folder .members_empty_folder_inside {  
+.members_empty_folder .members_empty_folder_inside {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;  
+  align-items: center;
 }
-.members_empty_folder_inside p{
+.members_empty_folder_inside p {
   margin: 0;
   color: hsl(0, 0%, 50%);
   font-size: 1.4rem;
 }
-.members_empty_folder_inside button{
+.members_empty_folder_inside button {
   color: hsl(0, 0%, 50%);
   padding: 10px 30px;
   font-size: 1.2rem;
   font-weight: 400;
   transition: all 0.6s ease-in-out;
 }
-.members_empty_folder_inside button:hover{
+.members_empty_folder_inside button:hover {
   color: hsl(0, 0%, 40%);
 }
 /* Faq Section */
@@ -927,9 +939,8 @@ label:focus,
 }
 /* Project steps */
 /* label text specific */
-.project_details form label{
+.project_details form label {
   font-weight: 500;
-
 }
 .project_charter_textarea_div {
   margin-bottom: 20px;
@@ -1110,18 +1121,47 @@ label:focus,
 /* pdf download page */
 .pdf_download_title {
   width: 80%;
-  margin: 0 auto;
+  margin: 30px auto;
   text-align: center;
 }
 .pdf_download_title p {
   font-size: 20px;
 }
+.pdf_download_btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pdf_download_btns a {
+  text-decoration: none !important;
+}
+.pdf_download_btns .final_step_back_btn {
+  background: hsl(0, 0%, 97%);
+  font-size: 1.3rem;
+  color: hsl(0, 0%, 40%);
+  padding-top: 15px;
+  padding-bottom: 15px;
+  transition: all 0.5s ease-in-out;
+}
+.pdf_download_btns .final_step_back_btn:hover {
+  background: hsl(0, 0%, 95%);
+  color: hsl(0, 0%, 38%);
+}
+.final_step_back_btn,
+.pdf_download_btn {
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+}
+.final_step_back_btn i {
+  margin: 0 10px;
+}
 .pdf_download_btn {
   text-decoration: none;
   background: #69b791;
   color: #f9f9f9;
-  border-radius: 10px;
-  font-size: 20px;
+  font-size: 1.3rem;
+  transition: all 0.5s ease-in-out;
 }
 .pdf_download_btn:hover {
   background: #5aa380;
@@ -1129,13 +1169,11 @@ label:focus,
   text-decoration: none;
 }
 .pdf_download_btn2 {
-  text-decoration: none;  
+  text-decoration: none;
   color: #f9f9f9;
   border-radius: 10px;
-  
 }
 .pdf_download_btn2:hover {
-  
   color: #f9f9f9;
   text-decoration: none;
 }
@@ -1154,7 +1192,7 @@ label:focus,
   background: hsl(0, 0%, 95%);
 }
 .my_account_top_section {
-  margin: 0 auto;  
+  margin: 0 auto;
 }
 .account_setting_header {
   display: flex;
@@ -1167,14 +1205,14 @@ label:focus,
 }
 .account_setting_header h3 {
   margin-bottom: 0;
-  font-weight: 400;  
+  font-weight: 400;
 }
 .account_setting_header p {
   margin-bottom: 0;
   margin-left: 20px;
 }
 .acc_setting {
-  background: hsl(0, 0%, 95%);  
+  background: hsl(0, 0%, 95%);
   display: inline-block;
 }
 .acc_setting h5 {
@@ -1184,7 +1222,7 @@ label:focus,
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.setting_block {  
+.setting_block {
   margin: 0 auto;
   /* background-color: yellow; */
   padding: 10px;
@@ -1203,7 +1241,7 @@ label:focus,
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px 0;  
+  margin: 20px 0;
 }
 .setting_section .change_setting p {
   width: 400px;
@@ -1221,7 +1259,7 @@ label:focus,
 }
 .setting_section .change_setting a:hover,
 .setting_section .change_setting a:focus,
-.setting_section .change_setting a:active {  
+.setting_section .change_setting a:active {
   color: #5aa380;
 }
 .setting_checkbox {
@@ -1229,7 +1267,7 @@ label:focus,
   justify-content: flex-start;
   align-items: center;
 }
-.setting_checkbox p{
+.setting_checkbox p {
   margin-left: 20px;
   margin-bottom: 0;
   color: hsl(0, 0%, 40%);
@@ -1242,7 +1280,7 @@ label:focus,
   height: 25px;
   margin-bottom: 0;
 }
-.switch input { 
+.switch input {
   opacity: 0;
   width: 0;
   height: 0;
@@ -1274,7 +1312,7 @@ label:focus,
 }
 .setting_section_password .change_setting a:hover,
 .setting_section_password .change_setting a:focus,
-.setting_section_password .change_setting a:active {  
+.setting_section_password .change_setting a:active {
   color: #5aa380;
 }
 .my_account_top_section .delete_account {
@@ -1701,7 +1739,6 @@ form .cancel_btn:active {
   height: 200px;
 }
 
-
 .slider {
   position: absolute;
   cursor: pointer;
@@ -1710,20 +1747,20 @@ form .cancel_btn:active {
   right: 0;
   bottom: 0;
   background: hsl(0, 0%, 60%);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 20px;
   width: 20px;
   left: 3px;
   bottom: 3px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {

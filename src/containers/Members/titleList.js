@@ -7,52 +7,41 @@ import { Link, Router, useHistory, Redirect, useParams } from "react-router-dom"
 import appConfig from "./../../config";
 import axios from 'axios';
 const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,projectna }) => {
-    
-
-    console.log(projectna+"------>");
-    
-  const history = useHistory();
-  const sendDataToParent1 =  (value) => {
+    console.log(projectna+"------>");    
+    const history = useHistory();
+    const sendDataToParent1 =  (value) => {
     
     history.push({
-              pathname: "/cmain",
-              state: { detail: pdfdata.charterlist }
-            });
-       
+        pathname: "/cmain",
+        state: { detail: pdfdata.charterlist }
+    });       
   } 
 
   const finalstep = () => {
-            axios({
-            "method": "GET",
-            "url": appConfig.config().baseUrl + "/fetchcharter/" + projectna,
-            "headers": {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                'Content-Type': 'application/json',
-            }
-            })
-            .then((response) => {
-                history.push({
-                pathname: "/finalStep",
-                state: { detail: response.data }
-                });
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-  };
- 
-    
+    axios({
+    "method": "GET",
+    "url": appConfig.config().baseUrl + "/fetchcharter/" + projectna,
+    "headers": {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+    }
+}).then((response) => {
+    history.push({
+    pathname: "/finalStep",
+    state: { detail: response.data }
+    });
+}).catch((error) => {
+        console.log(error)
+    })
+};    
     return (
         <>
-            <Container>
+            <Container fluid >
                 <Row>
                     <Col sm={6} lg={6} className="charter_heading">
                         <div className="project_charter">
                             <h5>project charter</h5>
                         </div>
-                    </Col>
-                    <Col sm={6} lg={6}>
-                       
                     </Col>
                 </Row>
                 <Row>
@@ -74,14 +63,13 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
                                 { showdownload ? 
                                 <PDFDownloadLink
                                     document={<PdfDocument data={pdfdata} />}
-                                    fileName="charter.pdf"
-                                    
+                                    fileName="charter.pdf"                                    
                                 >
                                 {({ blob, url, loading, error }) =>
-                                  loading ? "Loading document..." : <li className="steps_active memberSteps" >Print & Download</li>
+                                  loading ? "Loading document..." : <li className="steps_active memberSteps" >print & download</li>
                                 }
                               </PDFDownloadLink>
-                                :<li className="memberSteps" onClick={finalstep}>Print & Download</li> }
+                                :<li className="memberSteps" onClick={finalstep}>print & download</li> }
                             </ul>
 
                         </div>
@@ -103,20 +91,18 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
                                 <PDFDownloadLink
                                     document={<PdfDocument data={pdfdata} />}
                                     fileName="charter.pdf"
-                                    
                                 >
                                 {({ blob, url, loading, error }) =>
                                   loading ? "Loading document..." : <li className="steps_active memberSteps">Print & Download</li>
                                 }
                               </PDFDownloadLink>
-                                :<li className="memberSteps" onClick={finalstep}>Print & Download</li> }
+                                :<li className="memberSteps" onClick={finalstep}>print & download</li> }
                             </ul>
-
                         </div> }
                     </Col>
                 </Row>
             </Container>
-            <Container className="progress-container">
+            <Container className="progress-container" fluid>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style={{ width: `${width}%` }} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>

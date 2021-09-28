@@ -4,7 +4,7 @@ import { Container, Col, Row } from 'react-bootstrap'
 
 const FinalStepIframe = (props) => {
     return (
-        <Container className="mx-4 border">
+        <Container className="mx-4 border data_display_container">
             <Row className="project_two_col my-5">
                 <Col className="col_details_headings" sm={3}>
                     <p>Project Title:</p>
@@ -36,7 +36,6 @@ const FinalStepIframe = (props) => {
                 </Col>
                 <Col className="col_details_titles" sm={9}>
                     <p><ul>{
-
                         props.data.charterlist.goal ?
 
                         JSON.parse(props.data.charterlist.goal).length > 0 ?
@@ -45,13 +44,9 @@ const FinalStepIframe = (props) => {
                             return (<>
                                      <li>{list.goal}</li>
                                     </>)
-
                         })
-
                         :null
-                        :null 
-
-
+                        :null
                     }</ul></p>
                 </Col>
             </Row>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Container } from "reactstrap";
+import { Button, Form, FormGroup, Label, Container, Row, Col } from "reactstrap";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -49,32 +49,30 @@ const Resetpassword = (props) => {
 
   return (
     <Container>
-      <h3>Update  Password.</h3>
-      <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-        <FormGroup>
-          <Label>Password</Label>
-          <input type="password" ref={register} name="password" />
-          {errors.password && (
-            <span className="errorMessage">{errors.password.message}</span>
-          )}
-        </FormGroup>
-        <FormGroup>
-          <Label>Confirm Password</Label>
-          <input type="password" ref={register} name="confirmPassword" />
-          {errors.confirmPassword && (
-            <span className="errorMessage">
-              {errors.confirmPassword.message}
-            </span>
-          )}
-        </FormGroup>
-        <Button type="submit">submit</Button>
+      <Row className="forgot_password_row">
+        <Col sm={12} lg={6} md={12} xs={12} className="forgot_pass_container">
+          <h3>Update  Password.</h3>
+          <div className="forgot_pass_email">
+            <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
+              <FormGroup className="form_details">
+                <Label>Password</Label>
+                <Form.Control type="password" ref={register} name="password" />
+                  { errors.password && ( <span className="errorMessage">{errors.password.message}</span>) }
+              </FormGroup>
+              <FormGroup className="form_details">
+                <Label>Confirm Password</Label>
+                <Form.Control type="password" ref={register} name="confirmPassword" />
+                  { errors.confirmPassword && ( <span className="errorMessage"> {errors.confirmPassword.message}</span>) }
+              </FormGroup>
+              <Button type="submit">submit</Button>
+            </Form>
+          </div>
 
-      </Form>
-      <p>
-        All information that you provide is kept completely confidential and
-        will not be released to any other companies. Please view our Privacy
-        Policy, Terms and Conditions, and Email Policy for further information.
-      </p>
+          <p>All information that you provide is kept completely confidential and
+            will not be released to any other companies. Please view our Privacy
+            Policy, Terms and Conditions, and Email Policy for further information.</p>
+        </Col>
+      </Row>
     </Container>
   );
 };
