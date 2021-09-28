@@ -68,9 +68,11 @@ const Resetpassword = (props) => {
             </Form>
           </div>
 
-          <p>All information that you provide is kept completely confidential and
-            will not be released to any other companies. Please view our Privacy
-            Policy, Terms and Conditions, and Email Policy for further information.</p>
+          <div className="forgot_privacy_info">
+            <p> All information that you provide is kept completely confidential and
+              will not be released to any other companies. Please view our <Link to="/privacypolicy"> Privacy Policy</Link>
+              , <Link to="/terms">Terms and Conditions</Link> for further information.</p>
+          </div>
         </Col>
       </Row>
     </Container>
