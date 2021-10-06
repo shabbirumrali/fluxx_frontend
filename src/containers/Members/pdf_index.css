@@ -6,17 +6,22 @@
   overflow: hidden;
 }
 .project_two_col {
-  /* background: red; */
+  margin: 20px 0;
 }
 .project_two_col .col_details_headings p,
 .project_two_col .col_details_titles p {
   /* background-color: aqua; */
   font-size: 16px;
   margin: 0;
+  /* border: 1px solid #333; */
 }
 .project_two_col .col_details_headings p {
   font-weight: 600;
 }
 .project_two_col .col_details_titles p {
   font-weight: 400;
+}
+.col_details_titles p {
+  padding-right: 20px;
+  margin-bottom: 10px !important;
 }
