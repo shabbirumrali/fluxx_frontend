@@ -61,7 +61,13 @@ export const singlepostdetail = (data) =>{
       data: data,
     };
 }
+export const categorypost = (data) =>{
+    return {
+      type: actionTypes.CATEGORYPOST,
+      data: data,
+    };
 
+}
 export const folderlist = (data) => {
   return {
     type: actionTypes.FOLDERLIST,
@@ -585,6 +591,26 @@ export const updatepassword = (form, props) => {
         }
       });
   };
+};
+
+
+export const fetchcategoryposts = (form,props) => {
+  const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    };
+    return (dispatch) => {
+      axios
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?category_slug=deal",config)
+        .then((response) => {
+             console.log(response.data);
+             dispatch(categorypost(response.data));        
+        })
+        .catch((err) => {
+          if (err === "Error: Request failed with status code 500") {
+            toast.error(" Token Expire !!");
+          }
+        });
+    };
 };
 
 

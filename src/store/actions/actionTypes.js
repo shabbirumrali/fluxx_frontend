@@ -16,3 +16,4 @@ export const POSTLIST  =  "POSTLIST";
 export const FOLDERLIST  =  "FOLDERLIST";
 export const RENAMELIST  =  "RENAMELIST";
 export const SINGLEPOST  =  "SINGLEPOST";
+export const CATEGORYPOST = "CATEGORYPOST";

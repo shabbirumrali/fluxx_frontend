@@ -22,5 +22,6 @@ export {
   renameFolder,
   renamelist,
   updatepassword,
-  fetchsinglepost
+  fetchsinglepost,
+  fetchcategoryposts
 } from "./authActions";

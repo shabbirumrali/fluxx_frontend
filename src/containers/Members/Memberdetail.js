@@ -211,7 +211,7 @@ const Members = (props) => {
               </FormGroup>
               <div className="modal_btn_section">
                 <Button className="modal_trigger_btn" type="submit" > Rename </Button>
-                <Button onClick={handleClose} className="modal_cancel_btn" variant="light" type="submit"> Cancel </Button>
+                <Button onClick={handleClose} className="modal_cancel_btn" variant="light" > Cancel </Button>
               </div>
             </Form>
           </Modal.Body>
@@ -237,7 +237,7 @@ const Members = (props) => {
               </FormGroup>
               <div className="modal_btn_section">
                 <Button className="modal_trigger_btn" type="submit"> Submit </Button>
-                <Button onClick={handleClose2} className="modal_cancel_btn" variant="light" type="submit" >Cancel </Button>
+                <Button onClick={handleClose2} className="modal_cancel_btn" variant="light"  >Cancel </Button>
               </div>
             </Form>
           </Modal.Body>
@@ -255,7 +255,7 @@ const Members = (props) => {
               </div>
               <div className="modal_btn_section">
                 <Button className="modal_trigger_btn" type="submit"> Delete </Button>
-                <Button onClick={handleClose3} className="modal_cancel_btn" variant="light" type="submit"> Cancel </Button>
+                <Button onClick={handleClose3} className="modal_cancel_btn" variant="light" > Cancel </Button>
               </div>
             </Form>
           </Modal.Body>

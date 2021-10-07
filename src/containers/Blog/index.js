@@ -21,8 +21,9 @@ const Blog = (props) => {
    const history = useHistory();
    const [data, setData] = useState(props.setpostData);
 
-   useLayoutEffect(() => {
+   useEffect(() => {
     dispatch(actions.fetchPosts())
+    dispatch(actions.fetchcategoryposts())
   },[]);
 
    const removeHTML = (str) => { 
@@ -37,6 +38,7 @@ const Blog = (props) => {
           state: { blogdetail: value}
         });
     }
+    console.log(props); 
   return (
      <><Container fluid>
         <Row>
@@ -50,29 +52,28 @@ const Blog = (props) => {
 
             <div className='blog-inside-section2 font-dec'>
               <div className='divider-blog'>
-                    {
+                    {/* {
                       props.setpostData ?
                       props.setpostData.length > 0 ?  
                       props.setpostData.map((post,index) => {
-                        if(index<5){
-                    return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
-                            <div className='big-blog-contain'>
-                              <h6 className='my-3'>{post.title.rendered}</h6>
-                              <h3>{removeHTML(post.content.rendered)}</h3>
-                              <h5>Auther Name</h5>
-                            </div></a>
-                            </>);
-                     }
-                    })
-
+                        if(index < 5){
+                              return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                                  <div className='big-blog-contain'>
+                                    <h6 className='my-3'>{post.title.rendered}</h6>
+                                    <h3>{removeHTML(post.content.rendered)}</h3>
+                                    <h5>Auther Name</h5>
+                                  </div></a>
+                                  </>);
+                          }
+                      })
                       :null:null
-                    }
+                    } */}
               </div>              
             </div>
 
             <div className='blog-inside-section3 font-dec'>
              <div className='divider-blog'>
-                    {
+                    {/* {
                       props.setpostData ?
                       props.setpostData.length > 0 ?  
                       props.setpostData.map((post,index) => {
@@ -85,7 +86,7 @@ const Blog = (props) => {
                             </>);
                     })
                       :null:null
-                    }
+                    } */}
               </div> 
 
               
@@ -110,27 +111,21 @@ const Blog = (props) => {
 
         <Row>
           <Col className='blog-content-section my-3'>
-            <div className='blog1 d-flex font-dec'>
-              <Image src={BlogImage} />
-              <div className='big-blog-contain divider-blog'>                
-                <h3>This blog you realy want to know so read</h3>
-                <p>Don't remove them with a burned-out match </p>
-              </div>
-            </div>
-            <div className='blog2 d-flex font-dec'>
-              <Image src={BlogImage} />
-              <div className='big-blog-contain divider-blog'>                
-                <h3>This blog you realy want to know so read</h3>
-                <p>Don't remove them with a burned-out match </p>
-              </div>
-            </div>
-            <div className='blog3 d-flex font-dec'>
-              <Image src={BlogImage} />
-              <div className='big-blog-contain divider-blog'>                
-                <h3>This blog you realy want to know so read</h3>
-                <p>Don't remove them with a burned-out match </p>
-              </div>
-            </div>
+            {
+                      props.setcategoryData ?
+                      props.setcategoryData.length > 0 ? 
+                    
+                        <div className='blog1 d-flex font-dec'>
+                          <Image src={BlogImage} />
+                          <div className='big-blog-contain divider-blog'>                
+                            <h3>This blog you realy want to know so read</h3>
+                            <p>Don't remove them with a burned-out match </p>
+                          </div>
+                        </div>
+                       :null :null  
+
+}
+            
           </Col>
         </Row>
 
@@ -204,10 +199,9 @@ const Blog = (props) => {
   );
 };
 const mapStateToProps = (state) => {
-   
-
    return {
-      setpostData:state.auth.postdata
+      setpostData:state.auth.postdata,
+      setcategoryData:state.auth.categorydata
    };
 };
 export default connect(mapStateToProps,null)(Blog);
