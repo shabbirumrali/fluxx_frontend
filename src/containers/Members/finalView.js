@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         // backgroundColor: 'green',
     },
     pdfContainerHeaderpart: {
-        width: '50%',
+        width: '45%',
         display: 'flex',
         flexDirection: 'row',
         // backgroundColor: 'orange',
@@ -120,12 +120,12 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginRight: 15
     },
-    pdfHeaderTitle: {
-        fontSize: 14,
-        fontWeight: 800,
+    pdfHeaderTitle: {        
+        fontSize: 12,
+        fontWeight: 400,
     },
-    pdfHeaderSubSection: {
-        fontSize: 14,
+    pdfHeaderSubSection: {        
+        fontSize: 12,
         fontWeight: 400,
     },
     pdfContainerContentSection: {
@@ -139,8 +139,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         // backgroundColor: 'orange',
         justifyContent: 'flex-start',
-        marginTop: 15,
-       
+        marginTop: 15,       
     },
     pdfContentContainer: {
         display: 'flex',
@@ -156,15 +155,16 @@ const styles = StyleSheet.create({
         marginBottom: 7
     },
     pdfContentTitle: {
-        width: '20%',
-        fontSize: 14,
+        width: '25%',
+        fontSize: 12,
     },
     pdfBulletStyle: {
         width: '10%',
         // backgroundColor: 'red',  
     },
     pdfContentSubSection: {
-        fontSize: 14
+        fontSize: 12,
+        fontWeight: 400,
     },
     pdfBulletStyle: {
         fontSize: 25,
@@ -178,8 +178,7 @@ export function PdfDocument(props) {
             <Page size="A4" style={styles.page}>
                 {/* Created by shabbir */}
                 {/* ----------------------------------------- */}
-                <View style={styles.pdfContainer}>
-
+                <View style={styles.pdfContainer}>                    
                     <View style={styles.pdfContainerHeaderSection}>
                         <View style={styles.pdfContainerHeaderpart}>
                             <Text style={styles.pdfHeaderTitle}>Project Title:</Text>
@@ -213,11 +212,17 @@ export function PdfDocument(props) {
                             <Text style={styles.pdfHeaderTitle}>Project Budget:</Text>
                             <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.budget}</Text>
                         </View>
-                    </View>
-                    <View style={styles.pdfContainerHeaderSection}>
-                        <View style={styles.pdfContainerHeaderpart}>
-                            <Text style={styles.pdfHeaderTitle}>Project Need:</Text>
-                            <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.project_need}</Text>
+                    </View>                    
+                    
+                    <View style={styles.pdfContainerContentSection}>
+                        <View style={styles.pdfContainerContentPart}>
+                            <Text style={styles.pdfContentTitle}>Background: </Text>
+                            <View style={styles.pdfContentContainer}>
+                                <View style={styles.pdfContentContainerSection}>
+                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
+                                    <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.project_need}</Text>
+                                </View>
+                            </View>
                         </View>
                     </View>
 
@@ -231,7 +236,7 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.goal).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.goal}
                                                     </Text>
@@ -256,13 +261,12 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.benefits).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.benefits}
                                                     </Text>
                                                 </View>
                                             </>)
-
                                         })
                                         : null
                                     : null
@@ -281,13 +285,12 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.InScope).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.InScope}
                                                     </Text>
                                                 </View>
                                             </>)
-
                                         })
                                         : null
                                     : null
@@ -306,7 +309,7 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.outScope).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.outScope}
                                                     </Text>
@@ -331,7 +334,7 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.assumptionTime).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.assumptionTime}
                                                     </Text>
@@ -356,7 +359,7 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.impact).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.impact}
                                                     </Text>
@@ -381,7 +384,7 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.stakeholder).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.stakeholder}
                                                     </Text>
@@ -406,7 +409,7 @@ export function PdfDocument(props) {
                                         JSON.parse(props.data.charterlist.risks).map((list, index) => {
                                             return (<>
                                                 <View style={styles.pdfContentContainerSection}>
-                                                    <Text style={styles.pdfBulletStyle}>&#8226;</Text>
+                                                    {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
                                                     <Text style={styles.pdfContentSubSection}>
                                                         {list.risks}
                                                     </Text>
