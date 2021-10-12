@@ -22,8 +22,8 @@ const Resetpassword = (props) => {
   const validationSchema = Yup.object().shape({
     password: Yup.string()
       .matches(
-        /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/,
-        "Password must contain one capital letter, one number, one special character and atleast eight characters."
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{8,30}$/,
+        "Password must contain one capital letter, one number, one special character and at least eight characters."
       )
       .required("Password is required"),
     confirmPassword: Yup.string()
@@ -36,7 +36,7 @@ const Resetpassword = (props) => {
   const { register, errors, handleSubmit, reset } = useForm({
     resolver: yupResolver(validationSchema),
   });
-
+  console.log(register);
   const onSubmit = async (data) => {
 
     const history = createBrowserHistory();
@@ -56,12 +56,12 @@ const Resetpassword = (props) => {
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
               <FormGroup className="form_details">
                 <Label>Password</Label>
-                <Form.Control type="password" ref={register} name="password" />
+                <input type="password" ref={register} name="password" className="form-control" />
                   { errors.password && ( <span className="errorMessage">{errors.password.message}</span>) }
               </FormGroup>
               <FormGroup className="form_details">
                 <Label>Confirm Password</Label>
-                <Form.Control type="password" ref={register} name="confirmPassword" />
+                <input type="password" ref={register} name="confirmPassword" className="form-control"  />
                   { errors.confirmPassword && ( <span className="errorMessage"> {errors.confirmPassword.message}</span>) }
               </FormGroup>
               <Button type="submit">submit</Button>
