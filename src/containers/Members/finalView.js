@@ -11,8 +11,8 @@ import {
 import moment from "moment";
 
 Font.register({
-    family: 'Oswald',
-    src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
+    family: 'Montserrat',
+    src: 'https://db.onlinewebfonts.com/t/d3085f686df272f9e1a267cc69b2d24f.ttf'
 });
 
 const styles = StyleSheet.create({
@@ -55,53 +55,8 @@ const styles = StyleSheet.create({
         width: "100%",
         textAlign: "center"
     },
-    tableRowsign: {
-        margin: "auto",
-        flexDirection: "row"
-    },
-    table: {
-        display: "table",
-        width: "auto",
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderRightWidth: 0,
-        borderBottomWidth: 0,
-        marginTop: '20px'
-    },
-    tableRow: {
-        margin: "auto",
-        flexDirection: "row"
-    },
-    tableCol: {
-        width: "25%",
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderLeftWidth: 0,
-        borderTopWidth: 0,
-    },
-    tableCell: {
-        margin: "auto",
-        marginTop: 5,
-        fontSize: 15,
-        padding: 10
-    },
-    tableCellWhite: {
-        margin: "auto",
-        marginTop: 5,
-        fontSize: 16,
-        padding: 10,
-        whiteSpace: "nowrap",
-        fontWeight: 700,
-        fontFamily: "Oswald"
-    },
-    tableCellHead: {
-        margin: "auto",
-        marginTop: 5,
-        fontSize: 16,
-        padding: 10,
-        fontWeight: 700,
-        fontFamily: "Oswald"
-    },
+   
+   
     pdfContainer: {
         width: '100%',
         // backgroundColor: 'red',

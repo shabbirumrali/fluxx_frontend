@@ -194,16 +194,6 @@ const Members = (props) => {
     </Popover>
   );
 
-  let [page, setPage] = useState(1);
-  const PER_PAGE = 2;
-  const count = Math.ceil(props.setResponseData ? props.setResponseData.charterlist.length / PER_PAGE : 0);
-  console.log(count);
-  const _DATA = usePagination(props.setResponseData ? props.setResponseData.charterlist : [], PER_PAGE);
-  const handleChange = (e, p) => {
-    setPage(p);
-    _DATA.jump(p);
-  };
-
   return (
     <Container className="members_container">
       <h2>My Project Charters</h2>
@@ -251,7 +241,7 @@ const Members = (props) => {
           }) : null}
       {
         props.setResponseData ? props.setResponseData.charterlist.length > 0 ?
-          _DATA.currentData().map((list, index) => {
+         props.setResponseData.charterlist.map((list, index) => {
             if (list.assignCat == 0) {
               return (
                 <Row key={index}>
@@ -273,11 +263,14 @@ const Members = (props) => {
                 </Row>
               )
             }
-          }) : null : null}
-      {props.setResponseData ? props.setResponseData.charterlist.length ?
-        <Pagination className="pagination_section" count={count} size="large"
-          page={page} variant="outlined" shape="rounded" onChange={handleChange} />
-        : null : null}
+          }) 
+          : null
+           : null
+           
+           }
+
+
+      
 
       {/* ---------------------------MODEL-------------------------------- */}
 
