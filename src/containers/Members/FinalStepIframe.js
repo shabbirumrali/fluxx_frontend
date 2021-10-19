@@ -26,13 +26,20 @@ const FinalStepIframe = (props) => {
                 <Col className="col_details_titles" sm={3}><p>{props.data.charterlist.finishDate}</p></Col>
             </Row>
             <Row className="project_two_col my-4">
-                <Col className="col_details_headings" sm={3}><p>Project Needed:</p></Col>
-                <Col className="col_details_titles" sm={3}><p>{props.data.charterlist.project_need}</p></Col>
+                <Col className="col_details_headings" sm={3}></Col>
+                <Col className="col_details_titles" sm={3}></Col>
                 <Col className="col_details_headings" sm={3}><p>Project Budget:</p></Col>
                 <Col className="col_details_titles" sm={3}><p>{props.data.charterlist.budget}</p></Col>
             </Row>
             
-           
+            <Row className="project_two_col">
+                <Col className="col_details_headings" sm={3}>
+                    <p>Background:</p>
+                </Col>
+                <Col className="col_details_titles" sm={9}>
+                    <p>{props.data.charterlist.project_need}</p>
+                </Col>
+            </Row>
             
             <Row className="project_two_col">
                 <Col className="col_details_headings" sm={3}>
