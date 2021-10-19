@@ -56,53 +56,8 @@ const styles = StyleSheet.create({
         width: "100%",
         textAlign: "center"
     },
-    tableRowsign: {
-        margin: "auto",
-        flexDirection: "row"
-    },
-    table: {
-        display: "table",
-        width: "auto",
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderRightWidth: 0,
-        borderBottomWidth: 0,
-        marginTop: '20px'
-    },
-    tableRow: {
-        margin: "auto",
-        flexDirection: "row"
-    },
-    tableCol: {
-        width: "25%",
-        borderStyle: "solid",
-        borderWidth: 1,
-        borderLeftWidth: 0,
-        borderTopWidth: 0,
-    },
-    tableCell: {
-        margin: "auto",
-        marginTop: 5,
-        fontSize: 15,
-        padding: 10
-    },
-    tableCellWhite: {
-        margin: "auto",
-        marginTop: 5,
-        fontSize: 16,
-        padding: 10,
-        whiteSpace: "nowrap",
-        fontWeight: 700,
-        fontFamily: "Oswald"
-    },
-    tableCellHead: {
-        margin: "auto",
-        marginTop: 5,
-        fontSize: 16,
-        padding: 10,
-        fontWeight: 700,
-        fontFamily: "Oswald"
-    },
+   
+   
     pdfContainer: {
         width: '100%',
         // backgroundColor: 'red',

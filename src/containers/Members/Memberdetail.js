@@ -154,7 +154,7 @@ const Members = (props) => {
         
 
         {props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length > 0 ?
-          _DATA.currentData().map((list, index) => {
+          props.setResponseDatadetail.categoryList[0].CategoryProjects.map((list, index) => {
             return (
               <Row key={index} className="my-5">
                 <Col className="personal_charters">
@@ -182,17 +182,7 @@ const Members = (props) => {
               </div> 
 
        : null}
-        {
-          props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length > 0 ?
-            <Pagination className="pagination_section" count={count}
-              size="large" page={page} variant="outlined" shape="rounded" onChange={handleChange}
-            />
-             : null
-
-             : null
-
-         }
-
+        
 
 
         {/* ---------------------------MODEL-------------------------------- */}
