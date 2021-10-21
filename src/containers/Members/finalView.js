@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
     Page,
     Text,
@@ -11,8 +12,8 @@ import {
 import moment from "moment";
 
 Font.register({
-    family: 'Montserrat',
-    src: 'https://db.onlinewebfonts.com/t/d3085f686df272f9e1a267cc69b2d24f.ttf'
+    family: 'oswald',
+    src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
 });
 
 const styles = StyleSheet.create({
@@ -75,13 +76,18 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginRight: 15
     },
-    pdfHeaderTitle: {        
+    pdfHeaderTitle: {
+        family: 'Montserrat',
         fontSize: 12,
-        fontWeight: 400,
+        fontWeight: 700,
+        fontSize: 12,
+        fontWeight: 700,
+        color: 'green',
     },
-    pdfHeaderSubSection: {        
+    pdfHeaderSubSection: {
+        family: 'Montserrat',
         fontSize: 12,
-        fontWeight: 400,
+        fontWeight: 'thin',
     },
     pdfContainerContentSection: {
         display: 'flex',
