@@ -93,7 +93,7 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
                                     fileName="charter.pdf"
                                 >
                                 {({ blob, url, loading, error }) =>
-                                  loading ? "Loading document..." : <li className="steps_active memberSteps">Print & Download</li>
+                                  loading ? "Loading document..." : <li className="steps_active memberSteps">print & download</li>
                                 }
                               </PDFDownloadLink>
                                 :<li className="memberSteps" onClick={finalstep}>print & download</li> }

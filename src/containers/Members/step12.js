@@ -108,7 +108,7 @@ const Risks = ({ setForm, formData, navigation, id }) => {
                       onChange={e => handleInputChange(e, i)} />
                     <div className="add_remove_btn_unit">
                       {goalOpen.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
-                      {goalOpen.length - 1 === i && <Button variant="link" onClick={handleAddClick} className="add_goal" style={{ textDecoration: "none" }}>ADD ITEMS +</Button>}
+                      {goalOpen.length - 1 === i && <Button variant="link" onClick={handleAddClick} className="add_goal" style={{ textDecoration: "none" }}>ADD RISK <i class="fa fa-plus" aria-hidden="true"></i></Button>}
                     </div>
                   </div>
                 )

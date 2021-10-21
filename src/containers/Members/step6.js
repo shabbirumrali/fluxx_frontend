@@ -98,6 +98,7 @@ const InScope = ({ setForm, formData, navigation, id }) => {
         <Row className="charter_steps">
           <Col xs={12} sm={8} lg={6} className="project_details">
             <Form onSubmit={handleSubmit(onSubmit)} noValidate>  
+              <label htmlFor="">What is included in the work you’ll be doing for the project?</label>
                {goalOpen.map((x, i) => {
                 return (
                   <div className="project_charter_textarea_div" key={i}>
@@ -105,16 +106,16 @@ const InScope = ({ setForm, formData, navigation, id }) => {
                       name="InScope" type="textarea" value={x.InScope}
                       onChange={e => handleInputChange(e, i)}
                       className="project_info" />
-
                     <div className="add_remove_btn_unit">
                       {goalOpen.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
-                      {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD ITEMS <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                      {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD IN SCOPE ITEM <i class="fa fa-plus" aria-hidden="true"></i></Button>}
                     </div>
                   </div>
                 )
               }
               )}             
               <p> Out of Scope </p>
+              <label htmlFor="">What is <b>not</b> included in the work you’ll be doing for the project?</label>
                 {goalOpen1.map((x, i) => {
                   return (
                     <div className="project_charter_textarea_div" key={i}>
@@ -125,7 +126,7 @@ const InScope = ({ setForm, formData, navigation, id }) => {
 
                       <div className="add_remove_btn_unit">
                         {goalOpen1.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick1(i)}>Remove</Button>}
-                        {goalOpen1.length - 1 === i && <Button onClick={handleAddClick1} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD ITEMS <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                        {goalOpen1.length - 1 === i && <Button onClick={handleAddClick1} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD OUT OF SCOPE ITEM <i class="fa fa-plus" aria-hidden="true"></i></Button>}
                       </div>
                     </div>
                   )

@@ -1,5 +1,4 @@
 import React from "react";
-
 import {
     Page,
     Text,
@@ -12,52 +11,26 @@ import {
 import moment from "moment";
 
 Font.register({
-    family: 'oswald',
-    src: 'https://fonts.gstatic.com/s/oswald/v13/Y_TKV6o8WovbUd3m_X9aAA.ttf'
+    family: 'Open Sans',
+    fonts: [
+    { src: 'https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-regular.ttf' },
+    { src: 'https://cdn.jsdelivr.net/npm/open-sans-all@0.1.3/fonts/open-sans-600.ttf', fontWeight: 600 }
+    ]
 });
+// Font.register(
+//     'https://cdnjs.cloudflare.com/ajax/libs/ink/3.1.10/fonts/Roboto/roboto-light-webfont.ttf',
+//     { fontFamily: 'Roboto-Regular' }
+// );
+// Font.register({
+//     family: 'roboto',
+//     src: ''
+// });
 
 const styles = StyleSheet.create({
     page: {
-        backgroundColor: "#ffffff",
+        backgroundColor: "#fff",
         padding: 30
-    },
-    title: {
-        fontSize: 16,
-        marginBottom: '20px',
-    },
-    head: {
-        textAlign: 'center'
-    },
-    date: {
-        textAlign: 'right',
-    },
-    second: {
-        textAlgin: 'left',
-        width: '100%',
-        marginRight: 'auto'
-    },
-    title: {
-        marginBottom: '20',
-        width: '100%'
-    },
-    div: {
-        display: 'table',
-        paddingTop: '30px'
-    },
-    section: {
-        width: "70%",
-    },
-    sign: {
-        fontSize: 16,
-    },
-    undersign: {
-        padding: 20,
-        fontSize: 16,
-        width: "100%",
-        textAlign: "center"
-    },
-   
-   
+    },       
     pdfContainer: {
         width: '100%',
         // backgroundColor: 'red',
@@ -77,17 +50,21 @@ const styles = StyleSheet.create({
         marginRight: 15
     },
     pdfHeaderTitle: {
-        family: 'Montserrat',
+        family: 'Open Sans',
         fontSize: 12,
-        fontWeight: 700,
-        fontSize: 12,
-        fontWeight: 700,
-        color: 'green',
+        width: '41%',
+        // backgroundColor: 'red',
+        fontWeight: 600,
+        // color: 'green',
     },
     pdfHeaderSubSection: {
-        family: 'Montserrat',
+        fontStyle: 'Roboto-Regular',
         fontSize: 12,
-        fontWeight: 'thin',
+        width: '55%',
+        textAlign: 'left',
+        // backgroundColor: 'tomato',
+        fontWeight: 200,
+        color: '#646464',
     },
     pdfContainerContentSection: {
         display: 'flex',
@@ -102,10 +79,15 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         marginTop: 15,       
     },
+    pdfContentTitle: {
+        width: '20%',
+        fontSize: 12,
+        // backgroundColor: 'green',
+    },
     pdfContentContainer: {
         display: 'flex',
         flexDirection: 'column',
-        width: '75%',
+        width: '80%',
         // backgroundColor: 'red',
     },
     pdfContentContainerSection: {
@@ -114,18 +96,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         // backgroundColor: 'green',
         marginBottom: 7
-    },
-    pdfContentTitle: {
-        width: '25%',
-        fontSize: 12,
-    },
+    },    
     pdfBulletStyle: {
         width: '10%',
-        // backgroundColor: 'red',  
+        // backgroundColor: 'red',
     },
     pdfContentSubSection: {
         fontSize: 12,
         fontWeight: 400,
+        color: '#646464',
     },
     pdfBulletStyle: {
         fontSize: 25,
@@ -181,7 +160,7 @@ export function PdfDocument(props) {
                             <View style={styles.pdfContentContainer}>
                                 <View style={styles.pdfContentContainerSection}>
                                     {/* <Text style={styles.pdfBulletStyle}>&#8226;</Text> */}
-                                    <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.project_need}</Text>
+                                    <Text style={styles.pdfContentSubSection}>{props.data.charterlist.project_need}</Text>
                                 </View>
                             </View>
                         </View>
@@ -207,8 +186,7 @@ export function PdfDocument(props) {
                                         })
                                         : null
                                     : null
-                                 }
-                                
+                                 }                                
                             </View>
                         </View>
                     </View>
@@ -330,8 +308,7 @@ export function PdfDocument(props) {
                                         })
                                         : null
                                     : null
-                                 }
-                                
+                                 }                                
                             </View>
                         </View>
                     </View>

@@ -88,7 +88,7 @@ const Benefits = ({ setForm, formData, navigation, id }) => {
 
                     <div className="add_remove_btn_unit">
                       {goalOpen.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
-                      {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD ITEMS <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                      {goalOpen.length - 1 === i && <Button onClick={handleAddClick} variant="link" className="add_goal" style={{ textDecoration: "none" }}>ADD BENEFIT <i class="fa fa-plus" aria-hidden="true"></i></Button>}
                     </div>
                   </div>
                 )
@@ -127,8 +127,10 @@ const Benefits = ({ setForm, formData, navigation, id }) => {
                   <p>Goals state what you want to achieve and benefits are precise, measurable ways explaining how to achieve that goal. </p>
                   <p>For instance, if your goal was to increase profitability of a certain product line, your benefits may include things such as:</p>
                   <ul>
-                    <li>Reduce waste during</li>
-                    <li>manufacturing by 75%</li>
+                    <li>Reduce waste during
+                      <br />
+                      manufacturing by 75%
+                    </li>                    
                     <li>Increase annual sales by $50,000</li>
                   </ul>
                 </div>

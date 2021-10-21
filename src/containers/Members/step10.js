@@ -92,7 +92,7 @@ const Impact = ({ setForm, formData, navigation, id }) => {
                       onChange={e => handleInputChange(e, i)} className="project_info" />
                     <div className="add_remove_btn_unit">
                       {goalOpen.length !== 1 && <Button variant="link" style={{ color: '#212529', border: 'none' }} className="remove_btn" onClick={() => handleRemoveClick(i)}>Remove</Button>}
-                      {goalOpen.length - 1 === i && <Button variant="link" onClick={handleAddClick} className="add_goal" style={{ textDecoration: "none" }}>ADD ITEMS <i class="fa fa-plus" aria-hidden="true"></i></Button>}
+                      {goalOpen.length - 1 === i && <Button variant="link" onClick={handleAddClick} className="add_goal" style={{ textDecoration: "none" }}>ADD IMPACT <i class="fa fa-plus" aria-hidden="true"></i></Button>}
                     </div>
                   </div>
                 )
