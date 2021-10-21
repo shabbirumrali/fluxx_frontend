@@ -10,7 +10,7 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
     console.log(projectna+"------>");    
     const history = useHistory();
     const sendDataToParent1 =  (value) => {
-    
+     console.log('dsdsds');
     history.push({
         pathname: "/cmain",
         state: { detail: pdfdata.charterlist }
@@ -34,6 +34,8 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
         console.log(error)
     })
 };    
+console.log('');
+console.log(showdownload);
     return (
         <>
             <Container fluid >
@@ -46,7 +48,10 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
                 </Row>
                 <Row>
                     <Col>
-                        { sendDataToParent ? <div className="progress_bar_titles">
+                        { sendDataToParent ? 
+                        
+                        
+                        <div className="progress_bar_titles">
                             <ul>
                                 <li className={activeCls === 'step1' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('names'); }}>project name</li>
                                 <li className={activeCls === 'step2' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('address'); }}>pm / sponsor</li>
@@ -59,7 +64,11 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
                                 <li className={activeCls === 'step9' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('assumption'); }}>assumptions</li>
                                 <li className={activeCls === 'step10' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('impact'); }}>impact</li>
                                 <li className={activeCls === 'step11' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('stakeholder'); }}>stakeholders</li>
-                                <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('risk'); }}>risks</li>
+                                
+                               
+                                
+                                <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent('risk'); }}>risks</li> 
+                                
                                 { showdownload ? 
                                 <PDFDownloadLink
                                     document={<PdfDocument data={pdfdata} />}
@@ -75,18 +84,33 @@ const TitleList = ({ activeCls, width,showdownload, sendDataToParent,pdfdata,pro
                         </div>
                         : <div className="progress_bar_titles">
                             <ul>
-                                <li className={activeCls === 'step1' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('names'); }}>project name</li>
-                                <li className={activeCls === 'step2' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('address'); }}>pm / sponsor</li>
-                                <li className={activeCls === 'step3' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('contact'); }}>background</li>
-                                <li className={activeCls === 'step4' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('goal'); }}> goals</li>
-                                <li className={activeCls === 'step5' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('benefits'); }}>benefits</li>
-                                <li className={activeCls === 'step6' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('inscope'); }}>scope</li>
-                                <li className={activeCls === 'step7' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('schedule'); }}>schedule</li>
-                                <li className={activeCls === 'step8' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('budget'); }} >budget</li>
-                                <li className={activeCls === 'step9' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('assumption'); }}>assumptions</li>
-                                <li className={activeCls === 'step10' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('impact'); }}>impact</li>
-                                <li className={activeCls === 'step11' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('stakeholder'); }}>stakeholders</li>
-                                <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('risk'); }}>risks</li>
+                               { showdownload ?                                 
+                                 <><li  className={activeCls === 'step1' ? 'steps_active' : "memberSteps"}>project name</li>
+                                 <li className={activeCls === 'step2' ? 'steps_active' : "memberSteps"} >pm / sponsor</li>
+                                 <li className={activeCls === 'step3' ? 'steps_active' : "memberSteps"}>background</li>
+                                <li className={activeCls === 'step4' ? 'steps_active' : "memberSteps"} > goals</li>
+                                <li className={activeCls === 'step5' ? 'steps_active' : "memberSteps"} >benefits</li>
+                                <li className={activeCls === 'step6' ? 'steps_active' : "memberSteps"} >scope</li>
+                                <li className={activeCls === 'step7' ? 'steps_active' : "memberSteps"} >schedule</li>
+                                <li className={activeCls === 'step8' ? 'steps_active' : "memberSteps"}  >budget</li>
+                                <li className={activeCls === 'step9' ? 'steps_active' : "memberSteps"}>assumptions</li>
+                                <li className={activeCls === 'step10' ? 'steps_active' : "memberSteps"}>impact</li>
+                                <li className={activeCls === 'step11' ? 'steps_active' : "memberSteps"} >stakeholders</li>
+                                <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"}>risks</li></>
+                                  :
+                                  <><li className={activeCls === 'step1' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('names'); }}>project name</li>
+                                        <li className={activeCls === 'step2' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('address'); }}>pm / sponsor</li>
+                                        <li className={activeCls === 'step3' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('contact'); }}>background</li>
+                                        <li className={activeCls === 'step4' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('goal'); }}> goals</li>
+                                        <li className={activeCls === 'step5' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('benefits'); }}>benefits</li>
+                                        <li className={activeCls === 'step6' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('inscope'); }}>scope</li>
+                                        <li className={activeCls === 'step7' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('schedule'); }}>schedule</li>
+                                        <li className={activeCls === 'step8' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('budget'); }} >budget</li>
+                                        <li className={activeCls === 'step9' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('assumption'); }}>assumptions</li>
+                                        <li className={activeCls === 'step10' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('impact'); }}>impact</li>
+                                        <li className={activeCls === 'step11' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('stakeholder'); }}>stakeholders</li>
+                                        <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('risk'); }}>risks</li></>
+                                 }
                                 { showdownload ? 
                                 <PDFDownloadLink
                                     document={<PdfDocument data={pdfdata} />}
