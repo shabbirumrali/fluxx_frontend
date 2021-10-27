@@ -14,6 +14,7 @@ const Privacy = lazy(() => import("./components/Footer/Privacy"));
 const Setting = lazy(() => import("./containers/Setting/Setting"));
 const Memberdetail = lazy(() => import("./containers/Members/Memberdetail"));
 const Blogdetail  = lazy(() => import("./containers/Blog/blogdetail"));
+const AdminPage  = lazy(() => import("./containers/Admin/adminPage"));
 const routes = [
   { path: "/", exact: true, component: Home },
   {
@@ -85,6 +86,11 @@ const routes = [
     path: "/members/:memberid",
     exact: true,
     component: Memberdetail,
+  },
+  {
+    path: "/admin",
+    exact: true,
+    component: AdminPage,
   }
 ];
 
