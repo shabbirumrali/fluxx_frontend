@@ -42,10 +42,6 @@ const mapStateToProps = (state) => {
       setuserListData: state.auth.userListData
     };
   };
-  
-  
-  export default connect(mapStateToProps, null)(AdminPage);
+export default connect(mapStateToProps, null)(AdminPage);
 
 
-
-export default AdminPage;
