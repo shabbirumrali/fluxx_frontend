@@ -62,7 +62,10 @@ const Risks = ({ setForm, formData, navigation, id }) => {
       "step": id
     }
     dispatch(actions.createcharter(dataobject));
-    finalstep();
+    setTimeout(() => {     
+       finalstep();
+    }, 2000);
+    
   };
   function finalstep() {
     axios({

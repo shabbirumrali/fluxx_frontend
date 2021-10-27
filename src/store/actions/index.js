@@ -23,5 +23,6 @@ export {
   renamelist,
   updatepassword,
   fetchsinglepost,
-  fetchcategoryposts
+  fetchcategoryposts,
+  fetchuserlist
 } from "./authActions";

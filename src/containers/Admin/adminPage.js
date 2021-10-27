@@ -14,7 +14,8 @@ import moment from 'moment';
 import appConfig from "./../../config";
 const AdminPage = (props) => {
 
-  console.log(props);
+  console.log(props.setuserListData);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -27,6 +28,11 @@ const AdminPage = (props) => {
     }
   };
 
+  useEffect(() => {
+    checkAuthToken();
+    dispatch(actions.fetchuserlist());    
+  }, []);
+
   
   return (
     <Container className="members_container">
@@ -37,9 +43,9 @@ const AdminPage = (props) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state);
+   
     return {      
-      setuserListData: state.auth.userListData
+      setuserListData: state.auth.userlistdata
     };
   };
 export default connect(mapStateToProps, null)(AdminPage);

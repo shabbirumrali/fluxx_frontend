@@ -49,6 +49,12 @@ export const categorylist = (data) => {
     data: data,
   };
 }
+export const fetchuserList = (data) =>{
+  return {
+    type: actionTypes.FETCHUSERLIST,
+    data: data,
+  };
+}
 export const postlist = (data) => {
   return {
     type: actionTypes.POSTLIST,
@@ -584,6 +590,24 @@ export const updatepassword = (form, props) => {
           toast.success("Your password is successfully updated");
           history.push("/setting");
         }
+      })
+      .catch((err) => {
+        if (err === "Error: Request failed with status code 500") {
+          toast.error(" Token Expire !!");
+        }
+      });
+  };
+};
+
+export const fetchuserlist = (form,props) => {
+  const config = {
+    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+  };  
+  return (dispatch) => {
+    api
+      .get("fetchuserlist", config)
+      .then((response) => {
+        dispatch(fetchuserList(response.data));      
       })
       .catch((err) => {
         if (err === "Error: Request failed with status code 500") {

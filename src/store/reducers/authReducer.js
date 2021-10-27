@@ -32,6 +32,9 @@ const folderList = (state,action) =>{
      
     return updateObject(state, {folderdata:action.data,loading:false});
 }
+const userList =(state,action) =>{
+   return updateObject(state, {userlistdata:action.data,loading:false});
+}
 const renameList  =(state,action) => {
 
     return updateObject(state, {renamedata:action.data,loading:false});
@@ -97,6 +100,8 @@ const reducer = (state = initialState, action) => {
       return renameList(state,action);  
     case actionTypes.SINGLEPOST:
       return postDetail(state,action); 
+    case actionTypes.FETCHUSERLIST:
+      return userList(state,action); 
     default:
       return state;
   }
