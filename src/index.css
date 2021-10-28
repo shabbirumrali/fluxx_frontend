@@ -1711,9 +1711,7 @@ form .cancel_btn:active {
   padding: 5px 0;
 }
 
-.blog-list-content .blog-post-owener-list {
-  /* display: flex; */
-}
+
 .blog-list-content .blog-post-owener-list img {
   width: 35px;
   height: 35px;
@@ -1783,3 +1781,54 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+.adminpannel_container {
+  width: 75vw;
+  height: 100vh;
+  margin: 0 auto;
+  /* background: rebeccapurple; */
+}
+.download_csv_btn_container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.download_csv_btn_container .download_csv {
+  background: rgb(255, 128, 128);
+  border: none;
+  padding: 20px 50px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: aliceblue;
+  text-transform: uppercase;
+  border-radius: 10px;
+}
+.adminpannel_table_container {
+  margin: 30px 0;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+td,
+th {
+  border: 1px solid #cecece;
+  text-align: left;
+  padding: 8px 3px;
+  text-align: center;
+}
+.table_header_section {
+  background: #f3f3f3;
+}
+.table_header_section th {
+  font-size: 0.9rem;
+}
+

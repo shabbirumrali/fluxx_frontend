@@ -14,7 +14,7 @@ import moment from 'moment';
 import appConfig from "./../../config";
 const AdminPage = (props) => {
 
-  console.log(props.setuserListData);
+  
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,9 +35,48 @@ const AdminPage = (props) => {
 
   
   return (
-    <Container className="members_container">
-      <h2>My AdminPage</h2>
-      
+    <Container>
+      <Row>
+        <Col>
+          <div className="adminpannel_container">
+            <div className="download_csv_btn_container">
+              <Button variant="primary" className="download_csv">Download csv</Button>
+            </div>
+            <div className="adminpannel_table_container">
+              <table>
+                <tr className="table_header_section">                                 
+                  <th>Email</th>
+                  <th>On Mailing List (Y/N)</th>
+                  <th>Account creation Date</th>
+                  <th>Last Login Timestamp (Date/Time)</th>
+                  <th>Account Deletion Date</th>
+                  <th>Print/Download (at least 1x) (Y/N)</th>
+                </tr>
+             {
+
+            props.setuserListData ?
+            props.setuserListData.userList.length >0 ? 
+                props.setuserListData.userList.map((userlst,index) =>{
+                  return (<tr className="per_row" key={index}>
+                  <td>{userlst.email}</td>
+                  <td>{userlst.subscribeUser}</td>
+                  <td>{userlst.createdAt}</td>                 
+                  <td>{userlst.createdAt}</td>
+                  <td>{userlst.createdAt}</td>
+                  <td>N</td>
+                </tr>)
+                })
+            :null
+            :null
+        }
+
+               
+                
+              </table>
+            </div>
+          </div>
+        </Col>
+      </Row>
     </Container>
   )
 };
