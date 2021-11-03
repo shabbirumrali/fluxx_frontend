@@ -142,7 +142,7 @@ export function PdfDocument(props) {
                             <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.project_sponsor}</Text>
                         </View>
                         <View style={styles.pdfContainerHeaderpart}>
-                            <Text style={styles.pdfHeaderTitle}>Project end Date:</Text>
+                            <Text style={styles.pdfHeaderTitle}>Project End Date:</Text>
                             <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.finishDate}</Text>
                         </View>
                     </View>
@@ -216,7 +216,7 @@ export function PdfDocument(props) {
                     </View>
                     <View style={styles.pdfContainerContentSection}>
                         <View style={styles.pdfContainerContentPart}>
-                            <Text style={styles.pdfContentTitle}>InScope: </Text>
+                            <Text style={styles.pdfContentTitle}>In Scope: </Text>
                             <View style={styles.pdfContentContainer}>
                                 {
                                 props.data.charterlist.InScope ?
@@ -240,7 +240,7 @@ export function PdfDocument(props) {
                     </View>
                     <View style={styles.pdfContainerContentSection}>
                         <View style={styles.pdfContainerContentPart}>
-                            <Text style={styles.pdfContentTitle}>OutScope: </Text>
+                            <Text style={styles.pdfContentTitle}>Out of Scope: </Text>
                             <View style={styles.pdfContentContainer}>
                                 {
                                 props.data.charterlist.outScope ?
@@ -314,7 +314,7 @@ export function PdfDocument(props) {
                     </View>
                     <View style={styles.pdfContainerContentSection}>
                         <View style={styles.pdfContainerContentPart}>
-                            <Text style={styles.pdfContentTitle}>Stakeholder: </Text>
+                            <Text style={styles.pdfContentTitle}>Stakeholders: </Text>
                             <View style={styles.pdfContentContainer}>
                                 {
                                 props.data.charterlist.stakeholder ?
