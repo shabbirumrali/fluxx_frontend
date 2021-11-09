@@ -1798,7 +1798,7 @@ input:checked + .slider:before {
 }
 
 .download_csv_btn_container .download_csv {
-  background: rgb(255, 128, 128);
+  background: #69b791;
   border: none;
   padding: 20px 50px;
   font-weight: 400;
@@ -1806,6 +1806,9 @@ input:checked + .slider:before {
   color: aliceblue;
   text-transform: uppercase;
   border-radius: 10px;
+}
+.download_csv_btn_container .download_csv:hover {
+  background: #5aa380;
 }
 .adminpannel_table_container {
   margin: 30px 0;
@@ -1870,11 +1873,11 @@ th {
 }
 
 input:checked + .slider {
-  background-color: #2ab934;
+  background: #69b791;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px #222;
 }
 
 input:checked + .slider:before {
