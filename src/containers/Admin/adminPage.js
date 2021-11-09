@@ -7,7 +7,8 @@ import Document from '../../assets/img/file-empty-icon.png';
 import folderDoc from '../../assets/img/iconfolder.svg';
 import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import axios from 'axios';
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch,useSelector  } from "react-redux";
+import ReactPaginate from 'react-paginate';
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
 import moment from 'moment';
@@ -17,6 +18,7 @@ const AdminPage = (props) => {
   
 
   const dispatch = useDispatch();
+  const eventsInfo = useSelector(state => state.auth.userlistdata);
   const history = useHistory();
 
   const checkAuthToken = async () => {
@@ -32,7 +34,9 @@ const AdminPage = (props) => {
     checkAuthToken();
     dispatch(actions.fetchuserlist());    
   }, []);
+  
 
+  console.log(eventsInfo);
   
   return (
     <Container>
@@ -54,15 +58,15 @@ const AdminPage = (props) => {
                 </tr>
              {
 
-            props.setuserListData ?
-            props.setuserListData.userList.length >0 ? 
-                props.setuserListData.userList.map((userlst,index) =>{
+             eventsInfo ?
+             eventsInfo.userList.length >0 ? 
+             eventsInfo.userList.map((userlst,index) =>{
                   return (<tr className="per_row" key={index}>
                   <td>{userlst.email}</td>
                   <td>{userlst.subscribeUser}</td>
-                  <td>{userlst.createdAt}</td>                 
-                  <td>{userlst.createdAt}</td>
-                  <td>{userlst.createdAt}</td>
+                  <td>{moment(userlst.createdAt).format('YYYY-MM-DD HH:mm:ss')}</td>                 
+                  <td>{moment(userlst.last_login).format('YYYY-MM-DD HH:mm:ss') }</td>
+                  <td>{moment(userlst.account_delete_date).format('YYYY-MM-DD HH:mm:ss')}</td>
                   <td>N</td>
                 </tr>)
                 })
@@ -80,13 +84,7 @@ const AdminPage = (props) => {
     </Container>
   )
 };
+export default AdminPage;
 
-const mapStateToProps = (state) => {
-   
-    return {      
-      setuserListData: state.auth.userlistdata
-    };
-  };
-export default connect(mapStateToProps, null)(AdminPage);
 
 
