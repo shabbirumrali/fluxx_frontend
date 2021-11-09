@@ -113,8 +113,8 @@ const Benefits = ({ setForm, formData, navigation, id }) => {
             </Form>
           </Col>
 
-          <Col xs={12} sm={4} lg={5} className="faq-section p-2">
-            <div>
+          <Col xs={12} sm={4} lg={5}>
+            <div className="faq-section p-2">
               <p>Frequently Asked Questions</p>
               <div onClick={() => setBenefitOpen(!benefitOpen)}
                 aria-controls="example-collapse-text"
@@ -127,9 +127,7 @@ const Benefits = ({ setForm, formData, navigation, id }) => {
                   <p>Goals state what you want to achieve and benefits are precise, measurable ways explaining how to achieve that goal. </p>
                   <p>For instance, if your goal was to increase profitability of a certain product line, your benefits may include things such as:</p>
                   <ul>
-                    <li>Reduce waste during
-                      <br />
-                      manufacturing by 75%
+                    <li>Reduce waste during manufacturing by 75%
                     </li>                    
                     <li>Increase annual sales by $50,000</li>
                   </ul>

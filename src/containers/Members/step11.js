@@ -117,8 +117,8 @@ const Stakeholders = ({ setForm, formData, navigation, id }) => {
               </div>
             </Form>
           </Col>
-          <Col xs={12} sm={4} lg={5} className="faq-section p-2">
-            <div>
+          <Col xs={12} sm={4} lg={5}>
+            <div className="faq-section p-2">
               <p>Frequently Asked Questions</p>
               <div onClick={() => setStakeholdersOpen(!stakeholdersOpen)}
                 aria-controls="example-collapse-text" aria-expanded={stakeholdersOpen}

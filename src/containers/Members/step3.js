@@ -68,8 +68,8 @@ return (
           </Form>   
         </Col>
 
-        <Col xs={12} sm={4} lg={5} className="faq-section p-2">
-          <div>
+        <Col xs={12} sm={4} lg={5}>
+          <div className="faq-section p-2">
             <p>Frequently Asked Questions</p>
             <div 
               onClick={() => setBackground(!background)}

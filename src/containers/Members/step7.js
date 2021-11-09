@@ -86,8 +86,8 @@ return (
           </Form>          
         </Col>
 
-        <Col xs={12} sm={4} lg={5} className="faq-section p-2">
-          <div>
+        <Col xs={12} sm={4} lg={5} >
+          <div className="faq-section p-2">          
             <p>Frequently Asked Questions</p>
             <div onClick={() => setscheduledopen(!scheduledopen)}
               aria-controls="example-collapse-text" aria-expanded={scheduledopen} 
@@ -98,14 +98,13 @@ return (
                 <div className="faq-content" id="example-collapse-text">
                   <p>Every project has a defined beginning and end. The estimated start date is the date you expect this project to begin</p>
                 </div>
-              </Collapse>
-          </div>
-          <br />      
-          <div onClick={() => setScheduledClose(!scheduledClose)}
-            aria-controls="example-collapse-text" aria-expanded={scheduledopen}
-            className="faq-col">
-            <p>What is an estimated completion date? </p>
-          </div>
+              </Collapse>          
+            <br />
+            <div onClick={() => setScheduledClose(!scheduledClose)}
+              aria-controls="example-collapse-text" aria-expanded={scheduledopen}
+              className="faq-col">
+              <p>What is an estimated completion date? </p>
+            </div>
           <Collapse in={scheduledClose}>
             <div className="faq-content" id="example-collapse-text">
               <p>The estimated completion date is the date you believe the project will end. This
@@ -114,6 +113,7 @@ return (
                   that date here. </p>
             </div>
           </Collapse>
+          </div>
         </Col>
       </Row>
     </Container>
