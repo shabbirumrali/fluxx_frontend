@@ -85,18 +85,18 @@ console.log(showdownload);
                         : <div className="progress_bar_titles">
                             <ul>
                                { showdownload ?                                 
-                                 <><li  className={activeCls === 'step1' ? 'steps_active' : "memberSteps"}>project name</li>
-                                 <li className={activeCls === 'step2' ? 'steps_active' : "memberSteps"} >pm / sponsor</li>
-                                 <li className={activeCls === 'step3' ? 'steps_active' : "memberSteps"}>background</li>
-                                <li className={activeCls === 'step4' ? 'steps_active' : "memberSteps"} > goals</li>
-                                <li className={activeCls === 'step5' ? 'steps_active' : "memberSteps"} >benefits</li>
-                                <li className={activeCls === 'step6' ? 'steps_active' : "memberSteps"} >scope</li>
-                                <li className={activeCls === 'step7' ? 'steps_active' : "memberSteps"} >schedule</li>
-                                <li className={activeCls === 'step8' ? 'steps_active' : "memberSteps"}  >budget</li>
-                                <li className={activeCls === 'step9' ? 'steps_active' : "memberSteps"}>assumptions</li>
-                                <li className={activeCls === 'step10' ? 'steps_active' : "memberSteps"}>impact</li>
-                                <li className={activeCls === 'step11' ? 'steps_active' : "memberSteps"} >stakeholders</li>
-                                <li className={activeCls === 'step12' ? 'steps_active' : "memberSteps"}>risks</li></>
+                                 <><li  className={activeCls === 'step1' ? 'steps_active' : "disablecursor memberSteps"}>project name</li>
+                                 <li className={activeCls === 'step2' ? 'steps_active' : "disablecursor memberSteps"} >pm / sponsor</li>
+                                 <li className={activeCls === 'step3' ? 'steps_active' : "disablecursor memberSteps"}>background</li>
+                                <li className={activeCls === 'step4' ? 'steps_active' : "disablecursor memberSteps"} > goals</li>
+                                <li className={activeCls === 'step5' ? 'steps_active' : "disablecursor memberSteps"} >benefits</li>
+                                <li className={activeCls === 'step6' ? 'steps_active' : "disablecursor memberSteps"} >scope</li>
+                                <li className={activeCls === 'step7' ? 'steps_active' : "disablecursor memberSteps"} >schedule</li>
+                                <li className={activeCls === 'step8' ? 'steps_active' : "disablecursor memberSteps"}  >budget</li>
+                                <li className={activeCls === 'step9' ? 'steps_active' : "disablecursor memberSteps"}>assumptions</li>
+                                <li className={activeCls === 'step10' ? 'steps_active' : "disablecursor memberSteps"}>impact</li>
+                                <li className={activeCls === 'step11' ? 'steps_active' : "disablecursor memberSteps"} >stakeholders</li>
+                                <li className={activeCls === 'step12' ? 'steps_active' : "disablecursor memberSteps"}>risks</li></>
                                   :
                                   <><li className={activeCls === 'step1' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('names'); }}>project name</li>
                                         <li className={activeCls === 'step2' ? 'steps_active' : "memberSteps"} onClick={() => { sendDataToParent1('address'); }}>pm / sponsor</li>
