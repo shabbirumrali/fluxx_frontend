@@ -9,6 +9,8 @@ import axios from 'axios';
 import { connect, useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import * as actions from "../../store/actions/index";
+import Switch from "react-switch";
+
 import moment from 'moment';
 import { toast } from "react-toastify";
 const Setting = (props) => {
@@ -17,7 +19,8 @@ const Setting = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  const [checked, setChecked] = useState(localStorage.getItem('subscribeUser'));
+  
   const [deleteAcc, setDeleteAcc] = useState(false);
   const [Resetpassword, setResetpassword] = useState(false);
   
@@ -61,6 +64,9 @@ const Setting = (props) => {
     window.location.href = "/";
     return false;
   }
+  const handleChange = nextChecked => {
+    setChecked(nextChecked);
+  };
   return (
     <>
       <Container fluid>
@@ -86,10 +92,14 @@ const Setting = (props) => {
                 </div>
 
                 <div className="setting_checkbox">
-                  <Label className="switch">
-                    <input type="checkbox" checked={localStorage.getItem('subscribeUser') === "true" ? "checked":""}/>
-                    <span className="slider round"></span>
-                  </Label>
+
+                <Switch
+          onChange={handleChange}
+          checked={checked}
+          className="react-switch"
+        />
+
+                
                   <p>Email me special offers and news</p>
                 </div>
               </div>
