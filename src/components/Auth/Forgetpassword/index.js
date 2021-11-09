@@ -50,7 +50,7 @@ const Forgetpassword = (props) => {
                 <Form.Control type="email" ref={register} name="email" />
                 {errors.email && (<span className="errorMessage">{errors.email.message}</span>)}
               </FormGroup>
-              <Button type="submit">Set Password</Button>
+              <Button type="submit">SEND PASSWORD RESET EMAIL</Button>
             </Form>
           </div>
           <div className="forgot_privacy_info">
