@@ -17,14 +17,7 @@ import * as actions from "../../../store/actions/index";
 const Register = (props) => {
  
   const history = useHistory();
-  const checkAuthToken = async () => {
-    const token = localStorage.getItem("token");
-    if (token != '') {
-      history.push({
-        pathname: "/members",
-      });
-    }
-  };
+ 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string()
@@ -49,12 +42,7 @@ const Register = (props) => {
     dispatch(actions.createForm(data));
     reset();
   };
-  // const onSubmit = async (data) => {
-  //   console.log('fghgfhf');
-  //   return false;
-  //   dispatch(actions.auth(data));
-  //   reset();
-  // };
+  
   const opensign = () =>{
     history.push({
       pathname: "/",
@@ -67,7 +55,7 @@ const Register = (props) => {
     history.push("/forgetpassword");
   }
   useEffect(() => {
-    checkAuthToken();
+  
   }, []);
   return (<>
     <Container className="signup_container">

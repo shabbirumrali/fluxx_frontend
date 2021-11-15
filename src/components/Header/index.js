@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Nav, Navbar, Button, NavDropdown } from 'react-bootstrap'
 import Auth from "../Auth";
-
+import SetAuthToken from "../../setAuthToken";
 const Header = (props) => {
-  console.log('dfdfd');
+  console.log(props);
   const { toggle, className, modal } = props;
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   const location = useLocation();
   console.log(location.pathname);
-
+  const isauthencated = SetAuthToken();
   return (
     <>
       <Navbar collapseOnSelect expand="lg" bg="white" variant="light" className="px-4 shadow-sm">
@@ -22,9 +22,12 @@ const Header = (props) => {
             <Link to="/" className={location.pathname === '/' ? "nav-link active" : "nav-link"} >why fluxx?</Link>
             <Link to="/blog" className={location.pathname === '/blog' ? "nav-link active" : "nav-link"}>blog</Link>
             <Link to="/contactus" className={location.pathname === '/contactus' ? "nav-link active" : "nav-link"}>contact</Link>
-            {localStorage.getItem('email') !== '' ?
+            {isauthencated == true ?
               <Link to="/members" className={location.pathname === '/members' ? "nav-link active" : "nav-link"}> members </Link>
               : null}
+            {isauthencated == true  && localStorage.getItem('role') == 'admin' ?
+              <Link to="/admin" className={location.pathname === '/admin' ? "nav-link active" : "nav-link"}> admin </Link>
+              : null}  
           </Nav>
 
           {localStorage.getItem('email') === '' ?

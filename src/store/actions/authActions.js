@@ -117,7 +117,7 @@ export const auth = (form) => {
           localStorage.setItem("subscribeUser", response.data.user.subscribe);
           dispatch(authSuccess(response.data));
           toast.success(response.data.message);
-          //history.push("/members");
+         
         }
       })
       .catch((err) => {

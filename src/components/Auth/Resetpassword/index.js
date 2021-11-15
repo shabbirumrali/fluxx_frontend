@@ -11,14 +11,7 @@ import { createBrowserHistory } from "history";
 
 const Resetpassword = (props) => {
   const history = useHistory();
-  const checkAuthToken = async () => {
-    const token = localStorage.getItem("token");
-    if (token != '') {
-      history.push({
-        pathname: "/members",
-      });
-    }
-  };
+ 
   const validationSchema = Yup.object().shape({
     password: Yup.string()
       .matches(

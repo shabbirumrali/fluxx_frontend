@@ -16,14 +16,7 @@ const Forgetpassword = (props) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const checkAuthToken = async () => {
-    const token = localStorage.getItem("token");
-    if (token != '') {
-      history.push({
-        pathname: "/members",
-      });
-    }
-  };
+  
 
   const { register, errors, handleSubmit, reset } = useForm({
     resolver: yupResolver(validationSchema),
@@ -34,7 +27,7 @@ const Forgetpassword = (props) => {
     reset();
   };
   useEffect(() => {
-    checkAuthToken();
+
   }, []);
 
   return (
@@ -50,7 +43,7 @@ const Forgetpassword = (props) => {
                 <Form.Control type="email" ref={register} name="email" />
                 {errors.email && (<span className="errorMessage">{errors.email.message}</span>)}
               </FormGroup>
-              <Button type="submit">Set Password</Button>
+              <Button type="submit">SEND PASSWORD RESET EMAIL</Button>
             </Form>
           </div>
           <div className="forgot_privacy_info">

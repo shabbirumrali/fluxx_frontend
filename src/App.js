@@ -6,6 +6,7 @@ import History from "./history";
 import { Router, Route, Switch, Redirect } from "react-router-dom";
 import Work from './Work'
 
+
 const loading = () => (
   <div className="animated fadeIn pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
@@ -17,7 +18,7 @@ const Layout = lazy(() => import("./hoc"));
 
 
 function App() {
-
+ 
     
   const routes = (
     <Switch>

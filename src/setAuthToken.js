@@ -2,7 +2,7 @@ import axios from "axios";
 
 const SetAuthToken = () => {
    const token = localStorage.getItem("token");
-   const authenicated = false;
+   let authenicated = false;
     if(token){
      authenicated = true;
     }

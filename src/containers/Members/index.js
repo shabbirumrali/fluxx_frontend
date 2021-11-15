@@ -21,14 +21,7 @@ const Members = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const checkAuthToken = async () => {
-    const token = localStorage.getItem("token");
-    if (token == '') {
-      history.push({
-        pathname: "/",
-      });
-    }
-  };
+
 
   const { register, errors, handleSubmit, renameSubmit, reset } = useForm();
   const { className, toggle, modal } = props;
@@ -67,7 +60,7 @@ const Members = (props) => {
   };
 
   useEffect(() => {
-    checkAuthToken();
+  
     dispatch(actions.charterlist());
     dispatch(actions.categoryList());
   }, []);
