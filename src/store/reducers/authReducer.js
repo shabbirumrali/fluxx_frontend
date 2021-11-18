@@ -43,6 +43,13 @@ const postDetail =(state,action) => {
 
   return updateObject(state, {postdetail:action.data,loading:false});
 }
+const categorypostDetail =(state,action) =>{
+  return updateObject(state, {categorypostdetail:action.data,loading:false});
+}
+const categoryotherpostDetail =(state,action) =>{
+  return updateObject(state, {categoryotherpostDetail:action.data,loading:false});
+}
+
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.token,
@@ -100,6 +107,10 @@ const reducer = (state = initialState, action) => {
       return renameList(state,action);  
     case actionTypes.SINGLEPOST:
       return postDetail(state,action); 
+    case actionTypes.CATEGORYPOST:
+      return categorypostDetail(state,action); 
+    case actionTypes.OTHERCATEGORYPOST:
+      return categoryotherpostDetail(state,action);   
     case actionTypes.FETCHUSERLIST:
       return userList(state,action); 
     default:

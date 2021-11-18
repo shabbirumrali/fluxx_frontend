@@ -8,7 +8,7 @@ const Forgetpassword = lazy(() => import("./components/Auth/Forgetpassword"));
 const Resetpassword = lazy(() => import("./components/Auth/Resetpassword"));
 const Contact = lazy(() => import("./containers/Contact"));
 const Blog = lazy(() => import("./containers/Blog"));
-const FinalView = lazy(() => import("./containers/Members/finalLview"));
+
 const Terms = lazy(() => import("./components/Footer/Terms"));
 const Privacy = lazy(() => import("./components/Footer/Privacy"));
 
@@ -62,11 +62,11 @@ const routes = [
     exact: true,
     component: Resetpassword,
   },
-  {
-    path: "/finalStep",
-    exact: true,
-    component: FinalView,
-  },
+  // {
+  //   path: "/finalStep",
+  //   exact: true,
+  //   component: FinalView,
+  // },
   {
     path: "/privacypolicy",
     exact: true,

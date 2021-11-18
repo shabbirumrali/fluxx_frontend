@@ -30,7 +30,7 @@ const Header = (props) => {
               : null}  
           </Nav>
 
-          {localStorage.getItem('email') === '' ?
+          {isauthencated == false ?
             <Nav>
               <Nav.Link eventKey={2} href="#">
                 <Button variant="black" onClick={toggle}>
@@ -38,8 +38,7 @@ const Header = (props) => {
                 </Button>
               </Nav.Link>
             </Nav>
-            : null}
-          {localStorage.getItem('email') !== '' ?
+            : 
             <Nav>
               <NavDropdown title={localStorage.getItem('email')} id="basic-nav-dropdown">
                 <NavDropdown.Item className="dropdown_items p-0">
@@ -58,7 +57,7 @@ const Header = (props) => {
                 }}>Sign Out</NavDropdown.Item>
               </NavDropdown>
             </Nav>
-            : null
+            
           }
         </Navbar.Collapse>
       </Navbar>

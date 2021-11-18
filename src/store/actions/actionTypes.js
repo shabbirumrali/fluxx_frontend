@@ -18,3 +18,4 @@ export const RENAMELIST        =  "RENAMELIST";
 export const SINGLEPOST        =  "SINGLEPOST";
 export const CATEGORYPOST      = "CATEGORYPOST";
 export const FETCHUSERLIST     = "FETCHUSERLIST";
+export const OTHERCATEGORYPOST      = "OTHERCATEGORYPOST";

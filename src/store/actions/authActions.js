@@ -74,6 +74,14 @@ export const categorypost = (data) =>{
     };
 
 }
+export const othercategorypost = (data) =>{
+    return {
+      type: actionTypes.OTHERCATEGORYPOST,
+      data: data,
+    };
+
+}
+
 export const folderlist = (data) => {
   return {
     type: actionTypes.FOLDERLIST,
@@ -619,14 +627,16 @@ export const fetchuserlist = (form,props) => {
 
 
 export const fetchcategoryposts = (form,props) => {
+  console.log(form);
+  console.log(props);
   const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
     };
     return (dispatch) => {
       axios
-        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?category_slug=deal",config)
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?category_slug="+form+"&_embed",config)
         .then((response) => {
-             console.log(response.data);
+             console.log(response);
              dispatch(categorypost(response.data));        
         })
         .catch((err) => {
@@ -636,6 +646,29 @@ export const fetchcategoryposts = (form,props) => {
         });
     };
 };
+export const fetchothercategoryposts = (form,props) => {
+  console.log(form);
+  console.log(props);
+  const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    };
+    return (dispatch) => {
+      axios
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?category_slug="+form,config)
+        .then((response) => {
+             console.log(response);
+             dispatch(othercategorypost(response.data));        
+        })
+        .catch((err) => {
+          if (err === "Error: Request failed with status code 500") {
+            toast.error(" Token Expire !!");
+          }
+        });
+    };
+};
+
+
+
 
 
 

@@ -24,5 +24,6 @@ export {
   updatepassword,
   fetchsinglepost,
   fetchcategoryposts,
-  fetchuserlist
+  fetchuserlist,
+  fetchothercategoryposts
 } from "./authActions";

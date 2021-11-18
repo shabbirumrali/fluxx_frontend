@@ -23,7 +23,9 @@ const Blog = (props) => {
 
    useEffect(() => {
     dispatch(actions.fetchPosts())
-    dispatch(actions.fetchcategoryposts())
+    
+    dispatch(actions.fetchcategoryposts('deal'))
+    dispatch(actions.fetchothercategoryposts('most-searched'))
   },[]);
 
    const removeHTML = (str) => { 
@@ -38,7 +40,7 @@ const Blog = (props) => {
           state: { blogdetail: value}
         });
     }
-    console.log(props); 
+    console.log(props.setpostData); 
   return (
      <><Container fluid>
         <Row>
@@ -52,41 +54,41 @@ const Blog = (props) => {
 
             <div className='blog-inside-section2 font-dec'>
               <div className='divider-blog'>
-                    {/* {
+                    {
                       props.setpostData ?
                       props.setpostData.length > 0 ?  
-                      props.setpostData.map((post,index) => {
-                        if(index < 5){
+                      props.setpostData.slice(0,2).map((post,index) => {
+                        
                               return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
                                   <div className='big-blog-contain'>
                                     <h6 className='my-3'>{post.title.rendered}</h6>
-                                    <h3>{removeHTML(post.content.rendered)}</h3>
+                                    <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
                                     <h5>Auther Name</h5>
                                   </div></a>
                                   </>);
-                          }
+                         
                       })
                       :null:null
-                    } */}
+                    }
               </div>              
             </div>
 
             <div className='blog-inside-section3 font-dec'>
              <div className='divider-blog'>
-                    {/* {
+                     {
                       props.setpostData ?
                       props.setpostData.length > 0 ?  
-                      props.setpostData.map((post,index) => {
-                    return (<><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                      props.setpostData.slice(0,2).map((post,index) => {
+                    return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
                             <div className='big-blog-contain'>
                               <h6 className='my-3'>{post.title.rendered}</h6>
-                              <h3>{removeHTML(post.content.rendered)}</h3>
+                              <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
                               <h5>Auther Name</h5>
-                            </div>
+                            </div></a>
                             </>);
                     })
                       :null:null
-                    } */}
+                    } 
               </div> 
 
               
@@ -112,19 +114,19 @@ const Blog = (props) => {
         <Row>
           <Col className='blog-content-section my-3'>
             {
-                      props.setcategoryData ?
-                      props.setcategoryData.length > 0 ? 
-                    
-                        <div className='blog1 d-flex font-dec'>
-                          <Image src={BlogImage} />
-                          <div className='big-blog-contain divider-blog'>                
-                            <h3>This blog you realy want to know so read</h3>
-                            <p>Don't remove them with a burned-out match </p>
-                          </div>
-                        </div>
-                       :null :null  
-
-}
+              props.setcategoryData ?
+              props.setcategoryData.length > 0 ? 
+              props.setcategoryData.slice(0,3).map((catpost,index) =>{
+                    return (<><a href="#" onClick={fetchpostdetail(catpost)}><div className='blog1 d-flex font-dec'>
+                      <Image src={BlogImage} />
+                      <div className='big-blog-contain divider-blog'>                
+                        <h3>{catpost.title.rendered}</h3>
+                        <p>{removeHTML(catpost.content.rendered).substr(0,100)} </p>
+                      </div>
+                    </div></a></>)
+              })                        
+              :null :null  
+             }
             
           </Col>
         </Row>
@@ -144,54 +146,25 @@ const Blog = (props) => {
         <Row>
           <Col>
             <div className="blog-inside-section4">
-              <div className="vertical-blog-1">
-                <Card className="card-detail border-0 font-dec">
-                  <Card.Img variant="top" src={BlogImage} />
-                  <Card.Body>
-                    <div className='big-blog-contain divider-blog'>
-                      <h6 className='mb-3'>Health</h6>
-                      <h3>This blog you realy want to know so read</h3>
-                      <h5>Auther Name</h5>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="vertical-blog-2">
-                <Card className="card-detail border-0 font-dec">
-                  <Card.Img variant="top" src={BlogImage} />
-                  <Card.Body>
-                    <div className='big-blog-contain divider-blog'>
-                      <h6 className='mb-3'>Health</h6>
-                      <h3>This blog you realy want to know so read</h3>
-                      <h5>Auther Name</h5>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="vertical-blog-3">
-                <Card className="card-detail border-0 font-dec">
-                  <Card.Img variant="top" src={BlogImage} />
-                  <Card.Body>
-                    <div className='big-blog-contain divider-blog'>
-                      <h6 className='mb-3'>Health</h6>
-                      <h3>This blog you realy want to know so read</h3>
-                      <h5>Auther Name</h5>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </div>
-              <div className="vertical-blog-4">
-                <Card className="card-detail border-0 font-dec">
-                  <Card.Img variant="top" src={BlogImage} />
-                  <Card.Body>
-                    <div className='big-blog-contain divider-blog'>
-                      <h6 className='mb-3'>Health</h6>
-                      <h3>This blog you realy want to know so read</h3>
-                      <h5>Auther Name</h5>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </div>
+              {
+              props.setothercategoryData ?
+              props.setothercategoryData.length > 0 ? 
+              props.setothercategoryData.slice(0,3).map((catpost,index) =>{
+                  return(<><a href="#" onClick={fetchpostdetail(catpost)}><div className="vertical-blog-1">
+                    <Card className="card-detail border-0 font-dec">
+                      <Card.Img variant="top" src={BlogImage} />
+                      <Card.Body>
+                        <div className='big-blog-contain divider-blog'>
+                          <h6 className='mb-3'>{catpost.title.rendered}</h6>
+                          <h3>{removeHTML(catpost.content.rendered).substr(0,100)}</h3>
+                          <h5>Auther Name</h5>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </div></a></>)
+              })                        
+              :null :null  
+             }
             </div>
           </Col>
         </Row>
@@ -201,7 +174,8 @@ const Blog = (props) => {
 const mapStateToProps = (state) => {
    return {
       setpostData:state.auth.postdata,
-      setcategoryData:state.auth.categorydata
+      setcategoryData:state.auth.categorypostdetail,
+      setothercategoryData:state.auth.categoryotherpostDetail
    };
 };
 export default connect(mapStateToProps,null)(Blog);

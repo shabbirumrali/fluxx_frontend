@@ -11,6 +11,7 @@ const Setting = lazy(() => import("../containers/Setting/Setting"));
 const Memberdetail = lazy(() => import("../containers/Members/Memberdetail"));
 const AdminPage  = lazy(() => import("../containers/Admin/adminPage"));
 const CharterMain = lazy(() => import("../containers/Members/chartermain"));
+const FinalView = lazy(() => import("../containers/Members/finalLview"));
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
@@ -82,6 +83,15 @@ const Content = ({toggle}) => {
             isAuthenticated={isAuthenticated}
           >
            <CharterLanding />
+
+
+          </PrivateRoute>
+
+          <PrivateRoute
+            path="/finalStep"
+            isAuthenticated={isAuthenticated}
+          >
+           <FinalView />
 
 
           </PrivateRoute>
