@@ -48,7 +48,23 @@ const Blog = (props) => {
             <div className='blog-inside-section1 font-dec'>
             
                <div className='divider-blog'>
-                   <Image src={BlogImage} /> 
+               {
+                      props.setpostData ?
+                      props.setpostData.length > 0 ?  
+                      props.setpostData.slice(0,1).map((post,index) => {
+                        
+                              return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                                  <div className='big-blog-contain'>
+                                    <h6 className='my-3'>{post.title.rendered}</h6>
+                                    <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
+                                    <h5>Auther Name</h5>
+                                  </div></a>
+                                  </>);
+                         
+                      })
+                      :null:null
+                    }
+                   
                </div>
             </div>
 

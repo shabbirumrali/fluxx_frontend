@@ -15,12 +15,17 @@ import { Pagination } from "@material-ui/lab";
 import usePagination from "./Pagination";
 import { default as data } from "./MOCK_DATA.json";
 import appConfig from "./../../config";
+import SetAuthToken from "../../setAuthToken";
+
 const Members = (props) => {
 
   console.log(props);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  const isAuthenticated =  SetAuthToken();
+  if(isAuthenticated == false){
+    history.push("/");
+  }
 
 
   const { register, errors, handleSubmit, renameSubmit, reset } = useForm();
@@ -142,7 +147,7 @@ const Members = (props) => {
       }
     })
       .then((response) => {
-        //console.log(response.data);
+        console.log(response.data);
         history.push({
           pathname: "/cmain",
           state: { detail: response.data.charterlist }

@@ -11,10 +11,10 @@ const Blog = lazy(() => import("./containers/Blog"));
 
 const Terms = lazy(() => import("./components/Footer/Terms"));
 const Privacy = lazy(() => import("./components/Footer/Privacy"));
-
-//const Memberdetail = lazy(() => import("./containers/Members/Memberdetail"));
+const FinalView = lazy(() => import("./containers/Members/finalLview"));
+const Memberdetail = lazy(() => import("./containers/Members/Memberdetail"));
 const Blogdetail  = lazy(() => import("./containers/Blog/blogdetail"));
-
+const CharterMain = lazy(() => import("./containers/Members/chartermain"));
 const routes = [
   { path: "/", exact: true, component: Home },
   // {
@@ -27,11 +27,11 @@ const routes = [
   //   exact: true,
   //   component: CharterLanding,
   // },
-  // {
-  //   path: "/cmain",
-  //   exact: true,
-  //   component: CharterMain,
-  // },
+  {
+    path: "/cmain",
+    exact: true,
+    component: CharterMain,
+  },
   {
     path: "/register",
     exact: true,
@@ -62,11 +62,11 @@ const routes = [
     exact: true,
     component: Resetpassword,
   },
-  // {
-  //   path: "/finalStep",
-  //   exact: true,
-  //   component: FinalView,
-  // },
+  {
+    path: "/finalStep",
+    exact: true,
+    component: FinalView,
+  },
   {
     path: "/privacypolicy",
     exact: true,
@@ -82,11 +82,11 @@ const routes = [
   //   exact: true,
   //   component: Setting,
   // },
-  // {
-  //   path: "/members/:memberid",
-  //   exact: true,
-  //   component: Memberdetail,
-  // },
+  {
+    path: "/members/:memberid",
+    exact: true,
+    component: Memberdetail,
+  },
   // {
   //   path: "/admin",
   //   exact: true,

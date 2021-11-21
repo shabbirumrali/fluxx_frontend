@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useForm, useStep } from "react-hooks-helper";
+import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import Names from "./step1";
 import Address from "./step2";
 import Contact from "./step3";
@@ -16,6 +17,9 @@ import MovieList from "./finalLview";
 //import "./styles.css";
 import axios from 'axios';
 import appConfig from "./../../config";
+import SetAuthToken from "../../setAuthToken";
+
+
 const steps = [
   { id: "names"    },
   { id: "address"  },
@@ -31,8 +35,15 @@ const steps = [
   { id: "risk" },
   { id: "print" }
 ];
+
 const MultiStepForm = (props) => {
-  console.log(props); 
+  console.log(props.location); 
+  const history = useHistory();
+  const isAuthenticated =  SetAuthToken();
+  if(isAuthenticated == false){
+    history.push("/");
+  }
+  
   const objectdata = props.location.state !== undefined ? props.location.state.detail:{};      
   const defaultData = {
     name: objectdata.name ? objectdata.name:"",

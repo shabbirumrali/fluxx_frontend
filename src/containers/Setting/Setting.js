@@ -138,7 +138,7 @@ const Setting = (props) => {
             </FormGroup>
             <div className="modal_btn_section_create_folder">
               <Button type="submit" className="modal_trigger_btn"> Change Email </Button>
-              <Button variant="light" type="submit" onClick={handleClose} className="modal_cancel_btn"> Cancel </Button>
+              <Button variant="light"  onClick={handleClose} className="modal_cancel_btn"> Cancel </Button>
             </div>
           </Form>
         </Modal.Body>

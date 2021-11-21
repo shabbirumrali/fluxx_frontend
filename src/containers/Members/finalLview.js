@@ -10,11 +10,16 @@ import TitleList from  "./titleList";
 import FinalStepIframe from './FinalStepIframe';
 import backimage from '../../assets/img/backbutton.png';
 import './pdf_index.css'
-
+import SetAuthToken from "../../setAuthToken";
 const MovieList = (props) => {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const isAuthenticated =  SetAuthToken();
+  if(isAuthenticated == false){
+    history.push("/");
+  }
+
   const [movieDetails, setDetails] = useState([]);
   const [show, setHide] = useState(false);
 

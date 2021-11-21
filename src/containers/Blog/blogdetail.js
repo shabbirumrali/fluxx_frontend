@@ -19,12 +19,12 @@ const BlogContent = (props) => {
       const history = useHistory();
       const [blogDetail,setblogDetail] = useState(true);
 
-      console.log(props);
+
 
       useEffect(() => { 
-      
+            dispatch(actions.fetchPosts());
             dispatch(actions.fetchsinglepost(window.location.pathname.split("/").pop()));
-        
+            
 
     },[]);
     const removeHTML = (str) => { 
@@ -32,7 +32,15 @@ const BlogContent = (props) => {
       tmp.innerHTML = str;
       return tmp.textContent || tmp.innerText || "";
     }
-
+    const refreshPage = () => {
+     let timeout  =setTimeout(() => {
+           window.location.reload(false);
+      }, 1000);
+      return () => {
+         clearTimeout(timeout);
+      };
+    }
+    
     return (
         <Container fluid>
       <Row className="blogpost-header-container">
@@ -76,8 +84,24 @@ const BlogContent = (props) => {
         <Col sm={4} className="blog-divesion-section2">
           <div>
             <h6>MORE FROM G/O MEDIA</h6>
-
-            <div className="sidebox-readon">
+            {
+                      props.setpostData ?
+                      props.setpostData.length > 0 ?  
+                      props.setpostData.map((post,index) => {
+                        
+                              return (<><Link to={`/blog/${post.id}`} onClick={refreshPage}>
+                                <div className="sidebox-readon">
+                                  <div className="readon-tag d-flex">
+                                    <p>read on</p><span>sdfsdf</span>
+                                  </div>
+                                    <h6>{post.title.rendered.substr(0,50)} </h6>
+                                </div></Link>
+                                  </>);
+                         
+                      })
+                      :null:null
+                    }
+            {/* <div className="sidebox-readon">
               <div className="readon-tag d-flex">
                 <p>read on</p><span>sdfsdf</span>
               </div>
@@ -103,7 +127,7 @@ const BlogContent = (props) => {
                 <p>read on</p><span>sdfsdf</span>
               </div>
                 <h6> Terminator 2's Famous Kitchen Scene Was More Complicated Than You Thought </h6>
-            </div>
+            </div> */}
             <hr />
           </div>
         </Col>
@@ -114,6 +138,7 @@ const BlogContent = (props) => {
 
 const mapStateToProps = (state) => { 
      return {
+        setpostData:state.auth.postdata,
         setpostDetail:state.auth.postdetail
      };
 };
