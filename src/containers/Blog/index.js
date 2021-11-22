@@ -22,8 +22,7 @@ const Blog = (props) => {
    const [data, setData] = useState(props.setpostData);
 
    useEffect(() => {
-    dispatch(actions.fetchPosts())
-    
+    dispatch(actions.fetchPosts())    
     dispatch(actions.fetchcategoryposts('deal'))
     dispatch(actions.fetchothercategoryposts('most-searched'))
   },[]);
@@ -41,150 +40,139 @@ const Blog = (props) => {
         });
     }
     console.log(props.setpostData); 
-  return (
-     <><Container fluid>
+  return (     
+     <Container fluid>
         <Row>
           <Col className='main-col-section'>
-            <div className='blog-inside-section1 font-dec'>
-            
-               <div className='divider-blog'>
-               {
-                      props.setpostData ?
-                      props.setpostData.length > 0 ?  
-                      props.setpostData.slice(0,1).map((post,index) => {
-                        
-                              return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
-                                  <div className='big-blog-contain'>
-                                    <h6 className='my-3'>{post.title.rendered}</h6>
-                                    <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                                    <h5>Auther Name</h5>
-                                  </div></a>
-                                  </>);
-                         
-                      })
-                      :null:null
-                    }
-                   
-               </div>
-            </div>
-
-            <div className='blog-inside-section2 font-dec'>
+            <div className='blog-inside-section1'>
               <div className='divider-blog'>
-                    {
-                      props.setpostData ?
-                      props.setpostData.length > 0 ?  
-                      props.setpostData.slice(0,2).map((post,index) => {
-                        
-                              return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
-                                  <div className='big-blog-contain'>
-                                    <h6 className='my-3'>{post.title.rendered}</h6>
-                                    <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                                    <h5>Auther Name</h5>
-                                  </div></a>
-                                  </>);
-                         
-                      })
-                      :null:null
-                    }
+                {
+                  props.setpostData ?
+                  props.setpostData.length > 0 ?  
+                  props.setpostData.slice(0,1).map((post,index) => {                    
+                    return (                      
+                      <a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                        <div className='big-blog-contain'>
+                          <span>{post.title.rendered}</span>
+                          <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
+                          <h5>Auther Name</h5>
+                        </div>
+                      </a>                      
+                    );
+                  }) : null : null
+                }                   
+              </div>
+            </div>
+            {/* Section 2 */}
+            <div className='blog-inside-section2'>
+              <div className='divider-blog'>
+                {
+                  props.setpostData ?
+                  props.setpostData.length > 0 ?  
+                  props.setpostData.slice(0,2).map((post,index) => {                    
+                    return (
+                      <a href="#" onClick={fetchpostdetail(post)}>
+                        <Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                        <div className='big-blog-contain'>
+                          <span>{post.title.rendered}</span>
+                          <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
+                          <h5>Auther Name</h5>
+                        </div>
+                      </a>
+                    );
+                  }) : null : null
+                }
               </div>              
             </div>
 
-            <div className='blog-inside-section3 font-dec'>
-             <div className='divider-blog'>
-                     {
-                      props.setpostData ?
-                      props.setpostData.length > 0 ?  
-                      props.setpostData.slice(0,2).map((post,index) => {
-                    return (<><a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
-                            <div className='big-blog-contain'>
-                              <h6 className='my-3'>{post.title.rendered}</h6>
-                              <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                              <h5>Auther Name</h5>
-                            </div></a>
-                            </>);
-                    })
-                      :null:null
-                    } 
-              </div> 
-
-              
-            </div>
-          </Col>
-        </Row>
-
-       
-
-        <Row>
-          <Col className="my-3">
-            {/*section - Deal of the day */}   
-            <div className="deal-day d-flex justify-content-between border-bottom border-dark align-items-center">
-              <header>
-                <h2>Deal of the Day</h2>
-              </header>
-              <a href="" className="text-uppercase text-decoration-none">View All</a>
-            </div>
-            {/* blog Content section */}
-          </Col>          
-        </Row>
-
-        <Row>
-          <Col className='blog-content-section my-3'>
-            {
-              props.setcategoryData ?
-              props.setcategoryData.length > 0 ? 
-              props.setcategoryData.slice(0,3).map((catpost,index) =>{
-                    return (<><a href="#" onClick={fetchpostdetail(catpost)}><div className='blog1 d-flex font-dec'>
-                      <Image src={BlogImage} />
-                      <div className='big-blog-contain divider-blog'>                
-                        <h3>{catpost.title.rendered}</h3>
-                        <p>{removeHTML(catpost.content.rendered).substr(0,100)} </p>
-                      </div>
-                    </div></a></>)
-              })                        
-              :null :null  
-             }
-            
-          </Col>
-        </Row>
-
-        <Row>
-          <Col className="my-3">
-            {/*section - Deal of the day */}   
-            <div className="deal-day d-flex justify-content-between border-bottom border-dark align-items-center">
-              <header>
-                <h2>Most Searched</h2>
-              </header>
-              <a href="" className="text-uppercase text-decoration-none">View All</a>
-            </div>
-            {/* blog Content section */}
-          </Col>          
-        </Row>
-        <Row>
-          <Col>
-            <div className="blog-inside-section4">
-              {
-              props.setothercategoryData ?
-              props.setothercategoryData.length > 0 ? 
-              props.setothercategoryData.slice(0,3).map((catpost,index) =>{
-                  return(<><a href="#" onClick={fetchpostdetail(catpost)}><div className="vertical-blog-1">
-                    <Card className="card-detail border-0 font-dec">
-                      <Card.Img variant="top" src={BlogImage} />
-                      <Card.Body>
-                        <div className='big-blog-contain divider-blog'>
-                          <h6 className='mb-3'>{catpost.title.rendered}</h6>
-                          <h3>{removeHTML(catpost.content.rendered).substr(0,100)}</h3>
+            {/* Section 3 */}
+            <div className='blog-inside-section3'>
+              <div className='divider-blog'>
+                {
+                  props.setpostData ?
+                  props.setpostData.length > 0 ?  
+                  props.setpostData.slice(0,2).map((post,index) => {
+                    return (
+                      <a href="#" onClick={fetchpostdetail(post)}>
+                        <Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                        <div className='big-blog-contain'>
+                          <span>{post.title.rendered}</span>
+                          <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
                           <h5>Auther Name</h5>
                         </div>
-                      </Card.Body>
-                    </Card>
-                  </div></a></>)
-              })                        
-              :null :null  
-             }
+                      </a>
+                    );
+                  }) : null : null 
+                }
+              </div>
             </div>
           </Col>
         </Row>
-      </Container></>
+
+        {/* Deal Of The Day Section */}
+        <>
+          <Col className="blog_content_section">
+            {/*section - Deal of the day */}
+            <div className="deal_day">
+                <h2>Deal of the Day</h2>
+                <a href="">View All</a>
+            </div>
+          </Col>
+
+          {/* blog Content section */}
+          <Col className='blog_sub_sections'>
+            <div className="divider-blog">              
+              {
+                props.setcategoryData ?
+                props.setcategoryData.length > 0 ? 
+                props.setcategoryData.slice(0,3).map((catpost,index) =>{
+                  return (                      
+                    <a href="#" onClick={fetchpostdetail(catpost)} className="blog_divider_subsection">
+                      <Image src={BlogImage} />
+                      <div className='big_blog_contain'>
+                        {/* <span>{catpost.title.rendered}</span> */}
+                        <h3>{removeHTML(catpost.content.rendered).substr(0,100)} </h3>
+                        <p>Check out the best deals of the day for Sunday, November 21, 2021.</p>
+                      </div>
+                    </a>
+                  )
+                }) : null : null  
+              }             
+            </div>
+          </Col>
+        </>
+
+        <>
+          <Col className="blog_content_section">
+            {/*section - Most Searched */}
+            <div className="deal_day">
+                <h2>Most Searched</h2>
+                <a href="">View All</a>
+            </div>
+          </Col>
+          
+          <Col className="blog_sub_sections">
+            <div className="divider-blog_most_search divider-blog">
+              {
+                props.setothercategoryData ?
+                props.setothercategoryData.length > 0 ? 
+                props.setothercategoryData.slice(0,3).map((catpost,index) =>{
+                  return(
+                    <a href="#" onClick={fetchpostdetail(catpost)}>
+                      <Image src={BlogImage} />
+                      <div className='big-blog-contain'>
+                        <span>{catpost.title.rendered}</span>
+                        <h3>{removeHTML(catpost.content.rendered).substr(0,100)}</h3>
+                        <h5>Auther Name</h5>
+                      </div>
+                    </a>
+                  )
+                }) : null : null  
+              }
+            </div>
+          </Col>
+        </>
+      </Container>
   );
 };
 const mapStateToProps = (state) => {

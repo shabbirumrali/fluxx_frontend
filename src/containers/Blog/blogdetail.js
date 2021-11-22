@@ -18,15 +18,12 @@ const BlogContent = (props) => {
       const dispatch = useDispatch();
       const history = useHistory();
       const [blogDetail,setblogDetail] = useState(true);
-
-
-
+      
       useEffect(() => { 
             dispatch(actions.fetchPosts());
-            dispatch(actions.fetchsinglepost(window.location.pathname.split("/").pop()));
-            
+            dispatch(actions.fetchsinglepost(window.location.pathname.split("/").pop()));            
+      },[]);
 
-    },[]);
     const removeHTML = (str) => { 
       var tmp = document.createElement("DIV");
       tmp.innerHTML = str;
@@ -42,98 +39,62 @@ const BlogContent = (props) => {
     }
     
     return (
-        <Container fluid>
-      <Row className="blogpost-header-container">
-        <Col className="blogpost-header">
-          <div>
-            <h1>{props.setpostDetail ? props.setpostDetail.title.rendered :"" }</h1>
-            <p>{props.setpostDetail ? props.setpostDetail.title.rendered :"" }</p>          
-          </div>
-        </Col>
-      </Row>
+      <Container fluid>
+        <Row className="blogpost-header-container">
+          <Col className="blogpost-header">
+            <div>
+              <h1>{props.setpostDetail ? props.setpostDetail.title.rendered :"" }</h1>
+              {/* <p>{props.setpostDetail ? props.setpostDetail.title.rendered :"" }</p> */}
+            </div>
+          </Col>
+        </Row>
 
-      <Row className="blogContainer">
-        <Col sm={8} className="blog-divesion-section1">
-
-            <div className="blogpost-owener d-flex">
+        <Row className="blogContainer">
+          <Col sm={8} className="blog-divesion-section1">
+            <div className="blogpost-owener">
               <div className="blogpost-owner-profile">
                 <Image src={props.setpostDetail ? props.setpostDetail._embedded['wp:featuredmedia']['0'].source_url : BlogImage} roundedCircle />
               </div>
               <div className="blogpost-owener-share">
                 <p>Lindsey Ellefson</p>
-                <p>Monday 12:00PM</p>
-              </div>
-
-              <div className="blogpost-share ml-auto">
-                <p>Lindsey Ellefson</p>
-              </div>
+                <span>Monday 12:00PM</span>
+              </div>              
             </div>
 
             <div className="blogpost-content">
                 <Image src={props.setpostDetail ? props.setpostDetail._embedded['wp:featuredmedia']['0'].source_url : BlogImage} />
-              <span>Photo: Brandon Crawford (Shutterstock)</span>
-
+                <span>Photo: Brandon Crawford (Shutterstock)</span>
               <div className="blogpost-postcontent">
                 <p>{props.setpostDetail ? removeHTML(props.setpostDetail.content.rendered) :"" }</p>
               </div>
-
-              
-
             </div>
         </Col>
         <Col sm={4} className="blog-divesion-section2">
-          <div>
-            <h6>MORE FROM G/O MEDIA</h6>
-            {
-                      props.setpostData ?
-                      props.setpostData.length > 0 ?  
-                      props.setpostData.map((post,index) => {
-                        
-                              return (<><Link to={`/blog/${post.id}`} onClick={refreshPage}>
-                                <div className="sidebox-readon">
-                                  <div className="readon-tag d-flex">
-                                    <p>read on</p><span>sdfsdf</span>
-                                  </div>
-                                    <h6>{post.title.rendered.substr(0,50)} </h6>
-                                </div></Link>
-                                  </>);
-                         
-                      })
-                      :null:null
-                    }
-            {/* <div className="sidebox-readon">
-              <div className="readon-tag d-flex">
-                <p>read on</p><span>sdfsdf</span>
-              </div>
-                <h6> Terminator 2's Famous Kitchen Scene Was More Complicated Than You Thought </h6>
+            <div>
+                <h6>You May Also Like</h6>
+                {
+                props.setpostData ?
+                props.setpostData.length > 0 ?  
+                props.setpostData.map((post,index) => {
+                return (
+                    <>
+                    <Link to={`/blog/${post.id}`} onClick={refreshPage}>
+                        <div className="sidebox-readon">
+                        <div className="readon-tag">
+                            <p>read on</p><span>sdfsdf</span>
+                        </div>
+                            <h6>{post.title.rendered.substr(0,50)} </h6>
+                            <p>Lenovo's Chromebook Flex is on Amazon. Lenovo's Chromebook Flex is $170 right now on Amazon.</p>
+                        </div>
+                    </Link>
+                    </>
+                    );
+                }) : null : null }            
             </div>
-
-            <div className="sidebox-readon">
-              <div className="readon-tag d-flex">
-                <p>read on</p><span>sdfsdf</span>
-              </div>
-                <h6> Terminator 2's Famous Kitchen Scene Was More Complicated Than You Thought </h6>
-            </div>
-
-            <div className="sidebox-readon">
-              <div className="readon-tag d-flex">
-                <p>read on</p><span>sdfsdf</span>
-              </div>
-                <h6> Terminator 2's Famous Kitchen Scene Was More Complicated Than You Thought </h6>
-            </div>
-
-            <div className="sidebox-readon">
-              <div className="readon-tag d-flex">
-                <p>read on</p><span>sdfsdf</span>
-              </div>
-                <h6> Terminator 2's Famous Kitchen Scene Was More Complicated Than You Thought </h6>
-            </div> */}
-            <hr />
-          </div>
-        </Col>
+            </Col>
       </Row>
     </Container>
-    )
+  )
 }
 
 const mapStateToProps = (state) => { 
