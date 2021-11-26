@@ -1,7 +1,35 @@
-import React from 'react'
-import {Container, Row, Col } from 'react-bootstrap'
+import React, {useState,useEffect,useCallback, useLayoutEffect} from "react"
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Card from 'react-bootstrap/Card'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import { useForm } from "react-hook-form";
+import * as Yup from "yup";
+import { Link, Router, useHistory, Redirect } from "react-router-dom";
+import Image from 'react-bootstrap/Image';
+import { yupResolver } from "@hookform/resolvers/yup";
+import { withRouter } from "react-router-dom";
 
-const blogLists = () => {
+import * as actions from "../../store/actions/index";
+import { connect, useDispatch } from "react-redux";
+import BlogImage from '../../assets/img/blogImg/image1.jpg';
+
+const BlogLists = (props) => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    useEffect(() => {   
+        dispatch(actions.fetchPosts());      
+       dispatch(actions.fetchcategoryposts(props.match.params.id));        
+    },[]);
+    const removeHTML = (str) => { 
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = str;
+        return tmp.textContent || tmp.innerText || "";
+      }
+
+    console.log(props.match.params.id);
     return (
         <Container fluid>
             <Row className="blogpost-header-container">
@@ -15,18 +43,30 @@ const blogLists = () => {
 
         <Row className="blogContainer">
             <Col sm={8} className="blog-divesion-section1">
-                <div className="blog-list-figure blog-list-viewall">
-                    <Image src={props.setpostDetail ? props.setpostDetail._embedded['wp:featuredmedia']['0'].source_url : BlogImage} />
+            {
+                props.setcategoryData ?
+                props.setcategoryData.length > 0 ?  
+                props.setcategoryData.map((post,index) => {
+                return (
+                    <>
+
+                <div className="blog-list-figure blog-list-viewall" key={index}>
+                    <Image src={BlogImage} />
                     <div className="blog-list-content">
-                        <span>KINJA DEALS</span>
-                        <h2>Wish You Could Touch Chrome OS? You're Only a 47% Discount Away</h2>
-                        <p>Lenovo's Chromebook Flex is $170 right now on Amazon. Lenovo's Chromebook Flex is $170 right now on Amazon.</p>
+                        <span>{props.match.params.id}</span>
+                        <h2>{post.title.rendered.substr(0,50)} </h2>
+                        <p>{removeHTML(post.content.rendered).substr(0,250)}</p>
                         <div className="blog-list-auther-name">
                             <p>By Wes Davis |</p>
                             <span>| An hour ago</span>
                         </div>
                     </div>
                 </div>
+                </>)
+                })
+                :null
+                :null
+                }
             </Col>
             <Col sm={4} className="blog-divesion-section2">
             <div>
@@ -37,7 +77,7 @@ const blogLists = () => {
                 props.setpostData.map((post,index) => {
                 return (
                     <>
-                    <Link to={`/blog/${post.id}`} onClick={refreshPage}>
+                    <Link to={`/blog/${post.id}`} >
                         <div className="sidebox-readon">
                         <div className="readon-tag d-flex">
                             <p>read on</p><span>sdfsdf</span>
@@ -54,6 +94,12 @@ const blogLists = () => {
         </Row>
     </Container>
     )
-}
+};
 
-export default blogLists
+const mapStateToProps = (state) => {
+    return {
+         setpostData:state.auth.postdata,
+         setcategoryData:state.auth.categorypostdetail,    
+    };
+ };
+ export default connect(mapStateToProps,null)(BlogLists);

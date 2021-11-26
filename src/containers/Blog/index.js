@@ -22,9 +22,9 @@ const Blog = (props) => {
    const [data, setData] = useState(props.setpostData);
 
    useEffect(() => {
-    dispatch(actions.fetchPosts())    
-    dispatch(actions.fetchcategoryposts('deal'))
-    dispatch(actions.fetchothercategoryposts('most-searched'))
+    dispatch(actions.fetchPosts());    
+    dispatch(actions.fetchcategoryposts('deal'));
+    dispatch(actions.fetchothercategoryposts('most-searched'));
   },[]);
 
    const removeHTML = (str) => { 
@@ -115,7 +115,7 @@ const Blog = (props) => {
             {/*section - Deal of the day */}
             <div className="deal_day">
                 <h2>Deal of the Day</h2>
-                <a href="">View All</a>
+                <Link  to={{pathname:"/bloglist/"+'deal' }}>View All</Link>
             </div>
           </Col>
 
@@ -147,7 +147,8 @@ const Blog = (props) => {
             {/*section - Most Searched */}
             <div className="deal_day">
                 <h2>Most Searched</h2>
-                <a href="">View All</a>
+                
+                <Link  to={{pathname:"/bloglist/"+'most-searched' }}>View All</Link>
             </div>
           </Col>
           

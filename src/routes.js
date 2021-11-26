@@ -15,6 +15,7 @@ const FinalView = lazy(() => import("./containers/Members/finalLview"));
 const Memberdetail = lazy(() => import("./containers/Members/Memberdetail"));
 const Blogdetail  = lazy(() => import("./containers/Blog/blogdetail"));
 const CharterMain = lazy(() => import("./containers/Members/chartermain"));
+const bloglisting = lazy(() => import("./containers/Blog/blogLists"));
 const routes = [
   { path: "/", exact: true, component: Home },
   // {
@@ -51,6 +52,11 @@ const routes = [
     path: "/blog/:id",
     exact: true,
     component: Blogdetail,
+  },
+  {
+    path: "/bloglist/:id",
+    exact: true,
+    component: bloglisting,
   },
   {
     path: "/forgetpassword",
