@@ -1500,6 +1500,7 @@ form .cancel_btn:active {
 .blog-inside-section1 .divider-blog .big-blog-contain h3 {
   font-size: 1.8rem;
   margin-bottom: 8px;
+  line-height: 44px;
 }
 /* Blog Header Section 2 & 3*/
 .divider-blog .big-blog-contain {
