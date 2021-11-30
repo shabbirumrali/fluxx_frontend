@@ -11,7 +11,7 @@ import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { withRouter } from "react-router-dom";
-
+import moment from 'moment';
 import * as actions from "../../store/actions/index";
 import { connect, useDispatch } from "react-redux";
 import BlogImage from '../../assets/img/blogImg/image1.jpg';
@@ -55,7 +55,7 @@ const Blog = (props) => {
                         <div className='big-blog-contain'>
                           <span>{post.title.rendered}</span>
                           <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                          <h5>Auther Name</h5>
+                          <h5>{}</h5>
                         </div>
                       </a>                      
                     );
@@ -76,7 +76,7 @@ const Blog = (props) => {
                         <div className='big-blog-contain'>
                           <span>{post.title.rendered}</span>
                           <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                          <h5>Auther Name</h5>
+                          <h5>{post._embedded.author[0].name}</h5>
                         </div>
                       </a>
                     );
@@ -93,12 +93,12 @@ const Blog = (props) => {
                   props.setpostData.length > 0 ?  
                   props.setpostData.slice(0,2).map((post,index) => {
                     return (
-                      <a href="#" onClick={fetchpostdetail(post)}>
+                      <a href="#" onClick={fetchpostdetail(post)} key={index}>
                         <Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
                         <div className='big-blog-contain'>
                           <span>{post.title.rendered}</span>
                           <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                          <h5>Auther Name</h5>
+                          <h5>{post._embedded.author[0].name}</h5>
                         </div>
                       </a>
                     );
@@ -132,7 +132,7 @@ const Blog = (props) => {
                       <div className='big_blog_contain'>
                         {/* <span>{catpost.title.rendered}</span> */}
                         <h3>{removeHTML(catpost.content.rendered).substr(0,100)} </h3>
-                        <p>Check out the best deals of the day for Sunday, November 21, 2021.</p>
+                        <p>Check out the best deals of the day for {moment(catpost.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
                       </div>
                     </a>
                   )
@@ -164,7 +164,7 @@ const Blog = (props) => {
                       <div className='big-blog-contain'>
                         <span>{catpost.title.rendered}</span>
                         <h3>{removeHTML(catpost.content.rendered).substr(0,100)}</h3>
-                        <h5>Auther Name</h5>
+                        <h5>{catpost._embedded.author[0].name}</h5>
                       </div>
                     </a>
                   )

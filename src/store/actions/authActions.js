@@ -654,7 +654,7 @@ export const fetchothercategoryposts = (form,props) => {
     };
     return (dispatch) => {
       axios
-        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?category_slug="+form,config)
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?_embed&category_slug="+form,config)
         .then((response) => {
              console.log(response);
              dispatch(othercategorypost(response.data));        

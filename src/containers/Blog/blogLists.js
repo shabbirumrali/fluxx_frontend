@@ -11,7 +11,7 @@ import { Link, Router, useHistory, Redirect } from "react-router-dom";
 import Image from 'react-bootstrap/Image';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { withRouter } from "react-router-dom";
-
+import moment from 'moment';
 import * as actions from "../../store/actions/index";
 import { connect, useDispatch } from "react-redux";
 import BlogImage from '../../assets/img/blogImg/image1.jpg';
@@ -57,8 +57,8 @@ const BlogLists = (props) => {
                         <h2>{post.title.rendered.substr(0,50)} </h2>
                         <p>{removeHTML(post.content.rendered).substr(0,250)}</p>
                         <div className="blog-list-auther-name">
-                            <p>By Wes Davis |</p>
-                            <span>| An hour ago</span>
+                            <p>{post._embedded.author[0].name} |</p>
+                            <span>| {moment(post.date).fromNow()}</span>
                         </div>
                     </div>
                 </div>
