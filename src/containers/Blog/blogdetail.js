@@ -14,6 +14,7 @@ import { withRouter } from "react-router-dom";
 import * as actions from "../../store/actions/index";
 import { connect, useDispatch } from "react-redux";
 import BlogImage from '../../assets/img/blogImg/image1.jpg';
+import moment from 'moment';
 const BlogContent = (props) => {
       const dispatch = useDispatch();
       const history = useHistory();
@@ -37,7 +38,7 @@ const BlogContent = (props) => {
          clearTimeout(timeout);
       };
     }
-    
+    console.log(props.setpostDetail);
     return (
       <Container fluid>
         <Row className="blogpost-header-container">
@@ -56,8 +57,8 @@ const BlogContent = (props) => {
                 <Image src={props.setpostDetail ? props.setpostDetail._embedded['wp:featuredmedia']['0'].source_url : BlogImage} roundedCircle />
               </div>
               <div className="blogpost-owener-share">
-                <p>Lindsey Ellefson</p>
-                <span>Monday 12:00PM</span>
+                <p>{props.setpostDetail ? props.setpostDetail._embedded.author[0].name:""}</p>
+                <span>{moment(props.setpostDetail ? props.setpostDetail.date:"").format("dddd h:mm:ss a")}</span>
               </div>              
             </div>
 
