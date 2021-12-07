@@ -43,7 +43,7 @@ const FinalStepIframe = (props) => {
             
             <Row className="project_two_col">
                 <Col className="col_details_headings" sm={3}>
-                    <p>Goals:</p>
+                    <p>Goal</p>
                 </Col>
                 <Col className="col_details_titles" sm={9}>
                     {
