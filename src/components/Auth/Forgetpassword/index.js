@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { withRouter } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch,useSelector  } from "react-redux";
 import * as actions from "../../../store/actions/index";
 
 const Forgetpassword = (props) => {
@@ -30,6 +30,9 @@ const Forgetpassword = (props) => {
 
   }, []);
 
+  const posts = useSelector((state) => state.auth.forgetpasswordmsgdetail);
+  console.log(posts.success);
+
   return (
     <Container>
       <Row className="forgot_password_row">
@@ -37,11 +40,20 @@ const Forgetpassword = (props) => {
           <h3>Forgot Password</h3>
 
           <div className="forgot_pass_email">
+            
             <Form id="contact-form" onSubmit={handleSubmit(onSubmit)} noValidate>
               <FormGroup className="form_details">
                 <Label>email</Label>
                 <Form.Control type="email" ref={register} name="email" />
                 {errors.email && (<span className="errorMessage">{errors.email.message}</span>)}
+                {
+              posts ?
+              posts.success === false ?
+              <span className="errorMessage">{posts.message}</span>
+              :null 
+              :null
+
+            }
               </FormGroup>
               <Button type="submit">SEND PASSWORD RESET EMAIL</Button>
             </Form>

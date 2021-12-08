@@ -109,6 +109,13 @@ export const logout = () => {
     type: actionTypes.AUTH_LOGOUT,
   };
 };
+export const forgetpasswordmsg = (data) =>{
+  return {
+    type: actionTypes.FORGETPASSWORD,
+    data:data
+  };
+
+};
 
 export const auth = (form) => {
   return (dispatch) => {
@@ -175,12 +182,16 @@ export const forgetpassword = (form, props) => {
     api
       .post("forgot_password", form)
       .then((response) => {
+        console.log(response);
         if (response.data.status === 200) {
-          toast.success("Check Email to reset password");
-          history.push("/login");
+           toast.success("Check Email to reset password");
+           history.push("/login");
+        }else{
+          dispatch(forgetpasswordmsg(response.data));
         }
       })
       .catch((err) => {
+        console.log(err.message);
         if (err === "Error: Request failed with status code 500") {
           toast.error(" Your Email is Already Exist !!");
         }

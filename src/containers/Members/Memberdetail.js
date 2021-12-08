@@ -171,6 +171,11 @@ const Members = (props) => {
                       </OverlayTrigger>
                     </div>
                   </div>
+                  <div className="members_empty_folder">
+                    <div className="members_empty_folder_inside">                
+                      <Link to="/members"><Button className="modal_cancel_btn" variant="light" type="submit"> Back </Button></Link>
+                    </div>
+                  </div> 
                 </Col>
               </Row>
             )

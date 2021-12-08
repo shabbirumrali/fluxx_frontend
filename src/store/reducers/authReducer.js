@@ -9,7 +9,6 @@ const initialState = {
   user: {},
   isAuthenticated: false,
 };
-
 const authStart = (state, action) => {
    return updateObject(state, { error: null, loading: true });
 };
@@ -28,26 +27,26 @@ const catList = (state,action) =>{
 const postList = (state,action) =>{  
    return updateObject(state, {postdata:action.data,loading:false});
 }
-const folderList = (state,action) =>{
-     
+const folderList = (state,action) =>{     
     return updateObject(state, {folderdata:action.data,loading:false});
 }
 const userList =(state,action) =>{
    return updateObject(state, {userlistdata:action.data,loading:false});
 }
 const renameList  =(state,action) => {
-
     return updateObject(state, {renamedata:action.data,loading:false});
 }
 const postDetail =(state,action) => {
-
-  return updateObject(state, {postdetail:action.data,loading:false});
+    return updateObject(state, {postdetail:action.data,loading:false});
 }
 const categorypostDetail =(state,action) =>{
   return updateObject(state, {categorypostdetail:action.data,loading:false});
 }
 const categoryotherpostDetail =(state,action) =>{
   return updateObject(state, {categoryotherpostDetail:action.data,loading:false});
+}
+const forgetpasswordmsgdetail =(state,action) =>{
+  return updateObject(state, {forgetpasswordmsgdetail:action.data,loading:false});
 }
 
 const authSuccess = (state, action) => {
@@ -113,6 +112,8 @@ const reducer = (state = initialState, action) => {
       return categoryotherpostDetail(state,action);   
     case actionTypes.FETCHUSERLIST:
       return userList(state,action); 
+    case actionTypes.FORGETPASSWORD:
+      return forgetpasswordmsgdetail(state,action); 
     default:
       return state;
   }
