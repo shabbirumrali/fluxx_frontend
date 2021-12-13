@@ -31,7 +31,7 @@ const Forgetpassword = (props) => {
   }, []);
 
   const posts = useSelector((state) => state.auth.forgetpasswordmsgdetail);
-  console.log(posts.success);
+ 
 
   return (
     <Container>
