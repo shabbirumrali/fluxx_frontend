@@ -168,7 +168,7 @@ export function PdfDocument(props) {
 
                     <View style={styles.pdfContainerContentSection}>
                         <View style={styles.pdfContainerContentPart}>
-                            <Text style={styles.pdfContentTitle}>Goal: </Text>
+                            <Text style={styles.pdfContentTitle}>Goals: </Text>
                             <View style={styles.pdfContentContainer}>
                                 {
                                 props.data.charterlist.goal ?
