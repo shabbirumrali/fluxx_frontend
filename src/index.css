@@ -604,6 +604,8 @@ label:focus,
   font-size: 20px;
   cursor: pointer;
   color: hsl(0, 0%, 55%);
+  position: relative;
+  display: inline-block;
   padding: 4px 10px;
   border-radius: 50%;
   transition: all 0.2s ease-in-out;
@@ -765,6 +767,9 @@ label:focus,
   text-decoration: none;
   background: #5aa380;
 }
+
+/* Tooltip */
+
 .demo-pop {
   width: 150px;
   padding: 0 !important;
@@ -1498,7 +1503,9 @@ form .cancel_btn:active {
 
 /* Blog Header Section 1 */
 .blog-inside-section1 .divider-blog .big-blog-contain h3 {
+  height: 133px;
   font-size: 1.8rem;
+  overflow: hidden;
   margin-bottom: 8px;
   line-height: 44px;
 }
@@ -1515,6 +1522,8 @@ form .cancel_btn:active {
 }
 .divider-blog .big-blog-contain h3 {
   font-weight: 500;
+  height: 80px;
+  overflow: hidden;
   font-size: 1rem;
   line-height: 25px;
   margin-top: 3px;
@@ -1576,6 +1585,8 @@ form .cancel_btn:active {
 }
 .blog_divider_subsection .big_blog_contain h3 {
   font-weight: 500;
+  height: 50px;
+  overflow: hidden;
   font-size: 0.95rem;
   line-height: 25px;
   text-transform: capitalize;

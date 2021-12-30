@@ -160,7 +160,7 @@ const Members = (props) => {
 
   // refresh the page if folder delete
   const popover1 = (
-    <Popover isOpen={showpopover1} >
+    <Popover isOpen={showpopover1} className="pop_over" >
       <Popover.Content className="demo-pop">
         <div className="options" onClick={handleShow5}>
           <i className="fa fa-i-cursor" aria-hidden="true"></i>
@@ -173,23 +173,23 @@ const Members = (props) => {
       </Popover.Content>
     </Popover>
   );
-  const popover = (
-    <Popover isOpen={showpopover} >
-      <Popover.Content className="demo-pop">
-        <div className="options" onClick={handleShow}>
-          <i className="fa fa-i-cursor" aria-hidden="true"></i>
-          <p>Rename</p>
-        </div>
-        <div className="options" onClick={handleShow2}>
-          <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-          <p>Move To</p>
-        </div>
-        <div className="options" onClick={handleShow3}>
-          <i className="fa fa-times" aria-hidden="true"></i>
-          <p>Delete</p>
-        </div>
-      </Popover.Content>
-    </Popover>
+  const popover = (          
+      <Popover isOpen={showpopover} >
+        <Popover.Content className="demo-pop">
+          <div className="options" onClick={handleShow}>
+            <i className="fa fa-i-cursor" aria-hidden="true"></i>
+            <p>Rename</p>
+          </div>
+          <div className="options" onClick={handleShow2}>
+            <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
+            <p>Move To</p>
+          </div>
+          <div className="options" onClick={handleShow3}>
+            <i className="fa fa-times" aria-hidden="true"></i>
+            <p>Delete</p>
+          </div>
+        </Popover.Content>
+      </Popover>    
   );
 
   return (
@@ -227,8 +227,8 @@ const Members = (props) => {
                     <p className="personal_charter_name" style={{ color: "#5aa380", cursor: "pointer" }} onClick={fetchcategoryProjects(list.id)} >{list.categoryname}</p>
                     <div className="last_modified_unit">
                       <p>Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>
-                      <OverlayTrigger trigger="click" placement="left" overlay={popover1} rootClose>
-                        <i className="fa fa-ellipsis-v" aria-hidden="true" onClick={() => folderId(list)}></i>
+                      <OverlayTrigger trigger="click" placement="left" overlay={popover1} rootClose>                      
+                        <i className="fa fa-ellipsis-v ellipsis" aria-hidden="true" onClick={() => folderId(list)}></i>
                         {/* <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => folderId(list)} /> */}
                       </OverlayTrigger>
                     </div>
@@ -251,25 +251,19 @@ const Members = (props) => {
                       <p className="personal_charter_name" style={{ color: "#5aa380", cursor: "pointer" }} onClick={fetchcharter(list.name)} >{list.name}</p>
 
                       <div className="last_modified_unit">
-                        <p>Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                        <p>Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                        
                         <OverlayTrigger trigger="click" placement="left" overlay={popover} rootClose>
                           <i className="fa fa-ellipsis-v" aria-hidden="true" onClick={() => chartedId(list)}></i>
                         </OverlayTrigger>
+
                       </div>
                     </div>
                   </Col>
                 </Row>
               )
             }
-          }) 
-          : null
-           : null
-           
-           }
-
-
-      
-
+          }) : null : null
+        }
       {/* ---------------------------MODEL-------------------------------- */}
 
       {/* Modals for create folder */}
@@ -414,6 +408,4 @@ const mapStateToProps = (state) => {
     setrenameData: state.auth.renamedata
   };
 };
-
-
 export default connect(mapStateToProps, null)(Members);
