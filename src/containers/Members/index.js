@@ -226,7 +226,7 @@ const Members = (props) => {
                     </div>
                     <p className="personal_charter_name" style={{ color: "#5aa380", cursor: "pointer" }} onClick={fetchcategoryProjects(list.id)} >{list.categoryname}</p>
                     <div className="last_modified_unit">
-                      <p>Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>
+                      <p>Last Modified: {moment(list.created_at).format('MMMM Do YYYY, h:mm:ss a')}</p>                    
                       <OverlayTrigger trigger="click" placement="left" overlay={popover1} rootClose>                      
                         <i className="fa fa-ellipsis-v ellipsis" aria-hidden="true" onClick={() => folderId(list)}></i>
                         {/* <Image src={More} width={20} height={20} className="my-auto mr-3 ml-5" alt="Folder image" onClick={() => folderId(list)} /> */}

@@ -202,7 +202,7 @@ const Members = (props) => {
               <FormGroup className="modal_form_content">
                 <Label htmlFor>New File Name</Label>
                 <input type="text" ref={register({ required: true })} name="newchartername" />
-                {errors.newchartername && (<span className="errorMessage"> Please enter a Document name </span>)}
+                {errors.newchartername && (<span className="errorMessage"> Please enter a document name </span>)}
               </FormGroup>
               <div className="modal_btn_section">
                 <Button className="modal_trigger_btn" type="submit" > Rename </Button>
