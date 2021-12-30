@@ -25,6 +25,6 @@ export {
   fetchsinglepost,
   fetchcategoryposts,
   fetchuserlist,
-  fetchothercategoryposts,
+  //fetchothercategoryposts,
   forgetpasswordmsg
 } from "./authActions";

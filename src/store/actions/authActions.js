@@ -637,15 +637,51 @@ export const fetchuserlist = (form,props) => {
 };
 
 
-export const fetchcategoryposts = (form,props) => {
-  console.log(form);
-  console.log(props);
+// export const fetchcategoryposts = (form,props) => {  
+//   const config = {
+//       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+//     };
+//     return (dispatch) => {
+//       axios
+//         .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?category_slug="+form+"&_embed",config)
+//         .then((response) => {
+//              console.log(response);
+//              dispatch(categorypost(response.data));        
+//         })
+//         .catch((err) => {
+//           if (err === "Error: Request failed with status code 500") {
+//             toast.error(" Token Expire !!");
+//           }
+//         });
+//     };
+// };
+// export const fetchothercategoryposts = (form,props) => {
+//   console.log(form);
+//   console.log(props);
+//   const config = {
+//       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+//     };
+//     return (dispatch) => {
+//       axios
+//         .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?_embed&category_slug="+form,config)
+//         .then((response) => {
+//              console.log(response);
+//              dispatch(othercategorypost(response.data));        
+//         })
+//         .catch((err) => {
+//           if (err === "Error: Request failed with status code 500") {
+//             toast.error(" Token Expire !!");
+//           }
+//         });
+//     };
+// };
+export const fetchcategoryposts = () => {  
   const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
     };
     return (dispatch) => {
       axios
-        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?category_slug="+form+"&_embed",config)
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/twentytwentyone/v1/latest-posts",config)
         .then((response) => {
              console.log(response);
              dispatch(categorypost(response.data));        
@@ -657,27 +693,6 @@ export const fetchcategoryposts = (form,props) => {
         });
     };
 };
-export const fetchothercategoryposts = (form,props) => {
-  console.log(form);
-  console.log(props);
-  const config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
-    };
-    return (dispatch) => {
-      axios
-        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?_embed&category_slug="+form,config)
-        .then((response) => {
-             console.log(response);
-             dispatch(othercategorypost(response.data));        
-        })
-        .catch((err) => {
-          if (err === "Error: Request failed with status code 500") {
-            toast.error(" Token Expire !!");
-          }
-        });
-    };
-};
-
 
 
 

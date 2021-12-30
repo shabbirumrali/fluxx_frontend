@@ -23,8 +23,8 @@ const Blog = (props) => {
 
    useEffect(() => {
     dispatch(actions.fetchPosts());    
-    dispatch(actions.fetchcategoryposts('deal'));
-    dispatch(actions.fetchothercategoryposts('most-searched'));
+    dispatch(actions.fetchcategoryposts());
+    //dispatch(actions.fetchothercategoryposts('most-searched'));
   },[]);
 
    const removeHTML = (str) => { 
@@ -39,7 +39,26 @@ const Blog = (props) => {
           state: { blogdetail: value}
         });
     }
-    console.log(props.setpostData); 
+    console.log(props.setcategoryData); 
+
+    const getpostdatadetail =  list  =>{
+
+      let content = [];
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i].data.postdata;
+        console.log(item);
+        content.push(<a href="#" onClick={fetchpostdetail(item)} className="blog_divider_subsection">
+               <Image src={list[i].data.image[0]} />
+                <div className='big_blog_contain'>
+                 <h3>{removeHTML(item.post_content).substr(0,100)} </h3>
+                 <p>Check out the best deals of the day for {moment(item.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
+               </div>
+             </a>);
+      }
+      return content;
+    }
+    
+    
   return (     
      <Container fluid>
         <Row>
@@ -111,68 +130,104 @@ const Blog = (props) => {
 
         {/* Deal Of The Day Section */}
         <>
-          <Col className="blog_content_section">
-            {/*section - Deal of the day */}
-            <div className="deal_day">
-                <h2>Deal of the Day</h2>
-                <Link  to={{pathname:"/bloglist/"+'deal' }}>View All</Link>
-            </div>
-          </Col>
+        {
+          props.setcategoryData ?
+                
+                Object.keys(props.setcategoryData).map((catpost,index) =>{
+                  return (<><Col className="blog_content_section">
+                  {/*section - Deal of the day */}
+                    <div className="deal_day">
+                      <h2>{catpost}</h2>
+                       <Link  to={{pathname:"/bloglist/"+'deal' }}>View All</Link>
+                     </div>
+                    </Col>
+                    <Col className='blog_sub_sections'>
+                    <div className="divider-blog">              
+                      {
+                        getpostdatadetail(props.setcategoryData[catpost]).slice(0,3)
+                        // props.setcategoryData ?
+                        // props.setcategoryData.length > 0 ? 
+                        // props.setcategoryData.slice(0,3).map((catpost,index) =>{
+                        //   return (                      
+                        //     <a href="#" onClick={fetchpostdetail(catpost)} className="blog_divider_subsection">
+                        //       <Image src={BlogImage} />
+                        //       <div className='big_blog_contain'>
+                        //         {/* <span>{catpost.title.rendered}</span> */}
+                        //         <h3>{removeHTML(catpost.content.rendered).substr(0,100)} </h3>
+                        //         <p>Check out the best deals of the day for {moment(catpost.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
+                        //       </div>
+                        //     </a>
+                        //   )
+                        // }) : null : null  
+                      }             
+                    </div>
+                  </Col>
+                  </>)
+
+                })
+                //.forEach(function eachKey(key) { 
+              
+
+                  //return (<><Col className="blog_content_section">
+                    //{/*section - Deal of the day */}
+                      //<div className="deal_day">
+                      //<h2>{key}</h2>
+                        // <Link  to={{pathname:"/bloglist/"+'deal' }}>View All</Link>
+                     //</div>
+                    //</Col>
+                  //</>)
+                //})
+                // props.setcategoryData.map((catpost,index) =>{
+                //   // console.log(catpost);
+                //    return (<> <Col className="blog_content_section">
+                //    {/*section - Deal of the day */}
+                //    <div className="deal_day">
+                //        <h2>Deal of the Day dfgdfgdfgdfgd</h2>
+                //        <Link  to={{pathname:"/bloglist/"+'deal' }}>View All</Link>
+                //    </div>
+                //  </Col></>)
+                // })
+                
+                //  filterObject(props.setcategoryData).map((key,value) =>{
+                //    return (<><Col className="blog_content_section">
+                //    {/*section - Deal of the day */}
+                //    <div className="deal_day">
+                //        <h2>{key}</h2>
+                //        <Link  to={{pathname:"/bloglist/"+'deal' }}>View All</Link>
+                //    </div>
+                //  </Col></>)
+
+                //  })
+                 
+             
+          :null 
+        }
+          
 
           {/* blog Content section */}
           <Col className='blog_sub_sections'>
             <div className="divider-blog">              
               {
-                props.setcategoryData ?
-                props.setcategoryData.length > 0 ? 
-                props.setcategoryData.slice(0,3).map((catpost,index) =>{
-                  return (                      
-                    <a href="#" onClick={fetchpostdetail(catpost)} className="blog_divider_subsection">
-                      <Image src={BlogImage} />
-                      <div className='big_blog_contain'>
-                        {/* <span>{catpost.title.rendered}</span> */}
-                        <h3>{removeHTML(catpost.content.rendered).substr(0,100)} </h3>
-                        <p>Check out the best deals of the day for {moment(catpost.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
-                      </div>
-                    </a>
-                  )
-                }) : null : null  
+                // props.setcategoryData ?
+                // props.setcategoryData.length > 0 ? 
+                // props.setcategoryData.slice(0,3).map((catpost,index) =>{
+                //   return (                      
+                //     <a href="#" onClick={fetchpostdetail(catpost)} className="blog_divider_subsection">
+                //       <Image src={BlogImage} />
+                //       <div className='big_blog_contain'>
+                //         {/* <span>{catpost.title.rendered}</span> */}
+                //         <h3>{removeHTML(catpost.content.rendered).substr(0,100)} </h3>
+                //         <p>Check out the best deals of the day for {moment(catpost.date).format("dddd, MMMM Do YYYY, h:mm:ss a")}</p>
+                //       </div>
+                //     </a>
+                //   )
+                // }) : null : null  
               }             
             </div>
           </Col>
         </>
 
-        <>
-          <Col className="blog_content_section">
-            {/*section - Most Searched */}
-            <div className="deal_day">
-                <h2>Most Searched</h2>
-                
-                <Link  to={{pathname:"/bloglist/"+'most-searched' }}>View All</Link>
-            </div>
-          </Col>
-          
-          <Col className="blog_sub_sections">
-            <div className="divider-blog_most_search divider-blog">
-              {
-                props.setothercategoryData ?
-                props.setothercategoryData.length > 0 ? 
-                props.setothercategoryData.slice(0,3).map((catpost,index) =>{
-                  return(
-                    <a href="#" onClick={fetchpostdetail(catpost)}>
-                      <Image src={BlogImage} />
-                      <div className='big-blog-contain'>
-                        <span>{catpost.title.rendered}</span>
-                        <h3>{removeHTML(catpost.content.rendered).substr(0,100)}</h3>
-                        <h5>{catpost._embedded.author[0].name}</h5>
-                      </div>
-                    </a>
-                  )
-                }) : null : null  
-              }
-            </div>
-          </Col>
-        </>
+        
       </Container>
   );
 };
