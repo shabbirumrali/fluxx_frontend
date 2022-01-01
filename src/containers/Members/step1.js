@@ -43,7 +43,7 @@ return (
     </Container>
 
     <Container className="charter_steps_container">
-      <p>project name</p>
+      <p>Project Name</p>
       <Row className="charter_steps">
         <Col sm={12} lg={6} className="project_details">
             <Form onSubmit={ handleSubmit(onSubmit) } noValidate>
