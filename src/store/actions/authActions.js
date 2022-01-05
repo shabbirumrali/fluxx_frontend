@@ -458,7 +458,7 @@ export const moveCharter = (form, props) => {
           if (response.data.status === 200) {
              toast.success("Move successful.");
              
-             dispatch(charterlist()); 
+              dispatch(charterlist()); 
              history.push("/members");
           }
       })

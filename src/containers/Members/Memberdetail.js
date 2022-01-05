@@ -50,7 +50,7 @@ const Members = (props) => {
       dispatch(actions.moveCharter(data, selectedcharterid));
       handleClose2();
     }
-    if (Object.keys(data).length >0) {
+    if (Object.keys(data).length >0  && data.selectCat != "uncategorized") {
       dispatch(actions.moveCharter(data, selectedcharterid));
       handleClose2();
     }

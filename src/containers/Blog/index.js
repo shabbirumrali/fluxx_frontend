@@ -35,7 +35,7 @@ const Blog = (props) => {
     const fetchpostdetail = value  => () => { 
       console.log(value)
         history.push({
-          pathname: "/blog/"+value.id, 
+          pathname: "/blog/"+value.ID, 
           state: { blogdetail: value}
         });
     }
