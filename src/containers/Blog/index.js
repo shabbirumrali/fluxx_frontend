@@ -35,6 +35,13 @@ const Blog = (props) => {
     const fetchpostdetail = value  => () => { 
       console.log(value)
         history.push({
+          pathname: "/blog/"+value.id, 
+          state: { blogdetail: value}
+        });
+    }
+    const fetchpostdetailnew = value  => () => { 
+      console.log(value)
+        history.push({
           pathname: "/blog/"+value.ID, 
           state: { blogdetail: value}
         });
@@ -47,7 +54,7 @@ const Blog = (props) => {
       for (let i = 0; i < list.length; i++) {
         const item = list[i].data.postdata;
         console.log(item);
-        content.push(<a href="#" onClick={fetchpostdetail(item)} className="blog_divider_subsection">
+        content.push(<a href="#" onClick={fetchpostdetailnew(item)} className="blog_divider_subsection">
                <Image src={list[i].data.image[0]} />
                 <div className='big_blog_contain'>
                  <h3>{removeHTML(item.post_content).substr(0,100)} </h3>
@@ -138,7 +145,7 @@ const Blog = (props) => {
                   {/*section - Deal of the day */}
                     <div className="deal_day">
                       <h2>{catpost}</h2>
-                       <Link  to={{pathname:"/bloglist/"+'deal' }}>View All</Link>
+                       <Link  to={{pathname:"/bloglist/"+props.setcategoryData[catpost][0].catid,state:props.setcategoryData[catpost]}}>View All</Link>
                      </div>
                     </Col>
                     <Col className='blog_sub_sections'>

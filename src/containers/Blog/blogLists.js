@@ -28,43 +28,51 @@ const BlogLists = (props) => {
         tmp.innerHTML = str;
         return tmp.textContent || tmp.innerText || "";
       }
+      const fetchpostdetail = value  => () => { 
+        console.log(value)
+          history.push({
+            pathname: "/blog/"+value.id, 
+            state: { blogdetail: value}
+          });
+      }
 
     console.log(props.match.params.id);
+    console.log(props.location.state);
     return (
         <Container fluid>
             <Row className="blogpost-header-container">
                 <Col className="blogpost-header">
                     <div className="blog_list_header">
-                        <h1>Best Deals</h1>
-                        <p>The best deals on the web curated all year round by The Inventory's legendary editorial staff.</p>
+                        <h1>{props.location.state ?props.location.state[0].categoryname:""}</h1>
+                        <p>{props.location.state ?props.location.state[0].categorydata.category_description:""}</p>
                     </div>
+                    
                 </Col>
             </Row>
 
         <Row className="blogContainer">
             <Col sm={8} className="blog-divesion-section1">
+                
             {
-                props.setcategoryData ?
-                props.setcategoryData.length > 0 ?  
-                props.setcategoryData.map((post,index) => {
+                props.location.state?
+                props.location.state.map((post,index) =>{
                 return (
                     <>
 
                 <div className="blog-list-figure blog-list-viewall" key={index}>
-                    <Image src={BlogImage} />
+                <Image src={post.data.image[0]} />
                     <div className="blog-list-content">
-                        <span>{props.match.params.id}</span>
-                        <h2>{post.title.rendered.substr(0,50)} </h2>
-                        <p>{removeHTML(post.content.rendered).substr(0,250)}</p>
+                        <span>{post.categoryname}</span>
+                        <h2>{post.data.postdata.post_title.substr(0,50)} </h2>
+                        <p>{removeHTML(post.data.postdata.post_content).substr(0,250)}</p>
                         <div className="blog-list-auther-name">
-                            <p>{post._embedded.author[0].name} |</p>
-                            <span>| {moment(post.date).fromNow()}</span>
+                            <p>{post.data.postdata.post_author} |</p>
+                            <span>| {moment(post.data.postdata.post_date).fromNow()}</span>
                         </div>
                     </div>
                 </div>
                 </>)
                 })
-                :null
                 :null
                 }
             </Col>
