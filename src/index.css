@@ -853,7 +853,7 @@ label:focus,
 }
 .members_empty_folder {
   width: 50%;
-  height: 40vh;
+  margin: 30px 0;
   display: flex;
   justify-content: center;
   align-items: center;

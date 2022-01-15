@@ -149,14 +149,14 @@ const Members = (props) => {
   return (
     <>
       <Container className="members_folder_container">
+        {/* Inside Folder Heading */}
         <h2>{props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].categoryname : ""}</h2>
         
-        
-
+        {/* Inside Folder Data */}
         {props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length > 0 ?
           props.setResponseDatadetail.categoryList[0].CategoryProjects.map((list, index) => {
             return (
-              <Row key={index} className="my-5">
+              <Row key={index} className="my-1">
                 <Col className="personal_charters">
                   <div className="personal_charters_subparts">
                     <div className="personal_charter_imgsection">
@@ -171,11 +171,6 @@ const Members = (props) => {
                       </OverlayTrigger>
                     </div>
                   </div>
-                  <div className="members_empty_folder">
-                    <div className="members_empty_folder_inside">                
-                      <Link to="/members"><Button className="modal_cancel_btn" variant="light" type="submit"> Back </Button></Link>
-                    </div>
-                  </div> 
                 </Col>
               </Row>
             )
@@ -187,7 +182,11 @@ const Members = (props) => {
               </div> 
 
        : null}
-        
+        <div className="members_empty_folder">
+          <div className="members_empty_folder_inside">                
+            <Link to="/members"><Button className="modal_cancel_btn" variant="light" type="submit"> Back </Button></Link>
+          </div>
+        </div> 
 
 
         {/* ---------------------------MODEL-------------------------------- */}
