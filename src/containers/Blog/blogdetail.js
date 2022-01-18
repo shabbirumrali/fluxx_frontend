@@ -22,7 +22,8 @@ const BlogContent = (props) => {
       
       useEffect(() => { 
             dispatch(actions.fetchPosts());
-            dispatch(actions.fetchsinglepost(window.location.pathname.split("/").pop()));            
+            dispatch(actions.fetchsinglepost(window.location.pathname.split("/").pop()));  
+                      
       },[]);
 
     const removeHTML = (str) => { 
@@ -38,7 +39,13 @@ const BlogContent = (props) => {
          clearTimeout(timeout);
       };
     }
-    console.log(props.setpostDetail);
+    const fetchcategoryname = (id) =>{
+          dispatch(actions.fetchcategoryname(id));
+
+
+    }
+    console.log(props.setcategoryName);
+    
     return (
       <Container fluid>
         <Row className="blogpost-header-container">
@@ -79,15 +86,18 @@ const BlogContent = (props) => {
                 props.setpostData.map((post,index) => {
                 return (
                     <>
-                    <Link to={`/blog/${post.id}`} onClick={refreshPage}>
+                    
                         <div className="sidebox-readon">
                         <div className="readon-tag">
-                            <p>read on</p><span>sdfsdf</span>
+                            <p>read on</p>{
+                                          
+                                          
+                            }<span>{post.categoryName}</span>
                         </div>
-                            <h6>{post.title.rendered.substr(0,50)} </h6>
-                            <p>Lenovo's Chromebook Flex is on Amazon. Lenovo's Chromebook Flex is $170 right now on Amazon.</p>
+                        <Link to={`/blog/${post.id}`} onClick={refreshPage}><h6>{post.title.substr(0,50)} </h6>
+                            <p> {removeHTML(post.description).substr(0,250)}</p></Link>
                         </div>
-                    </Link>
+                    
                     </>
                     );
                 }) : null : null }            
@@ -101,7 +111,8 @@ const BlogContent = (props) => {
 const mapStateToProps = (state) => { 
      return {
         setpostData:state.auth.postdata,
-        setpostDetail:state.auth.postdetail
+        setpostDetail:state.auth.postdetail,
+        setcategoryName :state.auth.fetchcategoryname,
      };
 };
 export default connect(mapStateToProps,null)(BlogContent);

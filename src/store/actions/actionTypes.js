@@ -20,3 +20,4 @@ export const CATEGORYPOST           = "CATEGORYPOST";
 export const FETCHUSERLIST          = "FETCHUSERLIST";
 export const OTHERCATEGORYPOST      = "OTHERCATEGORYPOST";
 export const FORGETPASSWORD         = "FORGETPASSWORD";
+export const CATEGORYNAME           = "CATEGORYNAME";

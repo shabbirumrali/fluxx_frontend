@@ -117,6 +117,14 @@ export const forgetpasswordmsg = (data) =>{
 
 };
 
+export const categoryname =(data) => {
+  return {
+    type: actionTypes.CATEGORYNAME,
+    data:data
+  };
+
+}
+
 export const auth = (form) => {
   return (dispatch) => {
     dispatch(authStart());
@@ -511,7 +519,7 @@ export const fetchPosts = (form,props) => {
     };  
     return (dispatch) => {
       axios
-        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/posts?per_page=100&_embed",config)
+        .get("http://fluxxcharter.com/v1/wordpress_blog/wp-json/custom/v1/all-posts",config)
         .then((response) => {
              console.log(response.data);
             dispatch(postlist(response.data));        
@@ -685,6 +693,25 @@ export const fetchcategoryposts = () => {
         .then((response) => {
              console.log(response);
              dispatch(categorypost(response.data));        
+        })
+        .catch((err) => {
+          if (err === "Error: Request failed with status code 500") {
+            toast.error(" Token Expire !!");
+          }
+        });
+    };
+};
+
+export const fetchcategoryname =  (form,props) => {
+  const config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}`,'Content-Type': 'application/json', }
+    };
+    return (dispatch) => {
+      axios
+        .get("https://fluxxcharter.com/v1/wordpress_blog/wp-json/wp/v2/categories/2",config)
+        .then((response) => {
+             console.log(response);
+             dispatch(categoryname(response.data));        
         })
         .catch((err) => {
           if (err === "Error: Request failed with status code 500") {

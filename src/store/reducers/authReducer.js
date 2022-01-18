@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 import { updateObject } from "../utility";
 import isEmpty from "lodash/isEmpty";
+import { categoryname } from "../actions/authActions";
 const initialState = {
   token: null,
   error: null,
@@ -47,6 +48,10 @@ const categoryotherpostDetail =(state,action) =>{
 }
 const forgetpasswordmsgdetail =(state,action) =>{
   return updateObject(state, {forgetpasswordmsgdetail:action.data,loading:false});
+}
+const fetchcategoryname = (state,action) =>{
+   return updateObject(state, {fetchcategoryname:action.data,loading:false});
+
 }
 
 const authSuccess = (state, action) => {
@@ -114,6 +119,8 @@ const reducer = (state = initialState, action) => {
       return userList(state,action); 
     case actionTypes.FORGETPASSWORD:
       return forgetpasswordmsgdetail(state,action); 
+    case actionTypes.CATEGORYNAME:
+      return fetchcategoryname(state,action); 
     default:
       return state;
   }

@@ -24,7 +24,7 @@ const Blog = (props) => {
    useEffect(() => {
     dispatch(actions.fetchPosts());    
     dispatch(actions.fetchcategoryposts());
-    //dispatch(actions.fetchothercategoryposts('most-searched'));
+    
   },[]);
 
    const removeHTML = (str) => { 
@@ -76,14 +76,14 @@ const Blog = (props) => {
                   props.setpostData ?
                   props.setpostData.length > 0 ?  
                   props.setpostData.slice(0,1).map((post,index) => {                    
-                    return (                      
-                      <a href="#" onClick={fetchpostdetail(post)}><Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                    return (<>
+                        <Image src={post.featured_img_src} />
                         <div className='big-blog-contain'>
-                          <span>{post.title.rendered}</span>
-                          <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                          <h5>{}</h5>
-                        </div>
-                      </a>                      
+                          <span>{post.categoryName}</span>                         
+                          <a href="#" onClick={fetchpostdetail(post)}><h3>{removeHTML(post.title).substr(0,250)}</h3>
+                          <p>{removeHTML(post.description).substr(0,250)} </p></a> 
+                          <h5>{post.authorname}</h5>
+                        </div></>                                          
                     );
                   }) : null : null
                 }                   
@@ -95,14 +95,14 @@ const Blog = (props) => {
                 {
                   props.setpostData ?
                   props.setpostData.length > 0 ?  
-                  props.setpostData.slice(0,2).map((post,index) => {                    
+                  props.setpostData.slice(1,3).map((post,index) => {                    
                     return (
                       <a href="#" onClick={fetchpostdetail(post)}>
-                        <Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                        <Image src={post.featured_img_src} />
                         <div className='big-blog-contain'>
-                          <span>{post.title.rendered}</span>
-                          <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                          <h5>{post._embedded.author[0].name}</h5>
+                           <span>{post.categoryName}</span>                          
+                          <h3>{removeHTML(post.title).substr(0,250)}</h3>
+                          <h5>{post.authorname}</h5>
                         </div>
                       </a>
                     );
@@ -117,14 +117,14 @@ const Blog = (props) => {
                 {
                   props.setpostData ?
                   props.setpostData.length > 0 ?  
-                  props.setpostData.slice(0,2).map((post,index) => {
+                  props.setpostData.slice(3,5).map((post,index) => {
                     return (
                       <a href="#" onClick={fetchpostdetail(post)} key={index}>
-                        <Image src={post._embedded['wp:featuredmedia']['0'].source_url} />
+                        <Image src={post.featured_img_src} />
                         <div className='big-blog-contain'>
-                          <span>{post.title.rendered}</span>
-                          <h3>{removeHTML(post.content.rendered).substr(0,250)}</h3>
-                          <h5>{post._embedded.author[0].name}</h5>
+                          <span>{post.categoryName}</span>
+                          <h3>{removeHTML(post.title).substr(0,250)}</h3>
+                          <h5>{post.authorname}</h5>
                         </div>
                       </a>
                     );
@@ -242,7 +242,8 @@ const mapStateToProps = (state) => {
    return {
       setpostData:state.auth.postdata,
       setcategoryData:state.auth.categorypostdetail,
-      setothercategoryData:state.auth.categoryotherpostDetail
+      setothercategoryData:state.auth.categoryotherpostDetail,
+      setcategoryName :state.auth.fetchcategoryname,
    };
 };
 export default connect(mapStateToProps,null)(Blog);

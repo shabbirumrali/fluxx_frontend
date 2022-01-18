@@ -37,7 +37,7 @@ const BlogLists = (props) => {
       }
 
     console.log(props.match.params.id);
-    console.log(props.location.state);
+    console.log(props.setpostData);
     return (
         <Container fluid>
             <Row className="blogpost-header-container">
@@ -66,7 +66,7 @@ const BlogLists = (props) => {
                         <h2>{post.data.postdata.post_title.substr(0,50)} </h2>
                         <p>{removeHTML(post.data.postdata.post_content).substr(0,250)}</p>
                         <div className="blog-list-auther-name">
-                            <p>{post.data.postdata.post_author} |</p>
+                            <p>{'Admin'} |</p>
                             <span>| {moment(post.data.postdata.post_date).fromNow()}</span>
                         </div>
                     </div>
@@ -85,15 +85,15 @@ const BlogLists = (props) => {
                 props.setpostData.map((post,index) => {
                 return (
                     <>
-                    <Link to={`/blog/${post.id}`} >
+                    
                         <div className="sidebox-readon">
                         <div className="readon-tag d-flex">
-                            <p>read on</p><span>sdfsdf</span>
+                            <p>read on</p><span>{post.categoryName}</span>
                         </div>
-                            <h6>{post.title.rendered.substr(0,50)} </h6>
-                            <p>Lenovo's Chromebook Flex is on Amazon. Lenovo's Chromebook Flex is $170 right now on Amazon.</p>
+                        <Link to={`/blog/${post.id}`} ><h6>{post.title.substr(0,50)} </h6>
+                            <p>{removeHTML(post.description).substr(0,50)}</p> </Link>
                         </div>
-                    </Link>
+                   
                     </>
                     );
                 }) : null : null }            
