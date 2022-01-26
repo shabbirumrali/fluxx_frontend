@@ -15,6 +15,7 @@ const Names = ({ setForm, formData, navigation,id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
     const [projectOpen, setProjectOpen] = useState(true);
+
     const { register, errors, handleSubmit, reset} = useForm();
   const { name } = formData;
   const { next,go } = navigation;
@@ -25,6 +26,8 @@ const Names = ({ setForm, formData, navigation,id }) => {
         "name":name,
         "step":id
        }
+       
+
       dispatch(actions.createcharter(dataobject));  
       next(name)
     }
@@ -35,7 +38,7 @@ const Names = ({ setForm, formData, navigation,id }) => {
     go(index);
 
   };
-
+  
 return (
   <>
     <Container fluid style={{background: "#3d4a5c"}} className="py-4">
@@ -46,11 +49,11 @@ return (
       <p>Project Name</p>
       <Row className="charter_steps">
         <Col sm={12} lg={6} className="project_details">
-            <Form onSubmit={ handleSubmit(onSubmit) } noValidate>
-              <div className="project_charter_textarea_div">
+            <Form onSubmit={ handleSubmit(onSubmit) } noValidate >
+              <div className="project_charter_textarea_div" >
                 <ItemForm label="What is the title of your project?"
                   name="name" type="textarea" value={name}
-                  onChange={setForm} className="project_info"
+                  onChange={setForm} className="project_info" disableprop={name != '' ? true : false} 
                 />
               </div>
               <div className="charter_btn">

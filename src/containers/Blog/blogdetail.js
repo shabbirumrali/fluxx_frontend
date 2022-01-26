@@ -44,14 +44,15 @@ const BlogContent = (props) => {
 
 
     }
-    console.log(props.setcategoryName);
+    
+    console.log(props.setpostDetail.title.rendered);
     
     return (
       <Container fluid>
         <Row className="blogpost-header-container">
           <Col className="blogpost-header">
             <div>
-              <h1>{props.setpostDetail ? props.setpostDetail.title.rendered :"" }</h1>
+              <h1>{ props.setpostDetail ? removeHTML(props.setpostDetail.title.rendered) :"" }</h1>
               {/* <p>{props.setpostDetail ? props.setpostDetail.title.rendered :"" }</p> */}
             </div>
           </Col>

@@ -1,18 +1,18 @@
 import React from "react";
 
-const ItemForm = ({ label, children, type = "text", ...otherProps }) => (
-
+const ItemForm = ({ label, children, type = "text", disableprop,  ...otherProps }) => (
+  
 
   <div>
-    { type === "text" ? (
+    { type === "text"  ? (
       <>
         <label className="form-labels">{label}</label>
-        <input type={type} {...otherProps} />
+        <input type={type} {...otherProps}  disabled={true}  />
       </>
     ) : type === "textarea" ? (
         <>
         <label className="form-labels">{label}</label>
-        <textarea  {...otherProps} /> 
+        <textarea  {...otherProps}  disabled={disableprop}/> 
         </>
 
 
