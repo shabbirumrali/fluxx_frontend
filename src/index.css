@@ -1526,7 +1526,6 @@ form .cancel_btn:active {
 
 /* Blog Header Section 1 */
 .blog-inside-section1 .divider-blog .big-blog-contain h3 {
-  height: 133px;
   font-size: 1.8rem;
   overflow: hidden;
   margin-bottom: 8px;
@@ -1545,7 +1544,6 @@ form .cancel_btn:active {
 }
 .divider-blog .big-blog-contain h3 {
   font-weight: 500;
-  height: 80px;
   overflow: hidden;
   font-size: 1rem;
   line-height: 25px;
@@ -1607,8 +1605,7 @@ form .cancel_btn:active {
   font-size: 0.85rem;
 }
 .blog_divider_subsection .big_blog_contain h3 {
-  font-weight: 500;
-  height: 50px;
+  font-weight: 500;  
   overflow: hidden;
   font-size: 0.95rem;
   line-height: 25px;
