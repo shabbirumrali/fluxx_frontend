@@ -45,7 +45,7 @@ const BlogContent = (props) => {
 
     }
     
-    console.log(props.setpostDetail.title.rendered);
+    //console.log(props.setpostDetail.title.rendered);
     
     return (
       <Container fluid>

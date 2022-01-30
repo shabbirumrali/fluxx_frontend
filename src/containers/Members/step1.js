@@ -17,7 +17,7 @@ const Names = ({ setForm, formData, navigation,id }) => {
     const [projectOpen, setProjectOpen] = useState(true);
 
     const { register, errors, handleSubmit, reset} = useForm();
-  const { name } = formData;
+  const { name,step } = formData;
   const { next,go } = navigation;
   const onSubmit = async (data) => {
     console.log(name);
@@ -53,7 +53,7 @@ return (
               <div className="project_charter_textarea_div" >
                 <ItemForm label="What is the title of your project?"
                   name="name" type="textarea" value={name}
-                  onChange={setForm} className="project_info" disableprop={name != '' ? true : false} 
+                  onChange={setForm} className="project_info" disableprop={name != '' && step != '' ? true : false} 
                 />
               </div>
               <div className="charter_btn">
