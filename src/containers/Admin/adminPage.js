@@ -80,7 +80,7 @@ const AdminPage = (props) => {
                   <td>{v.subscribeUser == true ? "True":"False"}</td>
                   <td>{moment(v.createdAt).format('YYYY-MM-DD HH:mm:ss')}</td>                 
                   <td>{moment(v.last_login).format('YYYY-MM-DD HH:mm:ss') }</td>
-                  <td>{moment(v.account_delete_date).format('YYYY-MM-DD HH:mm:ss')}</td>
+                  <td>{v.account_delete_date ? moment(v.account_delete_date).format('YYYY-MM-DD HH:mm:ss'):""}</td>
                   <td>N</td>
                 </tr>)
                  })

@@ -1,4 +1,5 @@
 import React, {useState,useEffect,useCallback, useLayoutEffect} from "react"
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -74,7 +75,7 @@ const BlogContent = (props) => {
                 <Image src={props.setpostDetail ? props.setpostDetail._embedded['wp:featuredmedia']['0'].source_url : BlogImage} />
                 <span>Photo: Brandon Crawford (Shutterstock)</span>
               <div className="blogpost-postcontent">
-                <p>{props.setpostDetail ? removeHTML(props.setpostDetail.content.rendered) :"" }</p>
+                <p>{props.setpostDetail ? ReactHtmlParser(props.setpostDetail.content.rendered) :"" }</p>
               </div>
             </div>
         </Col>
