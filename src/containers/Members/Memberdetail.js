@@ -34,12 +34,14 @@ const Members = (props) => {
       handleCloseFolder();
     }
     if (data.newchartername != undefined) {
-      dispatch(actions.renamecharter(data, selectedcharterid.id));
+      
+      dispatch(actions.renamecharter(data, selectedcharterid.projectId));
       handleClose();
     }
-    if (Object.keys(data).length == 0) {
+    if (Object.keys(data).length == 0 && data.newchartername == undefined) {
       dispatch(actions.deleteCharter(data, selectedcharterid.projectId));
-      setTimeout(function(){  dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));
+      setTimeout(function(){ 
+         dispatch(actions.fetchcategoryProjects(window.location.pathname.split("/").pop()));
       }, 2000);
       handleClose3();
     }
@@ -50,7 +52,7 @@ const Members = (props) => {
       dispatch(actions.moveCharter(data, selectedcharterid));
       handleClose2();
     }
-    if (Object.keys(data).length >0  && data.selectCat != "uncategorized") {
+    if (Object.keys(data).length >0  && data.selectCat != "uncategorized" && data.newchartername == undefined ) {
       dispatch(actions.moveCharter(data, selectedcharterid));
       handleClose2();
     }
