@@ -22,7 +22,7 @@ const Register = (props) => {
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string() 
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?_^&(){}~<>+=])[A-Za-z\d#$@!%&*?_^&(){}~<>+=]{8,30}$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?_^&(){}~<>+=:;|"])[A-Za-z\d#$@!%&*?_^&(){}~<>+=:;|"]{8,30}$/,
         "Password must contain one capital letter, one number, one special character and at least eight characters."
       )
       .required("Password is required"),
