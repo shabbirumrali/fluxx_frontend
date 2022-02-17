@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
         marginTop: 15,
         marginRight: 15
     },
+    pdfProjectName: {
+        family: 'Open Sans',
+        fontSize: 13,
+        width: '41%',
+        // backgroundColor: 'red',
+        fontWeight: 600,
+        // color: 'green',
+    },
     pdfHeaderTitle: {
         family: 'Open Sans',
         fontSize: 12,
@@ -56,6 +64,15 @@ const styles = StyleSheet.create({
         // backgroundColor: 'red',
         fontWeight: 600,
         // color: 'green',
+    },
+    pdfProjectNameTitle: {
+        fontStyle: 'Roboto-Regular',
+        fontSize: 13,
+        width: '90%',
+        textAlign: 'left',
+        // backgroundColor: 'tomato',
+        fontWeight: 200,
+        color: '#646464',
     },
     pdfHeaderSubSection: {
         fontStyle: 'Roboto-Regular',
@@ -121,8 +138,8 @@ export function PdfDocument(props) {
                 <View style={styles.pdfContainer}>                    
                     <View style={styles.pdfContainerHeaderSection}>
                         <View style={styles.pdfContainerHeaderpart}>
-                            <Text style={styles.pdfHeaderTitle}>Project Title:</Text>
-                            <Text style={styles.pdfHeaderSubSection}>{props.data.charterlist.name}</Text>
+                            <Text style={styles.pdfProjectName}>Project Title:</Text>
+                            <Text style={styles.pdfProjectNameTitle}>{props.data.charterlist.name}</Text>
                         </View>
                     </View>
                     <View style={styles.pdfContainerHeaderSection}>
@@ -259,7 +276,6 @@ export function PdfDocument(props) {
                                         : null
                                     : null
                                  }
-                                
                             </View>
                         </View>
                     </View>

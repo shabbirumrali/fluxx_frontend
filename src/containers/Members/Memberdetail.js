@@ -158,6 +158,7 @@ const Members = (props) => {
         {props.setResponseDatadetail ? props.setResponseDatadetail.categoryList[0].CategoryProjects.length > 0 ?
           props.setResponseDatadetail.categoryList[0].CategoryProjects.map((list, index) => {
             return (
+              <>
               <Row key={index} className="my-1">
                 <Col className="personal_charters">
                   <div className="personal_charters_subparts">
@@ -173,8 +174,14 @@ const Members = (props) => {
                       </OverlayTrigger>
                     </div>
                   </div>
-                </Col>
+                </Col>                
               </Row>
+              <div className="members_empty_folder">
+                <div className="members_empty_folder_inside">
+                  <Link to="/members"><Button className="modal_cancel_btn" variant="light" type="submit"> Back </Button></Link>
+                </div>
+              </div>
+              </>
             )
           }) : <div className="members_empty_folder">
                 <div className="members_empty_folder_inside">
@@ -184,12 +191,6 @@ const Members = (props) => {
               </div> 
 
        : null}
-        <div className="members_empty_folder">
-          <div className="members_empty_folder_inside">                
-            <Link to="/members"><Button className="modal_cancel_btn" variant="light" type="submit"> Back </Button></Link>
-          </div>
-        </div> 
-
 
         {/* ---------------------------MODEL-------------------------------- */}
 
